@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping("/loginForm")
+	@RequestMapping("/loginform")
 	public String loginForm() {
 		logger.info("실행");
 		return "member/loginForm";
 	}
 	
-	@RequestMapping("/joinForm")
-	public String joinForm() {
+	@RequestMapping("/orderlist")
+	public String orderList() {
 		logger.info("실행");
-		return "member/joinForm";
+		return "member/orderList";
 	}
+	
 }  
