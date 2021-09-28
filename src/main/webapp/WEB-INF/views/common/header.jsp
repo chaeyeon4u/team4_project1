@@ -12,66 +12,93 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>SpringFramework</title>
-		<%--
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
-		--%>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/css/bootstrap.min.css"/>
 		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
 	
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/brand.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font_80.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
 	</head>
 	<body>
 		<div class="d-flex flex-column vh-100">
-			<nav class="navbar navbar-expand-sm bg-dark navbar-dark text-white font-weight-bold justify-content-between">
-				<a class="navbar-brand" href="/"> 
-					<img src="${pageContext.request.contextPath}/resources/images/logo-spring.png" width="30" height="30" class="d-inline-block align-top">
-					Spring
-				</a>
-				<div>
-					<div>
-						<%-- 
-						<c:if test="${sessionMid == null}">
-							<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/ch08/login">로그인</a>
-							<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/ch15/login">로그인</a>
-						</c:if>
-						<c:if test="${sessionMid != null}">
-							<a class="btn btn-success btn-sm" href="${pageContext.request.contextPath}/ch08/logout">로그아웃</a>
-						</c:if> 
-						--%>
-						<sec:authorize access="isAnonymous()">
-							<a href="${pageContext.request.contextPath}/ch17/loginForm" class="btn btn-success btn-sm">로그인</a>
-						</sec:authorize>
-					
-						<sec:authorize access="isAuthenticated()">
-							<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>  
-							<%-- 
-							<a href="${pageContext.request.contextPath}/logout" 
-							   class="btn btn-success btn-sm">로그아웃</a> 
-							--%>
-							   
-							<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>   
-							<form method="post" action="${pageContext.request.contextPath}/logout">
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-								<button class="btn btn-success btn-sm">로그아웃</button>
-							</form>
-						</sec:authorize>
-					</div>
-				</div>
-			</nav>
-	
-			<div class="flex-grow-1 container-fluid">
-				<div class="row h-100">
-					<div class="col-md-4 p-3 bg-dark">
-						<div class="h-100 d-flex flex-column">
-							<div class="flex-grow-1" style="height: 0px; overflow-y: auto; overflow-x: hidden;">
-								<%@ include file="/WEB-INF/views/common/menu.jsp" %>
+			<div id="headerWrap">
+				<div class="header header_fixed header_main1903"> 
+					<div class="top_nav topnav1903">
+						<div class="top_nav_wrap clearfix">
+				            <div class="brand_menu brand_menu1903">
+					            <ul class="clearfix">
+					                <!-- 선호 브랜드 없음 -->
+					                        <li><span class="on"><a href="" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
+					                        <!-- 로그인 상태 -->
+													<!-- 비로그인 상태 -->
+					              <p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
+								</ul>
+				       		</div>
+				    		<div class="gnb_sh_wrap" style="display:none;">
+								<div class="gnb_sh_box">
+									<input type="text" class="input" id="gnbsearchwords" title="검색어 입력" value="" onkeypress="if(event.keyCode==13) {EnterSearchHeader(); return false;}">
+									<a href="" id="gnbsearch">검색</a>
+								</div>
+							</div>				
+			                <div class="util_menu" style="display:block;">
+								<ul class="clearfix">
+									<li>
+										<a href="" onclick="GA_Event('공통','헤더_메뉴','로그인')">로그인</a>
+									</li>
+									<li>
+										<a href="" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
+		<!-- //headerWrap -->
+					<div class="gnbwarp com clearfix">
+				        <h1 class="logo logo1903">
+				            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
+				        </h1>
+				        <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
+				            <h2 class="invisible">주메뉴</h2>
+				            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
+					            <li><a href="" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
+					            </li>            
+					            <li><a href="" onclick="GA_Event('공통','GNB','여성');GA_Event('공통_카테고리','1DEPTH','여성');" class="">여성<span class="arr">arrow</span></a>            
+					            </li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','남성');GA_Event('공통_카테고리','1DEPTH','남성');" class="">남성<span class="arr">arrow</span></a>            
+					            </li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','키즈');GA_Event('공통_카테고리','1DEPTH','키즈');" class="">키즈<span class="arr">arrow</span></a>            
+					            </li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','뷰티');GA_Event('공통_카테고리','1DEPTH','뷰티');" class="">뷰티<span class="arr">arrow</span></a>            
+					            </li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','라이프스타일');GA_Event('공통_카테고리','1DEPTH','라이프스타일');" class="">라이프스타일<span class="arr">arrow</span></a>            
+					            </li>
+				            </ul>
+				        
+					        <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float:right;">
+					            <li><a href="" onclick="GA_Event('공통','GNB','기획전');" class="">기획전<!-- 기획전 --></a></li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','이벤트');" class="">이벤트</a></li>
+					            <li><a href="" class="magazine1803" onclick="GA_Event('공통','GNB','THE 매거진');">THE 매거진<!-- 매거진 --><span class="arr">arrow</span></a></li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','편집샵');" class="">편집샵</a></li>
+					            <li><a href="" class="">룩북</a></li>
+					            <li><a href="" onclick="GA_Event('공통','GNB','아울렛');" class="">아울렛*</a></li>
+					        </ul>
+				        </div>
+					    <div class="util_menu util_menu1803">
+					        <ul class="clearfix">
+					            <li><a href=""><span class="ico_sh">search</span></a></li>
+					            <li><a href="" onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
+					            <li><a href="" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
+					        </ul>
+					    </div>
+  					</div>  
+			    </div>
+			</div>
 	
-					<div class="col-md-8 p-3">
-						<div class=" h-100 d-flex flex-column">
-							<div class="flex-grow-1 overflow-auto pr-3" style="height: 0px">
+		
