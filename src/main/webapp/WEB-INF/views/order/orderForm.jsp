@@ -329,7 +329,7 @@
 					</div>
 					<!-- <span id="doOrderBtn"> <a href="#;" class="btn gray " onclick="doOrder();"> 결제하기</a>
 					</span> -->
-					<span id="doOrderBtn"> <a href="/" class="btn gray "> 결제하기</a>
+					<span id="doOrderBtn"> <a href="/member/orderlist" class="btn gray "> 결제하기</a>
 					</span>
 				</div>
 			</div>
