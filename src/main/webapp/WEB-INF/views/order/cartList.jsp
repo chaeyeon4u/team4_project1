@@ -1,8 +1,9 @@
-
-<!-- 시작 -->
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/cart_header.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
+<%@ include file="/WEB-INF/views/special/cartListLinks.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
+
 <div id="bodyWrap">
 	<h3 class="cnts_title cnts_tlt1807">
 		<span>쇼핑백</span>
@@ -515,7 +516,7 @@
 		<a href="#;" onclick="selectRemove();">
 			<input value="선택상품삭제" class="btn wt" type="button">
 		</a>
-		<a href="#;" onclick="checkoutPage();">
+		<a href="orderform" onclick="checkoutPage();">
 			<input value="선택상품 주문하기" class="btn gray mr0" type="button">
 		</a>
 
