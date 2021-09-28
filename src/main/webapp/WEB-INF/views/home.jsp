@@ -2,36 +2,144 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-<div class="card m-2">
-	<div class="card-header">
-		Spring Security
-	</div>
-	<div class="card-body">
-		<div class="card">
-			<div class="card-header">
-				로그인/로그아웃
-			</div>
-			<div class="card-body">
-				<sec:authorize access="isAnonymous()">
-					<a href="${pageContext.request.contextPath}/member/loginForm" class="btn btn-info btn-sm">로그인</a>
-				</sec:authorize>
-			
-				<sec:authorize access="isAuthenticated()">
-					<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>  
-					<%-- 
-					<a href="${pageContext.request.contextPath}/logout" 
-					   class="btn btn-info btn-sm">로그아웃</a> 
-					--%>
-					   
-					<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>   
-					<form method="post" action="${pageContext.request.contextPath}/logout" class="d-inline-block">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<button class="btn btn-info btn-sm">로그아웃</button>
-					</form>
-				</sec:authorize>
-			</div>
-		</div>
-	</div>
-</div>
+<body oncontextmenu="return false">
+	<div id="bodyWrap" style="padding-bottom:0;">
+        <div class="main_container">
+            <div class="product_list1903">
+                <div class="nbe_cnt new">
+                    <div class="nbe_cnt_inner_wrap">
+	                    <div class="nbe_cnt_inner swiper-container swiper-container-horizontal swiper-container-wp8-horizontal" id="newListSlider">	
+		                    <ul class="items_list swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">	
+		                    
+		                    	<li class="swiper-slide swiper-slide-active">			
+		                    		<div class="item_box">				
+		                    			<a href="/" class="item_info1">	
+		       								<span class="item_img">	
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/CS2B9QJC005WCJ_BK_T01.jpg" width="234" height="353" alt="" name="펄 돌먼 점퍼" class="respon_image">					
+											</span>				
+										</a>				
+										<a href="/" class="item_info2">
+											<span class="brand">O'2nd</span>
+											<span class="price">₩598,000</span>
+										</a>	
+									</div>
+								</li>
+								
+								<li class="swiper-slide swiper-slide-next">	
+									<div class="item_box">	
+										<a href="/ko/p/IL2B9WBL572W_NY" class="item_info1">
+											<span class="item_img">
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/CS2B9QJC006WCJ_GE_T01.jpg" width="234" height="353" alt="" name="패널 번아웃 블라우스" class="respon_image">
+											</span>
+										</a>
+										<a href="/" class="item_info2">
+											<span class="brand">LÄTT</span>
+											<span class="price">₩375,000</span>
+										</a>
+									</div>
+								</li>
+								
+								<li class="swiper-slide">
+									<div class="item_box">				
+										<a href="/" class="item_info1">
+											<span class="item_img">						
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/CS2B9WJC003WLV_CM_T01.jpg" width="234" height="353" alt="" name="홀가먼트 캐시미어 니트 드레스" class="respon_image">					
+											</span>				
+										</a>				
+									<a href="/" class="item_info2">					
+										<span class="brand">the CASHMERE</span>					
+										<span class="price">₩675,000</span>				
+									</a>			
+								</div>		
+								</li>		
+								
+								<li class="swiper-slide">			
+									<div class="item_box">				
+										<a href="/ class="item_info1">					
+											<span class="item_img">						
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/IL2B9WJC412W_DG_T01.jpg" width="234" height="353" alt="" name="돌먼 슬리브 재킷" class="respon_image">					
+											</span>				
+										</a>				
+										<a href="/" class="item_info2">					
+											<span class="brand">SYSTEM</span>					
+											<span class="price">₩559,000</span>				
+										</a>			
+									</div>		
+								</li>		
+								
+		                   	</ul>
+	                   	</div>
+                   	</div>
+                </div>
+                
+                <div class="nbe_cnt new">
+                    <div class="nbe_cnt_inner_wrap">
+	                    <div class="nbe_cnt_inner swiper-container swiper-container-horizontal swiper-container-wp8-horizontal" id="newListSlider">	
+		                    <ul class="items_list swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">	
+		                    
+		                    	<li class="swiper-slide swiper-slide-active">			
+		                    		<div class="item_box">				
+		                    			<a href="/" class="item_info1">	
+		       								<span class="item_img">	
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/LC2B9FJC951W_DN_T01.jpg" width="234" height="353" alt="" name="펄 돌먼 점퍼" class="respon_image">					
+											</span>				
+										</a>				
+										<a href="/" class="item_info2">
+											<span class="brand">O'2nd</span>
+											<span class="price">₩598,000</span>
+										</a>	
+									</div>
+								</li>
+								
+								<li class="swiper-slide swiper-slide-next">	
+									<div class="item_box">	
+										<a href="/" class="item_info1">
+											<span class="item_img">
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/LC2B9WJC443W_GY_T01.jpg" width="234" height="353" alt="" name="패널 번아웃 블라우스" class="respon_image">
+											</span>
+										</a>
+										<a href="/" class="item_info2">
+											<span class="brand">LÄTT</span>
+											<span class="price">₩375,000</span>
+										</a>
+									</div>
+								</li>
+								
+								<li class="swiper-slide">
+									<div class="item_box">				
+										<a href="/" class="item_info1">
+											<span class="item_img">						
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/MN2B8WOT724WM_IN_T01.jpg" width="234" height="353" alt="" name="홀가먼트 캐시미어 니트 드레스" class="respon_image">					
+											</span>				
+										</a>				
+									<a href="/" class="item_info2">					
+										<span class="brand">the CASHMERE</span>					
+										<span class="price">₩675,000</span>				
+									</a>			
+								</div>		
+								</li>		
+								
+								<li class="swiper-slide">			
+									<div class="item_box">				
+										<a href="/ class="item_info1"">					
+											<span class="item_img">						
+												<img src="${pageContext.request.contextPath}/resources/images/womanouter/SJ2B9RJC264W_LE_T01.jpg" width="234" height="353" alt="" name="돌먼 슬리브 재킷" class="respon_image">					
+											</span>				
+										</a>				
+										<a href="/" class="item_info2">					
+											<span class="brand">SYSTEM</span>					
+											<span class="price">₩559,000</span>				
+										</a>			
+									</div>		
+								</li>		
+								
+		                   	</ul>
+	                   	</div>
+                   	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

@@ -75,34 +75,48 @@
 			        <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
 			            <h2 class="invisible">주메뉴</h2>
 			            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
-				            <li><a href="" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
+				            <li><a href="" class="gnb_brand">cat1<span class="arr">arrow</span></a>
 				            </li>            
-				            <li><a href="" class="">여성<span class="arr">arrow</span></a>            
+				            <li><a href="" class="">cat2<span class="arr">arrow</span></a>            
 				            </li>
-				            <li><a href="" class="">남성<span class="arr">arrow</span></a>            
+				            <li><a href="" class="">cat3<span class="arr">arrow</span></a>            
 				            </li>
-				            <li><a href="" class="">키즈<span class="arr">arrow</span></a>            
+				            <li><a href="" class="">cat4<span class="arr">arrow</span></a>            
 				            </li>
-				            <li><a href="" class="">뷰티<span class="arr">arrow</span></a>            
+				            <li><a href="" class="">cat5<span class="arr">arrow</span></a>            
 				            </li>
-				            <li><a href="" class="">라이프스타일<span class="arr">arrow</span></a>            
+				            <li><a href="" class="">cat6<span class="arr">arrow</span></a>            
 				            </li>
 			            </ul>
 			        
 				        <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float:right;">
-				            <li><a href="" class="">기획전<!-- 기획전 --></a></li>
-				            <li><a href="" class="">이벤트</a></li>
-				            <li><a href="" class="magazine1803">THE 매거진<!-- 매거진 --><span class="arr">arrow</span></a></li>
-				            <li><a href="" class="">편집샵</a></li>
-				            <li><a href="" class="">룩북</a></li>
-				            <li><a href="" class="">아울렛</a></li>
+				            <li><a href="" class="">기타1</a></li>
+				            <li><a href="" class="">기타2</a></li>
+				            <li><a href="" class="">기타3</a></li>
+				            <li><a href="" class="">기타4</a></li>
+				            <li><a href="" class="">기타5</a></li>
+				            <li><a href="" class="">기타6</a></li>
 				        </ul>
 			        </div>
 				    <div class="util_menu util_menu1803">
 				        <ul class="clearfix">
-				            <li><a href=""><span class="ico_sh">search</span></a></li>
-				            <li><a href=""><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
-				            <li><a href=""><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
+				            <li>
+				            	<a href="">
+				            		<span class="ico_sh">search</span>
+				            	</a>
+				            </li>
+				            <li>
+				            	<a href="">
+				            		<span class="ico wishlist">wish list</span>
+				            		<span class="count">(<span id="wishlistCount">0</span>)</span>
+				            	</a>
+				            </li>
+				            <li>
+				            	<a href="">
+				            		<span class="ico cart">장바구니</span>
+				            		<span class="count">(<span id="cartCount">0</span>)</span>
+				            	</a>
+				            </li>
 				        </ul>
 				    </div>
 				</div>  
