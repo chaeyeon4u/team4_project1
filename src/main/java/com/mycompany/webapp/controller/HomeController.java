@@ -23,4 +23,10 @@ public class HomeController {
 		logger.info("실행");
 		return "error/403";
 	}
+	
+	//product detail 화면으로 가는 컨트롤러
+	@RequestMapping("/product/productDetail")
+	public String productDetail() {
+		return "product/productDetail";
+	}
 }  
