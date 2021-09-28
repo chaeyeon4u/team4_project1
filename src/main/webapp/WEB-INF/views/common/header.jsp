@@ -27,7 +27,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
 	</head>
 	<body>
-		<div class="d-flex flex-column vh-100">
 			<div id="headerWrap">
 				<div class="header header_fixed header_main1903"> 
 					<div class="top_nav topnav1903">
@@ -59,7 +58,7 @@
 							</div>
 						</div>
 					</div>
-		<!-- //headerWrap -->
+			<!-- //headerWrap -->
 					<div class="gnbwarp com clearfix">
 				        <h1 class="logo logo1903">
 				            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>

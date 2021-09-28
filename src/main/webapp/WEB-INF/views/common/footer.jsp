@@ -1,54 +1,103 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-		<div id="footerWrap">
-	
+
+<div id="footerWrap">
 	<div class="footer">
+
 		<!--footer_cnts1 -->
 		<div class="footer_cnts1 clearfix">
+			
 			<!-- footer_menu-->
 			<div class="footer_menu cnts1_left">
-				<div class="footer_logo"><a href="/ko/main" onclick="GA_Event('공통','로고','하단');"><img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_logo_renew.png" alt="HANDSOME"></a></div>
+				<div class="footer_logo">
+					<a href="/ko/main" onclick="GA_Event('공통','로고','하단');">
+						<img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_logo_renew.png" alt="HANDSOME">
+					</a>
+				</div>
 				<div class="footer_link">
 					<ul class="clearfix">
-					    <li><a href="/ko/svcenter/theClubInfo" onclick="GA_Event('공통','푸터_메뉴','온라인 멤버십');">온라인 멤버십</a></li>
-						<li><a href="/ko/svcenter/memberbenefitguide" onclick="GA_Event('공통','푸터_메뉴','한섬 VVIP 혜택');">한섬 VVIP 혜택</a></li>
-						<li><a href="/ko/svcenter/pointguide" onclick="GA_Event('공통','푸터_메뉴','한섬마일리지 혜택');">한섬마일리지 혜택</a></li>
-						<li><a href="/ko/svcenter/couponguide" onclick="GA_Event('공통','푸터_메뉴','쿠폰');">쿠폰</a></li>
-		<li><a href="/ko/svcenter/asguide" onclick="GA_Event('공통','푸터_메뉴','반품&amp;환불안내');">반품&amp;환불안내</a></li>
-							</ul>
-					<ul class="clearfix">
-						<li><a href="/ko/svcenter/submain" onclick="GA_Event('공통','푸터_메뉴','고객센터');">고객센터</a></li>
-						<li><a href="/ko/svcenter/faq" onclick="GA_Event('공통','푸터_메뉴','FAQ');">FAQ</a></li>
-						<li><a href="/ko/svcenter/mending" onclick="GA_Event('공통','푸터_메뉴','수선진행조회');">수선진행조회</a></li>
-						</ul>
-					<ul class="clearfix">
-					   <li><a href="/ko/member/login" onclick="GA_Event('공통','푸터_메뉴','로그인');">로그인</a></li>
-					   <li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','주문배송조회');">주문배송조회</a></li>
-						<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','취소/반품');">취소/반품</a></li>
-						<li><a href="/ko/mypage/myWish" onclick="GA_Event('공통','푸터_메뉴','위시리스트');">위시리스트</a></li>
+					    <li>
+					    	<a href="/ko/svcenter/theClubInfo" onclick="GA_Event('공통','푸터_메뉴','온라인 멤버십');">온라인 멤버십</a>
+					    </li>
+						<li>
+							<a href="/ko/svcenter/memberbenefitguide" onclick="GA_Event('공통','푸터_메뉴','한섬 VVIP 혜택');">한섬 VVIP 혜택</a>
+						</li>
+						<li>
+							<a href="/ko/svcenter/pointguide" onclick="GA_Event('공통','푸터_메뉴','한섬마일리지 혜택');">한섬마일리지 혜택</a>
+						</li>
+						<li>
+							<a href="/ko/svcenter/couponguide" onclick="GA_Event('공통','푸터_메뉴','쿠폰');">쿠폰</a>
+						</li>
+						<li>
+							<a href="/ko/svcenter/asguide" onclick="GA_Event('공통','푸터_메뉴','반품&amp;환불안내');">반품&amp;환불안내</a>
+						</li>
 					</ul>
 					<ul class="clearfix">
-						<li><a href="http://www.handsome.co.kr/ko/company/aboutHandsome.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','회사소개');">회사소개<!-- 회사소개 --></a></li>
-						<li><a href="http://www.handsome.co.kr/ko/brand/fashion.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','브랜드소개');">브랜드소개</a></li>
-						<li><a href="http://www.handsome.co.kr/ko/ir/governance01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','투자정보');">투자정보</a></li>
-						<li><a href="https://recruit.ehyundai.com/recruit-info/announcement/list.nhd?pageNo=1&amp;hireGb=01&amp;coCd=HDHAN" target="_blank" onclick="GA_Event('공통','푸터_메뉴','채용정보');">채용정보</a></li>
-						<li><a href="http://www.handsome.co.kr/ko/sustainability/sharedGrowth01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','동반성장');">동반성장</a></li>
-						</ul>
+						<li>
+							<a href="/ko/svcenter/submain" onclick="GA_Event('공통','푸터_메뉴','고객센터');">고객센터</a>
+						</li>
+						<li>
+							<a href="/ko/svcenter/faq" onclick="GA_Event('공통','푸터_메뉴','FAQ');">FAQ</a>
+						</li>
+						<li>
+							<a href="/ko/svcenter/mending" onclick="GA_Event('공통','푸터_메뉴','수선진행조회');">수선진행조회</a>
+						</li>
+					</ul>
+					<ul class="clearfix">
+						<li>
+							<a href="/ko/member/login" onclick="GA_Event('공통','푸터_메뉴','로그인');">로그인</a>
+						</li>
+						<li>
+							<a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','주문배송조회');">주문배송조회</a>
+						</li>
+						<li>
+							<a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','취소/반품');">취소/반품</a>
+						</li>
+						<li>
+							<a href="/ko/mypage/myWish" onclick="GA_Event('공통','푸터_메뉴','위시리스트');">위시리스트</a>
+						</li>
+					</ul>
+					<ul class="clearfix">
+						<li>
+							<a href="http://www.handsome.co.kr/ko/company/aboutHandsome.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','회사소개');">회사소개<!-- 회사소개 --></a>
+						</li>
+						<li>
+							<a href="http://www.handsome.co.kr/ko/brand/fashion.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','브랜드소개');">브랜드소개</a>
+						</li>
+						<li>
+							<a href="http://www.handsome.co.kr/ko/ir/governance01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','투자정보');">투자정보</a>
+						</li>
+						<li>
+							<a href="https://recruit.ehyundai.com/recruit-info/announcement/list.nhd?pageNo=1&amp;hireGb=01&amp;coCd=HDHAN" target="_blank" onclick="GA_Event('공통','푸터_메뉴','채용정보');">채용정보</a>
+						</li>
+						<li>
+							<a href="http://www.handsome.co.kr/ko/sustainability/sharedGrowth01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','동반성장');">동반성장</a>
+						</li>
+					</ul>
 				</div>
 			</div>
+			
 			<!-- //footer_menu-->
 			<div class="footer_apps cnts1_right">
 				<ul>
-					<li class="loca"><a href="/ko/b/storeInformation" onclick="GA_Event('공통','푸터','매장안내');">매장안내</a></li>
-					<li class="look"><a href="/ko/magazine/lookbook" onclick="GA_Event('공통','푸터','룩북');">룩북</a></li>
-					<li class="ico_youtube"><a href="/ko/magazine/youtubeList" onclick="GA_Event('공통','푸터_SNS','YOUTUBE');">비디오</a></li><!-- 200330 추가 -->
-					<li class="ico_insta" id="f_insta" style=""><a href="https://www.instagram.com/thehandsome_official/" target="_blank" onclick="GA_Event('공통','푸터_SNS','INSTAGRAM');">인스타그램</a></li><!-- 200330 추가 -->
+					<li class="loca">
+						<a href="/ko/b/storeInformation" onclick="GA_Event('공통','푸터','매장안내');">매장안내</a>
+					</li>
+					<li class="look">
+						<a href="/ko/magazine/lookbook" onclick="GA_Event('공통','푸터','룩북');">룩북</a>
+					</li>
+					<li class="ico_youtube">
+						<a href="/ko/magazine/youtubeList" onclick="GA_Event('공통','푸터_SNS','YOUTUBE');">비디오</a>
+					</li><!-- 200330 추가 -->
+					<li class="ico_insta" id="f_insta" style="">
+						<a href="https://www.instagram.com/thehandsome_official/" target="_blank" onclick="GA_Event('공통','푸터_SNS','INSTAGRAM');">인스타그램</a>
+					</li><!-- 200330 추가 -->
 				</ul>
+				
 				<!--download_app , athome-->
 				<div class="cnts1_right_inner">
 				    <a href="/ko/appDownloadSMS/sendSMSPage" onclick="GA_Event('공통','푸터','APP다운로드');">
-<img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_ico_apps.png" alt="APP 다운로드" style="width:52px;height:71px;">
-<!-- 				        <img src="/_ui/desktop/common/images/common/ico_apps_new.png" alt="APP 다운로드" style="width:54px;height:70px;"> -->
-<p>APP 다운로드 &gt;</p>
+						<img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_ico_apps.png" alt="APP 다운로드" style="width:52px;height:71px;">
+						<p>APP 다운로드 &gt;</p>
 			        </a>
 				    <a href="/ko/svcenter/footerAthomeInfo" style="margin-right:0;" onclick="GA_Event('공통','푸터','딜리버리서비스');">
 <img src="http://cdn.thehandsome.com/pc/footer/footer_athome_car.png" alt="딜리버리 서비스" style="width:85px;">
@@ -139,9 +188,5 @@
 	</div>
 
 
-
-
-
-		</div>
 	</body>
 </html>
