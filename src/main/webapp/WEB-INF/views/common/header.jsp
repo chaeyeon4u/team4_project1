@@ -98,6 +98,8 @@
 					    </div>
   					</div>  
 			    </div>
+			    <%-- header 공간 --%>
+		    	<div style="height:119px;"></div>
 			</div>
 	
 		
