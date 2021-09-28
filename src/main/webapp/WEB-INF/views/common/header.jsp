@@ -25,79 +25,89 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/products.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css"/>
 	</head>
 	<body>
-			<div id="headerWrap">
-				<div class="header header_fixed header_main1903"> 
-					<div class="top_nav topnav1903">
-						<div class="top_nav_wrap clearfix">
-				            <div class="brand_menu brand_menu1903">
-					            <ul class="clearfix">
-					                <!-- 선호 브랜드 없음 -->
-					                        <li><span class="on"><a href="" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
-					                        <!-- 로그인 상태 -->
-													<!-- 비로그인 상태 -->
-					              <p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
-								</ul>
-				       		</div>
-				    		<div class="gnb_sh_wrap" style="display:none;">
-								<div class="gnb_sh_box">
-									<input type="text" class="input" id="gnbsearchwords" title="검색어 입력" value="" onkeypress="if(event.keyCode==13) {EnterSearchHeader(); return false;}">
-									<a href="" id="gnbsearch">검색</a>
-								</div>
-							</div>				
-			                <div class="util_menu" style="display:block;">
-								<ul class="clearfix">
-									<li>
-										<a href="" onclick="GA_Event('공통','헤더_메뉴','로그인')">로그인</a>
-									</li>
-									<li>
-										<a href="" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
-									</li>
-								</ul>
+	
+		<%-- headerWrap 시작 --%>
+		<div id="headerWrap">
+			<div class="header header_fixed header_main1903"> 
+				<div class="top_nav topnav1903">
+					<div class="top_nav_wrap clearfix">
+			            <div class="brand_menu brand_menu1903">
+				            <ul class="clearfix">
+				                <!-- 선호 브랜드 없음 -->
+				                        <li>
+					                        <span class="on">
+					                        	<a href="">HOME</a>
+					                        </span>
+				                        </li>
+				                        <!-- 로그인 상태 -->
+												<!-- 비로그인 상태 -->
+				              <p class="brand_menu_guide_text">패션의 완성 THE HANDSOME</p>
+							</ul>
+			       		</div>
+			    		<div class="gnb_sh_wrap" style="display:none;">
+							<div class="gnb_sh_box">
+								<input type="text" class="input" id="gnbsearchwords" title="검색어 입력" value="" onkeypress="if(event.keyCode==13) {EnterSearchHeader(); return false;}">
+								<a href="" id="gnbsearch">검색</a>
 							</div>
+						</div>				
+		                <div class="util_menu" style="display:block;">
+							<ul class="clearfix">
+								<li>
+									<a href="">로그인</a>
+								</li>
+								<li>
+									<a href="">마이페이지</a>
+								</li>
+							</ul>
 						</div>
 					</div>
-			<!-- //headerWrap -->
-					<div class="gnbwarp com clearfix">
-				        <h1 class="logo logo1903">
-				            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
-				        </h1>
-				        <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
-				            <h2 class="invisible">주메뉴</h2>
-				            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
-					            <li><a href="" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
-					            </li>            
-					            <li><a href="" onclick="GA_Event('공통','GNB','여성');GA_Event('공통_카테고리','1DEPTH','여성');" class="">여성<span class="arr">arrow</span></a>            
-					            </li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','남성');GA_Event('공통_카테고리','1DEPTH','남성');" class="">남성<span class="arr">arrow</span></a>            
-					            </li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','키즈');GA_Event('공통_카테고리','1DEPTH','키즈');" class="">키즈<span class="arr">arrow</span></a>            
-					            </li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','뷰티');GA_Event('공통_카테고리','1DEPTH','뷰티');" class="">뷰티<span class="arr">arrow</span></a>            
-					            </li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','라이프스타일');GA_Event('공통_카테고리','1DEPTH','라이프스타일');" class="">라이프스타일<span class="arr">arrow</span></a>            
-					            </li>
-				            </ul>
-				        
-					        <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float:right;">
-					            <li><a href="" onclick="GA_Event('공통','GNB','기획전');" class="">기획전<!-- 기획전 --></a></li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','이벤트');" class="">이벤트</a></li>
-					            <li><a href="" class="magazine1803" onclick="GA_Event('공통','GNB','THE 매거진');">THE 매거진<!-- 매거진 --><span class="arr">arrow</span></a></li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','편집샵');" class="">편집샵</a></li>
-					            <li><a href="" class="">룩북</a></li>
-					            <li><a href="" onclick="GA_Event('공통','GNB','아울렛');" class="">아울렛*</a></li>
-					        </ul>
-				        </div>
-					    <div class="util_menu util_menu1803">
-					        <ul class="clearfix">
-					            <li><a href=""><span class="ico_sh">search</span></a></li>
-					            <li><a href="" onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
-					            <li><a href="" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
-					        </ul>
-					    </div>
-  					</div>  
-			    </div>
-			</div>
+				</div>
+				
+		
+				<div class="gnbwarp com clearfix">
+			        <h1 class="logo logo1903">
+			            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
+			        </h1>
+			        <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
+			            <h2 class="invisible">주메뉴</h2>
+			            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
+				            <li><a href="" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
+				            </li>            
+				            <li><a href="" class="">여성<span class="arr">arrow</span></a>            
+				            </li>
+				            <li><a href="" class="">남성<span class="arr">arrow</span></a>            
+				            </li>
+				            <li><a href="" class="">키즈<span class="arr">arrow</span></a>            
+				            </li>
+				            <li><a href="" class="">뷰티<span class="arr">arrow</span></a>            
+				            </li>
+				            <li><a href="" class="">라이프스타일<span class="arr">arrow</span></a>            
+				            </li>
+			            </ul>
+			        
+				        <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float:right;">
+				            <li><a href="" class="">기획전<!-- 기획전 --></a></li>
+				            <li><a href="" class="">이벤트</a></li>
+				            <li><a href="" class="magazine1803">THE 매거진<!-- 매거진 --><span class="arr">arrow</span></a></li>
+				            <li><a href="" class="">편집샵</a></li>
+				            <li><a href="" class="">룩북</a></li>
+				            <li><a href="" class="">아울렛</a></li>
+				        </ul>
+			        </div>
+				    <div class="util_menu util_menu1803">
+				        <ul class="clearfix">
+				            <li><a href=""><span class="ico_sh">search</span></a></li>
+				            <li><a href=""><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
+				            <li><a href=""><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
+				        </ul>
+				    </div>
+				</div>  
+		    </div>
+		</div>
+		<%-- headerWrap 끝 --%>
 	
 		
