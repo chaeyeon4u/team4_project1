@@ -236,13 +236,13 @@
 								<input type="" name="storeId" id="storeId" value="storeId / hidden">
 								<input type="" name="storePickupDate" id="storePickupDate" value="쇼핑백담기 butten클릭시 21개의 hidden 전달, db설계 이후 유동적 선택"> -->
 								
-								<input type="button" value="쇼핑백 담기" class="btn cart1803 float_left ml0" id="addToCartButton" onclick="addToCart();GA_Event('상품_상세','하단 고정 버튼','쇼핑백담기');">
+								<input type="button" value="쇼핑백 담기" class="btn cart1803 float_left ml0" id="addToCartButton" onclick="location.href='../order/cartlist';">
 								<!-- csrf 토큰 -->
 								<div>
 									<input type="hidden" name="CSRFToken" value="51186ab6-ee25-449c-af23-3c5e41d80d71">
 								</div>
 							</form>
-							<input type="button" value="바로주문" class="btn order float_right mr0" id="addToCartBuyNowButton" onclick="GA_Event('상품_상세','하단 고정 버튼','바로주문');addToCart(true);">   
+							<input type="button" value="바로주문" class="btn order float_right mr0" id="addToCartBuyNowButton" onclick="location.href='../order/orderform'">   
 					    </div>
 					    
 					    <script>
