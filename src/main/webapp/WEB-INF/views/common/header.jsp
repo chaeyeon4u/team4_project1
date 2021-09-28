@@ -40,7 +40,7 @@
 				                <!-- 선호 브랜드 없음 -->
 				                        <li>
 					                        <span class="on">
-					                        	<a href="">HOME</a>
+					                        	<a href="/">HOME</a>
 					                        </span>
 				                        </li>
 				                        <!-- 로그인 상태 -->
@@ -57,10 +57,10 @@
 		                <div class="util_menu" style="display:block;">
 							<ul class="clearfix">
 								<li>
-									<a href="">로그인</a>
+									<a href="${pageContext.request.contextPath}/member/loginform">로그인</a>
 								</li>
 								<li>
-									<a href="">마이페이지</a>
+									<a href="${pageContext.request.contextPath}/member/orderlist">마이페이지</a>
 								</li>
 							</ul>
 						</div>
@@ -112,7 +112,7 @@
 				            	</a>
 				            </li>
 				            <li>
-				            	<a href="">
+				            	<a href="${pageContext.request.contextPath}/order/cartlist">
 				            		<span class="ico cart">장바구니</span>
 				            		<span class="count">(<span id="cartCount">0</span>)</span>
 				            	</a>
