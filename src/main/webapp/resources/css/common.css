@@ -274,7 +274,24 @@ input[type="week"]:disabled{background:#f9f9f9}
 .btn.arrow span{padding-right:5px;line-height:28px}
 .btn.arrow span.data{line-height:13px;padding:0 3px}
 .btn.arrlist{padding-left:15px;line-height:22px;border:none;background: url("/_ui/desktop/common/images/common/ico_arr.png") 5px 7px no-repeat;}
-.btn_close{position:absolute;top:5px;right:5px;padding:5px;width:9px;height:9px;display:block;background:url("/_ui/desktop/common/images/common/btn_close.png") center center no-repeat;border:none;cursor:pointer;overflow:hidden;text-indent:-100px;}
+.btn_close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	padding: 5px;
+	width: 9px;
+	height: 9px;
+	display: block;
+	/* background: url("/_ui/desktop/common/images/common/btn_close.png")
+		center center no-repeat; */
+	background: url("/resources/images/common/btn_close.png")
+		center center no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	text-indent: -100px;
+}
+
 @-moz-document url-prefix(){.btn.arrlist{line-height:20px;}}
 .btn.download{padding:8px 35px 10px 15px;min-width:140px;background:#fff;border:1px solid #a3a3a3;font-size:14px;background: url("/_ui/desktop/common/images/common/ico_download.gif") right 50% no-repeat;}
 
