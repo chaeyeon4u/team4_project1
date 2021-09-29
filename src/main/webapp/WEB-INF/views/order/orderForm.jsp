@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
+<%@ include file="/WEB-INF/views/special/orderFormLinks.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
 <!-- bodyWrap -->
 <div id="bodyWrap">
@@ -221,7 +223,7 @@
 						<th scope="row" class="th_space"><label for="mail">수령인 E-mail</label>
 						</th>
 						<td>
-							<!-- email --> 
+							<!-- 이메일 입력 --> 
 							<input type="text" id="mail" name="mail" title="이메일 아이디" class="em_form"> <span class="andmail">@</span>
 							<input type="text" value="" name="emailDely" id="emailDely" title="직접입력" class="em_form"> 
 							<select title="이메일 계정" id="emailDelySel" class="em_select">
@@ -322,6 +324,10 @@
 								<dd class="sub_total190816" id="subTotal">₩795,000</dd>
 								<dt class="delch_wrap190816">
 									<p class="tlt_ship190816">배송비</p>
+									<div class="delch_box190816" style="display: none;">
+                  <span class="arr">위치아이콘</span>
+                  <ul class="bul_sty01_li"></ul>
+              </div>
 								</dt>
 								<dd id="deliveryCost">₩ 0</dd>
 							</dl>
@@ -355,9 +361,6 @@
 							</p>
 						</div>
 					</div>
-					<!-- <span id="doOrderBtn"> <a href="#;" class="btn gray " onclick="doOrder();"> 결제하기</a>
-					</span> -->
-					<!-- <span id="doOrderBtn"> <a href="/member/orderlist" class="btn gray "> 결제하기</a> -->
 					<span id="doOrderBtn"> <a href="${pageContext.request.contextPath}/order/ordercomplete" class="btn gray "> 결제하기</a>
 					</span>
 				</div>

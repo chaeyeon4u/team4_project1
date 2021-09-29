@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
+<%@ include file="/WEB-INF/views/special/orderCompleteLinks.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
 <!-- bodyWrap -->
 <div id="bodyWrap">
