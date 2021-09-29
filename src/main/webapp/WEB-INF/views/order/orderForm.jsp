@@ -267,7 +267,7 @@
                             <div class="point_wrap">
                                 <input title="한섬마일리지 결제" class="inpput" type="text" id="pointpay" name="usePoint" numberonly="true">
                                 <p class="p_txt">
-                                    M 사용 (잔액 : <span>100,0000</span>M)
+                                    M 사용 (잔액 : <span>1,000,000</span>M)
                                 </p>
                                 
                                 <div class="point_apply">
@@ -357,7 +357,8 @@
 					</div>
 					<!-- <span id="doOrderBtn"> <a href="#;" class="btn gray " onclick="doOrder();"> 결제하기</a>
 					</span> -->
-					<span id="doOrderBtn"> <a href="/member/orderlist" class="btn gray "> 결제하기</a>
+					<!-- <span id="doOrderBtn"> <a href="/member/orderlist" class="btn gray "> 결제하기</a> -->
+					<span id="doOrderBtn"> <a href="${pageContext.request.contextPath}/order/ordercomplete" class="btn gray "> 결제하기</a>
 					</span>
 				</div>
 			</div>

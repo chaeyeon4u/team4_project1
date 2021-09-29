@@ -43,6 +43,11 @@ public class OrderController {
 		return "redirect:/order/cartList";
 	}
 	
+	@RequestMapping("/ordercomplete")
+	public String orderComplete() {
+		logger.info("실행");
+		return "order/orderComplete";
+	}
 	
 	
 }  
