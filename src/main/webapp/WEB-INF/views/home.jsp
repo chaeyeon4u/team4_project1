@@ -5,9 +5,17 @@
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
 <body oncontextmenu="return false">
-<div></div>
 	<div id="bodyWrap" style="padding-bottom:0;">
-        <div class="main_container">
+		<div class="main_banner" style="background-image: URL(http://www.thehandsome.com/medias/A-outerevent-04-PC.gif?context=bWFzdGVyfGltYWdlc3w0MzY5MDd8aW1hZ2UvZ2lmfGltYWdlcy9oNmEvaDU0LzkyMzgyMDA2ODA0NzguZ2lmfGM3MWM0MGNlNDBmYTNkNzE2MWIzZmQyYTFmYzJmNjcyNzJkZDI0ZmY3MjBmZmU4NjViZjU0YTEyNGNkM2ZjZTY); background-repeat: no-repeat; background-position: center center;">
+			<span class="main_event_title">9월 마지막주 선착순 30% 할인쿠폰 이벤트</span>
+			<span class="main_event_content">전품목 / 9월 30일 10:00</span>
+			<div class="main_banner_button" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+				<span style="color:white" class="main_banner_couponbutton">쿠폰 받기</span>
+			</div>
+		</div>
+
+
+		<div class="main_container">
             <div class="product_list1903">
                 <div class="nbe_cnt new">
                     <div class="nbe_cnt_inner_wrap">
