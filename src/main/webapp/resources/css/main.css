@@ -257,3 +257,50 @@ h4.tit{color:#0b0b0b;font-size:26px;font-family:'Apple SD Gothic Neo',sans-serif
 .edt_banner_wrap1903 .edt_banner .ban_txt_wrap .title .bar-in .ab-bar{display: inline-block; position:absolute; top:50%; transform:translate(0, -50%); width:6px; height:95%;}
 .edt_banner_wrap1903 .edt_banner .ban_txt_wrap .title .bar-in .ab-bar.left{left:0;}
 .edt_banner_wrap1903 .edt_banner .ban_txt_wrap .title .bar-in .ab-bar.right{right:0;}
+
+/* 메인 배너 2021-09-29*/
+.main_banner{
+	margin:0 auto;
+	width:60%;
+	height:60vh;
+}
+.main_banner_button{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color:black;
+  width:150px;
+  height:40px;
+  text-align:center;
+}
+.main_banner_couponbutton{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size:17px;
+  cursor: pointer;
+}
+.main_event_title{
+  position: absolute;
+  top: 47%;
+  left: 45%;
+  transform: translate(-50%,-50%);
+  font-size:30px;
+  width:38%;
+  color:white;
+  
+}
+
+.main_event_content{
+  position: absolute;
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%,-50%);
+  font-size:25px;
+  width:38%;
+  color:yellow;
+  font-family:'Georgia, "맑은 고딕", serif';
+  
+}
