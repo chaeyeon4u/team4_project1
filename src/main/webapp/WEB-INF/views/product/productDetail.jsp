@@ -236,6 +236,7 @@
 								</div>
 							</form>
 					    </div>
+					    </br>
 					    
 					    <script>
 					    	/* 위시리스트 버튼 처리
@@ -245,15 +246,88 @@
 					    		
 					    	}
 					    </script>
-					                
-						<dl class="toggle_type1" style="margin-top:80px;">
-							<!--상품평 btn, 클릭시 상품평 화면으로 넘어가게-->
-					        <div class="mt-32 popup_customer_review1807" id="customerReview">
-					            <a href="#;" onclick="GA_Event('상품_상세','정보','상품평');">상품평(<span id="customerReviewCnt">0</span>)
-					                <div class="star_score1807" id="prodTotalStarScoreWrapper" style="display: none;"></div>
-					            </a>
-					        </div>
-						</dl>
+
+<!------------------------------------------------>
+						<div class="related_evt" style="margin-bottom: 75px;" >
+							<div class="cd-n-lb-tab" id="codi_lookbook_tab" style="">
+								<ul>
+									<li class="on"><a href="#cd-n-lb-tab-01" onclick="GA_Event('상품_상세','함께 코디한 상품','함께 코디한 상품');">함께 코디한 상품</a></li>
+								</ul>
+							</div>
+							
+							<!-- box1 -->
+							<div class="cd-n-lb-content-box" id="cd-n-lb-tab-01" style="display: block;">
+								<div class="matches_list together-codi-list" id="referencesListContent">
+									<ul class="clearfix slides">
+							            <li id="prod_YN2B8KCD922W_YN" style="margin-right: 10px;">                    
+				                            <div class="together-codi-pic">
+												<a href="javascript:goDetailPage('YN2B8KCD922W_YN');" onclick="GA_Event('상품_상세','코디상품','백 레터링 니트 가디건');" class="pic">
+													<img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_3.jpg" alt="코디상품" class="respon_image">
+												</a>
+											</div>
+				                            <span class="info_wrap item_info2">
+				                                <span class="brand BR35">FOURM THE STORE</span>
+				                                <span class="title">백 레터링 니트 가디건</span>
+				                                	<span class="price">
+				                                    	₩325,000
+				                                    </span>
+			                                    </span>
+				                            
+				                            <!-- 컬러칩 -->
+											<div class="we-codi-colorchip">
+												<ul class="color_chip clearfix">
+													<li id="chipbtn_YN2B8KCD922W_BK">
+															<!-- <input type="hidden" class="colorNameVal" value="BLACK"> -->
+															<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_BK');" class="beige" style="background:#000000 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_BK_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('BLACK');" onmouseout="setColorName('');"></a>
+														</li>
+													<li id="chipbtn_YN2B8KCD922W_MP">
+															<input type="hidden" class="colorNameVal" value="SMOKE PINK">
+															<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_MP');" class="beige" style="background:#d29692 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_MP_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('SMOKE PINK');" onmouseout="setColorName('');"></a>
+														</li>
+													<input type="hidden" id="colorName" value="YELLOW GREEN">
+													<li id="chipbtn_YN2B8KCD922W_YN">
+															<input type="hidden" class="colorNameVal" value="YELLOW GREEN">
+															<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_YN');" class="beige on" style="background:#d5b966 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_YN_C01.jpg/dims/resize/24x24')"></a>
+														</li>
+													</ul>
+											</div>
+				                        </li>
+				                    <li id="prod_YN2B8TTO620W_WT" style="margin-right: 10px;">                    
+				                            <div class="together-codi-pic">
+												<a href="javascript:goDetailPage('YN2B8TTO620W_WT');" onclick="GA_Event('상품_상세','코디상품','레이스 티셔츠');" class="pic">
+													<img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_2.jpg" alt="코디상품" class="respon_image">
+												</a>
+											</div>
+				                            <span class="info_wrap item_info2">
+				                                <span class="brand BR35">FOURM THE STORE</span>
+				                                <span class="title">레이스 티셔츠</span>
+					                                <span class="price">
+					                                    ₩235,000
+				                                    </span>
+			                                    </span>
+				                            
+				                            <!-- 컬러칩 추가 -->
+											<div class="we-codi-colorchip">
+												<ul class="color_chip clearfix">
+													<li id="chipbtn_YN2B8TTO620W_BK">
+														<input type="hidden" class="colorNameVal" value="BLACK">
+														<a href="#;" onclick="chngColorChip(this, 'YN2B8TTO620W_WT','YN2B8TTO620W_BK');" class="beige" style="background:#000000 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8TTO620W_BK_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('BLACK');" onmouseout="setColorName('');"></a>
+													</li>
+												<input type="hidden" id="colorName" value="WHITE">
+												<li id="chipbtn_YN2B8TTO620W_WT">
+														<input type="hidden" class="colorNameVal" value="WHITE">
+														<a href="#;" onclick="chngColorChip(this, 'YN2B8TTO620W_WT','YN2B8TTO620W_WT');" class="beige on" style="background:#ffffff url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8TTO620W_WT_C01.jpg/dims/resize/24x24')"></a>
+													</li>
+												</ul>
+											</div>
+				                        </li>
+				                    </ul>
+								</div>
+							</div>
+							<!-- //box1 -->
+						</div>
+						
+<!------------------------------------------------>
 					</div>
 					
 					<input type="hidden" id="viewExhibitionPageCode" value="">
