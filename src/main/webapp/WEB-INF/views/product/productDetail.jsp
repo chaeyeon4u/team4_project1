@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
+<%@ include file="/WEB-INF/views/special/productDetailLinks.jsp"%>
+<%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
   <body oncontextmenu="return false" style="">
 	<!-- csrf 토큰 -->
@@ -163,16 +165,11 @@
 								<li>
 									<span class="title">수량</span>
 									<span class="txt">
-										<!-- css .qty_sel a 이미지(left, right) 변경 -->
-										<!-- <span class="qty_sel num">
-											<a href="javascript:detailProductCountChange('down');" class="left">이전 버튼</a>
-											<input type="text" id="txtqty" title="수량" value="1" class="mr0" readonly="readonly">
-											<a href="javascript:detailProductCountChange('up');" class="right">다음 버튼</a>
-										</span> -->
-										<span class="qty_sel num">
-										  <button type="button" class="btn btn-light left">-</button>
+										<!-- <span class="qty_sel num"> -->
+										<span> 
+										  <button href="javascript:detailProductCountChange('down');" type="button" class="btn btn-light left1">-</button>
 										  <input id="quantity4" name="quantity" type="text" class="mr0" value="1" size="1" maxlength="3" />
-										  <button type="button" class="btn btn-light right">+</button>
+										  <button href="javascript:detailProductCountChange('up');" type="button" class="btn btn-light right1">+</button>
 										</span>
 									</span>
 								
@@ -201,10 +198,6 @@
 						
 						
 						<div class="btnwrap clearfix" style="position: absolute; width: 473px; margin-top: 0px; margin-bottom: 0px;">
-							<!-- wishlist button 삭제-->
-							<!-- <input type="button" value="" class="btn wishlist1803 float_left ml0  " onclick="addWishListClick();GA_Event('상품_상세','하단 고정 버튼','좋아요');"> -->
-							<!-- <input type="button" value="" class="btn wishlist1803_1 float_left ml0" onclick="addWishListClick();"> -->
-							<a type="button" value="" class="btn wishlist1803_1 float_left ml0" onclick="addWishListClick();">wish</a>
 							
 							<form id="addToCartForm" name="addToCartForm" action="/ko/HANDSOME/WOMEN/Top/Blouse/%ED%8C%A8%EB%84%90-%EB%B2%88%EC%95%84%EC%9B%83-%EB%B8%94%EB%9D%BC%EC%9A%B0%EC%8A%A4/p/IL2B9WBL572W_NY?categoryCode=we012" method="post">
 								<!-- <input type="hidden" maxlength="3" size="1" name="qty" class="qty">
@@ -236,13 +229,12 @@
 								<input type="" name="storeId" id="storeId" value="storeId / hidden">
 								<input type="" name="storePickupDate" id="storePickupDate" value="쇼핑백담기 butten클릭시 21개의 hidden 전달, db설계 이후 유동적 선택"> -->
 								
-								<input type="button" value="쇼핑백 담기" class="btn cart1803 float_left ml0" id="addToCartButton" onclick="location.href='../order/cartlist';">
+								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='../order/cartlist';">
 								<!-- csrf 토큰 -->
 								<div>
 									<input type="hidden" name="CSRFToken" value="51186ab6-ee25-449c-af23-3c5e41d80d71">
 								</div>
 							</form>
-							<input type="button" value="바로주문" class="btn order float_right mr0" id="addToCartBuyNowButton" onclick="location.href='../order/orderform'">   
 					    </div>
 					    
 					    <script>
@@ -264,15 +256,6 @@
 						</dl>
 					</div>
 					
-					<!-- QnA button 삭제-->
-					<!-- <div class="clearfix mt30">
-						<div class="btnwrap float_left">
-							<a href="javascript:productDetailQnA();" class="btn arrow mr0" onclick="GA_Event('상품_상세','Q&amp;A','클릭');">Q&amp;A(<span class="data" id="productQnACnt">0</span>)</a>
-						</div>
-					</div> -->
-					
-					
-				
 					<input type="hidden" id="viewExhibitionPageCode" value="">
 					<input type="hidden" id="viewExhibitionPageName" value="">
 				
