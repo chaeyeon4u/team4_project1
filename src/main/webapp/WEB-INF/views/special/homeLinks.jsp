@@ -5,5 +5,5 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>

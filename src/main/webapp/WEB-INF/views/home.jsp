@@ -6,11 +6,38 @@
 
 <body oncontextmenu="return false">
 	<div id="bodyWrap" style="padding-bottom:0;">
-		<div class="main_banner" style="background-image: URL(http://www.thehandsome.com/medias/A-outerevent-04-PC.gif?context=bWFzdGVyfGltYWdlc3w0MzY5MDd8aW1hZ2UvZ2lmfGltYWdlcy9oNmEvaDU0LzkyMzgyMDA2ODA0NzguZ2lmfGM3MWM0MGNlNDBmYTNkNzE2MWIzZmQyYTFmYzJmNjcyNzJkZDI0ZmY3MjBmZmU4NjViZjU0YTEyNGNkM2ZjZTY); background-repeat: no-repeat; background-position: center center;">
-			<span class="main_event_title">9월 마지막주 선착순 30% 할인쿠폰 이벤트</span>
-			<span class="main_event_content">전품목 / 9월 30일 10:00</span>
-			<div class="main_banner_button" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-				<span style="color:white" class="main_banner_couponbutton">쿠폰 받기</span>
+		<div class="main_banner" style="background-image: URL(http://www.thehandsome.com/medias/A-outerevent-04-PC.gif?context=bWFzdGVyfGltYWdlc3w0MzY5MDd8aW1hZ2UvZ2lmfGltYWdlcy9oNmEvaDU0LzkyMzgyMDA2ODA0NzguZ2lmfGM3MWM0MGNlNDBmYTNkNzE2MWIzZmQyYTFmYzJmNjcyNzJkZDI0ZmY3MjBmZmU4NjViZjU0YTEyNGNkM2ZjZTY); background-repeat: no-repeat; background-position: center center; 	margin:0 auto;
+	width:60%;
+	height:60vh;">
+			<span class="main_event_title" style=" position: absolute;
+  top: 47%;
+  left: 45%;
+  transform: translate(-50%,-50%);
+  font-size:30px;
+  width:38%;
+  color:white;">9월 마지막주 선착순 30% 할인쿠폰 이벤트</span>
+			<span class="main_event_content" style="  position: absolute;
+  top: 52%;
+  left: 52%;
+  transform: translate(-50%,-50%);
+  font-size:25px;
+  width:38%;
+  color:yellow;
+  font-family:'Georgia, "맑은 고딕", serif';">전품목 / 9월 30일 10:00</span>
+			<div class="main_banner_button" OnClick="location.href='${pageContext.request.contextPath}/event/detail'" style="  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color:black;
+  width:150px;
+  height:40px;
+  text-align:center;">
+				<span style="color:white;   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size:17px;
+  cursor: pointer;" class="main_banner_couponbutton">쿠폰 받기</span>
 			</div>
 		</div>
 
