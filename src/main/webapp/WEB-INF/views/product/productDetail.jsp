@@ -83,12 +83,6 @@
 								</li>
 								
 								<li>
-				                    <span class="title">H.Point</span>
-				                    <!-- point는 제품 가격에 따라 변동 -->
-				                    <span class="txt">375&nbsp;P&nbsp;(0.1%)</span>
-								</li>
-								
-								<li>
 									<span class="title">배송비</span>
 									<span class="txt">30,000원 이상 무료배송 (실결제 기준)</span>
 								</li>
@@ -167,9 +161,9 @@
 									<span class="txt">
 										<!-- <span class="qty_sel num"> -->
 										<span> 
-										  <button href="javascript:detailProductCountChange('down');" type="button" class="btn btn-light left1">-</button>
+										  <button onclick="detailProductCountChange('down');" style="margin:0px;" type="button" class="btn btn-light left1">-</button>
 										  <input id="quantity4" name="quantity" type="text" class="mr0" value="1" size="1" maxlength="3" />
-										  <button href="javascript:detailProductCountChange('up');" type="button" class="btn btn-light right1">+</button>
+										  <button onclick="detailProductCountChange('up');" style="margin:0px;" type="button" class="btn btn-light right1">+</button>
 										</span>
 									</span>
 								
@@ -179,7 +173,17 @@
 										수량 0이하 불가
 										총 합계(#sumPrice) 값 변경 */
 										function detailProductCountChange(updown){
+											console.log("수량 실행");
 											
+											let val = $("#quantity4").val();
+											console.log("type" + typeof(val));
+											if(updown=="down"){
+												if(val>1){
+													$("#quantity4").attr("value", (val*1 -1));
+												}
+											}else{
+												$("#quantity4").attr("value", (val*1 +1));
+											}
 										}
 									</script>
 									<!-- <input type="hidden" id="erpWorkOrderNumber">     <input type="hidden" id="reserveSalesStockpile">  <input type="hidden" id="erpWorkOrderProdCode"> --> 
@@ -229,7 +233,7 @@
 								<input type="" name="storeId" id="storeId" value="storeId / hidden">
 								<input type="" name="storePickupDate" id="storePickupDate" value="쇼핑백담기 butten클릭시 21개의 hidden 전달, db설계 이후 유동적 선택"> -->
 								
-								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='../order/cartlist';">
+								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/order/cartlist';">
 								<!-- csrf 토큰 -->
 								<div>
 									<input type="hidden" name="CSRFToken" value="51186ab6-ee25-449c-af23-3c5e41d80d71">
