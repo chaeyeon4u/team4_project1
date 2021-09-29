@@ -16,7 +16,7 @@
 		<div class="float_left">
 			<!--table wrap1-->
 		<div id="checkoutCartView" class="tblwrap">
-			<table class="tbl_ltype ">
+			<table class="tbl_ltype "> 
 		
 				<caption>배송&amp;결제정보 입력</caption>
 				<colgroup>
