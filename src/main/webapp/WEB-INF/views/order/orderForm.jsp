@@ -103,7 +103,6 @@
 			</p>
 			<div class="btn_wrap">
 				<a href="#;" class="btn wt_ss" onclick="f_customerAddress();">주문고객과 동일</a> 
-				<a href="#;" class="btn wt_ss" onclick="viewPopup('#popwrap');">배송지 선택</a>
 			    <a href="#;" class="btn wt_ss mr0" onclick="resetAddress();">새로작성하기</a>
 			</div>
 		</div>
@@ -131,7 +130,6 @@
 						<td>
 							<!-- 주소지 입력 --> 
 							<input value="" title="우편번호" id="adress" name="postcode" class="post" type="text" readonly="">
-							<input value="우편번호 조회" id="addrSearchBtn" class="btn add_s" type="button"> 
 							<br>
 							<div id="basis_bk_flag">
 							<input value="" title="주소1" name="line1" id="line1" class="post_wall top" type="text" readonly="">
