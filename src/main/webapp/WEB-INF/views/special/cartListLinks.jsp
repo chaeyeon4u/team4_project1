@@ -1,9 +1,22 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/brand.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font_80.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/footer.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cart/print.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/brand.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/common.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/contents.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/font_80.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/footer.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/jquery-ui.min.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/layout.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/popup.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/products.css"/>
+		<style media="screen">
+		 .blsmflw1 {animation: target_image 1.5s;animation-iteration-count: 2;transform-origin:50% 50%;}
+		 @keyframes target_image {
+			0% { transform: rotate(-1deg); }
+			50% { transform: rotate(9deg) }
+			100% { transform: rotate(-1deg); }
+		 }
+		</style>
+		<style type="text/css" media="print">
+			@IMPORT url("/resources/cartList/print.css");
+		</style>
