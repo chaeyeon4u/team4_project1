@@ -253,6 +253,34 @@
 				<colgroup>
 					<col style="width: 140px">
 				</colgroup>
+            <table class="tbl_wtype1">
+            <caption>결제 수단 선택</caption>
+            <colgroup>
+                <col style="width: 140px">
+                             <col>
+                         </colgroup>
+                         <tbody>
+						<tr>
+                             <th scope="row" class="th_space"><label for="pointpay">한섬마일리지 결제</label></th>
+                             <td>
+                            <!-- 한섬마일리지 결제 입력 -->
+                            <div class="point_wrap">
+                                <input title="한섬마일리지 결제" class="inpput" type="text" id="pointpay" name="usePoint" numberonly="true">
+                                <p class="p_txt">
+                                    M 사용 (잔액 : <span>100,0000</span>M)
+                                </p>
+                                
+                                <div class="point_apply">
+                                    <div class="all">
+                                        <input title="선택" value="" type="checkbox" id="point_useall"> <span><label for="point_useall">모두사용</label></span>
+                                    </div>
+                                    <input id="btnUsePoint" class="btn add_s min_auto" value="적용" type="button" onclick="doUsePoint(this);"> <input id="btnCancelUsePoint" class="btn dis_s min_auto" value="적용취소" type="button" onclick="cancelUsePoint(this);">
+                                </div>
+
+                                <p class="txt_guide">* 1마일리지 = 1원</p>
+                            </div>
+                        </td>
+                    </tr>
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">결제수단 선택</th>
@@ -271,7 +299,7 @@
 									
 									<li>
 									<input type="radio" name="mode" id="sel_rd6" value="KO007" onclick="showCkout(this);">
-								    <label for="sel_rd6" class="mr20">포인트</label>
+								    <label for="sel_rd6" class="mr20">한섬 마일리지</label>
 								    </li>
 								</ul>
 							</div> 
