@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.join.ProductDao">
+
+	<resultMap type="productCommon" id="productCommonMap">
+		<id property="id" column="id"/>
+		<result property="name" column="productName"/>
+		<result property="note" column="note"/>
+		<result property="brandNo" column="brandNo"/>
+	</resultMap>
+	
+	<resultMap type="productColor" id="productColorMap">
+		<id property="id" column="pcolorId"/>
+		<result property="img1" column="img1"/>
+		<result property="img2" column="img2"/>
+		<result property="img3" column="img3"/>
+		<result property="colorImg" column="colorImg"/>
+		<result property="productCommonId" column="productCommonId"/>
+		<result property="colorCode" column="colorCode"/>
+		<result property="price" column="price"/>
+	</resultMap>
+	
+	<resultMap type="productStock" id="productStockMap">
+		<id property="id" column="id"/>
+		<result property="productColorId" column="productColorId"/>
+		<result property="size" column="size"/>
+		<result property="stock" column="stock"/>
+	</resultMap>
+
+	<resultMap type="brand" id="brandMap">
+		<id property="no" column="no"/>
+		<result property="name" column="brandName"/>
+	</resultMap>
+	
+	<resultMap type="com.mycompany.webapp.vo.join.Product" id="productMap">
+		<collection property="productCommon" resultMap="productCommonMap"/>
+		<collection property="productColor" resultMap="productColorMap"/>
+		<collection property="productStock" resultMap="productStockMap"/>
+		<collection property="brand" resultMap="brandMap"/>
+	</resultMap>
+	
+	
+	<select id="testRow" resultMap="productMap">
+		select brand.name as brandName, product_common.name as productName, img1, price, product_color.id as pcolorId
+		from product_common, product_color , brand
+		where product_common.id = product_color.product_common_id 
+		and brand.no = product_common.brand_no
+		order by productName
+	</select>
+	
+	<select id="testDetail" parameterType="String" resultMap="productMap">
+		select distinct brand.name as brandName, product_common.name as productName 
+				, price, product_color.id as pcolorId, note
+				, img1, img2, img3
+			from product_common, product_color, brand, product_stock
+			where product_common.id = product_color.product_common_id 
+			and brand.no = product_common.brand_no
+			and product_stock.product_color_id = product_color.id
+	        and product_color.id = #{productColorId}
+	</select>
+</mapper>

@@ -25,6 +25,9 @@
 						<div class="item_visual" id="imageDiv" style="margin-top: 20px;">
 							<ul>
 								<!-- <li><img src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WBL572W_NY_W06.jpg/dims/resize/684x1032/" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li> -->
+								<li><img src="${product.productColor.img1}" class="respon_image" ></li>
+								<li><img src="${product.productColor.img2}" class="respon_image" ></li>
+								<li><img src="${product.productColor.img3}" class="respon_image" ></li>
 								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>	
 								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
@@ -42,10 +45,10 @@
 						<div class="info_sect">
 							<h4 class="item_name">
 								<div class="brand-name">
-									<a href="javascript:fn_goCategori('br31')" onclick="GA_Detail('brand',$(this))">LÄTT</a>
+									<a href="javascript:fn_goCategori('br31')" onclick="GA_Detail('brand',$(this))">${product.brand.name}</a>
 								</div>
 								<span class="name ko_fir_spel">
-									패널 번아웃 블라우스<input type="hidden" id="brandName" value="LÄTT">
+									${product.productCommon.name}<input type="hidden" id="brandName" value="LÄTT">
 									<!-- 상품명과 상품 번호에 대한 hidden 타입의 input -->
 									<!-- <input type="hidden" id="productName" value="패널 번아웃 블라우스">
 									<input type="hidden" id="productCode" value="IL2B9WBL572W_NY"> -->
@@ -60,7 +63,8 @@
 							</div>
 							
 							<p class="price">
-								<span>₩375,000</span>
+								<span>${product.productColor.price}</span>
+<%-- 									<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.productColor.price}" /> --%>
 								<!-- 상품가격에 대한 hidden 타입의 input -->
 								<!-- <input type="hidden" id="productPrice" value="375000"> -->
 								
@@ -68,9 +72,9 @@
 								<!-- <input type="text" id="productPrice" value="가격 / hidden" readonly> -->
 							</p>
 				            <div class="prod-detail-con-box">
-			                    <strong class="number-code">상품품번 : <span>IL2B9WBL572W_NY</span></strong>
+			                    <strong class="number-code">상품품번 : <span>${product.productColor.id}</span></strong>
 			                    <div class="round-style">
-			                        <p>글리터 원사를 더한 번아웃 패턴의 텍스처로 래트만의 섬세하고 완성도 높은 퀄리티가 돋보이는 블라우스입니다. 앞뒤의 양옆에 패널을 블록하였으며, 넥라인과 여밈, 패널 끝단에 레이스를 블록해 페미닌한 디테일을 더했습니다.</p>
+			                        <p>${product.productCommon.note}</p>
 			                    </div>		                            
 		                    </div>
 						</div>
