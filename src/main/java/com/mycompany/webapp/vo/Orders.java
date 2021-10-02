@@ -18,7 +18,7 @@ public class Orders {
 	private int usedMileage;
 	private int beforeDcPrice;
 	private int afterDcPrice;
-	private String payment_info;
+	private String paymentInfo;
 	private String status;
 	private String deliveryStatus;
 	private String memberId;
