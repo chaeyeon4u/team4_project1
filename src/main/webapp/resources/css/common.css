@@ -120,7 +120,7 @@ input[type="week"]:disabled{background:#f9f9f9}
 .hp_num1, .hp_num2{width:80px;}
 .em_form{width:120px;}
 .em_select{width:120px;}
-.szpoll_wrap{position:;margin-top:20px;}
+.szpoll_wrap{margin-top:20px;}
 .sum_add{margin-left:10px;padding:0 2px;display:inline-block;color:#fff;font-size:11px;background:#c69c6c;}
 .minus{display:inline-block;width:15px;background: url("/_ui/desktop/common/images/common/ico_minus.png") 0 6px no-repeat;text-indent: 999em; overflow:hidden;}
 
@@ -146,7 +146,7 @@ input[type="week"]:disabled{background:#f9f9f9}
 
 /*card_sample*/
 .card{display:block;}
-.card img{max-width:124px;text-align:center;vertical-align:middle;}
+.card img{max-width:100%;text-align:center;vertical-align:middle;}
 .card.shinhan{width:88px;background:url("/_ui/desktop/common/images/popup/card_logo.gif") 0 0 no-repeat;text-indent: -999em}
 .card.hana{width:74px;background:url("/_ui/desktop/common/images/popup/card_logo.gif") 0 -50px no-repeat;text-indent: -999em}
 .card.nk{width:115px;background:url("/_ui/desktop/common/images/popup/card_logo.gif")  0 -100px no-repeat;text-indent: -999em}
@@ -961,7 +961,7 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .br_result_search{margin-top:40px;}
 .br_result_search .result_inner_top{position:relative; padding-bottom:40px;border-bottom:1px solid #e3e3e3;}/* 200224 수정 */
 .br_result_search .result_inner_top_left{width:50%;padding-left:5px;}/* 200225 수정 */
-.br_result_search .result_inner_top_left .result_tlt{ font-size:20px;color:#3653636;margin-bottom:30px;font-weight:normal;}
+.br_result_search .result_inner_top_left .result_tlt{ font-size:20px;color:#365363;margin-bottom:30px;font-weight:normal;}
 .br_result_search .result_inner_top_left .result_tlt strong{ line-height:40px; font-size:32px;color:#c69c6d;}
 .br_result_search .result_inner_top_left .result_tlt strong.schr_result{overflow:hidden; display: -webkit-box; margin-bottom:10px; white-space:normal; line-height:40px; word-wrap: break-word; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }/* 200224 추가 */
 .br_result_search .result_inner_top_left .result_tlt span{font-size:14px;vertical-align: baseline;}
