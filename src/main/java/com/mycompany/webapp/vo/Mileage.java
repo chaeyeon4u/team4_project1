@@ -6,7 +6,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class mileage {
+public class Mileage {
 	private String memberId;
 	private Date issueDate;
 	private int amount;

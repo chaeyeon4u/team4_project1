@@ -3,7 +3,7 @@ package com.mycompany.webapp.vo;
 import lombok.Data;
 
 @Data
-public class category {
+public class Category {
 	private int no;
 	private String depth1Name;
 	private String depth2Name;
