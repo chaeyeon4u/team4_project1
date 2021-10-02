@@ -7,7 +7,7 @@
 	</settings>
 	<typeAliases>
 		<typeAlias type="com.mycompany.webapp.vo.ProductCommon" alias="productCommon"/>
-		<typeAlias type="com.mycompany.webapp.vo.ProductColor" alias="productColot"/>
+		<typeAlias type="com.mycompany.webapp.vo.ProductColor" alias="productColor"/>
 		<typeAlias type="com.mycompany.webapp.vo.ProductStock" alias="productStock"/>
 		<typeAlias type="com.mycompany.webapp.vo.Member" alias="member"/>
 		<typeAlias type="com.mycompany.webapp.vo.Orders" alias="orders"/>
