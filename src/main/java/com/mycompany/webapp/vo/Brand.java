@@ -3,6 +3,7 @@ package com.mycompany.webapp.vo;
 import lombok.Data;
 
 @Data
-public class depth1 {
+public class Brand {
+	private int no;
 	private String name;
 }
