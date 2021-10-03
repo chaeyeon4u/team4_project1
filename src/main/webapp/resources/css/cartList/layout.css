@@ -78,7 +78,7 @@ iframe.lnb{width:100%;height:100%}
 /* util menu - icon */
 .util_menu a span{line-height: 40px}
 .util_menu .ico{display:inline-block;width:15px;background: url("/_ui/desktop/common/images/common/ico_utilmenu.png") 0 0 no-repeat;text-indent: -999em;text-align:left;}
-.util_menu .ico.wishlist{background-position: 0 -24px}
+.util_menu .ico.wishlist{background-position: -38px -24px}
 .util_menu .ico.cart{background-position: -38px -24px}
 .util_menu .ico.search{background-position: -74px -22px;position:relative;margin-left:10px;}
 .util_menu .ico.search:before{content:'';display:block;width:1px;height:10px;position:absolute;left:-10px;top:15px;background-color:#e3e3e3;}
@@ -221,7 +221,7 @@ iframe.lnb{width:100%;height:100%}
 .adaptive_wrap{margin:0 auto;position:relative;min-height: 400px}
 .sub_container{margin:0 auto;position:relative;z-index:1;width:995px;*zoom:1}
 .sub_container:after{content:"";display:block;clear:both}
-.item_visual, .item_detail_info{margin-top:20px;}   /*2017-05-25 추가*/
+/* .item_visual, .item_detail_info{margin-top:20px; } */  /*2017-05-25 추가*/
 
 
 /* lnb wrap----------------------------------------- */

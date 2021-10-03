@@ -1,0 +1,9 @@
+@charset "utf-8";
+
+/* login font*/
+
+#menuTitle{font-size: 40px; font-weight: bold; margin: 20px;}
+.sub_container form{margin: 10px;}
+.sub_container form .id{font-size: 23px; font-weight: bold; margin-bottom:10px;}
+.sub_container form .password{font-size: 23px; font-weight: bold; margin-bottom:10px;}
+.sub_container form .loginbtn{width:100%; color:white; height:40px; background-color:#4a4a4a; font-size: 23px;}
