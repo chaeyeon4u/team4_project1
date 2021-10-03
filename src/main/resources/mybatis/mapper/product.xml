@@ -23,7 +23,7 @@
 	<resultMap type="productStock" id="productStockMap">
 		<id property="id" column="id"/>
 		<result property="productColorId" column="productColorId"/>
-		<result property="size" column="size"/>
+		<result property="sizeCode" column="size_code"/>
 		<result property="stock" column="stock"/>
 	</resultMap>
 
