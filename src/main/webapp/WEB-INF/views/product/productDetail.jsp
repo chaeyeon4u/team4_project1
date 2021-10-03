@@ -28,12 +28,6 @@
 								<li><img src="${product.productColor.img1}" class="respon_image" ></li>
 								<li><img src="${product.productColor.img2}" class="respon_image" ></li>
 								<li><img src="${product.productColor.img3}" class="respon_image" ></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>	
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>	
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 							</ul>
 						</div>
 					</div>

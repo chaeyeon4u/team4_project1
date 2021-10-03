@@ -2,8 +2,11 @@ package com.mycompany.webapp.dao.join;
 
 import java.util.List;
 
-import com.mycompany.webapp.vo.join.Product;
+import org.apache.ibatis.annotations.Mapper;
 
+import com.mycompany.webapp.dto.Product;
+
+@Mapper
 public interface ProductDao {
 	List<Product> testRow();
 	
