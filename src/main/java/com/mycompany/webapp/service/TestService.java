@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.join.ProductDao;
-import com.mycompany.webapp.vo.join.Product;
+import com.mycompany.webapp.dto.Product;
 
 @Service
 public class TestService {

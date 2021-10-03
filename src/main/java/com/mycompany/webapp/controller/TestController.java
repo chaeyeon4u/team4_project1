@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.service.TestService;
-import com.mycompany.webapp.vo.join.Product;
+import com.mycompany.webapp.dto.Product;
 
 @Controller
 public class TestController {
