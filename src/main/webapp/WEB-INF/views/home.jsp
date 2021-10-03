@@ -12,18 +12,18 @@
     
     <!-- 클릭시 이동할 url 넣는부분-->  
               <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
+                  <div class="card h-100 border-0 home_product_list_item">
                       <!-- Product image-->
                       <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
     <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
     <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
     <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p>
                           </div>
                       </div>
                   </div>
@@ -34,18 +34,192 @@
     
     <!-- 클릭시 이동할 url 넣는부분-->  
               <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
+                  <div class="card h-100 border-0 home_product_list_item">
                       <!-- Product image-->
                       <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
     <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
     <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
     <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p>                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p>                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
+    					</div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+   	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+<%-- 여기까지 반복끝--%>     
+<%-- 여기부터 반복시작--%>          
+    
+    <!-- 클릭시 이동할 url 넣는부분-->  
+              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
+                  <div class="card h-100 border-0 home_product_list_item">
+                      <!-- Product image-->
+                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
+                      <!-- Product details-->
+                      <div class="card-body p-4">
+                          <div class="text-center">
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
+    <!-- 상품명-->
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
+    <!-- 가격-->							
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
                           </div>
                       </div>
                   </div>
@@ -62,12 +236,12 @@
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
     <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
     <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
                           </div>
                       </div>
                   </div>
@@ -84,12 +258,12 @@
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
     <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
     <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
                           </div>
                       </div>
                   </div>
@@ -106,188 +280,12 @@
                       <!-- Product details-->
                       <div class="card-body p-4">
                           <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
+    	<!-- 브랜드 명-->
+                              <p><div class="fw-bolder mb-1 brand_name">SYSTEM</div></p>
     <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
+                              <p><div class="fw-bolder mb-1 name">체크 싱글 재킷</div></p>
     <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-<%-- 여기까지 반복끝--%>     
-<%-- 여기부터 반복시작--%>          
-    
-    <!-- 클릭시 이동할 url 넣는부분-->  
-              <div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'">
-                  <div class="card h-100 border-0">
-                      <!-- Product image-->
-                      <img class="card-img-top" src="http://newmedia.thehandsome.com/CM/2B/SS/CM2B0KCD230W_PK_W01.jpg/dims/resize/684x1032/" alt="..." />
-                      <!-- Product details-->
-                      <div class="card-body p-4">
-                          <div class="text-center">
-    <!-- 브랜드 명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:1rem;">SYSTEM</div></p>
-    <!-- 상품명-->
-                              <p><div class="fw-bolder mb-1" style="font-size:0.8rem;">체크 싱글 재킷</div></p>
-    <!-- 가격-->							
-    						  <p><div class="fw-bolder mb-1" style="font-size:0.75rem;">₩579,000</div></p>
+    						  <p><div class="fw-bolder mb-1 price">₩579,000</div></p> 
                           </div>
                       </div>
                   </div>

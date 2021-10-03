@@ -24,14 +24,14 @@
 						<form method="post" action="${pageContext.request.contextPath}/login">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="form-group">
-							    <label for="mid">아이디</label>
-							    <input type="text" class="form-control" id="mid" name="id">
+							    <label for="mid" class="id">아이디</label>
+							    <input type="text" class="form-control" id="mid" name="mid">
 							</div>
 							<div class="form-group">
-								<label for="mpassword">패스워드</label>
-								<input type="password" class="form-control" id="mpassword" name="password">
+								<label for="mpassword" class="password">패스워드</label>
+								<input type="password" class="form-control" id="mpassword" name="mpassword">
 							</div>
-							<button style="width:100%; color:white; height:40px; background-color:#4a4a4a;">로그인</button>
+							<button class="loginbtn">로그인</button>
 						</form>	
 					</div>
 				</div>

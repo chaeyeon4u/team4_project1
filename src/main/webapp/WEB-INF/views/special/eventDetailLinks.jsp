@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-		
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/brand.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/common.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font_80.css"/>

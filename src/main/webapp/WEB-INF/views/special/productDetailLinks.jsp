@@ -10,3 +10,4 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/t4_products.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/product-detail.css"/>
