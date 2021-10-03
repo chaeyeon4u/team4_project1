@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
 <%@ include file="/WEB-INF/views/special/cartListLinks.jsp"%>
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
@@ -61,7 +60,47 @@
                       }
                     }
 
-                    function display_opt(e) {
+/*                     function display_opt(e, pcommonId, count) {
+	                    console.log("pcommonId", pcommonId)
+	                   	var url = "/cart/selectOptions";
+						var id_color = "#select_color" + count;
+						$.ajax({
+							url : url,
+							method : "post",
+							data : {"pcommonId":pcommonId},
+							success : function(result) {
+								console.log("result", result);
+								$(result).()
+								$(id_color).html($("#colorOptions").html());
+								$(id_size).html($("#sizeOptions").html());
+							}
+						})
+						 */
+                     function display_opt(e, pcommonId, count) {
+	                    console.log("pcommonId", pcommonId)
+	                   	var url = "/cart/selectColors";
+						var id_color = "#select_color" + count;
+						$.ajax({
+							url : url,
+							method : "post",
+							data : {"pcommonId":pcommonId},
+							success : function(result) {
+								console.log("result", result);
+								$(id_color).html(result);
+								
+							}
+						})
+						
+						var url = "/cart/selectSizes";
+						var id_size = "#select_size" + count;
+						$.ajax({
+							url:url,
+							method:"post",
+							data:{"pcommonId":pcommonId},
+							success:function(result) {
+								$(id_size).html(result);
+							}
+						})
                       let next_tr = $(e).closest("tr").next();
                       let closest_basket_info = $(next_tr).find(
                         ".basket_info");
@@ -73,74 +112,76 @@
                       $(closest_basket_info)
                         .attr("style", "display: hidden;");
                     }
+                    
+                    function set_color(e) {
+                    	$(e).toggleClass("on");
+					}
                   </script>
 				</thead>
 
 				<tbody>
 					<!-- test -->
-					<c:forEach var="product" items="${products}">
+					<c:forEach var="product" items="${cartItems}" varStatus="status">
 						<tr id="entryProductInfo">
+							<%-- 체크박스 --%>
 							<td class="frt">
 								<!-- value는 리스트의 개수만큼 내림차순으로 -->
 								<input type="checkbox" name="cartlist" data-pk="10277981880364" value="con 4">
 							</td>
+							<%-- 상품정보 --%>
 							<td class="pt_list_wrap">
 								<div class="pt_list_all">
 									<a href="con 제품상세정보 uri">
-										<img src="${product.imgSrc}" alt="">
+										<img src="${product.productColor.img1}" alt="">
 									</a>
 									<div class="tlt_wrap">
 										<a href="con 제품상세정보 uri" class="basket_tlt">
-											<span class="tlt">${product.brand}</span>
-											<span class="sb_tlt">${product.name}</span>
+											<span class="tlt">${product.brand.name}</span>
+											<span class="sb_tlt">${product.productCommon.name}</span>
 										</a>
 
 										<p class="color_op">
 
-											color : ${product.color}
+											color : ${product.productColor.colorCode}
 											<span>/</span>
-											size : ${product.size}
+											size : ${product.productStock.sizeCode}
 										</p>
 										<div class="option_wrap">
-											<!-- <a href="#none" class="btn_option" id="optOpenLayer^4^CM2B9WOT400W_SW" onclick="GA_Event('쇼핑백','옵션변경', '캐시미어 칼라리스 재킷')">옵션변경</a> -->
-											<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this)">
-												옵션변경
-												</button>
+											<input type="hidden" value="${product.productCommon.id}" />
+											<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productCommon.id}', ${status.count})">옵션변경</a>
 										</div>
 									</div>
 								</div>
 							</td>
+							<%-- 수량 --%>
 							<td class="al_middle">
 								<form id="updateCartForm4" action="cart/update" method="post">
 									<!-- qty_sel -->
 									<span class="qty_sel num">
-										<!-- 									<button type="button" class="btn btn-light left" onclick="quantity_control(this, 'minus');">-</button> -->
 										<a href="#none" class="left" onclick="quantity_control(this, 'minus');">이전 버튼</a>
 										<input id="quantity4" name="quantity" type="text" class="mr0" value="1" size="1" maxlength="3" />
-										<a href="#none" class="right" onclick="quantity_control(this, 'plus');">
-											다음 버튼
-											</button>
+										<a href="#none" class="right" onclick="quantity_control(this, 'plus');">다음 버튼</a>
 									</span>
 									<!-- //qty_sel -->
 									<button id="QuantityProduct_4" class="btn wt_ss qty_w mr0">변경</button>
 								</form>
 							</td>
-
+							<%-- 가격 --%>
 							<td class="al_middle">
 								<!-- Price -->
 								<div class="price_wrap">
-									<span>${product.price}</span>
+									<span>${product.productColor.price}</span>
 									<input type="hidden" name="checkZeroPrice" value="con제품 가격">
 								</div>
 								<!-- //Price -->
 							</td>
-
+							<%-- 적립율 --%>
 							<td class="al_middle">
 								<span class="earn">5% (한섬마일리지)</span>
 								<br>
 								<span class="earn">0.1% (H.Point)</span>
 							</td>
-
+							<%-- 삭제 --%>
 							<td class="al_middle">
 								<!-- Button size -->
 								<div class="btn_wrap">
@@ -149,6 +190,8 @@
 								<!-- //Button size -->
 							</td>
 						</tr>
+
+						<%-- 옵션변경 --%>
 						<tr>
 							<td colspan="6" class="basket_wrap">
 								<!-- Info -->
@@ -158,26 +201,24 @@
 										<!-- Products -->
 										<div class="pt_list" id="pt_list_4">
 											<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW">
-												<img src="${product.imgSrc}" alt="">
+												<img src="${product.productColor.img1}" alt="">
 											</a>
 											<div class="tlt_wrap">
 												<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW" class="basket_tlt">
-													<span class="tlt">${product.brand}</span>
-													<span class="sb_tlt">${product.name}</span>
+													<span class="tlt">${product.brand.name}</span>
+													<span class="sb_tlt">${product.productCommon.name}</span>
 												</a>
 												<!-- color_size -->
 												<dl class="cs_wrap">
 													<dt>COLOR</dt>
 													<dd>
-														<div class="cl_select">
-															<a href="javascript:void(0);" onclick="setOptions(this, '4', 'CM2B9WOT400W_SW', 'style');" class="beige on"
-																style="background: #362626 url('http://newmedia.thehandsome.com/CM/2B/FW/CM2B9WOT400W_SW_C01.jpg/dims/resize/18x18')">BROWN</a>
-															<span class="cs_sel1807">${product.color}</span>
+														<div id="select_color${status.count}" class="cl_select">
+															<%-- 															<span class="cs_sel1807">${product.productColor.colorCode}</span> --%>
 														</div>
 													</dd>
 													<dt>SIZE</dt>
 													<dd style="width: 90%; height: 100%;">
-														<div class="sz_select">
+														<div id="select_size${status.count}" class="sz_select">
 															<a href="javascript:void(0);" onclick="setOptions(this, '4', 'CM2B9WOT400W_SW_82', 'size');" class="on" style="line-height: 15px;">82</a>
 															<a href="javascript:void(0);" onclick="setOptions(this, '4', 'CM2B9WOT400W_SW_88', 'size');">88</a>
 														</div>
@@ -185,7 +226,9 @@
 												</dl>
 												<!-- //color_size -->
 											</div>
-
+											<script>
+												
+											</script>
 										</div>
 										<!-- //Products -->
 										<!-- btns -->
