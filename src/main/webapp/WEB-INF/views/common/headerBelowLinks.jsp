@@ -28,9 +28,16 @@
 						</div>				
 		                <div class="util_menu" style="display:block;">
 							<ul class="clearfix">
-								<li>
-									<a href="${pageContext.request.contextPath}/member/loginform">로그인</a>
-								</li>
+								<sec:authorize access="isAnonymous()">
+									<li>
+										<a href="${pageContext.request.contextPath}/member/loginform">로그인</a>
+									</li>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+									<li>
+										<a href="${pageContext.request.contextPath}/logout">로그아웃</a>
+									</li>
+								</sec:authorize>
 								<li>
 									<a href="${pageContext.request.contextPath}/member/orderlist">마이페이지</a>
 								</li>
