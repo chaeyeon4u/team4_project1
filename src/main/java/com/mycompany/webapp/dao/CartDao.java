@@ -21,10 +21,7 @@ public interface CartDao {
     *-- 수량 변경(U: cart(수량))//javascript에서 가격 변경
         -- 방법 1 : CartDao의 updateCartCount
         -- 1. cart(count)
-        //-- 2. product_color(price)
         -- update cart set count=?;
-        //-- update (select c.count 'count', pc.price 'price' from cart c, product_stock ps, product_color pc where c.product_stock_id=ps.id and ps.product_color_id=pc.id) tb
-                    set tb.count = ? and tb.price = ?;
    
     * -- 색상, 사이즈 변경(U : cart(product_stock_id), R: product_color 테이블(color), product_stock(size)
         -- updateCartColorSize
