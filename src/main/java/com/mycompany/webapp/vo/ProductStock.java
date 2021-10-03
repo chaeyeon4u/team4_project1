@@ -6,6 +6,6 @@ import lombok.Data;
 public class ProductStock {
 	private String id;
 	private String productColorId;
-	private String size;
+	private String sizeCode;
 	private int stock;
 }
