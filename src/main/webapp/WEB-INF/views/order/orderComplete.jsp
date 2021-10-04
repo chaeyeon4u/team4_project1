@@ -35,34 +35,36 @@
 					</tr>
 				</thead>
 				<tbody>
-
+				<!-- 상품정보 -->
+			<c:forEach var="ordercomplete" items="${orderProduct}">
 					<tr class="al_middle">
 						<td class="frt">
 							<!-- 옷 정보 -->
 							<div class="pt_list_all">
 								<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82">
-									<img src="http://newmedia.thehandsome.com/MN/2B/FW/MN2B9WJC649W_BG_S01.jpg" alt="">
+									<img src="${ordercomplete.productColor.img1}" alt="">
 								</a>
 								<div class="tlt_wrap">
 									<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82"
 										class="basket_tlt"> 
-										<span class="tlt">MINE</span>
-										<span class="sb_tlt">멜란지 크롭 재킷</span>
+										<span class="tlt">${ordercomplete.brand.name}</span>
+										<span class="sb_tlt">${ordercomplete.productCommon.name}</span>
 									</a>
 									<p class="color_op">
-										color : BEIGE<span class="and_line">/</span> size : 82
+										color : ${ordercomplete.productColor.colorCode}<span class="and_line">/</span> size : ${ordercomplete.productStock.sizeCode}
 									</p>
 								</div>
 							</div> 
 						</td>
-						<td class="count">1</td>
+						<td>${ordercomplete.orderItem.count}</td>
 						<td>
 							<!-- 판매가 -->
 							<div class="price_wrap">
-								<span class="price">₩795,000</span>
+								<span>₩${ordercomplete.orderItem.totalPrice}</span>
 							</div> 
 						</td>
 					</tr>
+				 </c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -72,8 +74,7 @@
 			<div class="total_price_wrap">
 				<dl>
 					<dt>상품 합계</dt>
-					<dd>₩795,000</dd>
-					
+					<dd>₩${orderProduct[0].orders.afterDcPrice}</dd>
 					<div>
 						<dt class="delch_wrap">
 							<p class="tlt_ship" style="display: inline;">배송비</p>
@@ -81,14 +82,16 @@
 						<dd style="text-align: right;">₩ 0</dd>
 					</div>
 				</dl>
-				
+
+		
 				<dl class="total">
 					<dt>합계</dt>
-					<dd>₩795,000</dd>
+					<dd>₩${orderProduct[0].orders.afterDcPrice}</dd>
 				</dl>
 			</div>
 		</div>
-		
+	
+
 		<!-- 결제 수단 -->
 		<div class="title_wrap clearfix">
 			<h4 class="float_left">결제수단</h4>
@@ -103,7 +106,7 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">가상계좌</th>
-						<td>현대은행 (20894379679237)</td>
+						<td>${orderpayment.paymentMethod.company}(20894379679237)</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">입금 예정기한</th>
@@ -150,15 +153,15 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">주문자</th>
-						<td>사용자</td>
+						<td>${orderman.member.name}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>010-1234-5678</td>
+						<td>${orderman.member.phone}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">E-MAIL</th>
-						<td>abc12345@naver.com</td>
+						<td>${orderman.member.email}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -179,19 +182,19 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">배송지 주소</th>
-						<td>(05717) 서울특별시 송파구 중대로 135(가락동)&nbsp;KOSA</td>
+						<td>${orderaddress.orders.zipcode}(05717) 서울특별시 송파구 중대로 135(가락동)&nbsp;KOSA</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">수령인</th>
-						<td>사용자</td>
+						<td>${orderaddress.orders.receiver}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>010-1234-2656</td>
+						<td>${orderaddress.orders.phone}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">연락처</th>
-						<td></td>
+						<td>${orderaddress.orders.tel}</td>
 					</tr>
 				</tbody>
 			</table>
