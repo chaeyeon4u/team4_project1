@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.join.ProductDao;
+import com.mycompany.webapp.dto.Color;
+import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.vo.join.CategoryDepthDto;
 import com.mycompany.webapp.vo.join.Product;
 
 @Service
-public class ProductListService {
+public class ProductService {
 	@Resource private ProductDao productDao;
 	
 	public List<Product> getProductsByCategory(CategoryDepthDto categoryDepthDto){
@@ -21,4 +23,17 @@ public class ProductListService {
 	public int getTotalProductNum(CategoryDepthDto categoryDepthDto) {
 		return productDao.countByCategory(categoryDepthDto);
 	}
+	
+	public Product getProductDetail(String pcolorId) {
+		return productDao.selectProductByPcolorId(pcolorId); 
+	}
+	
+	public List<Color> getColors(String pcolorId){
+		return productDao.selectColorsByPcolorId(pcolorId);
+	}
+	
+	public List<Size> getSizes(String pcolorId){
+		return productDao.selectSizesByPcolorId(pcolorId);
+	}
+	
 }

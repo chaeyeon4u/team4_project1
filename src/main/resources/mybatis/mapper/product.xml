@@ -56,7 +56,7 @@
 		order by productName
 	</select>
 	
-	<select id="testDetail" parameterType="String" resultMap="productMap">
+	<select id="selectProductByPcolorId" parameterType="String" resultMap="productMap">
 		select distinct brand.name as brandName, product_common.name as productName 
 				, price, product_color.id as pcolorId, note
 				, img1, img2, img3
@@ -64,7 +64,7 @@
 			where product_common.id = product_color.product_common_id 
 			and brand.no = product_common.brand_no
 			and product_stock.product_color_id = product_color.id
-	        and product_color.id = #{productColorId}
+	        and product_color.id = #{pcolorId}
 	</select>
 
 	
@@ -127,5 +127,20 @@
 		order by productName
 		)
 	</select>
-	
+	<!-- 상품의 컬러 리스트 출력하기 -->
+	<select id="selectColorsByPcolorId" parameterType="String" resultType="com.mycompany.webapp.dto.Color">
+	select distinct color_code, color_img
+	    from product_common, product_color
+	    where product_color.product_common_id = (select product_common.id as pcommon_id
+	        from product_color, product_common 
+	        where product_color.id = #{pcolorId}
+	        and product_color.product_common_id = product_common.id)
+	</select>
+	<!-- 상품의 사이즈 리스트 출력하기 -->
+	<select id="selectSizesByPcolorId" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
+	select distinct size_code
+	    from product_common, product_color, product_stock
+	    where product_color.id = 'IL2B8KCD721W_MR'
+	    and product_color.id = product_stock.product_color_id
+	</select>
 </mapper>

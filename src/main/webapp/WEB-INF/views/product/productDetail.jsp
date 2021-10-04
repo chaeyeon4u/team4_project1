@@ -1,5 +1,3 @@
-productDetails
-
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
@@ -28,11 +26,6 @@ productDetails
 								<li><img src="${product.productColor.img1}" class="respon_image"></li>
 								<li><img src="${product.productColor.img2}" class="respon_image"></li>
 								<li><img src="${product.productColor.img3}" class="respon_image"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>	
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
-								<li><img src="${pageContext.request.contextPath}/resources/images/womanshirts/image_blouse_1.jpg" class="respon_image" alt="패널 번아웃 블라우스" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 							</ul>
 						</div>
 					</div>
@@ -44,10 +37,10 @@ productDetails
 						<div class="info_sect">
 							<h4 class="item_name">
 								<div class="brand-name">
-									<a href="javascript:fn_goCategori('br31')" onclick="GA_Detail('brand',$(this))">${product.brand.name}브랜드 이름</a>
+									<a href="javascript:fn_goCategori('br31')" onclick="GA_Detail('brand',$(this))">${product.brand.name}</a>
 								</div>
 								<span class="name ko_fir_spel">
-									${product.productCommon.name}상품명<input type="hidden" id="brandName" value="LÄTT">
+									${product.productCommon.name}<input type="hidden" id="brandName" value="LÄTT">
 									<!-- 상품명과 상품 번호에 대한 hidden 타입의 input -->
 									<!-- <input type="hidden" id="productName" value="패널 번아웃 블라우스">
 									<input type="hidden" id="productCode" value="IL2B9WBL572W_NY"> -->
@@ -62,7 +55,7 @@ productDetails
 							</div>
 							
 							<p class="price">
-								<span>${product.productColor.price}상품 가격</span>
+								<span>${product.productColor.price}</span>
 								<%-- <fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${product.productColor.price}" /> --%>
 								<!-- 상품가격에 대한 hidden 타입의 input -->
 								<!-- <input type="hidden" id="productPrice" value="375000"> -->
@@ -97,7 +90,7 @@ productDetails
 								<li>
 									<span class="title">색상</span>
 									<div class="txt">
-										<ul class="color_chip clearfix">
+									<%-- <ul class="color_chip clearfix">
 											<li id="IL2B9WBL572W_IV">
 												<!-- colorNameValue 정보를 담은 hidden 타입의 input -->
 												<!-- <input type="hidden" class="colorNameVal" value="IVORY"> -->
@@ -121,6 +114,14 @@ productDetails
 												<!-- <a href="#;" class="beige on" style="background:#23416e url('http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WBL572W_NY_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('NAVY');" onmouseout="setColorName('');"></a> -->
 												<a href="#;" class="beige on" style="background:#ffffff;" onmouseover="setColorName('NAVY');" onmouseout="setColorName('');"></a>
 											</li>
+										</ul>--%>
+										<ul class="color_chip clearfix">
+											<c:forEach var="color" items="${colors}">
+												<li id="${product.productColor.id}">
+													<a href="javascript:detailProductColorChangeAjax('IL2B9WBL572W_IV');" class="beige" 
+													style="background:url('${color.colorImg}')"></a>
+												</li>
+											</c:forEach>
 										</ul>
 									</div>
 									<script>
@@ -138,15 +139,22 @@ productDetails
 								<li>
 								    <span class="title">사이즈</span>
 									<span class="txt">
-										<ul class="size_chip clearfix sizeChipKo1901">
+										<!-- <ul class="size_chip clearfix sizeChipKo1901">
 											<li id="IL2B9WBL572W_NY_82">
-												<!-- <a href="javascript:fn_detailProductAjax('IL2B9WBL572W_NY_82')" onclick="GA_Event('상품_상세','사이즈','82')">82<span class="ko_size1901">&nbsp;(55)</span></a> -->
+												<a href="javascript:fn_detailProductAjax('IL2B9WBL572W_NY_82')" onclick="GA_Event('상품_상세','사이즈','82')">82<span class="ko_size1901">&nbsp;(55)</span></a>
 												<a href="javascript:detailProductSizeChangeAjax('IL2B9WBL572W_NY_82');" onclick="">82<span class="ko_size1901">&nbsp;(55)</span></a>
 											</li>
 											<li id="IL2B9WBL572W_NY_88">
-												<!-- <a href="javascript:fn_detailProductAjax('IL2B9WBL572W_NY_88')" onclick="GA_Event('상품_상세','사이즈','88')">88<span class="ko_size1901">&nbsp;(66)</span></a> -->
+												<a href="javascript:fn_detailProductAjax('IL2B9WBL572W_NY_88')" onclick="GA_Event('상품_상세','사이즈','88')">88<span class="ko_size1901">&nbsp;(66)</span></a>
 												<a href="#" onclick="">88<span class="ko_size1901">&nbsp;(66)</span></a>
 											</li>
+										</ul> -->
+										<ul class="size_chip clearfix sizeChipKo1901">
+											<c:forEach var="size" items="${sizes}">
+											<li id="${product.productColor.id}_${size}">
+												<a href="javascript:fn_detailProductAjax('IL2B9WBL572W_NY_82')" onclick="GA_Event('상품_상세','사이즈','82')">${size.sizeCode}</a>
+											</li>
+											</c:forEach>
 										</ul>
 									</span>
 									<script>
