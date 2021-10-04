@@ -32,11 +32,19 @@
 		<result property="name" column="brandName"/>
 	</resultMap>
 	
+	<resultMap type="category" id="categoryMap">
+		<id property="no" column="no"/>
+		<result property="depth1Name" column="depth1_name"/>
+		<result property="depth2Name" column="depth2_name"/>
+		<result property="depth3Name" column="depth3_name"/>
+	</resultMap>
+	
 	<resultMap type="com.mycompany.webapp.vo.join.Product" id="productMap">
 		<collection property="productCommon" resultMap="productCommonMap"/>
 		<collection property="productColor" resultMap="productColorMap"/>
 		<collection property="productStock" resultMap="productStockMap"/>
 		<collection property="brand" resultMap="brandMap"/>
+		<collection property="category" resultMap="categoryMap"/>
 	</resultMap>
 	
 	
@@ -62,21 +70,22 @@
 	
 	<select id="getProductByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultMap="productMap">
 		
-		select rnum, brandName, productName, img1, price, pcolorId
+		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
-		select rownum as rnum, brandName, productName, img1, price, pcolorId
+		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
-			select
-			distinct
-			brand.name as brandName, 
-			product_common.name as productName, 
-			img1, 
-			price, 
-			product_color.id as pcolorId
-			from product_common, product_color , brand, product_category
+			select distinct brand.name as brandName, 
+			    product_common.name as productName, 
+			    img1, 
+			    price, 
+			    product_color.id as pcolorId,
+			    depth1_name, depth2_name, depth3_name
+			from product_common, product_color , brand, product_category, category
 			where product_common.id = product_color.product_common_id 
 			and brand.no = product_common.brand_no
 			and product_color.product_common_id = product_category.product_common_id
+			and product_category.product_common_id = product_common.id
+			and category.no = product_category.category_no
 			and product_category.category_no in (select no from category where 
 			depth1_name=#{depth1} 
 			<if test="depth2 != null">
