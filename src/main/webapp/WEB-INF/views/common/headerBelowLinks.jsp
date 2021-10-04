@@ -1,6 +1,6 @@
 
 <%@ page contentType="text/html; charset=UTF-8"%>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/category.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/category.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/home.css"/>
 	</head>
 	<body>
