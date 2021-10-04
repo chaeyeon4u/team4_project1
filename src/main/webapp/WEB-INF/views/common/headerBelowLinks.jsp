@@ -105,7 +105,7 @@
 				            	</a>
 				            </li>
 				            <li>
-				            	<a href="${pageContext.request.contextPath}/order/cartlist">
+				            	<a href="${pageContext.request.contextPath}/cart/cartlist">
 				            		<span class="ico cart">장바구니</span>
 				            		<span class="count">(<span id="cartCount">0</span>)</span>
 				            	</a>
