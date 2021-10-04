@@ -53,8 +53,8 @@
 								</div>
 							</div> 
 						</td>
-						<td>1</td>
-						<td>
+						<td class="count">1</td>
+						<td class="price">
 							<!-- price_wrap -->
 							<div class="price_wrap ">
 								<span> ₩795,000</span>
@@ -80,15 +80,15 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">주문자</th>
-						<td>사용자</td>
+						<td class="order-member-info">사용자</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>010-1234-5678</td>
+						<td class="order-member-info">010-1234-5678</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">E-mail</th>
-						<td>abc12345@naver.com</td>
+						<td class="order-member-info">abc12345@naver.com</td>
 					</tr>
 				</tbody>
 			</table>
@@ -323,9 +323,9 @@
 								<dt class="delch_wrap190816">
 									<p class="tlt_ship190816">배송비</p>
 									<div class="delch_box190816" style="display: none;">
-                  <span class="arr">위치아이콘</span>
-                  <ul class="bul_sty01_li"></ul>
-              </div>
+					                  <span class="arr">위치아이콘</span>
+					                  <ul class="bul_sty01_li"></ul>
+					              </div>
 								</dt>
 								<dd id="deliveryCost">₩ 0</dd>
 							</dl>

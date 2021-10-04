@@ -11,3 +11,4 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/products.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/contents.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/order-form.css"/>
