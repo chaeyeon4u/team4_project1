@@ -58,4 +58,65 @@
 			and product_stock.product_color_id = product_color.id
 	        and product_color.id = #{productColorId}
 	</select>
+
+	
+	<select id="getProductByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultMap="productMap">
+		
+		select rnum, brandName, productName, img1, price, pcolorId
+		from (
+		select rownum as rnum, brandName, productName, img1, price, pcolorId
+		from (
+			select
+			distinct
+			brand.name as brandName, 
+			product_common.name as productName, 
+			img1, 
+			price, 
+			product_color.id as pcolorId
+			from product_common, product_color , brand, product_category
+			where product_common.id = product_color.product_common_id 
+			and brand.no = product_common.brand_no
+			and product_color.product_common_id = product_category.product_common_id
+			and product_category.category_no in (select no from category where 
+			depth1_name=#{depth1} 
+			<if test="depth2 != null">
+			and depth2_name=#{depth2}
+			</if>
+			<if test="depth3 != null"> 
+			and depth3_name=#{depth3}
+			</if>
+			)
+			order by productName
+		)
+		where rownum &lt;=#{pager.endRowNo}
+		)
+		where rnum &gt;=#{pager.startRowNo}
+	</select>
+	
+	<select id="countByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultType="int">
+		select count(*) from(
+		select
+		distinct
+		brand.name as brandName, 
+		product_common.name as productName, 
+		img1, 
+		price, 
+		product_color.id as pcolorId
+		from product_common, product_color , brand, product_category
+		where product_common.id = product_color.product_common_id 
+		and brand.no = product_common.brand_no
+		and product_color.product_common_id = product_category.product_common_id
+		and product_category.category_no in (select no from category where 
+		depth1_name=#{depth1} 
+		<if test="depth2 != null">
+		and depth2_name=#{depth2}
+		</if>
+		<if test="depth3 != null"> 
+		and depth3_name=#{depth3}
+		</if>
+		)
+		order by productName
+		)
+	</select>
+	
 </mapper>
