@@ -6,5 +6,5 @@ import lombok.Data;
 public class Cart {
 	private String memberId;
 	private String productStockId;
-	private int count;
+	private int quantity;
 }

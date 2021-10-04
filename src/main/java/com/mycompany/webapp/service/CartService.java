@@ -25,5 +25,8 @@ public class CartService {
 	public List<Size> getSizes(String pcommonId) {
 		return cartDao.selectSizesByPcommonId(pcommonId);
 	}
+	public void updateQuantity(int quantity, String pstockId, String mid ) {
+		cartDao.updateCountByQuantity(quantity, pstockId, mid);
+	}
 	
 }

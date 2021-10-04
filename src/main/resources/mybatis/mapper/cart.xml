@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<resultMap type="productStock" id="productStockMap">
-		<id property="id" column="id"/>
+		<id property="id" column="pstockId"/>
 		<result property="productColorId" column="product_color_id"/>
 		<result property="sizeCode" column="size_code"/>
 		<result property="stock" column="stock"/>
@@ -32,19 +32,23 @@
 		<result property="name" column="brandName"/>
 	</resultMap>
 	
-	<resultMap type="com.mycompany.webapp.dto.Product" id="productMap">
+	<resultMap type="cart" id="cartMap">
+		<result property="memberId" column="member_id"/>
+		<result property="quantity" column="quantity"/>
+		<result property="productStockId" column="product_stock_id"/>
+	</resultMap>
+	
+	<resultMap type="com.mycompany.webapp.dto.CartList" id="cartListMap">
 		<collection property="productCommon" resultMap="productCommonMap"/>
 		<collection property="productColor" resultMap="productColorMap"/>
 		<collection property="productStock" resultMap="productStockMap"/>
 		<collection property="brand" resultMap="brandMap"/>
-<!-- 		<collection property="sizes" column="sizes" ofType=""> -->
-		
-<!-- 		</collection> -->
+		<collection property="cart" resultMap="cartMap"></collection>
 	</resultMap>
 	
 	<!-- 카트 안의 리스트 출력하기 -->
-	<select id="selectList" parameterType="String" resultMap="productMap">
-		select product_common.id as pcommonId, cart.count, brand.name as brandName, product_common.name as productName,
+	<select id="selectList" parameterType="String" resultMap="cartListMap">
+		select product_common.id as pcommonId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
 				product_stock.size_code, product_color.color_code,img1, product_color.color_img, price
 			from cart, product_common, product_color, brand, product_stock
 			where cart.member_id = #{mid}
@@ -70,4 +74,12 @@
 			and product_color.product_common_id = product_common.id
 			and product_stock.product_color_id = product_color.id
 	</select>
+	
+	<!-- 카트 수량 업데이트하기 -->
+	<update id="updateCountByQuantity" parameterType="map">
+		UPDATE cart
+			SET quantity = #{quantity}
+			where member_id = #{mid}
+			and product_stock_id = #{pstockId}
+	</update>
 </mapper>
