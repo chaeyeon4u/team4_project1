@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/*cart-list font*/
+
+.tbl_ltype th{font-size:16px;}
+
+/*상품정보*/
+.pt_list_wrap .pt_list_all .tlt_wrap .tlt{font-size:13px;}
+.pt_list_wrap .pt_list_all .tlt_wrap .sb_tlt{font-size:16px;}
+.pt_list_wrap .pt_list_all .tlt_wrap .color_op{font-size:13px;}
+.pt_list_wrap .pt_list_all .tlt_wrap .btn_option{font-size:13px;}
+
+.al_middle{white-space: nowrap;}
+/*수량*/
+.al_middle #updateCartForm4 .qty_sel{display:flex;align-items: center;justify-content: center;}
+.al_middle #updateCartForm4 .qty_sel .num{display:inline;}
+.al_middle #updateCartForm4 #QuantityProduct_4{display:inline;}
+
+/*판매가*/
+.al_middle .price_wrap span{font-size:18px;}
+
+/*적립률*/
+.al_middle span{font-size:13px;}
+
+/*옵션변경*/
+.basket_info .info .pt_list .tlt_wrap .tlt{font-size:13px;}
+.basket_info .info .pt_list .tlt_wrap .sb_tlt{font-size:16px;}
+.basket_info .info .pt_list .tlt_wrap .cs_wrap dt{font-size:13px;}

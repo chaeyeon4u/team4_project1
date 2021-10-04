@@ -206,7 +206,7 @@
 						</div>
 						<div class="total_price clearfix">
 							<div class="title float_left" style="width:auto;">총 합계</div>
-							<div class="pirce float_right">
+							<div class="pirce">
 								<span id="sumPrice">₩375,000</span>
 							</div>
 						</div>
