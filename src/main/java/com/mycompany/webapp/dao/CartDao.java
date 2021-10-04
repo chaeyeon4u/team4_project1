@@ -11,6 +11,6 @@ import com.mycompany.webapp.dto.Size;
 @Mapper
 public interface CartDao {
 	List<Product> selectList(String mid);
-	List<Color> selectColors(String pcommonId);
-	List<Size> selectSizes(String pcommonId);
+	List<Color> selectColorsByPcommonId(String pcommonId);
+	List<Size> selectSizesByPcommonId(String pcommonId);
 }

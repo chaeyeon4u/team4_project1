@@ -19,11 +19,11 @@ public class CartService {
 	}
 	
 	public List<Color> getColors(String pcommonId) {
-		return cartDao.selectColors(pcommonId);
+		return cartDao.selectColorsByPcommonId(pcommonId);
 	}
 	
 	public List<Size> getSizes(String pcommonId) {
-		return cartDao.selectSizes(pcommonId);
+		return cartDao.selectSizesByPcommonId(pcommonId);
 	}
 	
 }

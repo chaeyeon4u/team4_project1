@@ -244,7 +244,7 @@
 								<input type="" name="storeId" id="storeId" value="storeId / hidden">
 								<input type="" name="storePickupDate" id="storePickupDate" value="쇼핑백담기 butten클릭시 21개의 hidden 전달, db설계 이후 유동적 선택"> -->
 								
-								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/order/cartlist';">
+								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';">
 								<!-- csrf 토큰 -->
 								<div>
 									<input type="hidden" name="CSRFToken" value="51186ab6-ee25-449c-af23-3c5e41d80d71">

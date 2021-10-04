@@ -55,7 +55,7 @@
 	</select>
 	
 	<!-- 상품의 색상 리스트 출력하기 -->
-	<select id="selectColors" parameterType="String" resultType="com.mycompany.webapp.dto.Color">
+	<select id="selectColorsByPcommonId" parameterType="String" resultType="com.mycompany.webapp.dto.Color">
 		select distinct color_code, color_img
 			from product_common, product_color, product_stock
 			where product_common.id = #{pcommonId}
@@ -63,10 +63,10 @@
 			and product_stock.product_color_id = product_color.id
 	</select>
 	<!-- 상품의 사이즈 리스트 출력하기 -->
-	<select id="selectSizes" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
+	<select id="selectSizesByPcommonId" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
 		select distinct size_code
 			from product_common, product_color, product_stock
-			where product_common.id = 'MM2B9KTO061HOH'
+			where product_common.id = #{pcommonId}
 			and product_color.product_common_id = product_common.id
 			and product_stock.product_color_id = product_color.id
 	</select>
