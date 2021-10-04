@@ -58,7 +58,7 @@
 			-->
 			
 			<!-- 최종 로그인을 유효하게 만들기 -->
-			<security:concurrency-control max-sessions="1"
+			<security:concurrency-control max-sessions="4"
 										  error-if-maximum-exceeded="false"
 										  expired-url="/member/loginForm"/>
 		</security:session-management>
