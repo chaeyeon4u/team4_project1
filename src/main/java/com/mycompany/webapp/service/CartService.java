@@ -10,6 +10,7 @@ import com.mycompany.webapp.dao.CartDao;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.vo.Category;
 
 @Service
 public class CartService {
@@ -27,6 +28,15 @@ public class CartService {
 	}
 	public void updateQuantity(int quantity, String pstockId, String mid ) {
 		cartDao.updateCountByQuantity(quantity, pstockId, mid);
+	}
+	
+	public void updateOptions(String color, String size, String pcommonId, String pstockId, String mid) {
+		String newPstockId = pcommonId + "_" +color + "_" + size;
+		cartDao.updatePstockId(newPstockId, mid, pstockId);
+	}
+	
+	public Category setCategories(String pcolorId) {
+		return cartDao.selectCategoryByPcolorId(pcolorId);
 	}
 	
 }
