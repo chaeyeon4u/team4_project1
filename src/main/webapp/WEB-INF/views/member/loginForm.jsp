@@ -2,7 +2,6 @@
 
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
-
 <div id="bodyWrap" class="login_form">
 	<h3 class="cnts_title">
 		<span id="menuTitle">로그인</span>

@@ -2,10 +2,10 @@
 
 /*order-form font*/
 .tbl_ltype tbody .al_middle .tlt_wrap .tlt{font-size:14px;}
-.tbl_ltype tbody .al_middle .tlt_wrap .sb_tlt{font-size:19px;}
+.tbl_ltype tbody .al_middle .tlt_wrap .sb_tlt{font-size:17px;}
 .tbl_ltype tbody .al_middle .tlt_wrap .color_op{font-size:14px;}
 .tbl_ltype tbody .al_middle .count{font-size:17px;}
-.tbl_ltype tbody .al_middle .price{font-size:28px; font-weight: bold;}
+.tbl_ltype tbody .al_middle .price{font-size:18px;}
 .price_wrap span{font-size:18px; font-weight: bold;}
 
 .tblwrap .tbl_wtype1 th{font-size:15px; white-space: nowrap; padding: 5px 10px;}
@@ -21,4 +21,3 @@
  .float_right .sum_box .total{}
  .float_right .sum_box .total .clearfix{font-size:18px;}
  
-/*order-form layout*/

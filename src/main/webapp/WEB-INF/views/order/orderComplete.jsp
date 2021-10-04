@@ -55,11 +55,11 @@
 								</div>
 							</div> 
 						</td>
-						<td>1</td>
+						<td class="count">1</td>
 						<td>
 							<!-- 판매가 -->
 							<div class="price_wrap">
-								<span>₩795,000</span>
+								<span class="price">₩795,000</span>
 							</div> 
 						</td>
 					</tr>
@@ -73,12 +73,15 @@
 				<dl>
 					<dt>상품 합계</dt>
 					<dd>₩795,000</dd>
-
-					<dt class="delch_wrap">
-						<p class="tlt_ship">배송비</p>
-					</dt>
-					<dd>₩ 0</dd>
+					
+					<div>
+						<dt class="delch_wrap">
+							<p class="tlt_ship" style="display: inline;">배송비</p>
+						</dt>
+						<dd style="text-align: right;">₩ 0</dd>
+					</div>
 				</dl>
+				
 				<dl class="total">
 					<dt>합계</dt>
 					<dd>₩795,000</dd>
