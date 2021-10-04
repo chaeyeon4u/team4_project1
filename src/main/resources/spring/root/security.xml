@@ -35,6 +35,8 @@
 		<!-- 요청 URL 권한 설정 -->
 		<!--리디렉션 오류남 -->
 <!-- 		<security:intercept-url pattern="/**" access="isAuthenticated()"/>  -->
+
+		<security:intercept-url pattern="/cart" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="permitAll"/>
 		
 		<!-- 권한 없음일 경우 보여줄 페이지 설정 -->
@@ -103,7 +105,7 @@
 	<bean id="authenticationFailureHandler" 
 		  class="com.mycompany.webapp.security.AuthenticationFailureHandler">
 		<!-- 로그인 실패후 리다이렉트로 이동할 경로 -->
-		<property name="defaultFailureUrl" value="/loginForm"/>
+		<property name="defaultFailureUrl" value="/member/loginForm"/>
 	</bean>
 	
 	<bean id="logoutSuccessHandler"
