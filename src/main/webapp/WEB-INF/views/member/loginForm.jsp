@@ -3,14 +3,14 @@
 <%@ include file="/WEB-INF/views/common/header.jsp" %>
 
 
-<div id="bodyWrap">
+<div id="bodyWrap" class="login_form">
 	<h3 class="cnts_title">
 		<span id="menuTitle">로그인</span>
 	</h3>
 	<div class="sub_container">
 		<div class="login_wrap">
 				<div class="login_section">
-					<div class="card-body" style="width:300px; margin:0 auto;">
+					<div class="card-body">
 						<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
 							<div class="alert alert-danger mb-2" role="alert">
 								<c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
@@ -21,7 +21,7 @@
 								</c:if>
 							</div>
 						</c:if>
-						<form method="post" action="${pageContext.request.contextPath}/login">
+						<form method="post" action="${pageContext.request.contextPath}/login" class="login_wrap">
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="form-group">
 							    <label for="mid" class="id">아이디</label>
