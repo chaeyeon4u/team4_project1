@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
-<%@ include file="/WEB-INF/views/common/header.jsp" %>
+<%@ include file="/WEB-INF/views/special/orderListLinks.jsp" %>
 
 <body oncontextmenu="return false">
 	<div id="bodyWrap">
@@ -220,13 +220,13 @@
 									</div>
 								</td>
 				<%-- 수량 자리--%>
-								<td>수량</td>
+								<td class="count">수량</td>
 				<%-- 가격 자리--%>
-								<td>가격</td>
+								<td class="price">가격</td>
 				<%-- 주문상태 및 날짜 자리--%>
 								<td>주문상태<span class="sum_date">(날짜)</span></td>
 								<td rowspan="1"><div class="btn_wrap">
-										<a href="/" class="btn wt_ss">주문취소</a>
+										<a href="/" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
 									</div>
 								</td>
 							</tr>
