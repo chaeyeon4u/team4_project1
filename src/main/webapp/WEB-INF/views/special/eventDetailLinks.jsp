@@ -8,4 +8,4 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/layout.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/swiper.css"/>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/event.css"/>
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/event.css"/>
