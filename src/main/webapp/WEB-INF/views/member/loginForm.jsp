@@ -25,11 +25,11 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="form-group">
 							    <label for="mid" class="id">아이디</label>
-							    <input type="text" class="form-control" id="mid" name="mid">
+							    <input type="text" class="form-control" id="mid" name="id">
 							</div>
 							<div class="form-group">
 								<label for="mpassword" class="password">패스워드</label>
-								<input type="password" class="form-control" id="mpassword" name="mpassword">
+								<input type="password" class="form-control" id="mpassword" name="password">
 							</div>
 							<button class="loginbtn">로그인</button>
 						</form>	

@@ -11,7 +11,7 @@ import com.mycompany.webapp.vo.join.CategoryDepthDto;
 import com.mycompany.webapp.vo.join.Product;
 
 @Service
-public class HomeService {
+public class ProductListService {
 	@Resource private ProductDao productDao;
 	
 	public List<Product> getProductsByCategory(CategoryDepthDto categoryDepthDto){
