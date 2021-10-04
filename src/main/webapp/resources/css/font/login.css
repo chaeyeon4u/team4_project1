@@ -4,6 +4,10 @@
 
 #menuTitle{font-size: 40px; font-weight: bold; margin: 20px;}
 .sub_container form{margin: 10px;}
-.sub_container form .id{font-size: 23px; font-weight: bold; margin-bottom:10px;}
-.sub_container form .password{font-size: 23px; font-weight: bold; margin-bottom:10px;}
-.sub_container form .loginbtn{width:100%; color:white; height:40px; background-color:#4a4a4a; font-size: 23px;}
+.sub_container form .id{font-size: 21px; font-weight: bold; margin-bottom:20px;}
+.sub_container form .password{font-size: 21px; font-weight: bold; margin-bottom:20px; margin-top: 10px;}
+.sub_container form .loginbtn{width:100%; color:white; height:40px; background-color:#4a4a4a; font-size: 23px; margin: 20px 0;}
+
+#bodyWrap .sub_container .login_section .card-body{width:600px; border:1px solid; padding: 50px; margin:50px auto;}
+
+#bodyWrap .sub_container .login_section .alert{margin-top: -10px;}

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
 <%@ include file="/WEB-INF/views/special/homeLinks.jsp"%>
@@ -21,15 +21,15 @@
 								<div class="text-center">
 									<!-- 브랜드 명-->
 									<p>
-									<div class="fw-bolder mb-1" style="font-size: 1rem;">${product.brand.name}</div>
+									<div class="fw-bolder mb-1 brand_name">${product.brand.name}</div>
 									</p>
 									<!-- 상품명-->
 									<p>
-									<div class="fw-bolder mb-1" style="font-size: 0.8rem;">${product.productCommon.name}</div>
+									<div class="fw-bolder mb-1 name">${product.productCommon.name}</div>
 									</p>
 									<!-- 가격-->
 									<p>
-									<div class="fw-bolder mb-1" style="font-size: 0.75rem;">${product.productColor.price}</div>
+									<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
 									</p>
 								</div>
 							</div>
