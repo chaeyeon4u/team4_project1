@@ -9,3 +9,8 @@
 .home_product_list_item .text-center .brand_name{font-size:18px;}
 .home_product_list_item .text-center .name{font-size:20px; font-weight: bold; margin: 5px;}
 .home_product_list_item .text-center .price{font-size:18px;}
+
+/*페이징 버튼*/
+.paginigBtn{border: 1px solid; padding: 5px; border-radius: 20%; }
+.paginigBtn .check{border: 1px solid; padding: 5px; border-radius: 20%;  background-color:#295F39; color:#ffffff; font-weight: bold;}
+.paginigBtn:hover{border: 1px solid; padding: 5px; border-radius: 20%; background-color:#295F39; color:#ffffff; font-weight: bold;}
