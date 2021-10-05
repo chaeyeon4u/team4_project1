@@ -114,7 +114,7 @@ function hidden_opt(e) {
 								<%-- 체크박스 --%>
 								<td class="frt">
 									<!-- value는 리스트의 개수만큼 내림차순으로 -->
-									<input type="checkbox" name="cartlist" data-pk="10277981880364" value="con 4">
+									<input type="checkbox" name="cartlist" data-pk="10277981880364" value="${status.count}">
 								</td>
 								<%-- 상품정보 --%>
 								<td class="pt_list_wrap">
@@ -190,11 +190,11 @@ function hidden_opt(e) {
 											<div class="info">
 												<!-- Products -->
 												<div class="pt_list" id="pt_list_4">
-													<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW">
+													<a href="/cart/set/${product.productColor.id}">
 														<img src="${product.productColor.img3}" alt="">
 													</a>
 													<div class="tlt_wrap">
-														<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW" class="basket_tlt">
+														<a href="/cart/set/${product.productColor.id}">
 															<span class="tlt">${product.brand.name}</span>
 															<span class="sb_tlt">${product.productCommon.name}</span>
 														</a>
