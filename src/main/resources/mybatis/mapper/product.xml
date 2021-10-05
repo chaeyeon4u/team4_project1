@@ -140,7 +140,8 @@
 	<select id="selectSizesByPcolorId" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
 	select distinct size_code
 	    from product_common, product_color, product_stock
-	    where product_color.id = 'IL2B8KCD721W_MR'
+	    where product_color.id = #{pcolorId}
 	    and product_color.id = product_stock.product_color_id
+	    order by size_code
 	</select>
 </mapper>
