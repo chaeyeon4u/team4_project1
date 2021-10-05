@@ -3,13 +3,17 @@
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
 <%@ include file="/WEB-INF/views/special/orderFormLinks.jsp"%>
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
-
+<%
+Integer totalPrice = (Integer) request.getAttribute("totalPrice");
+%>
 <!-- bodyWrap -->
 <div id="bodyWrap">
 	<h3 class="cnts_title">
 		<span>배송&amp;결제정보 입력</span>
 	</h3>
-
+	<script>
+	console.log("totalPrice:", <%=totalPrice%>);
+</script>
 	<!--sub_container-->
 	<div class="sub_container">
 		<!--orderwrap-->
@@ -34,35 +38,37 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="al_middle">
-								<td class="frt">
-									<!-- pt_list_all -->
-									<div class="pt_list_all">
-										<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82">
-											<img
-											src="http://newmedia.thehandsome.com/MN/2B/FW/MN2B9WJC649W_BG_S01.jpg"
-											alt="">
-										</a>
-										<div class="tlt_wrap">
-											<a
-												href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82"
-												class="basket_tlt"> <span class="tlt">MINE</span> <span
-												class="sb_tlt">멜란지 크롭 재킷</span>
+						<%-- 선택해서 주문중인 상품 정보 리스트 --%>
+							<c:forEach var="product" items="${cartProducts}">
+								<tr class="al_middle">
+									<td class="frt">
+										<div class="pt_list_all">
+											<a href="/cart/set/${product.pcolorId}">
+												<img src="${product.img}" alt="">
 											</a>
-											<p class="color_op">
-												color : BEIGE<span class="and_line">/</span> size : 82
-											</p>
+											<div class="tlt_wrap">
+												<a href="/cart/set/${product.pcolorId}" class="basket_tlt">
+													<span class="tlt">${product.brandName}</span>
+													<span class="sb_tlt">${product.productName}</span>
+												</a>
+												<p class="color_op">
+													color : ${product.colorCode}
+													<span class="and_line">/</span>
+													size : ${product.sizeCode}
+												</p>
+											</div>
 										</div>
-									</div>
-								</td>
-								<td>1</td>
-								<td>
-									<!-- price_wrap -->
-									<div class="price_wrap ">
-										<span> ₩795,000</span>
-									</div>
-								</td>
-							</tr>
+									</td>
+									<td>${product.quantity}</td>
+									<td>
+										<!-- price_wrap -->
+										<div class="price_wrap ">
+											<span> ${product.appliedPrice}</span>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+							<%-- //선택해서 주문중인 상품 정보 리스트 --%>
 						</tbody>
 					</table>
 				</div>
@@ -104,7 +110,8 @@
 				<div class="title_wrap clearfix mt40" id="deliveryAddressDisplay">
 					<h4 class="float_left">배송지 정보</h4>
 					<p class="reqd_txt none">
-						<strong class="reqd">*</strong> 표시는 필수항목입니다.
+						<strong class="reqd">*</strong>
+						표시는 필수항목입니다.
 					</p>
 					<div class="btn_wrap">
 						<a href="javascript:customerAddress();" class="btn wt_ss">주문고객과 동일</a>
@@ -121,29 +128,36 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row" class="tooltip191022"><strong class="reqd">*</strong>
-									<label for="adress">배송지 주소</label> <span class="ico_question">icon</span>
+								<th scope="row" class="tooltip191022">
+									<strong class="reqd">*</strong>
+									<label for="adress">배송지 주소</label>
+									<span class="ico_question">icon</span>
 									<div class="delch_box190816">
 										<span class="arr">위치아이콘</span>
 										<ul class="bul_sty01_li">
-											<li>기본배송지 변경은 <strong>마이페이지&gt; [배송지관리]</strong>에서
-												가능합니다.
+											<li>
+												기본배송지 변경은
+												<strong>마이페이지&gt; [배송지관리]</strong>
+												에서 가능합니다.
 											</li>
 											<li>기본배송지 설정 시 기본배송지가 최우선으로 노출 됩니다.</li>
 										</ul>
-									</div></th>
+									</div>
+								</th>
 								<td>
-									<!-- 주소지 입력 --> <input onclick="goPopup()" value="${member.zipcode}" title="우편번호" id="adress" name="postcode" class="post inputclear" type="text" readonly=""> <br>
+									<!-- 주소지 입력 -->
+									<input onclick="goPopup()" value="${member.zipcode}" title="우편번호" id="adress" name="postcode" class="post inputclear" type="text" readonly="">
+									<br>
 									<div id="basis_bk_flag">
 										<input onclick="goPopup()" value="${member.address1}" title="주소1" name="line1" id="line1" class="post_wall top inputclear" type="text" readonly="">
-									</div> 
-										<input value="${member.address2}" title="주소2" name="line2" id="line2" class="post_wall inputclear" type="text" maxlength="110" placeholder="나머지 주소를 입력해 주세요.">
+									</div>
+									<input value="${member.address2}" title="주소2" name="line2" id="line2" class="post_wall inputclear" type="text" maxlength="110" placeholder="나머지 주소를 입력해 주세요.">
 								</td>
 							</tr>
 							<tr>
 								<th scope="row">
-								<strong class="reqd">*</strong>
-								<label for="rcpt_name">수령인</label>
+									<strong class="reqd">*</strong>
+									<label for="rcpt_name">수령인</label>
 								</th>
 								<td>
 									<input value="${member.name}" title="수령인" id="rcpt_name" name="lastName" class="inputclear" maxlength="13" type="text" style="width: 118px;">
@@ -151,39 +165,36 @@
 							</tr>
 							<!-- 휴대폰 번호 -->
 							<tr>
-								<th scope="row"><strong class="reqd">*</strong><label
-									for="hp">휴대폰 번호</label></th>
+								<th scope="row">
+									<strong class="reqd">*</strong>
+									<label for="hp">휴대폰 번호</label>
+								</th>
 								<td>
-									<!-- hp --> 
-									<c:set var="hpnum1" value="${fn:substring(member.phone,0,3)}" /> 
+									<!-- hp -->
+									<c:set var="hpnum1" value="${fn:substring(member.phone,0,3)}" />
 									<select id="hp" name="hp_num1" title="휴대폰 번호 앞자리" class="hp_num1">
-										<option value="010"
-											<c:if test="${hpnum1==010}">selected</c:if>>010</option>
-										<option value="011"
-											<c:if test="${hpnum1==011}">selected</c:if>>011</option>
-										<option value="016"
-											<c:if test="${hpnum1==016}">selected</c:if>>016</option>
-										<option value="017"
-											<c:if test="${hpnum1==017}">selected</c:if>>017</option>
-										<option value="018"
-											<c:if test="${hpnum1==018}">selected</c:if>>018</option>
-										<option value="019"
-											<c:if test="${hpnum1==019}">selected</c:if>>019</option>
+										<option value="010" <c:if test="${hpnum1==010}">selected</c:if>>010</option>
+										<option value="011" <c:if test="${hpnum1==011}">selected</c:if>>011</option>
+										<option value="016" <c:if test="${hpnum1==016}">selected</c:if>>016</option>
+										<option value="017" <c:if test="${hpnum1==017}">selected</c:if>>017</option>
+										<option value="018" <c:if test="${hpnum1==018}">selected</c:if>>018</option>
+										<option value="019" <c:if test="${hpnum1==019}">selected</c:if>>019</option>
 									</select>
-									<div class="form_hyphen">-</div> 
-									<input title="휴대폰 번호 가운데자리" name="hp_num2" id="hp_num2" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true"
-									value="${fn:substring(member.phone,3,7)}">
-									
-									<div class="form_hyphen">-</div> 
-									
-									<input title="휴대폰 번호 뒷자리" name="hp_num3" id="hp_num3" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true"
-									value="${fn:substring(member.phone,7,13)}"> <!-- //hp -->
+									<div class="form_hyphen">-</div>
+									<input title="휴대폰 번호 가운데자리" name="hp_num2" id="hp_num2" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true" value="${fn:substring(member.phone,3,7)}">
+
+									<div class="form_hyphen">-</div>
+
+									<input title="휴대폰 번호 뒷자리" name="hp_num3" id="hp_num3" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true" value="${fn:substring(member.phone,7,13)}">
+									<!-- //hp -->
 								</td>
 							</tr>
 							<tr>
-								<th scope="row" class="th_space"><label for="ph">연락처</label></th>
+								<th scope="row" class="th_space">
+									<label for="ph">연락처</label>
+								</th>
 								<td>
-									<!-- 연락처 입력 --> 
+									<!-- 연락처 입력 -->
 									<select name="ph_num1" id="ph" title="연락처 앞자리" class="hp_num1">
 										<option value="">선택</option>
 										<option value="02">02</option>
@@ -203,39 +214,41 @@
 										<option value="062">062</option>
 										<option value="063">063</option>
 										<option value="064">064</option>
-								</select>
+									</select>
 
-									<div class="form_hyphen">-</div> 
+									<div class="form_hyphen">-</div>
 									<input title="연락처 가운데자리" name="ph_num2" id="ph_num2" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true">
 
-									<div class="form_hyphen">-</div> 
-									<input title="연락처 뒷자리"
-									name="ph_num3" id="ph_num3" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true">
+									<div class="form_hyphen">-</div>
+									<input title="연락처 뒷자리" name="ph_num3" id="ph_num3" class="hp_num2 inputclear" type="text" maxlength="4" numberonly="true">
 
 								</td>
 							</tr>
 							<!-- 배송 요청 사항 -->
 							<tr>
-								<th scope="row" class="th_space"><label for="orderr">배송요청사항</label></th>
+								<th scope="row" class="th_space">
+									<label for="orderr">배송요청사항</label>
+								</th>
 								<td>
 									<div class="input_sumtxt">
 										<div class="input_sumtxt_box">
 											<!-- input -->
-											<input onkeyup="chkword();" class="inputclear" id="orderr"
-												name="deliveryRequestContents" type="text" value=""
-												title="배송요청사항" maxlength="20">
+											<input onkeyup="chkword();" class="inputclear" id="orderr" name="deliveryRequestContents" type="text" value="" title="배송요청사항" maxlength="20">
 										</div>
 										<div>
-											<span id="text_length">0</span> <span>/20자</span>
+											<span id="text_length">0</span>
+											<span>/20자</span>
 										</div>
 									</div>
 								</td>
 							</tr>
 							<tr>
-								<th scope="row" class="th_space"><label for="mail">수령인 E-mail</label></th>
+								<th scope="row" class="th_space">
+									<label for="mail">수령인 E-mail</label>
+								</th>
 								<td>
-									<!-- 이메일 입력 --> 
-									<input type="text" id="mail" name="mail"title="이메일 아이디" class="em_form inputclear"> 
+									<!-- 이메일 입력 -->
+									<input type="text" id="mail" name="mail" title="이메일 아이디" class="em_form inputclear">
 									<span class="andmail">@</span>
 									<input type="text" value="" name="emailDely" id="emailDely" title="직접입력" class="em_form inputclear">
 									<select title="이메일 계정" id="emailDelySel" class="em_select">
@@ -247,7 +260,7 @@
 										<option value="hanmail.net">hanmail.net</option>
 										<option value="yahoo.com">yahoo.com</option>
 										<option value="dreamwiz.com">dreamwiz.com</option>
-								</select>
+									</select>
 								</td>
 							</tr>
 						</tbody>
@@ -275,15 +288,17 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th scope="row" class="th_space"><label for="pointpay">한섬마일리지
-											결제</label></th>
+									<th scope="row" class="th_space">
+										<label for="pointpay">한섬마일리지 결제</label>
+									</th>
 									<td>
 										<!-- 한섬마일리지 결제 입력 -->
 										<div class="point_wrap">
-											<input title="한섬마일리지 결제" class="inpput" type="text"
-												id="pointpay" name="usePoint" numberonly="true">
+											<input title="한섬마일리지 결제" class="inpput" type="text" id="pointpay" name="usePoint" numberonly="true">
 											<p class="p_txt">
-												M 사용 (잔액 : <span>${mileageSum}</span>M)
+												M 사용 (잔액 :
+												<span>${mileageSum}</span>
+												M)
 											</p>
 
 											<div class="point_apply">
@@ -293,10 +308,8 @@
 														<label for="point_useall">모두사용</label>
 													</span>
 												</div>
-												<input id="btnUsePoint" class="btn add_s min_auto"
-													value="적용" type="button" onclick="doUsePoint(this);">
-												<input id="btnCancelUsePoint" class="btn dis_s min_auto"
-													value="적용취소" type="button" onclick="cancelUsePoint(this);">
+												<input id="btnUsePoint" class="btn add_s min_auto" value="적용" type="button" onclick="doUsePoint(this);">
+												<input id="btnCancelUsePoint" class="btn dis_s min_auto" value="적용취소" type="button" onclick="cancelUsePoint(this);">
 											</div>
 
 											<p class="txt_guide">* 1마일리지 = 1원</p>
@@ -309,17 +322,20 @@
 									<td>
 										<div class="rd_wrap payment_way1907">
 											<ul>
-												<li><input type="radio" name="mode" id="sel_rd1"
-													value="KO001" onclick="showCkout(this);"> <label
-													for="sel_rd1" class="mr20">신용카드</label></li>
+												<li>
+													<input type="radio" name="mode" id="sel_rd1" value="KO001" onclick="showCkout(this);">
+													<label for="sel_rd1" class="mr20">신용카드</label>
+												</li>
 
-												<li><input type="radio" name="mode" id="sel_rd2"
-													value="KO002" onclick="showCkout(this);"> <label
-													for="sel_rd2" class="mr20">실시간 계좌이체</label></li>
+												<li>
+													<input type="radio" name="mode" id="sel_rd2" value="KO002" onclick="showCkout(this);">
+													<label for="sel_rd2" class="mr20">실시간 계좌이체</label>
+												</li>
 
-												<li><input type="radio" name="mode" id="sel_rd6"
-													value="KO007" onclick="showCkout(this);"> <label
-													for="sel_rd6" class="mr20">한섬 마일리지</label></li>
+												<li>
+													<input type="radio" name="mode" id="sel_rd6" value="KO007" onclick="showCkout(this);">
+													<label for="sel_rd6" class="mr20">한섬 마일리지</label>
+												</li>
 											</ul>
 										</div>
 									</td>
@@ -337,7 +353,7 @@
 						<hr>
 						<dl class="clearfix">
 							<dt class="sub_total190816">상품 합계</dt>
-							<dd class="sub_total190816" id="subTotal">795000</dd>
+							<dd class="sub_total190816" id="subTotal">${totalPrice}</dd>
 							<dt class="delch_wrap190816">
 								<p class="tlt_ship190816">배송비</p>
 								<div class="delch_box190816" style="display: none;">
@@ -351,7 +367,8 @@
 					<div class="total">
 						<dl class="clearfix">
 							<dt>합계</dt>
-							<dd id="totalPrice">₩795,000</dd>
+							<%--계산된 값이 할당되게 변경해주세요 --%>
+							<dd id="totalPrice">₩${totalPrice}</dd>
 						</dl>
 					</div>
 				</div>
@@ -366,18 +383,22 @@
 					</div>
 
 					<div class="agree">
-						<input type="checkbox" id="agree"> <label for="agree"
-							class="tlt"> 구매자 동의</label>
+						<input type="checkbox" id="agree">
+						<label for="agree" class="tlt"> 구매자 동의</label>
 						<p class="txt">
-							주문할 상품의 상품명, 가격, 배송정보 등 <br> 판매조건을 확인하였으며, 구매진행에 동의합니다. <br>(전자상거래법
-							제8조 2항) <br> <br> 기존 마이너스 한섬마일리지를 보유하고 있는 고객은
-							한섬마일리지가 차감되어 적립되는 것에 동의합니다. 적립 예정 한섬마일리지가 상이할 수 있습니다.
+							주문할 상품의 상품명, 가격, 배송정보 등
+							<br>
+							판매조건을 확인하였으며, 구매진행에 동의합니다.
+							<br>
+							(전자상거래법 제8조 2항)
+							<br>
+							<br>
+							기존 마이너스 한섬마일리지를 보유하고 있는 고객은 한섬마일리지가 차감되어 적립되는 것에 동의합니다. 적립 예정 한섬마일리지가 상이할 수 있습니다.
 						</p>
 					</div>
 				</div>
-				<span id="doOrderBtn"> <a
-					href="${pageContext.request.contextPath}/order/ordercomplete"
-					class="btn gray "> 결제하기</a>
+				<span id="doOrderBtn">
+					<a href="${pageContext.request.contextPath}/order/ordercomplete" class="btn gray "> 결제하기</a>
 				</span>
 			</div>
 		</div>
