@@ -38,6 +38,13 @@
 		<result property="productStockId" column="product_stock_id"/>
 	</resultMap>
 	
+	<resultMap type="category" id="categoryMap">
+		<id property="no" column="no"/>
+		<result property="depth1Name" column="depth1_name"/>
+		<result property="depth2Name" column="depth2_name"/>
+		<result property="depth3Name" column="depth3_name"/>
+	</resultMap>
+	
 	<resultMap type="com.mycompany.webapp.dto.CartList" id="cartListMap">
 		<collection property="productCommon" resultMap="productCommonMap"/>
 		<collection property="productColor" resultMap="productColorMap"/>
@@ -48,7 +55,7 @@
 	
 	<!-- 카트 안의 리스트 출력하기 -->
 	<select id="selectList" parameterType="String" resultMap="cartListMap">
-		select product_common.id as pcommonId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
+		select product_common.id as pcommonId, product_color.id as pcolorId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
 				product_stock.size_code, product_color.color_code,img1, product_color.color_img, price
 			from cart, product_common, product_color, brand, product_stock
 			where cart.member_id = #{mid}
@@ -82,4 +89,25 @@
 			where member_id = #{mid}
 			and product_stock_id = #{pstockId}
 	</update>
+	
+	<!-- 카트 옵션 업데이트하기 -->
+	<update id="updatePstockId" parameterType="map">
+		update cart
+			set product_stock_id = #{newPstockId}
+			where member_id = #{mid}
+			and product_stock_id = #{oldPstockId}
+	</update>
+	
+	<!-- pcolorId로 카테고리 뽑아오기-->
+	<select id="selectCategoryByPcolorId" parameterType="String" resultMap="categoryMap">
+	select * from (
+		select distinct no, depth1_name, depth2_name, depth3_name
+			from product_common, product_color, product_category, category
+            where product_color.id = #{pcolorId}
+	        and product_color.product_common_id = product_common.id
+            and product_category.product_common_id = product_common.id
+            and product_category.category_no = category.no
+            order by length(depth2_name))
+            where rownum=1
+	</select>
 </mapper>

@@ -10,12 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
+import com.mycompany.webapp.vo.Category;
 
 @Controller
 @RequestMapping("/cart")
@@ -35,10 +39,21 @@ public class CartController {
 		return "cart/cartList";
 	}
 	
-	@RequestMapping("/update")
-	public String cartUpdate() {
-		logger.info("실행");
-		return "redirect:/cart/cartList";
+	@PostMapping("/update/quantity")
+	public String updateQuantity(@RequestParam int quantity, @RequestParam String pstockId, 
+			Principal principal) {
+		String mid = principal.getName();
+		cartService.updateQuantity(quantity, pstockId, mid);
+		return "redirect:/cart";
+	}
+	
+	@PostMapping("/update/options")
+	public String updateOptions(@RequestParam String color, @RequestParam String size,
+			@RequestParam String pcommonId, @RequestParam String pstockId,
+			Principal principal) {
+		String mid = principal.getName();
+		cartService.updateOptions(color, size, pcommonId, pstockId, mid);
+		return "redirect:/cart";
 	}
 	
 	@RequestMapping("/selectOptions")
@@ -64,5 +79,15 @@ public class CartController {
 		List<Size> sizes = cartService.getSizes(pcommonId);
 		model.addAttribute("sizes", sizes);
 		return "cart/sizes";
+	}
+	
+	@RequestMapping("/set/{pcolorId}")
+	public String setCategoryAndReturn(@PathVariable String pcolorId) {
+		Category category = cartService.setCategories(pcolorId);
+		String depth1Name = category.getDepth1Name();
+		String depth2Name = category.getDepth2Name();
+		String depth3Name = category.getDepth3Name();
+		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
+		return redirect;
 	}
 }

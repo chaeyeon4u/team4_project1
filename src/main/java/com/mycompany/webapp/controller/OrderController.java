@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.service.MemberService;
+import com.mycompany.webapp.service.OrderCompleteService;
 import com.mycompany.webapp.vo.Member;
 import com.mycompany.webapp.vo.Mileage;
+import com.mycompany.webapp.vo.join.OrderComplete;
 
 @Controller
 @RequestMapping("/order")
@@ -44,8 +46,21 @@ public class OrderController {
 		return "popup/jusoPopup";
 	}	
 	
+	@Resource
+	private OrderCompleteService orderCompleteService;
+	
 	@RequestMapping("/ordercomplete")
-	public String orderComplete() {
+	public String orderComplete(Model model, Principal principal, String orderId) {
+		String ordersId = "20211003P1234";
+		List<OrderComplete> orderProduct= orderCompleteService.selectProductByorderId(principal.getName(), ordersId);
+		List<OrderComplete> orderpayment= orderCompleteService.selectpaymentByorderId(ordersId);
+		String userId = principal.getName();
+		Member member = memberService.memberInfoById(userId);
+		List<OrderComplete> orderaddress= orderCompleteService.selectaddressByorderId(ordersId);
+		model.addAttribute("member",member);
+		model.addAttribute("orderProduct",orderProduct);
+		model.addAttribute("orderpayment",orderpayment);
+		model.addAttribute("orderaddress",orderaddress);
 		logger.info("실행");
 		return "order/orderComplete";
 	}

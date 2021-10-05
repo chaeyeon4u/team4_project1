@@ -4,6 +4,6 @@
 <%-- <a href="javascript:void(0);" onclick="setOptions(this, '4', 'CM2B9WOT400W_SW', 'style');" class="beige on"
 	style="background: #362626 url('${color.colorImg}')">${color.colorCode}</a> --%>
 <c:forEach var="color" items="${colors}">
-<a href="javascript:void(0);" onclick="set_color(this);" class="${color.colorCode}"
+<a href="javascript:void(0);" onclick="set_color(this);"
 	style="background: #362626 url('${color.colorImg}')">${color.colorCode}</a>
 </c:forEach>

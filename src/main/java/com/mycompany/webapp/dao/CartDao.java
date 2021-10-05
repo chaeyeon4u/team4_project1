@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.vo.Category;
 
 @Mapper
 public interface CartDao {
@@ -15,4 +16,6 @@ public interface CartDao {
 	List<Color> selectColorsByPcommonId(String pcommonId);
 	List<Size> selectSizesByPcommonId(String pcommonId);
 	void updateCountByQuantity(@Param("quantity") int quantity, @Param("pstockId") String pstockId, @Param("mid") String mid);
+	void updatePstockId(@Param("newPstockId") String newPstockId, @Param("mid") String mid, @Param("oldPstockId") String oldPstockId);
+	Category selectCategoryByPcolorId(String pcolorId);
 }

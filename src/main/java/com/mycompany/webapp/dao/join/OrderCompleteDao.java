@@ -1,0 +1,15 @@
+package com.mycompany.webapp.dao.join;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.mycompany.webapp.vo.join.OrderComplete;
+
+@Mapper
+public interface OrderCompleteDao {
+	List<OrderComplete> selectProductByorderId(@Param("mid") String mid, @Param("ordersId") String ordersId);
+	List<OrderComplete> selectpaymentByorderId(String ordersId);
+	List<OrderComplete> selectaddressByorderId(String ordersId);
+}
