@@ -18,12 +18,12 @@ public class OrderCompleteService {
 		return orderCompleteDao.selectProductByorderId(mid, ordersId);
 		
 	}
-		public List<OrderComplete> selectpaymentByorderId(String ordersId){
-		return orderCompleteDao.selectpaymentByorderId(ordersId);
+		public List<OrderComplete> selectpaymentByorderId(String mid, String ordersId){
+		return orderCompleteDao.selectpaymentByorderId(mid, ordersId);
 		}
 		
-		public List<OrderComplete> selectaddressByorderId(String ordersId){
-		return orderCompleteDao.selectaddressByorderId(ordersId);
+		public List<OrderComplete> selectaddressByorderId(String mid, String ordersId){
+		return orderCompleteDao.selectaddressByorderId(mid, ordersId);
 		}
 }
 	

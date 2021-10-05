@@ -50,18 +50,32 @@ public class OrderController {
 	private OrderCompleteService orderCompleteService;
 	
 	@RequestMapping("/ordercomplete")
-	public String orderComplete(Model model, Principal principal, String orderId) {
+	public String orderComplete(Model model, Principal principal, String orderid) {
 		String ordersId = "20211003P1234";
-		List<OrderComplete> orderProduct= orderCompleteService.selectProductByorderId(principal.getName(), ordersId);
-		List<OrderComplete> orderpayment= orderCompleteService.selectpaymentByorderId(ordersId);
+		String mid = principal.getName();
+		List<OrderComplete> orderProduct= orderCompleteService.selectProductByorderId(mid ,ordersId);
+		List<OrderComplete> orderpayment= orderCompleteService.selectpaymentByorderId(mid,ordersId);
+		List<OrderComplete> orderaddress= orderCompleteService.selectaddressByorderId(mid,ordersId);
+		
 		String userId = principal.getName();
 		Member member = memberService.memberInfoById(userId);
-		List<OrderComplete> orderaddress= orderCompleteService.selectaddressByorderId(ordersId);
+		
 		model.addAttribute("member",member);
 		model.addAttribute("orderProduct",orderProduct);
 		model.addAttribute("orderpayment",orderpayment);
 		model.addAttribute("orderaddress",orderaddress);
+		logger.info("orderAddress:" + orderaddress);
 		logger.info("실행");
 		return "order/orderComplete";
 	}
 }
+
+
+
+
+
+
+
+
+
+

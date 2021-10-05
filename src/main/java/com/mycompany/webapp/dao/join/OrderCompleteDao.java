@@ -10,6 +10,6 @@ import com.mycompany.webapp.vo.join.OrderComplete;
 @Mapper
 public interface OrderCompleteDao {
 	List<OrderComplete> selectProductByorderId(@Param("mid") String mid, @Param("ordersId") String ordersId);
-	List<OrderComplete> selectpaymentByorderId(String ordersId);
-	List<OrderComplete> selectaddressByorderId(String ordersId);
+	List<OrderComplete> selectpaymentByorderId(@Param("mid") String mid, @Param("ordersId") String ordersId);
+	List<OrderComplete> selectaddressByorderId(@Param("mid") String mid, @Param("ordersId") String ordersId);
 }

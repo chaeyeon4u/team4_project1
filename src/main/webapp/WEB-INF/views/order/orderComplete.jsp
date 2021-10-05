@@ -3,6 +3,15 @@
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
 <%@ include file="/WEB-INF/views/special/orderCompleteLinks.jsp"%>
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd hh:mm" /></c:set> 
+<c:set var="date1"><fmt:formatDate value="${today}" pattern="yyyy년MM월dd일 hh시mm분" /></c:set> 
+
+
 
 <!-- bodyWrap -->
 <div id="bodyWrap">
@@ -13,9 +22,10 @@
 	<div class="sub_container">
 		<div class="order_title ">
 			<p class="title">주문이 완료되었습니다.</p>
-			<p class="s_title">주문번호 : 210929P10860841 (주문일시 : 0000.00.00 00:00)</p>
+			<p class="s_title">주문번호 :${orderProduct[0].orders.id} (주문일시 : <c:out value="${date}" />)</p>
 			<p class="ss_title">
-				<span class="guide_comment">입금 가상계좌로 결제 금액을 0000.00.00 00시 00분 까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
+				<span class="guide_comment">입금 가상계좌로 결제 금액을 <c:out value="${date1}" />
+				0000.00.00 00시 00분 까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
 			</p>
 		</div>
 
@@ -74,12 +84,12 @@
 			<div class="total_price_wrap">
 				<dl>
 					<dt>상품 합계</dt>
-					<dd>₩${orderProduct[0].orders.afterDcPrice}</dd>
+					<dd style="width: 145px"> ₩${orderProduct[0].orders.afterDcPrice}</dd>
 					<div>
 						<dt class="delch_wrap">
 							<p class="tlt_ship" style="display: inline;">배송비</p>
 						</dt>
-						<dd style="text-align: right;">₩ 0</dd>
+						<dd style="width: 147px","text-align: right;">₩ 0</dd>
 					</div>
 				</dl>
 
@@ -106,7 +116,11 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">가상계좌</th>
-						<td>${orderpayment.paymentMethod.company}(20894379679237)</td>
+						<td>
+						${orderpayment[0].paymentMethod.company}
+						${orderpayment[0].orders.paymentInfo}
+						${orderpayment[0].orders.paymentMethodCode}
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">입금 예정기한</th>
@@ -132,8 +146,6 @@
 					<tr>
 						<th scope="row" class="th_space">지급 예정 한섬마일리지</th>
 						<td>1,000,000 M</td>
-						<th scope="row" class="th_space">지급 예정 H.Point</th>
-						<td>1,000,000 P</td>
 					</tr>
 				</tbody>
 			</table>
@@ -153,15 +165,15 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">주문자</th>
-						<td>${orderman.member.name}</td>
+						<td>${member.name}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>${orderman.member.phone}</td>
+						<td>${member.phone}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">E-MAIL</th>
-						<td>${orderman.member.email}</td>
+						<td>${member.email}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -182,19 +194,21 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">배송지 주소</th>
-						<td>${orderaddress.orders.zipcode}(05717) 서울특별시 송파구 중대로 135(가락동)&nbsp;KOSA</td>
+						<td>${orderaddress[0].orders.zipcode}
+							${orderaddress[0].orders.address}
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">수령인</th>
-						<td>${orderaddress.orders.receiver}</td>
+						<td>${orderaddress[0].orders.receiver}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>${orderaddress.orders.phone}</td>
+						<td>${orderaddress[0].orders.phone}</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">연락처</th>
-						<td>${orderaddress.orders.tel}</td>
+						<td>${orderaddress[0].orders.tel}</td>
 					</tr>
 				</tbody>
 			</table>

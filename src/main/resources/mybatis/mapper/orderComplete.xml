@@ -4,7 +4,7 @@
 		
 	
 	<resultMap type="member" id="memberMap">
-		<id property="id" column="id"/>
+		<id property="id" column="memberid"/>
 		<result property="password" column="password"/>
 		<result property="name" column="memberName"/>
 		<result property="email" column="memberEmail"/>
@@ -23,7 +23,7 @@
 	</resultMap>
 		
 	<resultMap type="orders" id="ordersMap">
-		<id property="id" column="id"/>
+		<id property="id" column="ordersid"/>
 		<result property="zipcode" column="ordersZipcode"/>
 		<result property="address" column="address"/>
 		<result property="receiver" column="receiver"/>
@@ -96,7 +96,7 @@
 	</resultMap>
 	
 	<select id="selectProductByorderId" parameterType="map" resultMap="orderCompleteMap">
-		select order_item.product_stock_id as orderstockid,orders_id, order_item.count,
+		select order_item.product_stock_id as orderstockid,orders_id as ordersid, order_item.count,
             brand.name as brandName,product_common.name as productName,product_stock.size_code,
             product_color.color_code,total_price,after_dc_price,img1
 			from order_item,orders,brand,product_common,product_color,product_stock
@@ -110,18 +110,20 @@
 			and product_common.brand_no = brand.no
 	</select>
 	
-	<select id="selectpaymentByorderId" parameterType="String" resultMap="orderCompleteMap">
+	<select id="selectpaymentByorderId" parameterType="map" resultMap="orderCompleteMap">
 		select payment_info,company,payment_method_code,orders.id
 		from orders,payment_method
-		where orders.id=#{ordersId, jdbcType=VARCHAR}
+		where orders.member_id = #{mid, jdbcType=VARCHAR}
+		and orders.id=#{ordersId, jdbcType=VARCHAR}
 		and orders.payment_method_code = payment_method.code
 	</select>
 	
 	
-	<select id="selectaddressByorderId" parameterType="String" resultMap="orderCompleteMap">
-		select orders.zipcode,orders.address,receiver,orders.phone,orders.member_id,orders.id
+	<select id="selectaddressByorderId" parameterType="map" resultMap="orderCompleteMap">
+		select orders.zipcode as ordersZipcode,orders.address,receiver,orders.phone as ordersPhone, orders.tel as ordersTel, orders.member_id,orders.id
 		from member,orders
-		where orders.id=#{ordersId, jdbcType=VARCHAR}
+		where orders.member_id = #{mid, jdbcType=VARCHAR}
+		and orders.id=#{ordersId, jdbcType=VARCHAR}
 		and member.id = orders.member_id
 	</select>
 	

@@ -4,8 +4,10 @@ package com.mycompany.webapp.vo;
 import java.util.Date;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
+@ToString
 public class Orders {
 	private String id;
 	private String zipcode;
@@ -23,4 +25,5 @@ public class Orders {
 	private String deliveryStatus;
 	private String memberId;
 	private String paymentMethodCode;
+	
 }
