@@ -156,7 +156,7 @@
 								</td>
 								<%-- 수량 --%>
 								<td class="al_middle">
-									<form id="updateCartForm${status.count}" class="updateCartForm4" action="/cart/update/quantity" method="post">
+									<form id="updateCartForm${status.count}" class="updateCartForm" action="/cart/update/quantity" method="post">
 										<input type="hidden" name="pstockId" value="${product.productStock.id}" />
 										<!-- qty_sel -->
 										<span class="qty_sel num">
@@ -165,7 +165,7 @@
 											<a href="javascript:void(0)" class="right" onclick="quantity_control(this, 'plus');">다음 버튼</a>
 										</span>
 										<!-- //qty_sel -->
-										<button id="QuantityProduct_4" class="btn wt_ss qty_w mr0">변경</button>
+										<button id="QuantityProduct" class="btn wt_ss qty_w mr0">변경</button>
 									</form>
 								</td>
 								<%-- 가격 --%>

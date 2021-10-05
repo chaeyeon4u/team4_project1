@@ -16,7 +16,7 @@
 /*수량*/
 .al_middle .updateCartForm .qty_sel{display:flex;align-items: center;justify-content: center;}
 .al_middle .updateCartForm .qty_sel .num{display:inline;}
-.al_middle .updateCartForm #QuantityProduct_4{}
+.al_middle .updateCartForm #QuantityProduct{}
 
 /*판매가*/
 .al_middle .price_wrap span{font-size:18px;}
