@@ -56,7 +56,7 @@
 	<!-- 카트 안의 리스트 출력하기 -->
 	<select id="selectList" parameterType="String" resultMap="cartListMap">
 		select product_common.id as pcommonId, product_color.id as pcolorId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
-				product_stock.size_code, product_color.color_code,img1, product_color.color_img, price
+				product_stock.size_code, product_color.color_code,img1,img2, img3, product_color.color_img, price
 			from cart, product_common, product_color, brand, product_stock
 			where cart.member_id = #{mid}
 	        and cart.product_stock_id =product_stock.id

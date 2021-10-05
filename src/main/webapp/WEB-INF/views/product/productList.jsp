@@ -55,7 +55,7 @@
 					<a class="paginigBtn" href="${urlcontainer}?pageNo=${i}">${i}</a>
 				</c:if>
 				<c:if test="${pager.pageNo ==i}">
-					<a class="paginigBtn check" href="${urlcontainer}?pageNo=${i}">${i}</a>
+					<a class="paginigBtn check" style="border: 1px solid; padding: 5px; border-radius: 20%;  background-color:#295F39; color:#ffffff; font-weight: bold;" href="${urlcontainer}?pageNo=${i}">${i}</a>
 				</c:if>
 			</c:forEach>
 
