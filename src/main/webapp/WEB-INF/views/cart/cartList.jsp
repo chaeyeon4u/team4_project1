@@ -3,8 +3,80 @@
 <%@ include file="/WEB-INF/views/special/cartListLinks.jsp"%>
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
-<div class="orderwrap1807">
+<script>
+function checkAll() {
+	if ($("#entryCheckAll").is(':checked')) {
+		$("input[type=checkbox]").prop("checked", true);
+	} else {
+		$("input[type=checkbox]").prop("checked", false);
+	}
+}
 
+function quantity_control(e, operator) {
+	let obj = $(e).siblings("input")[0];
+	let value = Number($(obj).val());
+	console.log("obj=", obj);
+	console.log("value=", value);
+	if (operator === 'minus') {
+		if (value > 1) {
+			console.log("실행");
+			$(obj).attr("value", value - 1);
+		}
+	} else if (operator === 'plus') {
+		console.log("실행");
+		$(obj).attr("value", value + 1);
+	}
+}
+
+function set_color(e) {
+	var value = $(e).text();
+	console.log("value =", value);
+	$(e).closest("form").find(":input[name='color']").val(value);
+}
+
+function set_size(e) {
+	var value = $(e).text();
+	console.log("value : ", value);
+	$(e).closest("form").find(":input[name='size']").val(value);
+}
+
+function display_opt(e, pcommonId, count) {
+	console.log("pcommonId", pcommonId)
+	var url = "/cart/selectColors";
+	var id_color = "#select_color" + count;
+	$.ajax({
+		url : url,
+		method : "post",
+		data : {"pcommonId":pcommonId},
+		success : function(result) {
+			console.log("result", result);
+			$(id_color).html(result);
+		}
+	})
+
+	var url = "/cart/selectSizes";
+	var id_size = "#select_size" + count;
+	$.ajax({
+		url:url,
+		method:"post",
+		data:{"pcommonId":pcommonId},
+		success:function(result) {
+			$(id_size).html(result);
+		}
+	})
+	let next_tr = $(e).closest("tr").next();
+	let closest_basket_info = $(next_tr).find(".basket_info");
+	$(closest_basket_info).attr("style", "display: block;");
+}
+
+function hidden_opt(e) {
+	let closest_basket_info = $(e).closest(".basket_info");
+	$(closest_basket_info).attr("style", "display: hidden;");
+}
+
+</script>
+
+<div class="orderwrap1807">
 	<div id="bodyWrap">
 		<h3 class="cnts_title cnts_tlt1807">
 			<span>쇼핑백</span>
@@ -34,92 +106,7 @@
 							<th scope="col">적립율</th>
 							<th scope="col">선택</th>
 						</tr>
-						<script>
-                    function checkAll() {
-                      if ($("#entryCheckAll").is(':checked')) {
-                        $("input[type=checkbox]").prop("checked", true);
-                      } else {
-                        $("input[type=checkbox]").prop("checked", false);
-                      }
-                    }
-                  </script>
-
-						<script>
-                    function quantity_control(e, operator) {
-                      let obj = $(e).siblings("input")[0];
-                      let value = Number($(obj).val());
-                      console.log("obj=", obj);
-                      console.log("value=", value);
-                      if (operator === 'minus') {
-                        if (value > 1) {
-                          console.log("실행");
-                          $(obj).attr("value", value - 1);
-                        }
-                      } else if (operator === 'plus') {
-                        console.log("실행");
-                        $(obj).attr("value", value + 1);
-                      }
-                    }
-
-/*                     function display_opt(e, pcommonId, count) {
-	                    console.log("pcommonId", pcommonId)
-	                   	var url = "/cart/selectOptions";
-						var id_color = "#select_color" + count;
-						$.ajax({
-							url : url,
-							method : "post",
-							data : {"pcommonId":pcommonId},
-							success : function(result) {
-								console.log("result", result);
-								$(result).()
-								$(id_color).html($("#colorOptions").html());
-								$(id_size).html($("#sizeOptions").html());
-							}
-						})
-						 */
-                     function display_opt(e, pcommonId, count) {
-	                    console.log("pcommonId", pcommonId)
-	                   	var url = "/cart/selectColors";
-						var id_color = "#select_color" + count;
-						$.ajax({
-							url : url,
-							method : "post",
-							data : {"pcommonId":pcommonId},
-							success : function(result) {
-								console.log("result", result);
-								$(id_color).html(result);
-								
-							}
-						})
-						
-						var url = "/cart/selectSizes";
-						var id_size = "#select_size" + count;
-						$.ajax({
-							url:url,
-							method:"post",
-							data:{"pcommonId":pcommonId},
-							success:function(result) {
-								$(id_size).html(result);
-							}
-						})
-                      let next_tr = $(e).closest("tr").next();
-                      let closest_basket_info = $(next_tr).find(
-                        ".basket_info");
-                      $(closest_basket_info).attr("style", "display: block;");
-                    }
-
-                    function hidden_opt(e) {
-                      let closest_basket_info = $(e).closest(".basket_info");
-                      $(closest_basket_info)
-                        .attr("style", "display: hidden;");
-                    }
-                    
-//                     function set_color(e) {
-//                     	$(e).toggleClass("on");
-// 					}
-                  </script>
 					</thead>
-
 					<tbody>
 						<!-- test -->
 						<c:forEach var="product" items="${cartItems}" varStatus="status">
@@ -204,7 +191,7 @@
 												<!-- Products -->
 												<div class="pt_list" id="pt_list_4">
 													<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW">
-														<img src="${product.productColor.img1}" alt="">
+														<img src="${product.productColor.img3}" alt="">
 													</a>
 													<div class="tlt_wrap">
 														<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EC%BA%90%EC%8B%9C%EB%AF%B8%EC%96%B4-%EC%B9%BC%EB%9D%BC%EB%A6%AC%EC%8A%A4-%EC%9E%AC%ED%82%B7/p/CM2B9WOT400W_SW" class="basket_tlt">
@@ -215,54 +202,25 @@
 														<input type="hidden" name="pcommonId" value="${product.productCommon.id}" />
 														<input type="hidden" name="color" class="color_option" value="${product.productColor.colorCode}" />
 														<input type="hidden" name="size" class="size_option" value="${product.productStock.sizeCode}" />
-														<!-- color_size -->
 														<dl class="cs_wrap">
 															<dt>COLOR</dt>
 															<dd>
 																<div id="select_color${status.count}" class="cl_select">
-																	<%--다른 파일 불러옴 --%>
-																	<%-- 																<c:forEach var="color" items="${colors}"> --%>
-																	<%-- 																	<a href="javascript:void(0);" onclick="set_color(this);" class="${color.colorCode}" --%>
-																	<%-- 																		style="background: #362626 url('${color.colorImg}')">${color.colorCode}</a> --%>
-																	<%-- 																</c:forEach> --%>
-																	<%--//다른 파일 불러옴 --%>
+																	<%-- color.jsp --%>
 																</div>
 															</dd>
-															<script>
-														function set_color(e) {
-															var value = $(e).text();
-															console.log("value =", value);
-															
-															$(e).closest("form").find(":input[name='color']").val(value);
-// 															$($(e).closest(".color_option")).attr("value", value);
-// 															console.log(color_option);
-														}
-														</script>
 															<dt>SIZE</dt>
 															<dd style="width: 90%; height: 100%;">
 																<div id="select_size${status.count}" class="sz_select">
-																	<%-- 															<c:forEach var="size" items="${sizes}"> --%>
-																	<!-- 																<a href="javascript:void(0);" onclick="set_size(this);"  -->
-																	<%-- 																	class="on" style="line-height: 15px;">${size.sizeCode}</a> --%>
-																	<%-- 															</c:forEach> --%>
+																	<%-- size.jsp --%>
 																</div>
 															</dd>
-															<script>
-														function set_size(e) {
-															var value = $(e).text();
-															console.log("value : ", value);
-															$(e).closest("form").find(":input[name='size']").val(value);
-														
-														}
-														</script>
 														</dl>
-														<!-- //color_size -->
 													</div>
 													<script>
 													
 												</script>
 												</div>
-												<!-- //Products -->
 												<!-- btns -->
 												<div class="btns">
 													<button class="btn wt_ss mr0" id="UpdateCart_4">변경</button>
@@ -317,7 +275,7 @@
 			</div>
 			<!--//Total wrap-->
 		</div>
-		
+
 		<!--button wrap-->
 		<div class="btnwrap order" id="checkout_btn_wrap">
 			<a href="#;" onclick="selectRemove();">
