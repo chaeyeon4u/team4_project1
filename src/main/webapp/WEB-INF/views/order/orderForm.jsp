@@ -288,9 +288,10 @@
 
 											<div class="point_apply">
 												<div class="all">
-													<input title="선택" value="" type="checkbox"
-														id="point_useall"> <span><label
-														for="point_useall">모두사용</label></span>
+													<input title="선택" value="" type="checkbox" id="point_useall" onclick='useMileage(this);'>
+													<span>
+														<label for="point_useall">모두사용</label>
+													</span>
 												</div>
 												<input id="btnUsePoint" class="btn add_s min_auto"
 													value="적용" type="button" onclick="doUsePoint(this);">
@@ -336,7 +337,7 @@
 						<hr>
 						<dl class="clearfix">
 							<dt class="sub_total190816">상품 합계</dt>
-							<dd class="sub_total190816" id="subTotal">₩795,000</dd>
+							<dd class="sub_total190816" id="subTotal">795000</dd>
 							<dt class="delch_wrap190816">
 								<p class="tlt_ship190816">배송비</p>
 								<div class="delch_box190816" style="display: none;">
@@ -384,10 +385,14 @@
 </div>
 
 <script>
+		/* email이 select될 때 옆에 input값도 함께 바꿔주는 부분 */
 		$("#emailDelySel").change(function(){
 			$("#emailDely").val($("#emailDelySel").val());
 		});
-	
+		
+		function useMileage(a){
+			console.log(event);
+		}
 	
 		function customerAddress(){
 			$("#rcpt_name").val('${member.name}');
@@ -396,7 +401,7 @@
 			$("#line2").val('${member.address2}');
 			$("#hp_num2").val(${fn:substring(member.phone,3,7)});
 			$("#hp_num3").val(${fn:substring(member.phone,7,13)});
-			
+			$("#hp").val("${fn:substring(member.phone,0,3)}").prop("selected",true);
 		}
 		
 		function resetAddress(){
@@ -404,6 +409,7 @@
 			for(let i=0; i<clearList.length; i++){
 				clearList[i].value = null;
 			}
+			$("#hp option:eq(0)").prop("selected",true);
 		}
 		
 		function goPopup(){
