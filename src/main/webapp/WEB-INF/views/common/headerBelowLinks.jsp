@@ -155,13 +155,11 @@
 	          
 	          <script>
 		          function dropBtnMouseover(cat1){
-		        	  console.log("dropBtnMouseover");
 		        	  $(cat1).css("color","gray");
 		        	  $('.drop_down_menu').css("display", "block");
 		          }
 		          
 		          function dropBtnMouseout(cat1){
-		        	  console.log("dropBtnMouseout");
 		        	  $(cat1).css("color","black");
 		        	  $('.drop_down_menu').css("display", "none");
 		          }
