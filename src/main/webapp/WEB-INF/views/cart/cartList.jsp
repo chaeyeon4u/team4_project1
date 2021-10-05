@@ -156,7 +156,7 @@
 								</td>
 								<%-- 수량 --%>
 								<td class="al_middle">
-									<form id="updateCartForm${status.count}" action="/cart/update/quantity" method="post">
+									<form id="updateCartForm${status.count}" class="updateCartForm4" action="/cart/update/quantity" method="post">
 										<input type="hidden" name="pstockId" value="${product.productStock.id}" />
 										<!-- qty_sel -->
 										<span class="qty_sel num">

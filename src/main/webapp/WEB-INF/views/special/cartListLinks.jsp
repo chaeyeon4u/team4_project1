@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/popup.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/cartList/products.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/cart-list.css"/>
+		
 		<!-- font를 위한 css -->
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
