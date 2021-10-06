@@ -6,20 +6,25 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartInputs;
 import com.mycompany.webapp.dto.CartProduct;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.OrderCompleteService;
+import com.mycompany.webapp.service.PaymentService;
 import com.mycompany.webapp.vo.Member;
 import com.mycompany.webapp.vo.Mileage;
+import com.mycompany.webapp.vo.PaymentMethod;
 import com.mycompany.webapp.vo.join.OrderComplete;
 
 @Controller
@@ -88,4 +93,20 @@ public class OrderController {
 		logger.info("실행");
 		return "order/orderComplete";
 	}
+	
+	@Resource
+	private PaymentService paymentService;
+	
+	@GetMapping(value="/paymentlist", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<PaymentMethod> getCompanyList(String method) {
+		List<PaymentMethod> methodList = null;
+		if(method.equals("카드")) {
+			methodList = paymentService.getCardCompanyList();
+		}else if(method.equals("계좌")) {
+			methodList = paymentService.getAccountCompanyList();
+		}
+	return methodList;
+	}
+	
 }
