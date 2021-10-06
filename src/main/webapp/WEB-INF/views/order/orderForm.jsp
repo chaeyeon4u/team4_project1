@@ -151,7 +151,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<div id="basis_bk_flag">
 										<input onclick="goPopup()" value="${member.address1}" title="주소1" name="line1" id="line1" class="post_wall top inputclear" type="text" readonly="">
 									</div>
-									<input value="${member.address2}" title="주소2" name="line2" id="line2" class="post_wall inputclear" type="text" maxlength="110" placeholder="나머지 주소를 입력해 주세요.">
+									<input onclick="goPopup()" value="${member.address2}" title="주소2" name="line2" id="line2" class="post_wall inputclear" type="text" maxlength="110">
 								</td>
 							</tr>
 							<tr>
@@ -294,7 +294,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<td>
 										<!-- 한섬마일리지 결제 입력 -->
 										<div class="point_wrap">
-											<input title="한섬마일리지 결제" class="inpput" type="text" id="pointpay" name="usePoint" numberonly="true">
+											<input onkeyup="inputMileage();" title="한섬마일리지 결제" class="inpput" type="text" id="pointpay" name="usePoint" numberonly="true">
 											<p class="p_txt">
 												M 사용 (잔액 :
 												<span>${mileageSum}</span>
@@ -345,7 +345,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					</table>
 				</div>
 			</div>
-			<div class="float_right" style="position: absolute; left: 680px; top: 60px;">
+			<div class="float_right" style="position:sticky; left:680px; top:140px;">
 				<!--오른쪽 박스 최종 결제 금액-->
 				<div class="sum_box">
 					<div>
@@ -354,21 +354,14 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						<dl class="clearfix">
 							<dt class="sub_total190816">상품 합계</dt>
 							<dd class="sub_total190816" id="subTotal">${totalPrice}</dd>
-							<dt class="delch_wrap190816">
-								<p class="tlt_ship190816">배송비</p>
-								<div class="delch_box190816" style="display: none;">
-									<span class="arr">위치아이콘</span>
-									<ul class="bul_sty01_li"></ul>
-								</div>
-							</dt>
-							<dd id="deliveryCost">₩ 0</dd>
+		<%-- 마일리지 관련된 정보가 javascript로 추가되는 자리--%>
 						</dl>
 					</div>
 					<div class="total">
 						<dl class="clearfix">
 							<dt>합계</dt>
 							<%--계산된 값이 할당되게 변경해주세요 --%>
-							<dd id="totalPrice">₩${totalPrice}</dd>
+							<dd id="totalPrice">${totalPrice}</dd>
 						</dl>
 					</div>
 				</div>
@@ -376,10 +369,6 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 				<div class="p_a_box">
 					<div class="point">
 						<!-- 간편회원이 아닐 때 s -->
-						<p class="tlt">구매 시 지급 예정 포인트</p>
-						<p>(제품 수령 완료 후 10일 후 적립)</p>
-						<p class="txt" id="txtAccumulationPoint">한섬마일리지 39,750 M</p>
-						<p class="txt" id="txtAccumulationHPoint">H.Point 795 P</p>
 					</div>
 
 					<div class="agree">
@@ -406,14 +395,88 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 </div>
 
 <script>
+		$(function(){
+			let bodyHeight = $("#bodyWrap").height();
+			$(".orderwrap").css('height',bodyHeight);
+			let subtotal = Number($("#subTotal").text());
+			let totalprice = Number($("#totalPrice").text());
+			$("#subTotal").text('₩ '+subtotal.toLocaleString());
+			$("#totalPrice").text('₩ '+totalprice.toLocaleString());
+		});
+
+
+		function inputMileage(){
+			let mileageSum = parseInt('${mileageSum}');
+			let insertedValue = $("#pointpay").val();
+			if(insertedValue>=mileageSum){
+				$("#pointpay").val(mileageSum);
+				$(".p_txt span").text('0');
+			}else if(insertedValue<mileageSum && insertedValue>0){
+				$(".p_txt span").text(mileageSum-insertedValue);
+			}else{
+				$("#pointpay").val('');
+				$(".p_txt span").text(mileageSum);
+			}
+		}
+		
+		var btn = true;
+		
+		/* 쿠폰적용버튼 누를시 */
+		function doUsePoint(apply){
+			$("#pointpay")
+			.prop('readonly', true)
+			.css('background-color','lightgray');
+			$("#point_useall").attr("disabled",true);
+			apply.setAttribute("style","color:#c7c7c7");
+			$("#btnCancelUsePoint").css('color','black');
+			if($("#pointpay").val()!=0 && btn == true){
+				$("#subTotal").after($('<dt class=delch_wrap190816><p class="tlt_ship190816">마일리지사용</p><div class="delch_box190816" style="display: none;"><span class="arr">위치아이콘</span><ul class="bul_sty01_li"></ul></div></dt><dd id="deliveryCost">-'+$("#pointpay").val().toLocaleString()+'</dd>'));
+				btn = false;
+			}
+			//총합계금액은 상품금액 - 마일리지금액
+			$("#totalPrice").text('₩'+(${totalPrice}-$("#pointpay").val()).toLocaleString());
+		}
+		
+		/* 쿠폰취소버튼 누를시 */
+		function cancelUsePoint(cancel){
+			$("#pointpay")
+			.prop('readonly', false)
+			.css('background-color','');
+			$("#point_useall").attr("disabled",false);
+			cancel.setAttribute("style","color:#c7c7c7");
+			$("#btnUsePoint").css('color','black');
+			if($("#pointpay").val()!=0 && btn == false){
+				$("#subTotal").next().next().remove();
+				$("#subTotal").next().remove();
+				btn = true;
+				$("#totalPrice").text('₩'+(${totalPrice}).toLocaleString());
+			}
+		}
+
 		/* email이 select될 때 옆에 input값도 함께 바꿔주는 부분 */
 		$("#emailDelySel").change(function(){
 			$("#emailDely").val($("#emailDelySel").val());
 		});
 		
-		function useMileage(a){
-			console.log(event);
-		}
+		$("#point_useall").change(function(){
+			let subtotal = ${totalPrice};
+			let mileageSum = ${mileageSum};
+			if($("input:checkbox[id=point_useall]").is(":checked") == true) {
+				/* 모두사용 체크가 되어있을 경우 */
+				if(subtotal>mileageSum){
+					$("#pointpay").val(mileageSum);
+					$(".p_txt span").text('0');
+					
+				}else{
+					$("#pointpay").val(subtotal);
+					$(".p_txt span").text(mileageSum-subtotal);
+				}
+			} else {
+				/* 모두사용 체크가 되어있지 않을 경우 */
+				$(".p_txt span").text(mileageSum);
+				$("#pointpay").val('0');
+			}
+		});
 	
 		function customerAddress(){
 			$("#rcpt_name").val('${member.name}');
