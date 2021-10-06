@@ -120,7 +120,7 @@ input[type="week"]:disabled{background:#f9f9f9}
 .hp_num1, .hp_num2{width:80px;}
 .em_form{width:120px;}
 .em_select{width:120px;}
-.szpoll_wrap{position:;margin-top:20px;}
+.szpoll_wrap{margin-top:20px;}
 .sum_add{margin-left:10px;padding:0 2px;display:inline-block;color:#fff;font-size:11px;background:#c69c6c;}
 .minus{display:inline-block;width:15px;background: url("/_ui/desktop/common/images/common/ico_minus.png") 0 6px no-repeat;text-indent: 999em; overflow:hidden;}
 
