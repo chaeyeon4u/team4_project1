@@ -74,20 +74,29 @@
 		from (
 		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
-			select distinct brand.name as brandName, 
-			    product_common.name as productName, 
-			    img1, 
-			    price, 
-			    product_color.id as pcolorId,
-			    depth1_name, depth2_name, depth3_name
-			from product_common, product_color , brand, product_category, category
-			where product_common.id = product_color.product_common_id 
-			and brand.no = product_common.brand_no
-			and product_color.product_common_id = product_category.product_common_id
-			and product_category.product_common_id = product_common.id
-			and category.no = product_category.category_no
-			and product_category.category_no in (select no from category where 
-			depth1_name=#{depth1} 
+			select 
+			br_tbl.name as brandName,
+			pcom_tbl.name as productName,
+			pcol_tbl.img1 as img1,
+			pcol_tbl.price as price,
+			pcol_tbl.id as pcolorId,
+			cat_tbl.depth1_name as depth1_name,
+			cat_tbl.depth2_name as depth2_name,
+			cat_tbl.depth3_name as depth3_name
+			from
+			(select id, product_common_id, img1, price
+			from product_color
+			where ROWID in (select max(rowid) from product_color group by product_common_id)) pcol_tbl
+			join product_common pcom_tbl
+			on (pcol_tbl.product_common_id = pcom_tbl.id)
+			join brand br_tbl
+			on(pcom_tbl.brand_no = br_tbl.no)
+			join product_category procat_tbl
+			on(pcol_tbl.product_common_id = procat_tbl.product_common_id)
+			join category cat_tbl
+			on(cat_tbl.no = procat_tbl.category_no)
+			where cat_tbl.no in (select no from category where 
+			depth1_name=#{depth1}
 			<if test="depth2 != null">
 			and depth2_name=#{depth2}
 			</if>
@@ -95,7 +104,7 @@
 			and depth3_name=#{depth3}
 			</if>
 			)
-			order by productName
+			order by pcolorId
 		)
 		where rownum &lt;=#{pager.endRowNo}
 		)
@@ -104,27 +113,37 @@
 	
 	<select id="countByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultType="int">
 		select count(*) from(
-		select
-		distinct
-		brand.name as brandName, 
-		product_common.name as productName, 
-		img1, 
-		price, 
-		product_color.id as pcolorId
-		from product_common, product_color , brand, product_category
-		where product_common.id = product_color.product_common_id 
-		and brand.no = product_common.brand_no
-		and product_color.product_common_id = product_category.product_common_id
-		and product_category.category_no in (select no from category where 
-		depth1_name=#{depth1} 
-		<if test="depth2 != null">
-		and depth2_name=#{depth2}
-		</if>
-		<if test="depth3 != null"> 
-		and depth3_name=#{depth3}
-		</if>
+			select 
+			br_tbl.name as brandName,
+			pcom_tbl.name as productName,
+			pcol_tbl.img1 as img1,
+			pcol_tbl.price as price,
+			pcol_tbl.id as pcolorId,
+			cat_tbl.depth1_name as depth1_name,
+			cat_tbl.depth2_name as depth2_name,
+			cat_tbl.depth3_name as depth3_name
+			from
+			(select id, product_common_id, img1, price
+			from product_color
+			where ROWID in (select max(rowid) from product_color group by product_common_id)) pcol_tbl
+			join product_common pcom_tbl
+			on (pcol_tbl.product_common_id = pcom_tbl.id)
+			join brand br_tbl
+			on(pcom_tbl.brand_no = br_tbl.no)
+			join product_category procat_tbl
+			on(pcol_tbl.product_common_id = procat_tbl.product_common_id)
+			join category cat_tbl
+			on(cat_tbl.no = procat_tbl.category_no)
+			where cat_tbl.no in (select no from category where 
+			depth1_name=#{depth1}
+			<if test="depth2 != null">
+			and depth2_name=#{depth2}
+			</if>
+			<if test="depth3 != null"> 
+			and depth3_name=#{depth3}
+			</if>
 		)
-		order by productName
+		order by pcolorId
 		)
 	</select>
 	<!-- 상품의 컬러 리스트 출력하기 -->
