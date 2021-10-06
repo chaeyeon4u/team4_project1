@@ -40,9 +40,9 @@
 }
 
 /* Crtegory 글자 크기 */
-#KIDSCategory a{font-size: 20px; white-space: nowrap;}
-#LIFESYLECategory a{font-size: 20px; white-space: nowrap;}
-#WOMENCategory a{font-size: 16px; margin: 0 auto; white-space: nowrap;}
+#KIDSCategory a{font-size: 16px; white-space: nowrap; font-weight: bold;}
+#LIFESTYLECategory a{font-size: 16px; white-space: nowrap; font-weight: bold;}
+#WOMENCategory a{font-size: 16px; margin: 0 auto; white-space: nowrap; font-weight: bold;}
 #WOMENCategory .drop_down_inner{margin:0px 5%;}
-#MENCategory a{font-size: 20px; white-space: nowrap;}
+#MENCategory a{font-size: 16px; white-space: nowrap; font-weight: bold;}
 

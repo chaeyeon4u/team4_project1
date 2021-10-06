@@ -85,8 +85,11 @@
 			//카테고리2 활성화//d2_clothing
 			if(currDepth == "2"){
 				let depth2 = $('input[name=depth2Value]').val();
+				depth2 = depth2.replace(" ", "");
+				depth2 = depth2.replace(".", "");
 				let depth2Id = CategoryNameId + " #"+depth2;
 				$(depth2Id).css("color", "gray");
+				console.log(depth2Id);
 			}
 		})
 		

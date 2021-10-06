@@ -192,7 +192,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="KIDS ACC." href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC.">KIDS ACC.</a></>
+		                <li class="drop_down_list"><strong><a id="KIDSACC" href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC.">KIDS ACC.</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC./OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
 		                       </ul>
@@ -240,7 +240,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="FASHION ACC." href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC.">FASHION ACC.</a></strong>
+		                <li class="drop_down_list"><strong><a id="FASHIONACC" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC.">FASHION ACC.</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./BAGS">BAGS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./ETC">ETC</a></li>
@@ -276,7 +276,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="SPECIAL SHOP" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
@@ -345,7 +345,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="SPECIAL SHOP" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/SYSTEM HOMME : TYPE 2">SYSTEM HOMME : TYPE 2</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/TIME HOMME : ONLINE EXCLUSIVE">TIME HOMME : ONLINE EXCLUSIVE</a></li>
