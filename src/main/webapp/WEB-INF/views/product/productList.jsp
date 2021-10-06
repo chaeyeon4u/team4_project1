@@ -12,7 +12,7 @@
 				<c:forEach var="product" items="${products}">
 					<!-- 클릭시 이동할 url 넣는부분-->
 <%-- 					<div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'"> --%>
-					<div class="col mb-5" style="cursor: pointer;" onclick="location.href='${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
+					<div class="col mb-5" style="cursor: pointer;" onclick="location.href='/product/${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
 						<div class="card h-100 border-0">
 							<!-- Product image-->
 							<img class="card-img-top lazy" src="${product.productColor.img1}" alt="..."/>
