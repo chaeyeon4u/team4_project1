@@ -90,7 +90,6 @@
 					method : "post",
 					data : {"pcommonId":pcommonId},
 					success : function(result) {
-						console.log("result", result);
 						$(id_color).html(result);
 					}
 				})
