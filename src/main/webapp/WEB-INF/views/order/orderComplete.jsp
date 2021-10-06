@@ -7,9 +7,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
-<c:set var="today" value="<%=new java.util.Date()%>" />
-<c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy.MM.dd hh:mm" /></c:set> 
-<c:set var="date1"><fmt:formatDate value="${today}" pattern="yyyy년MM월dd일 hh시mm분" /></c:set> 
+
 
 
 
@@ -22,10 +20,12 @@
 	<div class="sub_container">
 		<div class="order_title ">
 			<p class="title">주문이 완료되었습니다.</p>
-			<p class="s_title">주문번호 :${orderProduct[0].orders.id} (주문일시 : <c:out value="${date}" />)</p>
+			<p class="s_title">주문번호 :${orderProduct[0].orders.id} (주문일시 : <fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH:MM"/>)</p>
 			<p class="ss_title">
-				<span class="guide_comment">입금 가상계좌로 결제 금액을 <c:out value="${date1}" />
-				0000.00.00 00시 00분 까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
+			<!-- 계좌 남은 시간 -->	
+				<span class="guide_comment">입금 가상계좌로 결제 금액을 
+				<fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH:MM"/>
+				까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
 			</p>
 		</div>
 

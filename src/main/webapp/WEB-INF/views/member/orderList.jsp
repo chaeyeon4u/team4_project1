@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ include file="/WEB-INF/views/special/orderListLinks.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <body oncontextmenu="return false">
 	<div id="bodyWrap">
@@ -86,83 +88,13 @@
 						</dd>
 					</dl>
 				</div>
-				
-				<%--
-				<!-- ph_guide -->
-				<div class="ph_guide">
-					<p class="tlt">고객센터 운영 안내</p>
-					<p class="phone">1800-5700</p>
-					<p class="txt">
-						평일(월~금)<br>
-						am 09:00 ~ pm 18:00<span>토/일, 공휴일 휴무</span>
-					</p>
-					<a href="mailto:shophelp@thehandsome.com">shophelp<br>@thehandsome.com</a>
-				</div>
-				<!-- //ph_guide -->
-				--%>
 			</div>
 			<%-- 마이페이지 왼쪽 네비게이션바 끝--%>
 			
 			
 			<!-- cnts -->
-			<div class="sub_cnts">
-			
-				<%-- 
-				<!-- search1 -->
-				<form id="orderSearchForm" action="/ko/mypage/order/myorderlist">
-					<div class="search_wrap">
-						<!-- cnd -->
-						<ul>
-							<li>
-								<p class="bul_sty01">
-									<label for="term">조회기간<!-- 조회기간 --></label>
-								</p>
-								<div class="calendar_wrap mr5">
-									<input type="text" name="sterm"
-										class="input_date hasDatepicker"
-										title="mypage.order.history.serch.term.insert" id="sterm"
-										readonly="">
-									<button type="button" class="ui-datepicker-trigger ico_cld">...</button>
-									<!-- <a href="#" class="ico_cld">날짜 선택 버튼</a> -->
-									<div class="form_hyphen pl5">-</div>
-									<input type="text" name="eterm"
-										class="input_date hasDatepicker"
-										title="mypage.order.history.serch.term.insert" id="eterm"
-										readonly="">
-									<button type="button" class="ui-datepicker-trigger ico_cld">...</button>
-									<!-- <a href="#" class="ico_cld">날짜 선택 버튼</a> -->
-								</div>
-								<div class="tab_c">
-									<ul class="clearfix">
-										<li><a href="javascript:void(0);" id="setDateBtn1"
-											class="on">1주일<!-- 1주일 --></a></li>
-										<li><a href="javascript:void(0);" id="setDateBtn2">1개월<!-- 1개월 --></a></li>
-										<li><a href="javascript:void(0);" id="setDateBtn3">3개월<!-- 3개월 --></a></li>
-									</ul>
-								</div>
-							</li>
-							<li class="space">
-								<p class="bul_sty01">
-									<label for="id_sel">검색구분<!-- 검색구분 --></label>
-								</p> <select name="searchType" title="검색구분" class="select">
-									<option value="productName">상품명
-										<!-- 상품명 --></option>
-									<option value="orderNumber">주문번호
-										<!-- 주문번호 --></option>
-							</select> <input type="text" name="searchWord" class="input_all"
-								title="검색어 입력"> <!-- 검색어 입력 -->
-							</li>
-						</ul>
-						<!-- //cnd -->
-						<input type="button" id="searchBtn" class="btn_search"
-							value="조회하기">
-						<!-- 조회하기 -->
-					</div>
-				</form>
-				--%>
-				
-				<!-- //search1 -->
-				
+			<div class="sub_cnts">				
+				<!-- //search1 -->		
 				<div class="title_wrap mt50">
 					<h4>
 						상품 주문 목록
@@ -172,11 +104,9 @@
 				
 				<!-- table -->
 				<div class="tblwrap lncl1812">
-					<!-- 클래스추가 181204 -->
-					<table class="tbl_ltype review_betterment1905">
+					<table id= "forRowspan" class="tbl_ltype review_betterment1905">
 						<caption>상품 주문 목록</caption>
 						<colgroup class="interval1812">
-							<!-- 수정 181204 -->
 							<col style="width: 120px">
 							<col>
 							<col style="width: 43px">
@@ -192,64 +122,60 @@
 								<!-- 스타일추가 181204 -->
 								<th scope="col">판매가<!-- 판매가 --></th>
 								<th scope="col">주문상태<!-- 주문상태 --></th>
+								<th scope="col">배송상태<!-- 배송상태 --></th>
 								<th scope="col">구분<!-- 구분 --></th>
 							</tr>
 						</thead>
+						<c:forEach var="orderx" items="${orderProduct}">
 						<tbody id="listBody">
 							<tr class="al_middle">
-								<td rowspan="1" class="frt"><p class="num">주문번호자리</p>
-									<span class="sum_date">(날짜자리)</span>
+							<!-- 주문번호 자리 -->
+								<td rowspan="1" class="frt">
+									<p class="num">${orderx.orders.id}</p>
+									<!-- 날짜 -->	
+									<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span>
 								</td>
 								<td>
 									<div class="pt_list_all">
-										<a href="/ko/p/O22B9ROT502W_CR_76">
-										<img src="${pageContext.request.contextPath}/resources/images/womanouter/CS2B9QJC005WCJ_BK_T01.jpg"
+										<a href="cart/set/${orderx.productCommon.id}">
+										<!-- 상품 이미지 -->
+										<img src="${orderx.productColor.img1}"
+										"${pageContext.request.contextPath}/resources/images/womanouter/CS2B9QJC005WCJ_BK_T01.jpg"
 											alt="상품 이미지"></a>
 										<div class="tlt_wrap">
 											<a href="/ko/p/O22B9ROT502W_CR_76" class="basket_tlt">
 				<%-- 브랜드명 자리--%>
-												<span class="tlt">브랜드명</span> 
+												<span class="tlt">${orderx.brand.name}</span> 
 				<%-- 상품명 자리--%>
-												<span class="sb_tlt">상품명</span>
+												<span class="sb_tlt">${orderx.productCommon.name}</span>
 											</a>
 				<%-- 색상명, 사이즈 자리--%>
 											<p class="color_op">
-												color : 색상명 <span class="and_line">/</span> size : 사이즈
+												color : ${orderx.productColor.colorCode} <span class="and_line">/</span> size : ${orderx.productStock.sizeCode}
 											</p>
 										</div>
 									</div>
 								</td>
 				<%-- 수량 자리--%>
-								<td class="count">수량</td>
+								<td>${orderx.orderItem.count}</td>
 				<%-- 가격 자리--%>
-								<td class="price">가격</td>
+								<td>₩${orderx.orders.afterDcPrice}</td>
 				<%-- 주문상태 및 날짜 자리--%>
-								<td>주문상태<span class="sum_date">(날짜)</span></td>
+								<td>${orderx.orders.status}<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span></td>
+								<!--배송 싱테 --> 
+								<td class="delivery">${orderx.orders.deliveryStatus}</td>
 								<td rowspan="1"><div class="btn_wrap">
 										<a href="/" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
 									</div>
 								</td>
 							</tr>
 						</tbody>
+					</c:forEach>
 					</table>
 				</div>
 				<!-- //table -->
-				
-				<%--
-				<!-- paging -->
-				<div class="paging">
-					<a class="prev2" href="javascript:void(0);">처음 페이지로 이동</a><a
-						href="javascript:void(0);" class="prev">이전 페이지로 이동</a><span
-						class="num"><a href="javascript:void(0);"
-						class="pageBtn  on  " pagenum="1">1</a></span><a
-						href="javascript:void(0);" class="next">다음 페이지로 이동</a><a
-						href="javascript:void(0);" class="next2">마지막 페이지로 이동</a>
-				</div>
-				<!-- //paging -->
-				 --%>
-				 
+					 
 				<!-- Guide Table -->
-				
 				<div class="gd_wrap">
 					<div class="delivery_step">
 						<p class="title">
