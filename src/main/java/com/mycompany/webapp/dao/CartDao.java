@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.mycompany.webapp.dto.Cart;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
@@ -18,4 +19,5 @@ public interface CartDao {
 	void updateCountByQuantity(@Param("quantity") int quantity, @Param("pstockId") String pstockId, @Param("mid") String mid);
 	void updatePstockId(@Param("newPstockId") String newPstockId, @Param("mid") String mid, @Param("oldPstockId") String oldPstockId);
 	Category selectCategoryByPcolorId(String pcolorId);
+	int insertCart(Cart cart);
 }

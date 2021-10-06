@@ -108,8 +108,8 @@
 			let CategoryNameId = "#"+depth1+"Category";
 			$(depth1Id).css("color", "gray");
 			
-			//카테고리2 활성화//d2_clothing
-			if(currDepth == "2"){
+			//카테고리2 활성화
+			if(currDepth >= 2){
 				let depth2 = $('input[name=depth2Value]').val();
 				depth2 = depth2.replace(" ", "");
 				depth2 = depth2.replace(".", "");

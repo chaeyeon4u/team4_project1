@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,9 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycompany.webapp.dto.Cart;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
@@ -99,5 +102,20 @@ public class ProductController {
 		List<Color> colors = cartService.getColors(pcommonId);
 		model.addAttribute("colors", colors);
 		return "product/colors";
+	}
+	
+	//장바구니에 데이터 삽입
+	@PostMapping("/cart")
+	public String insertCart(@PathVariable String pStockId, Principal principal, Cart cart) {
+		//임의 데이터 SETTING
+		cart.setMemberId(principal.getName());
+		cart.setProductStockId(pStockId);
+		cart.setQuantity(4);
+		
+		//cart.setMemberId(principal.getName());
+		//cart.setProductStockId(pStockId);
+		//cart.setQuantity(cart.getQuantity());
+		int cartResult = cartService.insertCart(cart);
+		return "/";
 	}
 }

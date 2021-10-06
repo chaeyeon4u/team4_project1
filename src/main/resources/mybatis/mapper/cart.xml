@@ -110,4 +110,11 @@
             order by length(depth2_name))
             where rownum=1
 	</select>
+	
+	<!-- cart insert -->
+	<insert id="insertCart" parameterType="cart">
+		INSERT INTO CART(MEMBER_ID, PRODUCT_STOCK_ID, QUANTITY)
+		VALUES (#{memberId}, #{productStockId}, #{quantity})
+	</insert>
+	
 </mapper>

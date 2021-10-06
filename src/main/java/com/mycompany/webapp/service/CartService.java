@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.CartDao;
+import com.mycompany.webapp.dto.Cart;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
@@ -39,4 +40,7 @@ public class CartService {
 		return cartDao.selectCategoryByPcolorId(pcolorId);
 	}
 	
+	public int insertCart(Cart cart) {
+		return cartDao.insertCart(cart);
+	}
 }
