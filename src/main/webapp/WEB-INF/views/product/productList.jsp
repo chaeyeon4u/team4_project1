@@ -7,37 +7,40 @@
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-
+				<c:set var="check" value=""/>
 				<%-- 여기부터 반복시작--%>
 				<c:forEach var="product" items="${products}">
-					<!-- 클릭시 이동할 url 넣는부분-->
-<%-- 					<div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'"> --%>
-					<div class="col mb-5" style="cursor: pointer;" onclick="location.href='/product/${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
-						<input type="hidden" name="depth1Value" value="${product.category.depth1Name}"></input>
-						<input type="hidden" name="depth2Value" value="${product.category.depth2Name}"></input>
-						<input type="hidden" name="depth3Value" value="${product.category.depth3Name}"></input>
-						<div class="card h-100 border-0">
-							<!-- Product image-->
-							<img class="card-img-top lazy" src="${product.productColor.img1}" alt="..."/>
-							<!-- Product details-->
-							<div class="card-body p-4">
-								<div class="text-center">
-									<!-- 브랜드 명-->
-									<p>
-									<div class="fw-bolder mb-1 brand_name">${product.brand.name}</div>
-									</p>
-									<!-- 상품명-->
-									<p>
-									<div class="fw-bolder mb-1 name">${product.productCommon.name}</div>
-									</p>
-									<!-- 가격-->
-									<p>
-									<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
-									</p>
+					<c:if test="${check != product.productColor.id}"> 
+						<!-- 클릭시 이동할 url 넣는부분-->
+	<%-- 					<div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'"> --%>
+						<div class="col mb-5" style="cursor: pointer;" onclick="location.href='/product/${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
+							<input type="hidden" name="depth1Value" value="${product.category.depth1Name}"></input>
+							<input type="hidden" name="depth2Value" value="${product.category.depth2Name}"></input>
+							<input type="hidden" name="depth3Value" value="${product.category.depth3Name}"></input>
+							<div class="card h-100 border-0">
+								<!-- Product image-->
+								<img class="card-img-top lazy" src="${product.productColor.img1}" alt="..."/>
+								<!-- Product details-->
+								<div class="card-body p-4">
+									<div class="text-center">
+										<!-- 브랜드 명-->
+										<p>
+										<div class="fw-bolder mb-1 brand_name">${product.brand.name}</div>
+										</p>
+										<!-- 상품명-->
+										<p>
+										<div class="fw-bolder mb-1 name">${product.productCommon.name}</div>
+										</p>
+										<!-- 가격-->
+										<p>
+										<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+						<c:set var="check" value="${product.productColor.id}"/>
+					</c:if>
 				</c:forEach>
 				<%-- 여기까지 반복끝--%>
 			</div>
