@@ -11,9 +11,6 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 	<h3 class="cnts_title">
 		<span>배송&amp;결제정보 입력</span>
 	</h3>
-	<script>
-	console.log("totalPrice:", <%=totalPrice%>);
-</script>
 	<!--sub_container-->
 	<div class="sub_container">
 		<!--orderwrap-->
@@ -112,8 +109,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						<strong class="reqd">*</strong> 표시는 필수항목입니다.
 					</p>
 					<div class="btn_wrap">
-						<a href="javascript:customerAddress();" class="btn wt_ss">주문고객과
-							동일</a> <a href="javascript:resetAddress();" class="btn wt_ss mr0">새로작성하기</a>
+						<a href="javascript:customerAddress();" class="btn wt_ss">주문고객과 동일</a> 
+						<a href="javascript:resetAddress();" class="btn wt_ss mr0">새로작성하기</a>
 					</div>
 				</div>
 
@@ -126,76 +123,94 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row" class="tooltip191022"><strong class="reqd">*</strong>
-									<label for="adress">배송지 주소</label> <span class="ico_question">icon</span>
+								<th scope="row" class="tooltip191022">
+									<strong class="reqd">*</strong>
+									<label for="adress">배송지 주소</label>
+									<span class="ico_question">icon</span>
 									<div class="delch_box190816">
 										<span class="arr">위치아이콘</span>
 										<ul class="bul_sty01_li">
-											<li>기본배송지 변경은 <strong>마이페이지&gt; [배송지관리]</strong> 에서
-												가능합니다.
-											</li>
+											<li>기본배송지 변경은 <strong>마이페이지&gt; [배송지관리]</strong> 에서 가능합니다.</li>
 											<li>기본배송지 설정 시 기본배송지가 최우선으로 노출 됩니다.</li>
 										</ul>
-									</div></th>
+									</div>
+								</th>
 								<td>
-									<!-- 주소지 입력 --> <input onclick="goPopup()"
-									value="${member.zipcode}" title="우편번호" id="adress"
-									name="postcode" class="post inputclear" type="text" readonly="">
+									<!-- 주소지 입력 --> 
+									<input onclick="goPopup()"
+											value="${member.zipcode}" title="우편번호" id="adress"
+											name="postcode" class="post inputclear" type="text" readonly="">
 									<br>
 									<div id="basis_bk_flag">
 										<input onclick="goPopup()" value="${member.address1}"
 											title="주소1" name="line1" id="line1"
 											class="post_wall top inputclear" type="text" readonly="">
-									</div> <input onclick="goPopup()" value="${member.address2}"
-									title="주소2" name="line2" id="line2"
-									class="post_wall inputclear" type="text" maxlength="110">
+									</div> 
+										<input onclick="goPopup()" value="${member.address2}"
+											title="주소2" name="line2" id="line2"
+											class="post_wall inputclear" type="text" maxlength="110">
 								</td>
 							</tr>
 							<tr>
-								<th scope="row"><strong class="reqd">*</strong> <label
-									for="rcpt_name">수령인</label></th>
-								<td><input value="${member.name}" title="수령인"
-									id="rcpt_name" name="lastName" class="inputclear"
-									maxlength="13" type="text" style="width: 118px;"></td>
+								<th scope="row">
+									<strong class="reqd">*</strong>
+									<label for="rcpt_name">수령인</label>
+								</th>
+								<td>
+									<input value="${member.name}" title="수령인"
+										id="rcpt_name" name="lastName" class="inputclear"
+										maxlength="13" type="text" style="width: 118px;">
+								</td>
 							</tr>
 							<!-- 휴대폰 번호 -->
 							<tr>
-								<th scope="row"><strong class="reqd">*</strong> <label
-									for="hp">휴대폰 번호</label></th>
+								<th scope="row">
+									<strong class="reqd">*</strong>
+									<label for="hp">휴대폰 번호</label>
+								</th>
 								<td>
-									<!-- hp --> <c:set var="hpnum1"
-										value="${fn:substring(member.phone,0,3)}" /> <select id="hp"
-									name="hp_num1" title="휴대폰 번호 앞자리" class="hp_num1">
+									<!-- hp --> 
+									<c:set var="hpnum1" value="${fn:substring(member.phone,0,3)}" /> 
+									<select id="hp" name="hp_num1" title="휴대폰 번호 앞자리" class="hp_num1">
 										<option value="010"
-											<c:if test="${hpnum1==010}">selected</c:if>>010</option>
+											<c:if test="${hpnum1==010}">selected</c:if>>010
+										</option>
 										<option value="011"
-											<c:if test="${hpnum1==011}">selected</c:if>>011</option>
+											<c:if test="${hpnum1==011}">selected</c:if>>011
+										</option>
 										<option value="016"
-											<c:if test="${hpnum1==016}">selected</c:if>>016</option>
+											<c:if test="${hpnum1==016}">selected</c:if>>016
+										</option>
 										<option value="017"
-											<c:if test="${hpnum1==017}">selected</c:if>>017</option>
+											<c:if test="${hpnum1==017}">selected</c:if>>017
+										</option>
 										<option value="018"
-											<c:if test="${hpnum1==018}">selected</c:if>>018</option>
+											<c:if test="${hpnum1==018}">selected</c:if>>018
+										</option>
 										<option value="019"
-											<c:if test="${hpnum1==019}">selected</c:if>>019</option>
-								</select>
-									<div class="form_hyphen">-</div> <input title="휴대폰 번호 가운데자리"
-									name="hp_num2" id="hp_num2" class="hp_num2 inputclear"
-									type="text" maxlength="4" numberonly="true"
-									value="${fn:substring(member.phone,3,7)}">
+											<c:if test="${hpnum1==019}">selected</c:if>>019
+										</option>
+									</select>
+									<div class="form_hyphen">-</div> 
+									<input title="휴대폰 번호 가운데자리"
+										name="hp_num2" id="hp_num2" class="hp_num2 inputclear"
+										type="text" maxlength="4" numberonly="true"
+										value="${fn:substring(member.phone,3,7)}">
 
-									<div class="form_hyphen">-</div> <input title="휴대폰 번호 뒷자리"
-									name="hp_num3" id="hp_num3" class="hp_num2 inputclear"
-									type="text" maxlength="4" numberonly="true"
-									value="${fn:substring(member.phone,7,13)}"> <!-- //hp -->
+									<div class="form_hyphen">-</div> 
+									<input title="휴대폰 번호 뒷자리"
+										name="hp_num3" id="hp_num3" class="hp_num2 inputclear"
+										type="text" maxlength="4" numberonly="true"
+										value="${fn:substring(member.phone,7,13)}"> <!-- //hp -->
 								</td>
 							</tr>
 							<tr>
-								<th scope="row" class="th_space"><label for="ph">연락처</label>
+								<th scope="row" class="th_space">
+									<label for="ph">연락처</label>
 								</th>
 								<td>
-									<!-- 연락처 입력 --> <select name="ph_num1" id="ph" title="연락처 앞자리"
-									class="hp_num1">
+									<!-- 연락처 입력 -->
+									<select name="ph_num1" id="ph" title="연락처 앞자리" class="hp_num1">
 										<option value="">선택</option>
 										<option value="02">02</option>
 										<option value="031">031</option>
@@ -214,21 +229,24 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<option value="062">062</option>
 										<option value="063">063</option>
 										<option value="064">064</option>
-								</select>
+									</select>
 
-									<div class="form_hyphen">-</div> <input title="연락처 가운데자리"
-									name="ph_num2" id="ph_num2" class="hp_num2 inputclear"
-									type="text" maxlength="4" numberonly="true">
+									<div class="form_hyphen">-</div> 
+									<input title="연락처 가운데자리"
+										name="ph_num2" id="ph_num2" class="hp_num2 inputclear"
+										type="text" maxlength="4" numberonly="true">
 
-									<div class="form_hyphen">-</div> <input title="연락처 뒷자리"
-									name="ph_num3" id="ph_num3" class="hp_num2 inputclear"
-									type="text" maxlength="4" numberonly="true">
-
+									<div class="form_hyphen">-</div>
+									<input title="연락처 뒷자리"
+										name="ph_num3" id="ph_num3" class="hp_num2 inputclear"
+										type="text" maxlength="4" numberonly="true">
 								</td>
 							</tr>
+							
 							<!-- 배송 요청 사항 -->
 							<tr>
-								<th scope="row" class="th_space"><label for="orderr">배송요청사항</label>
+								<th scope="row" class="th_space">
+									<label for="orderr">배송요청사항</label>
 								</th>
 								<td>
 									<div class="input_sumtxt">
@@ -245,15 +263,18 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 								</td>
 							</tr>
 							<tr>
-								<th scope="row" class="th_space"><label for="mail">수령인
-										E-mail</label></th>
+								<th scope="row" class="th_space">
+									<label for="mail">수령인 E-mail</label>
+								</th>
 								<td>
-									<!-- 이메일 입력 --> <input type="text" id="mail" name="mail"
-									title="이메일 아이디" class="em_form inputclear"> <span
-									class="andmail">@</span> <input type="text" value=""
-									name="emailDely" id="emailDely" title="직접입력"
-									class="em_form inputclear"> <select title="이메일 계정"
-									id="emailDelySel" class="em_select">
+									<!-- 이메일 입력 --> 
+									<input type="text" id="mail" name="mail"
+										title="이메일 아이디" class="em_form inputclear">
+									<span class="andmail">@</span>
+									<input type="text" value=""
+											name="emailDely" id="emailDely" title="직접입력"
+											class="em_form inputclear"> 
+									<select title="이메일 계정" id="emailDelySel" class="em_select">
 										<option value="">직접입력</option>
 										<option value="naver.com">naver.com</option>
 										<option value="gmail.com">gmail.com</option>
@@ -262,7 +283,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<option value="hanmail.net">hanmail.net</option>
 										<option value="yahoo.com">yahoo.com</option>
 										<option value="dreamwiz.com">dreamwiz.com</option>
-								</select>
+									</select>
 								</td>
 							</tr>
 						</tbody>
@@ -290,8 +311,9 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 							</colgroup>
 							<tbody>
 								<tr>
-									<th scope="row" class="th_space"><label for="pointpay">한섬마일리지
-											결제</label></th>
+									<th scope="row" class="th_space">
+										<label for="pointpay">한섬마일리지 결제</label>
+									</th>
 									<td>
 										<!-- 한섬마일리지 결제 입력 -->
 										<div class="point_wrap">
@@ -341,31 +363,14 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									</td>
 								</tr>
 								<tr id="paydetail">
-									<%-- 자바스크립트로 들어갈자리
-								<th scope="row" class="th_space">
-								<label for="orderr">은행명 / 카드사</label>
-								</th>
-								<td>
-									<div class="input_sumtxt">
-										<div class="input_sumtxt_box">
-											<!-- input -->
-											<input onkeyup="chkword();" class="inputclear" id="orderr" name="deliveryRequestContents" type="text" value="" title="배송요청사항" maxlength="20">
-										</div>
-										<div>
-											<span id="text_length">0</span>
-											<span>/20자</span>
-										</div>
-									</div>
-								</td>
-								--%>
+									<%-- ajax로 들어갈자리 --%>
 								</tr>
 							</tbody>
 						</table>
 					</table>
 				</div>
 			</div>
-			<div class="float_right"
-				style="position: sticky; left: 680px; top: 140px;">
+			<div class="float_right" style="position: sticky; left: 680px; top: 140px;">
 				<!--오른쪽 박스 최종 결제 금액-->
 				<div class="sum_box">
 					<div>
@@ -392,8 +397,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					</div>
 
 					<div class="agree">
-						<input type="checkbox" id="agree"> <label for="agree"
-							class="tlt"> 구매자 동의</label>
+						<input type="checkbox" id="agree"> 
+						<label for="agree" class="tlt"> 구매자 동의</label>
 						<p class="txt">
 							주문할 상품의 상품명, 가격, 배송정보 등 <br> 판매조건을 확인하였으며, 구매진행에 동의합니다. <br>
 							(전자상거래법 제8조 2항) <br> <br> 기존 마이너스 한섬마일리지를 보유하고 있는 고객은
@@ -596,9 +601,6 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			$("#line1").val(roadAddrPart1+' '+roadAddrPart2);
 			$("#line2").val(addrDetail);
 		}
-		
-		
-
 	</script>
 
 
