@@ -39,6 +39,7 @@ public class ProductController {
 		model.addAttribute("products", products);
 		String str = depth1+"/"+depth2+"/"+depth3;
 		model.addAttribute("str",str);
+		model.addAttribute("currDepth",3);//depth3
 		return "product/productList";
 	}
 	@RequestMapping("/{depth1}/{depth2}")
@@ -54,6 +55,7 @@ public class ProductController {
 		model.addAttribute("products", products);
 		String str = depth1+"/"+depth2;
 		model.addAttribute("str",str);
+		model.addAttribute("currDepth",2);//depth2
 		return "product/productList";
 	}
 	@RequestMapping("/{depth1}")
@@ -68,6 +70,8 @@ public class ProductController {
 		model.addAttribute("products", products);
 		String str = depth1;
 		model.addAttribute("str",str);
+		model.addAttribute("currDepth",1);//depth1
+
 		return "product/productList";
 	}
 	@RequestMapping("/detail")

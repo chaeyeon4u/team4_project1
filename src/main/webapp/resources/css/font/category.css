@@ -1,7 +1,6 @@
 @charset "utf-8";
 
 .drop_down_menu{
-	display: none;
 	background-color: #8CB297dd;
 	font-size:28px;
 	padding: 15px;
@@ -23,7 +22,7 @@
 	color: #295F39;
 }
 
-.drop_down_menu .drop_down_inner .drop_down_list li:hover a{
+.drop_down_menu .drop_down_inner .drop_down_list li:hover .depth3{
 	color: #000000;
 }
 
@@ -39,4 +38,11 @@
 .depth3_element a{
 	color: #154E26;
 }
+
+/* Crtegory 글자 크기 */
+#KIDSCategory a{font-size: 20px;}
+#LIFESYLECategory a{font-size: 20px;}
+#WOMENCategory a{font-size: 16px; margin: 0 auto; white-space: nowrap;}
+#WOMENCategory .drop_down_inner{margin:0px 5%;}
+#MENCategory a{font-size: 20px;}
 
