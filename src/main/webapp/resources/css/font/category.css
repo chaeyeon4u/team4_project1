@@ -40,9 +40,9 @@
 }
 
 /* Crtegory 글자 크기 */
-#KIDSCategory a{font-size: 20px;}
-#LIFESYLECategory a{font-size: 20px;}
+#KIDSCategory a{font-size: 20px; white-space: nowrap;}
+#LIFESYLECategory a{font-size: 20px; white-space: nowrap;}
 #WOMENCategory a{font-size: 16px; margin: 0 auto; white-space: nowrap;}
 #WOMENCategory .drop_down_inner{margin:0px 5%;}
-#MENCategory a{font-size: 20px;}
+#MENCategory a{font-size: 20px; white-space: nowrap;}
 
