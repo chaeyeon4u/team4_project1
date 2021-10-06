@@ -71,16 +71,16 @@
 			            <%-- 카테고리1 시작 --%>
 			            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
 			            	<li>
-					           <a class="gnb_brand dropbtn dropbtn" id="cat1_k" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">KIDS</a>
+					           <a class="gnb_brand dropbtn dropbtn" id="KIDS" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">KIDS</a>
 					        </li> 
 					        <li>
-					           <a class="gnb_brand dropbtn dropbtn" id="cat1_l" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">LIFESTYLE</a>
+					           <a class="gnb_brand dropbtn dropbtn" id="LIFESTYLE" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">LIFESTYLE</a>
 					        </li> 
 					        <li>
-					           <a class="gnb_brand dropbtn dropbtn" id="cat1_w" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">WOMEN</a>
+					           <a class="gnb_brand dropbtn dropbtn" id="WOMEN" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">WOMEN</a>
 					        </li> 
 					        <li>
-					           <a class="gnb_brand dropbtn dropbtn" id="cat1_m" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">MEN</a>
+					           <a class="gnb_brand dropbtn dropbtn" id="MEN" onclick="dropBtnMouseover(this);" ondblclick="cat1DoubleClick(this);">MEN</a>
 					        </li> 
 			            </ul>
 			            <%-- 카테고리1 끝 --%>
@@ -109,36 +109,36 @@
 					        	  //카테고리가 띄워져 있을 경우 제거
 					        	  //보이지 않을경우 
 					        	  //클릭한 요소가 본인일 경우 카테고리 사라지게
-					        	  if($('#kidsCategory').css('display')==='block'){$('#kidsCategory').css("display", "none"); $('#cat1_k').css("color","black"); if(depth1 === "KIDS"){return;}}
-					        	  if($('#lifestyleCategory').css('display')==='block'){$('#lifestyleCategory').css("display", "none"); $('#cat1_l').css("color","black"); if(depth1 === "LIFESTYLE"){return;}}
-					        	  if($('#womenCategory').css('display')==='block'){$('#womenCategory').css("display", "none"); $('#cat1_w').css("color","black"); if(depth1 === "WOMEN"){return;}}
-					        	  if($('#menCategory').css('display')==='block'){$('#menCategory').css("display", "none"); $('#cat1_m').css("color","black"); if(depth1 === "MEN"){return;}}
+					        	  if($('#KIDSCategory').css('display')==='block'){$('#KIDSCategory').css("display", "none"); $('#KIDS').css("color","black"); if(depth1 === "KIDS"){return;}}
+					        	  if($('#LIFESTYLECategory').css('display')==='block'){$('#LIFESTYLECategory').css("display", "none"); $('#LIFESTYLE').css("color","black"); if(depth1 === "LIFESTYLE"){return;}}
+					        	  if($('#WOMENCategory').css('display')==='block'){$('#WOMENCategory').css("display", "none"); $('#WOMEN').css("color","black"); if(depth1 === "WOMEN"){return;}}
+					        	  if($('#MENCategory').css('display')==='block'){$('#MENCategory').css("display", "none"); $('#MEN').css("color","black"); if(depth1 === "MEN"){return;}}
 					        	  
 					        	  
 					        	  //아무 하위 카테고리도 띄워져있지 않은 경우
 					        	  if(depth1 === "KIDS"){
-					        		  if($('#kidsCategory').css('display')==='none'){
-					        			  $('#kidsCategory').css("display", "block");
+					        		  if($('#KIDSCategory').css('display')==='none'){
+					        			  $('#KIDSCategory').css("display", "block");
 					        		  }else{
-					        			  $('#kidsCategory').css("display", "none");
+					        			  $('#KIDSCategory').css("display", "none");
 					        		  }
 					        	  }else if(depth1 ==="LIFESTYLE"){
-					        		  if($('#lifestyleCategory').css("display")==="none"){
-					        			  $('#lifestyleCategory').css("display", "block");
+					        		  if($('#WOMENCategory').css("display")==="none"){
+					        			  $('#LIFESTYLECategory').css("display", "block");
 					        		  }else{
-					        			  $('#lifestyleCategory').css("display", "none");
+					        			  $('#LIFESTYLECategory').css("display", "none");
 					        		  }
 					        	  }else if(depth1 ==="WOMEN"){
-					        		  if($('#womenCategory').css("display")==="none"){
-					        			  $('#womenCategory').css("display", "block");
+					        		  if($('#WOMENCategory').css("display")==="none"){
+					        			  $('#WOMENCategory').css("display", "block");
 					        		  }else{
-					        			  $('#womenCategory').css("display", "none");
+					        			  $('#WOMENCategory').css("display", "none");
 					        		  }
 					        	  }else if(depth1 ==="MEN"){
-					        		if($('#menCategory').css("display")==="none"){
-					        			  $('#menCategory').css("display", "block");
+					        		if($('#MENCategory').css("display")==="none"){
+					        			  $('#MENCategory').css("display", "block");
 					        		  }else{
-					        			  $('#menCategory').css("display", "none");
+					        			  $('#MENCategory').css("display", "none");
 					        		  }
 					        	  }
 					          }
@@ -154,8 +154,6 @@
 							//let loc = '${pageContext.request.contextPath}/product/WOMEN'+depth3;
 							//location.href = '${pageContext.request.contextPath}/product/WOMEN/'+depth3;
 						}
-						
-						
 				         </script>
 
 				    <div class="util_menu util_menu1803">
@@ -185,16 +183,16 @@
 				<%-- dropDown Menu start --%>
 	           	<%-- <div class="" style="display: none;"> --%>
 	           	<%-- KIDS 카테고리 --%>
-	           	<div id="kidsCategory" class="drop_down_menu" style="display:none;">	           	   
+	           	<div id="KIDSCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/KIDS/CLOTHING">CLOTHING</a></strong>
+		                <li class="drop_down_list d2_clothing"><strong><a id="CLOTHING" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING">CLOTHING</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING/TOP">TOP</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING/BOTTOM">BOTTOM</a></li>
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a  href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC.">KIDS ACC.</a></strong>
+		                <li class="drop_down_list"><strong><a id="KIDS ACC." href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC.">KIDS ACC.</a></>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC./OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
 		                       </ul>
@@ -203,9 +201,9 @@
 	           </div>
 	           
 	           <%-- LIFESTYLE 카테고리 --%>
-	           	<div id="lifestyleCategory" class="drop_down_menu" style="display:none;">	           	   
+	           	<div id="LIFESTYLECategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME">HOME</a></strong>
+		                <li class="drop_down_list"><strong><a id="HOME" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME">HOME</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME/FABRIC">FABRIC</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME/OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
@@ -213,7 +211,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/LIFESTYLE/BATH">BATH</a></strong>
+		                <li class="drop_down_list"><strong><a id="BATH" href="${pageContext.request.contextPath}/product/LIFESTYLE/BATH">BATH</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/BATH/OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
 		                       </ul>
@@ -222,9 +220,9 @@
 	           </div>
 	           
 	           	<%-- WOMEN 카테고리 --%>
-	           	<div id="womenCategory" class="drop_down_menu" style="display:none;">	           	   
+	           	<div id="WOMENCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/WOMEN/PANTS">PANTS</a></strong>
+		                <li class="drop_down_list"><strong><a id="PANTS" href="${pageContext.request.contextPath}/product/WOMEN/PANTS">PANTS</a></strong>
 		                       <ul class="depth3_wrap">
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/PANTS/SHORTS">SHORTS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/PANTS/CASUAL">CASUAL</a></li>
@@ -233,7 +231,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/WOMEN/SKIRT">SKIRT</a></strong>
+		                <li class="drop_down_list"><strong><a id="SKIRT" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT">SKIRT</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/MINI SKIRT" >MINI SKIRT</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/PENCIL SKIRT" >PENCIL SKIRT</a></li>
@@ -242,7 +240,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href=""><a href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC.">FASHION ACC.</a></strong>
+		                <li class="drop_down_list"><strong><a id="FASHION ACC." href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC.">FASHION ACC.</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./BAGS">BAGS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./ETC">ETC</a></li>
@@ -250,7 +248,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href=""><a href="${pageContext.request.contextPath}/product/WOMEN/DRESS">DRESS</a></strong>
+		                <li class="drop_down_list"><strong><a id="DRESS" href="${pageContext.request.contextPath}/product/WOMEN/DRESS">DRESS</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/DRESS/MINI DRESS">MINI DRESS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/DRESS/MIDI DRESS">MIDI DRESS</a></li>
@@ -258,7 +256,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/WOMEN/Top">Top</a></strong>
+		                <li class="drop_down_list"><strong><a id="Top" href="${pageContext.request.contextPath}/product/WOMEN/Top">Top</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/Top/Blouse">Blouse</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/Top/T-Shirts">T-Shirts</a></li>
@@ -267,7 +265,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/WOMEN/OUTER">OUTER</a></strong>
+		                <li class="drop_down_list"><strong><a id="OUTER" href="${pageContext.request.contextPath}/product/WOMEN/OUTER">OUTER</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/OUTER/JUMPER">JUMPER</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/OUTER/Cardigan%20Vest">Cardigan/Vest</a></li>
@@ -278,7 +276,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIAL SHOP" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
@@ -308,9 +306,9 @@
 	           </div>
 	           
 	           <%-- MEN 카테고리 --%>
-	           	<div id="menCategory" class="drop_down_menu" style="display:none;">	           	   
+	           	<div id="MENCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/MEN/TOP">TOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="TOP" href="${pageContext.request.contextPath}/product/MEN/TOP">TOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/TOP/KNIT">KNIT</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/TOP/SHIRTS">SHIRTS</a></li>
@@ -318,7 +316,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/MEN/PANTS">PANTS</a></strong>
+		                <li class="drop_down_list"><strong><a id="PANTS" href="${pageContext.request.contextPath}/product/MEN/PANTS">PANTS</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/PANTS/쇼츠" >쇼츠</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/PANTS/루즈%20테이퍼드" >루즈/테이퍼드</a></li>
@@ -328,7 +326,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/MEN/Suit">Suit</a></strong>
+		                <li class="drop_down_list"><strong><a id="Suit" href="${pageContext.request.contextPath}/product/MEN/Suit">Suit</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/Suit/SUIT PANTS">SUIT PANTS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/Suit/DRESS SHIRTS">DRESS SHIRTS</a></li>
@@ -336,7 +334,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/MEN/OUTER">OUTER</a></strong>
+		                <li class="drop_down_list"><strong><a id="OUTER" href="${pageContext.request.contextPath}/product/MEN/OUTER">OUTER</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/OUTER/JUMPER">JUMPER</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/OUTER/JACKET">JACKET</a></li>
@@ -347,7 +345,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIAL SHOP" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/SYSTEM HOMME : TYPE 2">SYSTEM HOMME : TYPE 2</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/TIME HOMME : ONLINE EXCLUSIVE">TIME HOMME : ONLINE EXCLUSIVE</a></li>

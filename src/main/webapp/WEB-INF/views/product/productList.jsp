@@ -13,6 +13,9 @@
 					<!-- 클릭시 이동할 url 넣는부분-->
 <%-- 					<div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'"> --%>
 					<div class="col mb-5" style="cursor: pointer;" onclick="location.href='/product/${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
+						<input type="hidden" name="depth1Value" value="${product.category.depth1Name}"></input>
+						<input type="hidden" name="depth2Value" value="${product.category.depth2Name}"></input>
+						<input type="hidden" name="depth3Value" value="${product.category.depth3Name}"></input>
 						<div class="card h-100 border-0">
 							<!-- Product image-->
 							<img class="card-img-top lazy" src="${product.productColor.img1}" alt="..."/>
@@ -45,7 +48,7 @@
 	<div class="row-vw d-flex">
 		<div class="mx-auto">
 			<c:set var="urlcontainer" value="${pageContext.request.contextPath}/product/${str}" />
-
+			
 			<a class="paginigBtn" href="${urlcontainer}?pageNo=1">처음</a>
 			<c:if test="${pager.groupNo>1}">
 				<a class="paginigBtn" href="${urlcontainer}?pageNo=${pager.startPageNo-1}">이전</a>
@@ -66,6 +69,25 @@
 		</div>
 	</div>
 
+	<script>
+		/* 카테고리 활성화 */
+		$(window).ready(function(){
+			let currDepth=${currDepth};
+			//카테고리1 활성화
+			let depth1 = $('input[name=depth1Value]').val();
+			let depth1Id="#"+depth1;
+			let CategoryNameId = "#"+depth1+"Category";
+			$(depth1Id).css("color", "gray");
+			
+			//카테고리2 활성화//d2_clothing
+			if(currDepth == "2"){
+				let depth2 = $('input[name=depth2Value]').val();
+				let depth2Id = CategoryNameId + " #"+depth2;
+				$(depth2Id).css("color", "gray");
+			}
+		})
+		
+	</script>
 
 </div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
