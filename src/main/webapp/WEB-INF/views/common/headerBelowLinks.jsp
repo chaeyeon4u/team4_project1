@@ -56,10 +56,6 @@
 								<li>
 									<a href="${pageContext.request.contextPath}/cart">장바구니</a>
 								</li>
-
-								<li>
-									<a href="${pageContext.request.contextPath}/member/orderlist">마이페이지</a>
-								</li>
 							</sec:authorize>
 						</ul>
 					</div>

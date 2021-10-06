@@ -256,8 +256,8 @@
 
 .qty_sel{}
 .qty_sel a{float:left;display:block;width:26px;height:26px;background: url("/_ui/desktop/common/images/common/ico_qty.png") no-repeat;text-indent: -999em}
-.qty_sel a.left{float:left;display:block;width:26px;height:26px;text-indent: -999em;background: url("/_ui/desktop/common/images/common/ico_qty.png") no-repeat;background-position: 0 0;}
-.qty_sel a.right{float:left;display:block;width:26px;height:26px;text-indent: -999em;background: url("/_ui/desktop/common/images/common/ico_qty.png") no-repeat;background-position: right 0;}
+.qty_sel a.left{float:left;display:block;width:26px;height:26px;text-indent: -999em;background: url("/resources/images/ico_qty.png") no-repeat;background-position: 0 0;}
+.qty_sel a.right{float:left;display:block;width:26px;height:26px;text-indent: -999em;background: url("/resources/images/ico_qty.png") no-repeat;background-position: right 0;}
 .qty_sel input{float:left;width:30px!important;height:24px!important;line-height: 24px!important;border-left:none!important;border-right:none!important;text-align: center;text-indent: 0}
 
 .matches_items{margin-top: 40px;position: relative;}
@@ -720,6 +720,10 @@
 .item_detail_info .info .txt.size_chip190212{width:300px;}
 .size_chip.sizeChipKo1901 > li > a{min-width:60px;height:26px;box-sizing:border-box;}
 .size_chip.sizeChipKo1901 > li > a:hover, .size_chip.sizeChipKo1901 > li > .on{min-width:60px;height:26px;}
+.size_chip.sizeChipKo1901 > li > button{min-width:60px;height:26px;box-sizing:border-box;}
+.size_chip.sizeChipKo1901 > li > button:hover, .size_chip.sizeChipKo1901 > li > .on{min-width:60px;height:26px;}
+.size_chip.sizeChipKo1901 > li > input[name='size']{min-width:60px;height:26px;box-sizing:border-box;}
+.size_chip.sizeChipKo1901 > li > input[name='size']:hover, .size_chip.sizeChipKo1901 > li > .on{min-width:60px;height:26px;}
 .size_chip.sizeChipKo1901 .ko_size1901{color:#bebebe;vertical-align:inherit;}
 
 /* 상품평 솔드 아웃일 때 사이즈 버튼 on */

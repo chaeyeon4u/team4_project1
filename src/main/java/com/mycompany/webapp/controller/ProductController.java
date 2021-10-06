@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,9 +26,11 @@ import com.mycompany.webapp.vo.join.Product;
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+	private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+	
 	@Resource
 	private ProductService productService;
-	
+
 	@Resource
 	private CartService cartService;
 	
@@ -81,19 +85,22 @@ public class ProductController {
 
 		return "product/productList";
 	}
-	@RequestMapping("/detail")
-	public String detail() {
-		return "product/productDetail";
-	}
 	
+	// 하나의 상품에 대한 컬러는 product를 사용하면서 가져올 수 있지만, 여러 상품에 대한 컬러는 자바스크립트로 가져오도록 처리하였다.
 	@RequestMapping("/{depth1}/{depth2}/{depth3}/**/{pcolorId}")
 	public String detail(@PathVariable String pcolorId, Model model) {
 		Product product = productService.getProductDetail(pcolorId);
-		model.addAttribute("product", product);
 		List<Color> colors = productService.getColors(pcolorId);
-		model.addAttribute("colors", colors);
 		List<Size> sizes = productService.getSizes(pcolorId);
+		List<Product> withItems = productService.getWithItems(pcolorId);
+		
+		logger.info(withItems.toString());
+		
+		model.addAttribute("product", product);
+		model.addAttribute("colors", colors);
 		model.addAttribute("sizes", sizes);
+		model.addAttribute("withItems", withItems);
+		
 		return "product/productDetail";
 	}
 	

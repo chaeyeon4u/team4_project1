@@ -3,7 +3,7 @@
 <mapper namespace="com.mycompany.webapp.dao.join.ProductDao">
 
 	<resultMap type="productCommon" id="productCommonMap">
-		<id property="id" column="id"/>
+		<id property="id" column="pcommonId"/>
 		<result property="name" column="productName"/>
 		<result property="note" column="note"/>
 		<result property="brandNo" column="brandNo"/>
@@ -58,8 +58,8 @@
 	
 	<select id="selectProductByPcolorId" parameterType="String" resultMap="productMap">
 		select distinct brand.name as brandName, product_common.name as productName 
-				, price, product_color.id as pcolorId, note
-				, img1, img2, img3
+				, price, product_color.id as pcolorId, product_common.id as pcommonId, note
+				, img1, img2, img3, product_color.color_code as colorCode
 			from product_common, product_color, brand, product_stock
 			where product_common.id = product_color.product_common_id 
 			and brand.no = product_common.brand_no
@@ -70,9 +70,9 @@
 	
 	<select id="getProductByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultMap="productMap">
 		
-		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name, productCommonId
+		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
-		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name, productCommonId
+		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
 			select 
 			br_tbl.name as brandName,
@@ -164,5 +164,19 @@
 	    where product_color.id = #{pcolorId}
 	    and product_color.id = product_stock.product_color_id
 	    order by size_code
+	</select>
+	
+	<!-- 함께 코디한 상품의 정보 pcolorId로 가져오기 -->
+	<select id="selectWithItemsByPcolorId" parameterType="String" resultMap="productMap">
+	select distinct brand.name as brandName, product_common.name as productName , product_color.id as pcolorId
+					, product_color.price, product_color.product_common_id as pcommonId, product_color.img1
+	from product_color, brand, product_common
+	where product_color.id in (
+        select distinct w.color_id as wcolorId
+        from with_product w left join product_color p on (w.product_color_id = p.id)
+        where p.id = #{pcolorId}
+        )
+    and product_common.id = product_color.product_common_id
+	and product_common.brand_no = brand.no
 	</select>
 </mapper>

@@ -36,4 +36,8 @@ public class ProductService {
 		return productDao.selectSizesByPcolorId(pcolorId);
 	}
 	
+	public List<Product> getWithItems(String pcolorId) {
+		return productDao.selectWithItemsByPcolorId(pcolorId);
+	}
+	
 }

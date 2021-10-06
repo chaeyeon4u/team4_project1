@@ -22,4 +22,6 @@ public interface ProductDao {
 	List<Color> selectColorsByPcolorId(String pcolorId);
 	
 	List<Size> selectSizesByPcolorId(String pcolorId);
+	
+	List<Product> selectWithItemsByPcolorId(String pcolorId);
 }
