@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
 import com.mycompany.webapp.vo.Pager;
 import com.mycompany.webapp.vo.join.CategoryDepthDto;
@@ -22,6 +23,9 @@ import com.mycompany.webapp.vo.join.Product;
 public class ProductController {
 	@Resource
 	private ProductService productService;
+	
+	@Resource
+	private CartService cartService;
 	
 	@RequestMapping("/{depth1}/{depth2}/{depth3}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2, @PathVariable String depth3,@RequestParam(defaultValue = "1") int pageNo) {
@@ -88,5 +92,12 @@ public class ProductController {
 		List<Size> sizes = productService.getSizes(pcolorId);
 		model.addAttribute("sizes", sizes);
 		return "product/productDetail";
+	}
+	
+	@RequestMapping("/selectColors")
+	public String selectColors(Model model, String pcommonId){
+		List<Color> colors = cartService.getColors(pcommonId);
+		model.addAttribute("colors", colors);
+		return "product/colors";
 	}
 }

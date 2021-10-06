@@ -70,9 +70,9 @@
 	
 	<select id="getProductByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultMap="productMap">
 		
-		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
+		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name, productCommonId
 		from (
-		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
+		select rownum as rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name, productCommonId
 		from (
 			select 
 			br_tbl.name as brandName,
@@ -80,6 +80,7 @@
 			pcol_tbl.img1 as img1,
 			pcol_tbl.price as price,
 			pcol_tbl.id as pcolorId,
+			pcol_tbl.product_common_id as productCommonId,
 			cat_tbl.depth1_name as depth1_name,
 			cat_tbl.depth2_name as depth2_name,
 			cat_tbl.depth3_name as depth3_name
@@ -119,6 +120,7 @@
 			pcol_tbl.img1 as img1,
 			pcol_tbl.price as price,
 			pcol_tbl.id as pcolorId,
+			pcol_tbl.product_common_id as productCommonId,
 			cat_tbl.depth1_name as depth1_name,
 			cat_tbl.depth2_name as depth2_name,
 			cat_tbl.depth3_name as depth3_name

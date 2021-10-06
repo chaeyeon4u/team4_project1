@@ -9,8 +9,9 @@
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 				<c:set var="check" value=""/>
 				<%-- 여기부터 반복시작--%>
-				<c:forEach var="product" items="${products}">
+				<c:forEach var="product" items="${products}" varStatus="status">
 					<c:if test="${check != product.productColor.id}"> 
+						<c:set var="mycount" value="${status.count}"/>
 						<!-- 클릭시 이동할 url 넣는부분-->
 	<%-- 					<div class="col mb-5" OnClick="location.href='${pageContext.request.contextPath}/event/detail'"> --%>
 						<div class="col mb-5" style="cursor: pointer;" onclick="location.href='/product/${product.category.depth1Name}/${product.category.depth2Name}/${product.category.depth3Name}/${product.productColor.id}'">
@@ -19,21 +20,26 @@
 							<input type="hidden" name="depth3Value" value="${product.category.depth3Name}"></input>
 							<div class="card h-100 border-0">
 								<!-- Product image-->
-								<img class="card-img-top lazy" src="${product.productColor.img1}" alt="..."/>
+								<img class="card-img-top" src="${product.productColor.img1}" alt="..."/>
 								<!-- Product details-->
 								<div class="card-body p-4">
 									<div class="text-center">
 										<!-- 브랜드 명-->
 										<p>
-										<div class="fw-bolder mb-1 brand_name">${product.brand.name}</div>
+											<div class="fw-bolder mb-1 brand_name">${product.brand.name}</div>
 										</p>
 										<!-- 상품명-->
 										<p>
-										<div class="fw-bolder mb-1 name">${product.productCommon.name}</div>
+											<div class="fw-bolder mb-1 name">${product.productCommon.name}</div>
 										</p>
 										<!-- 가격-->
 										<p>
-										<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
+											<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
+										</p>
+									
+										<p>
+											<input id="productComId${mycount}" type="hidden" value="${product.productColor.productCommonId}">
+											<div id="productColorChip${mycount}" class="fw-bolder mb-1"></div>
 										</p>
 									</div>
 								</div>
@@ -73,6 +79,26 @@
 	</div>
 
 	<script>
+	
+	 	function insertImgChip(){
+			for(let i=1; i<= ${mycount}; i++){
+				var temp = "#productComId"+i;
+				var pcommonId = $(temp).val();
+				var id_color = "#productColorChip" + i;
+				$.ajax({
+					url : "/product/selectColors",
+					async: false,
+					method : "post",
+					data : {"pcommonId":pcommonId},
+					success : function(result) {
+						console.log("result", result);
+						$(id_color).html(result);
+					}
+				})
+			}
+	    }
+	
+	
 		/* 카테고리 활성화 */
 		$(window).ready(function(){
 			let currDepth=${currDepth};
@@ -91,6 +117,8 @@
 				$(depth2Id).css("color", "gray");
 				console.log(depth2Id);
 			}
+			
+			insertImgChip();
 		})
 		
 	</script>
