@@ -1,18 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css" />
-<%--구현 후 jstl 삭제하기--%>
-
 <%@ page contentType="text/html; charset=UTF-8"%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/category.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font/home.css" />
 </head>
 <body>
-
 
 	<%-- headerWrap 시작 --%>
 	<div id="headerWrap">
@@ -148,34 +138,17 @@
 
 						//아무 하위 카테고리도 띄워져있지 않은 경우
 						if (depth1 === "KIDS") {
-							if ($('#KIDSCategory').css('display') === 'none') {
-								$('#KIDSCategory').css("display", "block");
-							} else {
-								$('#KIDSCategory').css("display", "none");
-							}
+							$('#KIDSCategory').css("display", "block");
 						} else if (depth1 === "LIFESTYLE") {
-							if ($('#WOMENCategory').css("display") === "none") {
-								$('#LIFESTYLECategory').css("display", "block");
-							} else {
-								$('#LIFESTYLECategory').css("display", "none");
-							}
+							$('#LIFESTYLECategory').css("display", "block");
 						} else if (depth1 === "WOMEN") {
-							if ($('#WOMENCategory').css("display") === "none") {
-								$('#WOMENCategory').css("display", "block");
-							} else {
-								$('#WOMENCategory').css("display", "none");
-							}
+							$('#WOMENCategory').css("display", "block");
 						} else if (depth1 === "MEN") {
-							if ($('#MENCategory').css("display") === "none") {
-								$('#MENCategory').css("display", "block");
-							} else {
-								$('#MENCategory').css("display", "none");
-							}
+							$('#MENCategory').css("display", "block");
 						}
 					}
 
 					//카테고리1 더블클릭 처리
-					//encoding Test :  > LONG/MAXI SKIRT
 					function cat1DoubleClick(cat1) {
 						let depth1 = $(cat1).text();
 						location.href = '${pageContext.request.contextPath}/product/' + depth1;
@@ -214,7 +187,6 @@
 			</div>
 
 			<%-- 카테고리2,3 시작 --%>
-			<%-- dropDown Menu start --%>
 			<%-- KIDS 카테고리 --%>
 			<div id="KIDSCategory" class="drop_down_menu" style="display: none;">
 				<ul class="list-group list-group-horizontal drop_down_inner">
@@ -599,7 +571,6 @@
 					</li>
 				</ul>
 			</div>
-			<%-- dropDown Menu end --%>
 			<%-- 카테고리2,3 끝 --%>
 			<script>
 				//cat2 클릭시 이동
