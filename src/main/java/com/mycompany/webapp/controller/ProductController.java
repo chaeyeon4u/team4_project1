@@ -111,18 +111,24 @@ public class ProductController {
 		return "product/colors";
 	}
 	
-	//장바구니에 데이터 삽입
+	//장바구니에 데이터 삽입 
+	//상품상세페이지에서 장바구니로 데이터 넘기기
 	@PostMapping("/cart")
-	public String insertCart(@PathVariable String pStockId, Principal principal, Cart cart) {
-		//임의 데이터 SETTING
-		cart.setMemberId(principal.getName());
+	public String insertCart(Product product, Principal principal, Cart cart, Model model) {
+		//장바구니에 상품 담기
+		String mid = principal.getName();
+		String pStockId = product.getProductStock().getId();
+		cart.setMemberId(mid);
 		cart.setProductStockId(pStockId);
-		cart.setQuantity(4);
+		cart.setQuantity(cart.getQuantity());
+		int cartItems = cartService.insertCart(cart);
+		model.addAttribute("cartItems", cartItems);
 		
-		//cart.setMemberId(principal.getName());
-		//cart.setProductStockId(pStockId);
-		//cart.setQuantity(cart.getQuantity());
-		int cartResult = cartService.insertCart(cart);
-		return "/";
+		//상품상세페이지에서 장바구니로 데이터 넘기기
+		//장바구니 리스트 받아오기
+		List<com.mycompany.webapp.dto.Product> cartProducts = cartService.getList(mid);
+		model.addAttribute("product",cartProducts);
+		
+		return "cart/cartList";
 	}
 }

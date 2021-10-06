@@ -79,7 +79,6 @@
 	</div>
 
 	<script>
-	
 	 	function insertImgChip(){
 			for(let i=1; i<= ${mycount}; i++){
 				var temp = "#productComId"+i;
@@ -115,7 +114,6 @@
 				depth2 = depth2.replace(".", "");
 				let depth2Id = CategoryNameId + " #"+depth2;
 				$(depth2Id).css("color", "gray");
-				console.log(depth2Id);
 			}
 			
 			insertImgChip();
