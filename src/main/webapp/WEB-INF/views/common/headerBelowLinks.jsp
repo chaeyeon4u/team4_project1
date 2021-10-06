@@ -100,19 +100,27 @@
 						function dropBtnMouseover(cat){
 					        	  $(cat).css("color","gray");
 					        	  let depth1 = $(cat).text();
-					        	  
-					        	  let kidC = true;
-					        	  let lifeC = true;
-					        	  let womenC = true;
-					        	  let menC = true;
-					        	  
+					        	  					        	  
 					        	  //카테고리가 띄워져 있을 경우 제거
 					        	  //보이지 않을경우 
 					        	  //클릭한 요소가 본인일 경우 카테고리 사라지게
-					        	  if($('#KIDSCategory').css('display')==='block'){$('#KIDSCategory').css("display", "none"); $('#KIDS').css("color","black"); if(depth1 === "KIDS"){return;}}
-					        	  if($('#LIFESTYLECategory').css('display')==='block'){$('#LIFESTYLECategory').css("display", "none"); $('#LIFESTYLE').css("color","black"); if(depth1 === "LIFESTYLE"){return;}}
-					        	  if($('#WOMENCategory').css('display')==='block'){$('#WOMENCategory').css("display", "none"); $('#WOMEN').css("color","black"); if(depth1 === "WOMEN"){return;}}
-					        	  if($('#MENCategory').css('display')==='block'){$('#MENCategory').css("display", "none"); $('#MEN').css("color","black"); if(depth1 === "MEN"){return;}}
+					        	  if($('#KIDSCategory').css('display')==='block'){
+					        		  $('#KIDSCategory').css("display", "none"); 
+					        		  $('#KIDS').css("color","black"); 
+					        		  if(depth1 === "KIDS"){return;}
+					        	  }else if($('#LIFESTYLECategory').css('display')==='block'){
+					        		  $('#LIFESTYLECategory').css("display", "none"); 
+					        		  $('#LIFESTYLE').css("color","black"); 
+					        		  if(depth1 === "LIFESTYLE"){return;}
+					        	  }else if($('#WOMENCategory').css('display')==='block'){
+					        		  $('#WOMENCategory').css("display", "none"); 
+					        		  $('#WOMEN').css("color","black"); 
+					        		  if(depth1 === "WOMEN"){return;}
+					        	  }else if($('#MENCategory').css('display')==='block'){
+					        		  $('#MENCategory').css("display", "none"); 
+					        		  $('#MEN').css("color","black"); 
+					        		  if(depth1 === "MEN"){return;}
+					        	  }
 					        	  
 					        	  
 					        	  //아무 하위 카테고리도 띄워져있지 않은 경우
@@ -148,11 +156,6 @@
 						function cat1DoubleClick(cat1){
 							let depth1 = $(cat1).text();
 							location.href = '${pageContext.request.contextPath}/product/'+depth1;
-							
-							//SLASH TEST
-							//let depth3 = encodeURIComponent('LONG-MAXI SKIRT');
-							//let loc = '${pageContext.request.contextPath}/product/WOMEN'+depth3;
-							//location.href = '${pageContext.request.contextPath}/product/WOMEN/'+depth3;
 						}
 				         </script>
 
@@ -181,18 +184,17 @@
 				
 				<%-- 카테고리2,3 시작 --%>
 				<%-- dropDown Menu start --%>
-	           	<%-- <div class="" style="display: none;"> --%>
 	           	<%-- KIDS 카테고리 --%>
 	           	<div id="KIDSCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list d2_clothing"><strong><a id="CLOTHING" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING">CLOTHING</a></strong>
+		                <li class="drop_down_list d2_clothing"><strong><a id="CLOTHING" onclick="cat2Click(this)">CLOTHING</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING/TOP">TOP</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/CLOTHING/BOTTOM">BOTTOM</a></li>
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="KIDSACC" href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC.">KIDS ACC.</a></strong>
+		                <li class="drop_down_list"><strong><a id="KIDSACC" onclick="cat2Click(this)">KIDS ACC.</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/KIDS/KIDS ACC./OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
 		                       </ul>
@@ -203,7 +205,7 @@
 	           <%-- LIFESTYLE 카테고리 --%>
 	           	<div id="LIFESTYLECategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a id="HOME" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME">HOME</a></strong>
+		                <li class="drop_down_list"><strong><a id="HOME" onclick="cat2Click(this)">HOME</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME/FABRIC">FABRIC</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/HOME/OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
@@ -211,7 +213,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="BATH" href="${pageContext.request.contextPath}/product/LIFESTYLE/BATH">BATH</a></strong>
+		                <li class="drop_down_list"><strong><a id="BATH" onclick="cat2Click(this)">BATH</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/LIFESTYLE/BATH/OTHER ACCESSORIES">OTHER ACCESSORIES</a></li>
 		                       </ul>
@@ -222,7 +224,7 @@
 	           	<%-- WOMEN 카테고리 --%>
 	           	<div id="WOMENCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a id="PANTS" href="${pageContext.request.contextPath}/product/WOMEN/PANTS">PANTS</a></strong>
+		                <li class="drop_down_list"><strong><a id="PANTS" onclick="cat2Click(this)">PANTS</a></strong>
 		                       <ul class="depth3_wrap">
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/PANTS/SHORTS">SHORTS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/PANTS/CASUAL">CASUAL</a></li>
@@ -231,7 +233,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="SKIRT" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT">SKIRT</a></strong>
+		                <li class="drop_down_list"><strong><a id="SKIRT" onclick="cat2Click(this)">SKIRT</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/MINI SKIRT" >MINI SKIRT</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/PENCIL SKIRT" >PENCIL SKIRT</a></li>
@@ -240,7 +242,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="FASHIONACC" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC.">FASHION ACC.</a></strong>
+		                <li class="drop_down_list"><strong><a id="FASHIONACC" onclick="cat2Click(this)">FASHION ACC.</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./BAGS">BAGS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/FASHION ACC./ETC">ETC</a></li>
@@ -248,7 +250,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="DRESS" href="${pageContext.request.contextPath}/product/WOMEN/DRESS">DRESS</a></strong>
+		                <li class="drop_down_list"><strong><a id="DRESS" onclick="cat2Click(this)">DRESS</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/DRESS/MINI DRESS">MINI DRESS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/DRESS/MIDI DRESS">MIDI DRESS</a></li>
@@ -256,7 +258,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="Top" href="${pageContext.request.contextPath}/product/WOMEN/Top">Top</a></strong>
+		                <li class="drop_down_list"><strong><a id="Top" onclick="cat2Click(this)">Top</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/Top/Blouse">Blouse</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/Top/T-Shirts">T-Shirts</a></li>
@@ -265,7 +267,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="OUTER" href="${pageContext.request.contextPath}/product/WOMEN/OUTER">OUTER</a></strong>
+		                <li class="drop_down_list"><strong><a id="OUTER" onclick="cat2Click(this)">OUTER</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/OUTER/JUMPER">JUMPER</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/OUTER/Cardigan%20Vest">Cardigan/Vest</a></li>
@@ -276,7 +278,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" onclick="cat2Click(this)">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SPECIAL SHOP/LANVIN COLLECTION : IT. 1">LANVIN COLLECTION : IT. 1</a></li>
@@ -308,7 +310,7 @@
 	           <%-- MEN 카테고리 --%>
 	           	<div id="MENCategory" class="drop_down_menu" style="display:none;">	           	   
 	               <ul class="list-group list-group-horizontal drop_down_inner">                        
-		                <li class="drop_down_list"><strong><a id="TOP" href="${pageContext.request.contextPath}/product/MEN/TOP">TOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="TOP" onclick="cat2Click(this)">TOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/TOP/KNIT">KNIT</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/TOP/SHIRTS">SHIRTS</a></li>
@@ -316,7 +318,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="PANTS" href="${pageContext.request.contextPath}/product/MEN/PANTS">PANTS</a></strong>
+		                <li class="drop_down_list"><strong><a id="PANTS" onclick="cat2Click(this)">PANTS</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/PANTS/쇼츠" >쇼츠</a></li>
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/PANTS/루즈%20테이퍼드" >루즈/테이퍼드</a></li>
@@ -326,7 +328,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="Suit" href="${pageContext.request.contextPath}/product/MEN/Suit">Suit</a></strong>
+		                <li class="drop_down_list"><strong><a id="Suit" onclick="cat2Click(this)">Suit</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/Suit/SUIT PANTS">SUIT PANTS</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/Suit/DRESS SHIRTS">DRESS SHIRTS</a></li>
@@ -334,7 +336,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="OUTER" href="${pageContext.request.contextPath}/product/MEN/OUTER">OUTER</a></strong>
+		                <li class="drop_down_list"><strong><a id="OUTER" onclick="cat2Click(this)">OUTER</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/OUTER/JUMPER">JUMPER</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/OUTER/JACKET">JACKET</a></li>
@@ -345,7 +347,7 @@
 		                       </ul>
 		                </li>
 		                
-		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP">SPECIAL SHOP</a></strong>
+		                <li class="drop_down_list"><strong><a id="SPECIALSHOP" onclick="cat2Click(this)">SPECIAL SHOP</a></strong>
 		                       <ul class="depth3_wrap">
 				                 	<li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/SYSTEM HOMME : TYPE 2">SYSTEM HOMME : TYPE 2</a></li>
 				                    <li class="depth3_element"><a class="depth3" href="${pageContext.request.contextPath}/product/MEN/SPECIAL SHOP/TIME HOMME : ONLINE EXCLUSIVE">TIME HOMME : ONLINE EXCLUSIVE</a></li>
@@ -360,9 +362,19 @@
 		                </li>
 	               </ul>
 	           </div>
-	           
 	          <%-- dropDown Menu end --%>
 	          <%-- 카테고리2,3 끝 --%>
+	          <script>
+	          		//cat2 클릭시 이동
+	          		function cat2Click(cat2){
+	          			let depth1 = $(cat2).parents("div").attr("id");
+	          			depth1 = depth1.replace("Category","");
+	          			let depth2 = $(cat2).text();
+	          			let loc = "${pageContext.request.contextPath}/product/"+depth1+"/"+depth2;
+	          			loc = encodeURI(loc);
+	          			location.href=loc;
+	          		}
+	          </script>
 		    </div>
 		</div>
 		<%-- headerWrap 끝 --%>
