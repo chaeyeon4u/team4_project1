@@ -34,7 +34,7 @@
 										</p>
 										<!-- 가격-->
 										<p>
-											<div class="fw-bolder mb-1 price">${product.productColor.price}</div>
+											<div class="fw-bolder mb-1 price">₩ ${product.productColor.price}</div>
 										</p>
 									
 										<p>

@@ -69,7 +69,7 @@
 	<select id="selectColorsByPcommonId" parameterType="String" resultType="com.mycompany.webapp.dto.Color">
 		select distinct color_code, color_img
 			from product_common, product_color, product_stock
-			where product_common.id = #{pcommonId}
+			where product_common.id = #{pcommonId, jdbcType=VARCHAR}
 			and product_color.product_common_id = product_common.id
 			and product_stock.product_color_id = product_color.id
 	</select>
