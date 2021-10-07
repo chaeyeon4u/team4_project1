@@ -61,6 +61,7 @@ public class OrderController {
 			mileageSum += mileage.getAmount();
 		}
 		
+		logger.info("orderContent" + orderContent);
 		List<CartProduct> cartProducts = new ArrayList<CartProduct>();
 		JSONObject jsonObject = new JSONObject(orderContent);
 		JSONArray products = jsonObject.getJSONArray("products");

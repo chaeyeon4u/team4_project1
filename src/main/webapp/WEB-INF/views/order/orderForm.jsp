@@ -421,7 +421,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					</div>
 				</div>
 				<span id="doOrderBtn"> 
-					<a href="javascript:order();" class="btn gray ">결제하기</a>
+				<!-- ** 폼의 요청 경로와 같은 경로로 href 주면 안됩니다. form의 action을 통해서만 페이지를 전환해야 합니다. -->
+					<a href="javascript:void(0)" onclick='order()' class="btn gray">결제하기</a>
 				</span>
 				<div>
 					<form id="orderform" method="post" action="${pageContext.request.contextPath}/order/ordercomplete">
@@ -440,7 +441,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						<input type="hidden" name="deliveryStatus" value="준비중"></input>
 						<input type="hidden" name="memberId" value="${member.id}"></input>
 						<input type="hidden" name="paymentMethodCode" value=""></input>
-						<input type="hidden" name="orderContent" value="${orderContent}"></input>
+						<input type="hidden" name="orderContent" value=""></input>
 					</form>
 				</div>
 			</div>
@@ -453,33 +454,35 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 <script>
 		
 		function order(){
-			var Elems = $("input[name=hidden_pcolorId]");
-			var productList = [];
-			Elems.each(function(){
-				var row = $($(this).closet("div"));
-		
-			});
+			// 데이터는 잘 가져옵니다
+			console.log("orderContent = ", ${orderContent});
+			// typeof라는 함수가 있더라구요 ! 해당 값의 타입을 확인해보면 object 타입으로 출력됩니다.
+			console.log("orderContentType = ", typeof ${orderContent});
 			
+			// JSON.stringify를 해야 비로소 String 타입으로 변환됩니다.
+			console.log("isString? = ", typeof JSON.stringify(${orderContent}));
 			
-			$('input[name=zipcode]').attr('value',$("#adress").val());
-			$('input[name=address]').attr('value',$("#line1").val()+' '+$("#line2").val());
-			$('input[name=receiver]').attr('value',$("#rcpt_name").val());
-			$('input[name=phone]').attr('value',$("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val());
-			$('input[name=tel]').attr('value',$("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val());
-			$('input[name=memo]').attr('value',$("#orderr").val());
-			$('input[name=email]').attr('value',$("#mail").val()+'@'+$("#emailDely").val());
-			$('input[name=usedMileage]').attr('value',$("#pointpay").val());
-			$('input[name=beforeDcPrice]').attr('value',${totalPrice});
-			$('input[name=afterDcPrice]').attr('value',${totalPrice}-$("#pointpay").val());
-			
+			// 'attr("value", ~)'를 val()로 바꿔쓰면 좀 더 코드가 짧아져서 바꿔놨습니다.
+			$("input[name=zipcode]").val($("#adress").val());
+			$("input[name=address]").val($("#line1").val()+' '+$("#line2").val());
+			$("input[name=receiver]").val($("#rcpt_name").val());
+			$("input[name=phone]").val($("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val());
+			$("input[name=tel]").val($("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val());
+			$("input[name=memo]").val($("#orderr").val());
+			$("input[name=email]").val($("#mail").val()+'@'+$("#emailDely").val());
+			$("input[name=usedMileage]").val($("#pointpay").val());
+			$("input[name=beforeDcPrice]").val(${totalPrice});
+			$("input[name=afterDcPrice]").val(${totalPrice}-$("#pointpay").val());
+			$("input[name='orderContent']").val(JSON.stringify(${orderContent}));
 			if($("input[name='mode']:checked").val() == 0 || $("input[name='mode']:checked").val() == 1){
-				$('input[name=paymentMethodCode]').attr('value',$("input[name='mode']:checked").val()+$("select[name=company]").val());
+				$('input[name=paymentMethodCode]').val($("input[name='mode']:checked").val()+$("select[name=company]").val());
 			}
 			
 			var ordform = $("#orderform");
-			/*
+			
 			ordform.submit();
-			*/
+			// 나머지는 바꾼 부분 없어요... 현유님이 다 하신거예요.
+			// 결제하기 버튼 주석 못보셨으면 확인하고 오세요 ! a태그 부분이요 ! 고생 많으셨습니다 
 		}
 		
 		
