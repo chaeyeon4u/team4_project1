@@ -9,12 +9,10 @@
 	
 		<%-- 상단 중앙 페이지 제목--%>
 		<h3 class="cnts_title">
-			<span id="menuTitle">주문/취소</span>
+			<span id="menuTitle">주문/취소/배송</span>
 		</h3>
 		
-		
 		<div class="sub_container">
-
 			<%-- 마이페이지 왼쪽 네비게이션바 시작--%>
 			<div class="lnb_wrap">
 				<h4>
@@ -25,7 +23,7 @@
 		<%-- 마이페이지 분류1--%>
 						<dt>주문조회</dt>
 						<dd>
-							<a href="/">주문/취소</a>
+							<a href="${pageContext.request.contextPath}/member/orderlist">주문/취소</a>
 						</dd>
 					</dl>
 					<dl>
@@ -92,9 +90,7 @@
 			<%-- 마이페이지 왼쪽 네비게이션바 끝--%>
 			
 			
-			<!-- cnts -->
 			<div class="sub_cnts">				
-				<!-- //search1 -->		
 				<div class="title_wrap mt50">
 					<h4>
 						상품 주문 목록
@@ -119,7 +115,6 @@
 								<th scope="col">주문번호<!-- 주문번호 --></th>
 								<th scope="col">상품정보<!-- 상품정보 --></th>
 								<th scope="col" style="padding: 15px 0">수량<!-- 수량 --></th>
-								<!-- 스타일추가 181204 -->
 								<th scope="col">판매가<!-- 판매가 --></th>
 								<th scope="col">주문상태<!-- 주문상태 --></th>
 								<th scope="col">배송상태<!-- 배송상태 --></th>
@@ -140,10 +135,10 @@
 										<a href="cart/set/${orderx.productCommon.id}">
 										<!-- 상품 이미지 -->
 										<img src="${orderx.productColor.img1}"
-										"${pageContext.request.contextPath}/resources/images/womanouter/CS2B9QJC005WCJ_BK_T01.jpg"
+										"${pageContext.request.contextPath}/${orderx.productColor.img1}"
 											alt="상품 이미지"></a>
 										<div class="tlt_wrap">
-											<a href="/ko/p/O22B9ROT502W_CR_76" class="basket_tlt">
+											<a href="/cart/set/${orderx.productColor.img1}" class="basket_tlt">
 				<%-- 브랜드명 자리--%>
 												<span class="tlt">${orderx.brand.name}</span> 
 				<%-- 상품명 자리--%>
@@ -164,8 +159,13 @@
 								<td>${orderx.orders.status}<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span></td>
 								<!--배송 싱테 --> 
 								<td class="delivery">${orderx.orders.deliveryStatus}</td>
-								<td rowspan="1"><div class="btn_wrap">
-										<a href="/" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
+								<td rowspan="1">
+								<div class="btn_wrap">
+									<form method="post" action="/order/delete" name="hidden_field">
+										<input type="hidden" name="hidden_ordersId" value="${orderx.orders.id}" />
+										<input type="hidden" name="hidden_pstockId" value="${orderx.orderItem.productStockId}" />
+									<button href="/" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</button>
+									</form>	
 									</div>
 								</td>
 							</tr>
@@ -236,12 +236,9 @@
 						</ol>
 					</div>
 				</div>
-				
 			</div>
-			<!-- //cnts -->
 		</div>
 	</div>
-
 </body>
 
 
