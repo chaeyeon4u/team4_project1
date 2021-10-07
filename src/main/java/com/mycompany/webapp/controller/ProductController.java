@@ -18,6 +18,7 @@ import com.mycompany.webapp.dto.Cart;
 import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.ProductToCart;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
@@ -114,13 +115,28 @@ public class ProductController {
 	//장바구니에 데이터 삽입 
 	//상품상세페이지에서 장바구니로 데이터 넘기기
 	@PostMapping("/cart")
-	public String insertCart(Product product, Principal principal, Cart cart, Model model) {
+	public String insertCart(ProductToCart product, Principal principal, Model model) {
 		//장바구니에 상품 담기
 		String mid = principal.getName();
-		String pStockId = product.getProductStock().getId();
+		String pStockId = product.getProductStockId();
+		Cart cart = new Cart();
 		cart.setMemberId(mid);
 		cart.setProductStockId(pStockId);
-		cart.setQuantity(cart.getQuantity());
+		cart.setQuantity(product.getQuantity());
+		
+		logger.info("실행");
+		logger.info(product.getProductStockId());
+		logger.info(product.getSizeCode());
+		logger.info(product.getProductColorId());
+		logger.info(product.getImg1());
+		logger.info(product.getImg2());
+		logger.info(product.getImg3());
+		logger.info(product.getQuantity()+"");
+		logger.info(product.getProductCommonId());
+		logger.info(product.getColorCode());
+		logger.info(product.getPrice()+"");
+		logger.info(product.getName());
+		logger.info(product.getBrandName());
 		int cartItems = cartService.insertCart(cart);
 		model.addAttribute("cartItems", cartItems);
 		
@@ -129,6 +145,6 @@ public class ProductController {
 		List<com.mycompany.webapp.dto.Product> cartProducts = cartService.getList(mid);
 		model.addAttribute("product",cartProducts);
 		
-		return "cart/cartList";
+		return "redirect:/cart";
 	}
 }
