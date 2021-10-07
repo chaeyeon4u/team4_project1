@@ -112,7 +112,10 @@ int initPrice = p.getProductColor().getPrice();
 							</h4>
 
 							<p class="price">
-								<span>${product.productColor.price}</span>
+								<span>
+									₩
+									<fmt:formatNumber type="number" maxFractionDigits="3" value="${product.productColor.price}" />
+								</span>
 							</p>
 							<div class="prod-detail-con-box">
 								<strong class="number-code">
@@ -207,7 +210,7 @@ int initPrice = p.getProductColor().getPrice();
 								<!-- <input id="hiddenSize" name="hiddenSize" type="hidden"/>
 								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/> -->
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 끝 -->
-								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="addToCart(this)">
+								<input type="submit" value="장바구니 담기" class="cartbtn" id="addToCartButton" onclick="addToCart(this)">
 								<%-- <input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';"> --%>
 								<!-- csrf 토큰 -->
 								<div>
@@ -240,27 +243,11 @@ int initPrice = p.getProductColor().getPrice();
 											<span class="info_wrap item_info2">
 												<span class="brand BR35">${withItem.brand.name}</span>
 												<span class="title">${withItem.productCommon.name}</span>
-												<span class="price">${withItem.productColor.price}</span>
+												<span class="price">
+													₩
+													<fmt:formatNumber type="number" maxFractionDigits="3" value="${withItem.productColor.price}" />
+												</span>
 											</span>
-
-											<!-- 컬러칩 -->
-											<div class="we-codi-colorchip">
-												<ul class="color_chip clearfix">
-													<li id="chipbtn_YN2B8KCD922W_BK">
-														<!-- <input type="hidden" class="colorNameVal" value="BLACK"> -->
-														<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_BK');" class="beige" style="background: #000000 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_BK_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('BLACK');" onmouseout="setColorName('');"></a>
-													</li>
-													<li id="chipbtn_YN2B8KCD922W_MP">
-														<input type="hidden" class="colorNameVal" value="SMOKE PINK">
-														<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_MP');" class="beige" style="background: #d29692 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_MP_C01.jpg/dims/resize/24x24')" onmouseover="setColorName('SMOKE PINK');" onmouseout="setColorName('');"></a>
-													</li>
-													<input type="hidden" id="colorName" value="YELLOW GREEN">
-													<li id="chipbtn_YN2B8KCD922W_YN">
-														<input type="hidden" class="colorNameVal" value="YELLOW GREEN">
-														<a href="#;" onclick="chngColorChip(this, 'YN2B8KCD922W_YN','YN2B8KCD922W_YN');" class="beige on" style="background: #d5b966 url('http://newmedia.thehandsome.com/YN/2B/FW/YN2B8KCD922W_YN_C01.jpg/dims/resize/24x24')"></a>
-													</li>
-												</ul>
-											</div>
 										</li>
 
 									</c:forEach>
