@@ -115,35 +115,21 @@ public class ProductController {
 	//장바구니에 데이터 삽입 
 	//상품상세페이지에서 장바구니로 데이터 넘기기
 	@PostMapping("/cart")
-	public String insertCart(ProductToCart product, Principal principal, Model model) {
+	public String insertCart(ProductToCart productToCart, Principal principal, Model model) {
 		//장바구니에 상품 담기
 		String mid = principal.getName();
-		String pStockId = product.getProductStockId();
-		Cart cart = new Cart();
+		String pStockId = productToCart.getProductStockId();
+		com.mycompany.webapp.vo.Cart cart = new com.mycompany.webapp.vo.Cart();
 		cart.setMemberId(mid);
 		cart.setProductStockId(pStockId);
-		cart.setQuantity(product.getQuantity());
+		cart.setQuantity(productToCart.getQuantity());
 		
-		logger.info("실행");
-		logger.info(product.getProductStockId());
-		logger.info(product.getSizeCode());
-		logger.info(product.getProductColorId());
-		logger.info(product.getImg1());
-		logger.info(product.getImg2());
-		logger.info(product.getImg3());
-		logger.info(product.getQuantity()+"");
-		logger.info(product.getProductCommonId());
-		logger.info(product.getColorCode());
-		logger.info(product.getPrice()+"");
-		logger.info(product.getName());
-		logger.info(product.getBrandName());
 		int cartItems = cartService.insertCart(cart);
-		model.addAttribute("cartItems", cartItems);
 		
-		//상품상세페이지에서 장바구니로 데이터 넘기기
-		//장바구니 리스트 받아오기
-		List<com.mycompany.webapp.dto.Product> cartProducts = cartService.getList(mid);
-		model.addAttribute("product",cartProducts);
+		/*
+		 * List<com.mycompany.webapp.dto.Product> cartProducts =
+		 * cartService.getList(mid); model.addAttribute("cartItems",cartProducts);
+		 */
 		
 		return "redirect:/cart";
 	}
