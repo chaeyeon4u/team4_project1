@@ -74,11 +74,16 @@
 	</select>
 	<!-- 상품의 사이즈 리스트 출력하기 -->
 	<select id="selectSizesByPcommonId" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
-		select distinct size_code
-			from product_common, product_color, product_stock
-			where product_common.id = #{pcommonId}
-			and product_color.product_common_id = product_common.id
-			and product_stock.product_color_id = product_color.id
+		select size_code 
+		from (
+			select distinct sizes.no, size_code
+				from product_common, SIZES, product_color, product_stock
+				where product_common.id = #{pcommonId}
+				and product_color.product_common_id = product_common.id
+				and product_stock.product_color_id = product_color.id
+				and sizes.code = product_stock.size_code
+				order by sizes.no
+		)
 	</select>
 	
 	<!-- 카트 수량 업데이트하기 -->
