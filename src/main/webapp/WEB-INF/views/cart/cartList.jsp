@@ -134,13 +134,13 @@
 														<input type="hidden" name="size" class="size_option" value="${product.productStock.sizeCode}" />
 														<%--// 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
 														<dl class="cs_wrap">
-															<dt>COLOR</dt>
-															<dd>
+															<dt style="font-size: 18px;">COLOR</dt>
+															<dd class="color_wrap">
 																<div id="select_color${status.count}" class="cl_select">
 																	<%-- color.jsp fragment가 들어가는 부분 --%>
 																</div>
 															</dd>
-															<dt>SIZE</dt>
+															<dt style="font-size: 18px;">SIZE</dt>
 															<dd style="width: 90%; height: 100%;">
 																<div id="select_size${status.count}" class="sz_select">
 																	<%-- size.jsp fragment가 들어가는 부분--%>
@@ -183,14 +183,14 @@
 							<span id="cartDataDeliveryCost">₩0</span>
 						</dd>
 					</dl>
-					<dl class="total ">
-						<dt>합계</dt>
+					<dl class="total">
+						<dt style="display: inline;">합계</dt>
 						<dd>
 							<span id="cartDataTotalPrice">₩0</span>
 						</dd>
 					</dl>
 				</div>
-				<div class="total_count1807">
+				<div class="total_count_cart">
 					<p>
 						총
 						<span id="selectProductCount">0</span>
@@ -205,13 +205,13 @@
 		<!--button wrap-->
 		<div class="btnwrap order" id="checkout_btn_wrap">
 
-			<input value="선택상품삭제" class="btn wt" type="button" />
+			<input value="선택상품삭제" class="btn wt delBtn" type="button" />
 
 			<input type="hidden" id="finalPrice" name="data" />
 
 			<form id="orderForm" method="post" action="/order/orderform">
 				<input type="hidden" id="orderContent" name="orderContent" />
-				<input type="button" onclick="makeOrder()" value="선택상품 주문하기" class="btn gray mr0">
+				<input type="button" onclick="makeOrder()" value="선택상품 주문하기" class="btn gray mr0 orderBtn">
 			</form>
 		</div>
 	</div>
