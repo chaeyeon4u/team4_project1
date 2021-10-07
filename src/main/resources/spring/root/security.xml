@@ -37,7 +37,8 @@
 		<!--리디렉션 오류남 -->
 <!-- 		<security:intercept-url pattern="/**" access="isAuthenticated()"/>  -->
 
-		<security:intercept-url pattern="/cart" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/cart/**" access="hasRole('ROLE_USER')"/>
+		<security:intercept-url pattern="/order/**" access="hasRole('ROLE_USER')"/>
 		<security:intercept-url pattern="/**" access="permitAll"/>
 		
 		<!-- 권한 없음일 경우 보여줄 페이지 설정 -->
