@@ -166,7 +166,7 @@ public class OrderController {
         cal.add(Calendar.YEAR, 1);
         mileage.setExpireDate(cal.getTime());
 		mileage.setName("마일리지사용");
-		mileage.setStatus("사용완료");
+		mileage.setStatus("0");
 		int resultOfMileage = mileageService.useMileage(mileage);
 		
 		
