@@ -81,9 +81,9 @@
 
 					<ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float: right;">
 						<li>
-							<a href="" class="">기타1</a>
+							<a href="" class="">이벤트</a>
 						</li>
-						<li>
+<!-- 						<li>
 							<a href="" class="">기타2</a>
 						</li>
 						<li>
@@ -97,7 +97,7 @@
 						</li>
 						<li>
 							<a href="" class="">기타6</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				<!-- category end -->
@@ -154,8 +154,8 @@
 						location.href = '${pageContext.request.contextPath}/product/' + depth1;
 					}
 				</script>
-
-				<div class="util_menu util_menu1803">
+				<%-- 검색, 위시리스트, 장바구니 아이콘 --%>
+				<%-- <div class="util_menu util_menu1803">
 					<ul class="clearfix">
 						<li>
 							<a href="">
@@ -183,7 +183,7 @@
 							</a>
 						</li>
 					</ul>
-				</div>
+				</div> --%>
 			</div>
 
 			<%-- 카테고리2,3 시작 --%>
