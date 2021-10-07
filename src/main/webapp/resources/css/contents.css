@@ -361,7 +361,7 @@ footer contents
  Service Error
 ****************************************************/
 .errorwrap{width:834px; margin:105px auto 70px;}
-.errorwrap .top_error{width:100%; border-bottom:1px solid #414141;}
+.errorwrap .top_error{width:100%;border-bottom:1px solid #414141;display: flex;flex-direction: row-reverse;}
 .errorwrap .top_error:before, .errorwrap .top_error:after{content:""; display:block; clear:both;}
 .errorwrap .top_error h1.logo{float:left; width:220px;height:40px;display: block;text-align:center;background:url("/_ui/desktop/common/images/common/logo_gnb.png") 0 0px no-repeat;text-indent: -999em}
 .errorwrap .top_error a{display:inline-block; float:right; color:#444; font-size:17px; text-decoration:underline; margin:10px 0 0 15px;font-weight:bold;}
@@ -959,7 +959,6 @@ footer contents
 .select_month_wrap{border-bottom:1px solid #ebebeb;padding-bottom:20px;max-width:1114px;margin:0 auto;text-align:right;}
 .select_month_wrap div{display:inline-block;text-align:right;padding:0 10px;}
 .select_month_wrap div ul{border:1px solid #e3e3e3;padding:10px;position:absolute;z-index: 2;background:#fff;display:none;}
-.select_month_wrap div .select{display:block;padding:0 18px 5px 0;color:#36363; font-size:15px; font-weight:bold; background:url('/_ui/desktop/common/images/common/noti_controls.png') right -8px no-repeat;}
 .month_tlt{position:relative;margin-bottom:35px;}
 .month_tlt h4{background:#fff; padding:5px 15px;text-align:center;font-weight:bold;font-size:20px;position:absolute;z-index: 1;left:50%;margin-left:-67.5px;top:-15px;}
 /*2017-05-11 로그인*/
@@ -2247,23 +2246,7 @@ strong.enir_tit{ display:block; text-align:center; font-family:'Apple SD Gothic 
 .snow3{opacity:0; left: 0; position: absolute; top: 0; z-index: 1; animation: snow3 12s linear infinite; -webkit-animation: snow3 12s linear infinite; -moz-animation: snow3 12s linear infinite; -ms-animation: snow3 12s linear infinite;}
 .snow4{opacity:0; right: 0; position: absolute; top: 0; z-index: 1; animation: snow4 12s linear infinite; -webkit-animation: snow4 12s linear infinite; -moz-animation: snow4 12s linear infinite; -ms-animation: snow4 12s linear infinite;}
 .snow5{opacity:0; left: 0; position: absolute; top: 0; z-index: 1; animation: snow1 12s linear infinite; -webkit-animation: snow1 12s linear infinite; -moz-animation: snow1 12s linear infinite; -ms-animation: snow1 12s linear infinite;}
-.snow_area_1 .snow1, .snow_area_1 .snow2, .snow_area_1 .snow3, .snow_area_1 .snow4, .snow_area_1 .snow5{margin-top:380px;}
-@keyframes snow1 {0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:500px} 50% {opacity:1; left:150px; top:1500px} 75% {opacity:1; left:200px; top:2000px} 100% {opacity:1; left:100px; top:2500px}}
-@-moz-keyframes snow1 {0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:500px} 50% {opacity:1; left:150px; top:1500px} 75% {opacity:1; left:200px; top:2000px} 100% {opacity:1; left:100px; top:2500px}}
-@-webkit-keyframes snow1 {0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:500px} 50% {opacity:1; left:150px; top:1500px} 75% {opacity:1; left:200px; top:2000px} 100% {opacity:1; left:100px; top:2500px}}
-@-ms-keyframes snow1 { 0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:500px} 50% {opacity:1; left:150px; top:1500px} 75% {opacity:1; left:200px; top:2000px} 100% {opacity:1; left:100px; top:2500px}}
-@keyframes snow2 { 0% {opacity:1; right:200px; top:0px} 25% {opacity:1; right:300px; top:500px} 50% {opacity:1; right:150px; top:1500px} 75% {opacity:1; right:200px; top:2000px} 100% {opacity:1; right:100px; top:2500px}}
-@-moz-keyframes snow2 { 0% {opacity:1; right:200px; top:0px} 25% {opacity:1; right:300px; top:500px} 50% {opacity:1; right:150px; top:1500px} 75% {opacity:1; right:200px; top:2000px} 100% {opacity:1; right:100px; top:2500px}}
-@-webkit-keyframes snow2 { 0% {opacity:1; right:200px; top:0px} 25% {opacity:1; right:300px; top:500px} 50% {opacity:1; right:150px; top:1500px} 75% {opacity:1; right:200px; top:2000px} 100% {opacity:1; right:100px; top:2500px}}
-@-ms-keyframes snow2 { 0% {opacity:1; right:200px; top:0px} 25% {opacity:1; right:300px; top:500px} 50% {opacity:1; right:150px; top:1500px} 75% {opacity:1; right:200px; top:2000px} 100% {opacity:1; right:100px; top:2500px}}
-ames snow3 { 0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:600px} 50% {opacity:1; left:150px; top:1600px} 75% {opacity:1; left:200px; top:2100px} 100% {opacity:1; left:100px; top:2500px}}
-@-moz-keyframes snow3 { 0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:600px} 50% {opacity:1; left:150px; top:1600px} 75% {opacity:1; left:200px; top:2100px} 100% {opacity:1; left:100px; top:2500px}}
-@-webkit-keyframes snow3 { 0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:600px} 50% {opacity:1; left:150px; top:1600px} 75% {opacity:1; left:200px; top:2100px} 100% {opacity:1; left:100px; top:2500px}}
-@-ms-keyframes snow3 { 0% {opacity:1; left:200px; top:0px} 25% {opacity:1; left:300px; top:600px} 50% {opacity:1; left:150px; top:1600px} 75% {opacity:1; left:200px; top:2100px} 100% {opacity:1; left:100px; top:2500px}}
-@keyframes snow4 { 0% {opacity:1; right:190px; top:0px} 25% {opacity:1; right:250px; top:400px} 50% {opacity:1; right:180px; top:1000px} 75% {opacity:1; right:200px; top:1900px} 100% {opacity:1; right:50px; top:2600px}}
-@-moz-keyframes snow4 { 0% {opacity:1; right:190px; top:0px} 25% {opacity:1; right:250px; top:400px} 50% {opacity:1; right:180px; top:1000px} 75% {opacity:1; right:200px; top:1900px} 100% {opacity:1; right:50px; top:2600px}}
-@-webkit-keyframes snow4 { 0% {opacity:1; right:190px; top:0px} 25% {opacity:1; right:250px; top:400px} 50% {opacity:1; right:180px; top:1000px} 75% {opacity:1; right:200px; top:1900px} 100% {opacity:1; right:50px; top:2600px}}
-@-ms-keyframes snow4 { 0% {opacity:1; right:190px; top:0px} 25% {opacity:1; right:250px; top:400px} 50% {opacity:1; right:180px; top:1000px} 75% {opacity:1; right:200px; top:1900px} 100% {opacity:1; right:50px; top:2600px}}
+
 /*더매거진 - 애디토리얼컨텐츠 - smile in summer 애니메이션 추가 */
 @keyframes horizon_tag200617_1{100% {background-position:-920px 0; }}
 @keyframes horizon_tag200617_2 {100% {background-position:-1362px 0; }}
