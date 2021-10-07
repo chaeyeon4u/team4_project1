@@ -460,6 +460,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 		
 			});
 			
+			
 			$('input[name=zipcode]').attr('value',$("#adress").val());
 			$('input[name=address]').attr('value',$("#line1").val()+' '+$("#line2").val());
 			$('input[name=receiver]').attr('value',$("#rcpt_name").val());
