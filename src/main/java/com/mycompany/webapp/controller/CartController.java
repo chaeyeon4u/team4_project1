@@ -19,6 +19,7 @@ import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
+import com.mycompany.webapp.vo.Cart;
 import com.mycompany.webapp.vo.Category;
 
 @Controller
@@ -38,13 +39,6 @@ public class CartController {
 		model.addAttribute("cartSize", cartItems.size());
 		
 		return "cart/cartList";
-	}
-	
-	@PostMapping("")
-	public String addToCart(String hiddenQuantity, String hiddenSize) {
-		logger.info("hiddenQuantity: ", hiddenQuantity);
-		logger.info("hiddenSize: ", hiddenSize);
-		return "redirect:/cart";
 	}
 	
 	@PostMapping("/update/quantity")
@@ -97,5 +91,19 @@ public class CartController {
 		String depth3Name = category.getDepth3Name();
 		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
 		return redirect;
+	}
+	
+	@PostMapping("/delete")
+	public String deleteCartItem(Principal principal, @RequestParam("hidden_pcolorId") String pcolorId,
+			@RequestParam("hidden_size_code") String sizeCode) {
+		String mid = principal.getName();
+		String pstockId = pcolorId + "_" + sizeCode;
+		Cart cart = new Cart();
+		cart.setMemberId(mid);
+		cart.setProductStockId(pstockId);
+		cartService.deleteCart(cart);
+		logger.info("pcolorId: "+ pcolorId);
+		logger.info("sizeCode: "+ sizeCode);
+		return "redirect:/cart";
 	}
 }
