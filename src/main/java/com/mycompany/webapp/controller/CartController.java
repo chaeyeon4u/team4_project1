@@ -35,6 +35,7 @@ public class CartController {
 		String mid = principal.getName();
 		List<Product> cartItems = cartService.getList(mid);
 		model.addAttribute("cartItems", cartItems);
+		model.addAttribute("cartSize", cartItems.size());
 		
 		return "cart/cartList";
 	}
