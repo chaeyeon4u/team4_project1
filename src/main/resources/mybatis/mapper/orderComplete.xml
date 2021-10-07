@@ -85,7 +85,7 @@
 		<result property="name" column="brandName"/>
 	</resultMap>
 	
-	<resultMap type="com.mycompany.webapp.vo.join.OrderComplete" id="orderCompleteMap">
+	<resultMap type="com.mycompany.webapp.dto.OrderComplete" id="orderCompleteMap">
 		<collection property="member" resultMap="memberMap"/>
 		<collection property="orders" resultMap="ordersMap"/>
 		<collection property="orderItem" resultMap="orderItemMap"/>

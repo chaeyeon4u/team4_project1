@@ -40,6 +40,13 @@ public class CartController {
 		return "cart/cartList";
 	}
 	
+	@PostMapping("")
+	public String addToCart(String hiddenQuantity, String hiddenSize) {
+		logger.info("hiddenQuantity: ", hiddenQuantity);
+		logger.info("hiddenSize: ", hiddenSize);
+		return "redirect:/cart";
+	}
+	
 	@PostMapping("/update/quantity")
 	public String updateQuantity(@RequestParam int quantity, @RequestParam String pstockId, 
 			Principal principal) {

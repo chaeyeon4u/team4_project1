@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.dto.Cart;
+import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
+import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
 import com.mycompany.webapp.vo.Pager;
-import com.mycompany.webapp.vo.join.CategoryDepthDto;
-import com.mycompany.webapp.vo.join.Product;
 
 @Controller
 @RequestMapping("/product")
@@ -37,7 +37,7 @@ public class ProductController {
 	@RequestMapping("/{depth1}/{depth2}/{depth3}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2, @PathVariable String depth3,@RequestParam(defaultValue = "1") int pageNo) {
 		
-		CategoryDepthDto categoryDepthDto = new CategoryDepthDto();
+		CategoryDepth categoryDepthDto = new CategoryDepth();
 		categoryDepthDto.setDepth1(depth1);
 		categoryDepthDto.setDepth2(depth2);
 		categoryDepthDto.setDepth3(depth3);
@@ -55,7 +55,7 @@ public class ProductController {
 	}
 	@RequestMapping("/{depth1}/{depth2}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2,@RequestParam(defaultValue = "1") int pageNo) {
-		CategoryDepthDto categoryDepthDto = new CategoryDepthDto();
+		CategoryDepth categoryDepthDto = new CategoryDepth();
 		categoryDepthDto.setDepth1(depth1);
 		categoryDepthDto.setDepth2(depth2);
 		int totalProduct = productService.getTotalProductNum(categoryDepthDto);
@@ -71,7 +71,7 @@ public class ProductController {
 	}
 	@RequestMapping("/{depth1}")
 	public String searchByCategory(Model model, @PathVariable String depth1,@RequestParam(defaultValue = "1") int pageNo) {
-		CategoryDepthDto categoryDepthDto = new CategoryDepthDto();
+		CategoryDepth categoryDepthDto = new CategoryDepth();
 		categoryDepthDto.setDepth1(depth1);
 		int totalProduct = productService.getTotalProductNum(categoryDepthDto);
 		Pager pager = new Pager(12,5,totalProduct, pageNo);

@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.join.OrderCompleteDao;
-import com.mycompany.webapp.vo.join.OrderComplete;
+import com.mycompany.webapp.dto.OrderComplete;
 
 @Service
 public class OrderCompleteService {

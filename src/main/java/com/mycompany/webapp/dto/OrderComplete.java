@@ -1,4 +1,4 @@
-package com.mycompany.webapp.vo.join;
+package com.mycompany.webapp.dto;
 
 import com.mycompany.webapp.vo.Brand;
 import com.mycompany.webapp.vo.Member;

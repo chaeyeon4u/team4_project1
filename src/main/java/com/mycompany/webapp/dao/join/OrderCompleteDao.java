@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.mycompany.webapp.vo.join.OrderComplete;
+import com.mycompany.webapp.dto.OrderComplete;
 
 @Mapper
 public interface OrderCompleteDao {

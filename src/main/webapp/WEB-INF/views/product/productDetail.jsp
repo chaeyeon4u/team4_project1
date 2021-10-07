@@ -1,4 +1,4 @@
-<%@page import="com.mycompany.webapp.vo.join.Product"%>
+<%@page import="com.mycompany.webapp.dto.Product"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/headerAboveLinks.jsp"%>
@@ -19,6 +19,7 @@ int initPrice = p.getProductColor().getPrice();
 		console.log("pcId : ", pcId);
 		console.log("sizeCode: ", sizeCode);
 		$("#pstockId").text(pcId + '_' + sizeCode);
+		$().val(sizeCode);
 	}
 	function quantity_control(e, operator) {
 		let obj = $(e).siblings("input")[0];
@@ -27,10 +28,12 @@ int initPrice = p.getProductColor().getPrice();
 			if (value > 1) {
 				console.log("실행");
 				$(obj).attr("value", value - 1);
+				$("#hiddenQuantity").val(value-1);
 			}
 		} else if (operator === 'plus') {
 			console.log("실행");
 			$(obj).attr("value", value + 1);
+			$("#hiddenQuantity").val(value+1);
 		}
 	}
 	
@@ -161,9 +164,10 @@ int initPrice = p.getProductColor().getPrice();
 
 						<div class="btnwrap clearfix" style="position: absolute; width: 473px; margin-top: 0px; margin-bottom: 0px;">
 
-							<form id="addToCartForm" name="addToCartForm" action="" method="post">
-
-								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';">
+							<form id="addToCartForm" name="addToCartForm" action="/cart" method="post">
+								<input id="hiddenSize" name="hiddenSize" type="hidden"/>
+								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/>
+								<button class="cartbtn" id="addToCartButton">장바구니 담기</button><%--  onclick="location.href='${pageContext.request.contextPath}/cart';"> --%>
 								<!-- csrf 토큰 -->
 								<div>
 									<input type="hidden" name="CSRFToken" value="">

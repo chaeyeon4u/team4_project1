@@ -1,11 +1,11 @@
-package com.mycompany.webapp.vo.join;
+package com.mycompany.webapp.dto;
 
 import com.mycompany.webapp.vo.Pager;
 
 import lombok.Data;
 
 @Data
-public class CategoryDepthDto {
+public class CategoryDepth {
 	private String depth1;
 	private String depth2;
 	private String depth3;

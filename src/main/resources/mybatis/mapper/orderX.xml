@@ -62,7 +62,7 @@
 	</resultMap>
 	
 	
-	<resultMap type="com.mycompany.webapp.vo.join.OrderX" id="orderXMap">
+	<resultMap type="com.mycompany.webapp.dto.OrderX" id="orderXMap">
 		<collection property="orders" resultMap="ordersMap"/>
 		<collection property="orderItem" resultMap="orderItemMap"/>
 		<collection property="productCommon" resultMap="productCommonMap"/>

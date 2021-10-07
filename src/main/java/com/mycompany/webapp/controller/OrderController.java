@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartProduct;
+import com.mycompany.webapp.dto.OrderComplete;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.OrderCompleteService;
 import com.mycompany.webapp.service.PaymentService;
 import com.mycompany.webapp.vo.Member;
 import com.mycompany.webapp.vo.Mileage;
 import com.mycompany.webapp.vo.PaymentMethod;
-import com.mycompany.webapp.vo.join.OrderComplete;
 
 @Controller
 @RequestMapping("/order")

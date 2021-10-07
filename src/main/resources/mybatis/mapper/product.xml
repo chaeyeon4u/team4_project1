@@ -39,7 +39,7 @@
 		<result property="depth3Name" column="depth3_name"/>
 	</resultMap>
 	
-	<resultMap type="com.mycompany.webapp.vo.join.Product" id="productMap">
+	<resultMap type="com.mycompany.webapp.dto.Product" id="productMap">
 		<collection property="productCommon" resultMap="productCommonMap"/>
 		<collection property="productColor" resultMap="productColorMap"/>
 		<collection property="productStock" resultMap="productStockMap"/>
@@ -68,7 +68,7 @@
 	</select>
 
 	
-	<select id="getProductByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultMap="productMap">
+	<select id="getProductByCategory" parameterType="com.mycompany.webapp.dto.CategoryDepth" resultMap="productMap">
 		
 		select rnum, brandName, productName, img1, price, pcolorId, depth1_name, depth2_name, depth3_name
 		from (
@@ -112,7 +112,7 @@
 		where rnum &gt;=#{pager.startRowNo}
 	</select>
 	
-	<select id="countByCategory" parameterType="com.mycompany.webapp.vo.join.CategoryDepthDto" resultType="int">
+	<select id="countByCategory" parameterType="com.mycompany.webapp.dto.CategoryDepth" resultType="int">
 		select count(*) from(
 			select 
 			br_tbl.name as brandName,

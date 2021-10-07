@@ -12,8 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.mycompany.webapp.dto.OrderX;
 import com.mycompany.webapp.service.OrderXService;
-import com.mycompany.webapp.vo.join.OrderX;
 
 @Controller
 @RequestMapping("/member")
