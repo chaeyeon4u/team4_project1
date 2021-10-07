@@ -125,12 +125,7 @@ public class ProductController {
 		cart.setQuantity(product.getQuantity());
 		
 		int cartItems = cartService.insertCart(cart);
-		model.addAttribute("cartItems", cartItems);
-		
-		//상품상세페이지에서 장바구니로 데이터 넘기기
-		//장바구니 리스트 받아오기
-		List<Product> cartProducts = cartService.getList(mid);
-		model.addAttribute("product",cartProducts);
+//		model.addAttribute("cartItems", cartItems);
 		
 		return "redirect:/cart";
 	}
