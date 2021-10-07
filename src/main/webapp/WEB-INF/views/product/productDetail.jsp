@@ -11,7 +11,6 @@ int initPrice = p.getProductColor().getPrice();
 %>
 <script>
 	$(document).ready(function() {
-	
 		$("#sumPrice").text("₩" + (<%=initPrice%>).toLocaleString());
 		let quantity = $('#quantity').val();
 		$("#cartQuantity").attr("value", quantity);
@@ -19,6 +18,7 @@ int initPrice = p.getProductColor().getPrice();
 		let stockId = $("#pstockId").text();
 		let commonId = stockId.split("_")[0];
 		$("#productCommonId").attr("value", commonId);
+		$("#hiddenQantity").attr("value",Number(1));
 	});
 	// 사이즈 선택 시 품번에 반영되게 함
 	function changePstockId(pcId, sizeCode) {
@@ -38,11 +38,16 @@ int initPrice = p.getProductColor().getPrice();
 				console.log("실행");
 				$(obj).attr("value", value - 1);
 				$("#hiddenQuantity").val(value-1);
+				$("#hiddenQantity").attr("value",Number(value-1));
 			}
 		} else if (operator === 'plus') {
 			console.log("실행");
 			$(obj).attr("value", value + 1);
 			$("#hiddenQuantity").val(value+1);
+			$("#hiddenQantity").attr("value",Number(value+1));
+			//console.log("value 타입",typeof(value));//number
+			//let testQ = $("#quantity").val();
+			//console.log("quantity 값 : ", testQ);//수 잘 들어감
 		}
 	}
 	
@@ -187,7 +192,9 @@ int initPrice = p.getProductColor().getPrice();
 								<input type="hidden" name="name" value="${product.productCommon.name}">
 								<input type="hidden" name="brandNo" value="${product.productCommon.brandNo}">
 								<input type="hidden" name="brandName" value="${product.brand.name}">
-								<input type="hidden" id="quantity" name="quantity" value="1">
+								<input type="hidden" id="hiddenQantity" name="quantity" value="">
+								<!-- <input id="hiddenSize" name="hiddenSize" type="hidden"/>
+								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/> -->
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 끝 -->
 								<input type="submit" value="쇼핑백 담기" class="cartbtn" id="addToCartButton">
 								<%-- <input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';"> --%>
@@ -222,7 +229,7 @@ int initPrice = p.getProductColor().getPrice();
 											<span class="info_wrap item_info2">
 												<span class="brand BR35">${withItem.brand.name}</span>
 												<span class="title">${withItem.productCommon.name}</span>
-												<span class="price"> ${withItem.productColor.price} </span>
+												<span class="price">${withItem.productColor.price}</span>
 											</span>
 
 											<!-- 컬러칩 -->
