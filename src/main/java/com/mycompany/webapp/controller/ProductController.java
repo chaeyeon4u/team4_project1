@@ -119,7 +119,7 @@ public class ProductController {
 		//장바구니에 상품 담기
 		String mid = principal.getName();
 		String pStockId = productToCart.getProductStockId();
-		Cart cart = new Cart();
+		com.mycompany.webapp.vo.Cart cart = new com.mycompany.webapp.vo.Cart();
 		cart.setMemberId(mid);
 		cart.setProductStockId(pStockId);
 		cart.setQuantity(productToCart.getQuantity());
