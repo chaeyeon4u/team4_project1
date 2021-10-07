@@ -51,7 +51,18 @@
 }
 
 #contentDiv .info .related_evt .cd-n-lb-tab .on a{
-	font-size:20px;
+	font-size:27px;
 	font-weight: bold;
 }
+
+/*위시리스트*/
+#referencesListContent .info_wrap .brand{font-size: 18px;}
+#referencesListContent .info_wrap .title{font-size: 18px; white-space: nowrap;}
+#referencesListContent .info_wrap .price{font-size: 18px;}
+
+
+
+
+
+
 

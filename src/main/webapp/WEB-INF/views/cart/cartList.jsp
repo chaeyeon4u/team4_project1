@@ -6,19 +6,18 @@
 <div class="orderwrap1807">
 	<div id="bodyWrap">
 		<h3 class="cnts_title cnts_tlt1807">
-			<span>쇼핑백</span>
+			<span>장바구니</span>
 		</h3>
 
 		<div class="cart-form">
 			<div class="tblwrap">
 				<table class="tbl_ltype">
-					<caption>쇼핑백</caption>
+					<caption>장바구니</caption>
 					<colgroup>
 						<col style="width: 10px;">
 						<col>
 						<col style="width: 150px">
 						<col style="width: 105px">
-						<col style="width: 140px">
 						<col style="width: 110px">
 					</colgroup>
 					<thead>
@@ -29,7 +28,6 @@
 							<th scope="col">상품정보</th>
 							<th scope="col">수량</th>
 							<th scope="col">판매가</th>
-							<th scope="col">적립율</th>
 							<th scope="col">선택</th>
 						</tr>
 					</thead>
@@ -87,18 +85,13 @@
 										<input type="hidden" name="appliedPrice" value="${product.productColor.price * product.cart.quantity}">
 									</div>
 								</td>
-								<%-- 적립율 --%>
-								<td class="al_middle">
-									<span class="earn">5% (한섬마일리지)</span>
-									<br>
-									<span class="earn">0.1% (H.Point)</span>
-								</td>
 								<%-- 삭제 --%>
 								<td class="al_middle">
+									<!-- <div class="btn_wrap">
+										<button class="btn wt_ss">삭제</button>
+									</div> -->
 									<div class="btn_wrap">
-										<a href="#none" id="RemoveProduct_4" class="btn wt_ss" onclick="GA_Event('쇼핑백','삭제','캐시미어 칼라리스 재킷');">삭제</a>
-									</div>
-									<form class="orderitem" style="display: none">
+									<form class="cartItem" action="/cart/delete" method="post">
 										<input type="hidden" name="hidden_pcolorId" value="${product.productColor.id}" />
 										<input type="hidden" name="hidden_brand_name" value="${product.brand.name}" />
 										<input type="hidden" name="hidden_product_name" value="${product.productCommon.name}" />
@@ -107,7 +100,9 @@
 										<input type="hidden" name="hidden_img1" value="${product.productColor.img1}" />
 										<input type="hidden" name="hidden_quantity" value="${product.cart.quantity}" />
 										<input type="hidden" name="hidden_applied_price" class="hidden_applied_price" value="${product.cart.quantity * product.productColor.price}" />
+										<button class="btn wt_ss">삭제</button>
 									</form>
+									</div>
 								</td>
 							</tr>
 							<%--// 첫번째 행의 끝 --%>
@@ -129,8 +124,8 @@
 													<div class="tlt_wrap">
 														<!-- 클릭 시 상품 상세 화면으로 -->
 														<a href="/cart/set/${product.productColor.id}">
-															<span class="tlt">${product.brand.name}</span>
-															<span class="sb_tlt">${product.productCommon.name}</span>
+															<div class="tlt" style="text-align: left;">${product.brand.name}</div>
+															<div class="sb_tlt" style="text-align: left;">${product.productCommon.name}</div>
 														</a>
 														<%-- 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
 														<input type="hidden" name="pstockId" value="${product.productStock.id}" />
@@ -182,7 +177,6 @@
 							<span id="cartDataSubtotal">₩0</span>
 						</dd>
 						<dt class="delch_wrap">
-							<!--                     <p class="tlt_ship">배송비</p> -->
 							배송비
 						</dt>
 						<dd>

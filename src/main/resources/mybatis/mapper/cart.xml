@@ -52,7 +52,6 @@
 		<collection property="brand" resultMap="brandMap"/>
 		<collection property="cart" resultMap="cartMap"></collection>
 	</resultMap>
-	
 	<!-- 카트 안의 리스트 출력하기 -->
 	<select id="selectList" parameterType="String" resultMap="cartListMap">
 		select product_common.id as pcommonId, product_color.id as pcolorId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
@@ -113,8 +112,21 @@
 	
 	<!-- cart insert -->
 	<insert id="insertCart" parameterType="cart">
-		INSERT INTO CART(MEMBER_ID, PRODUCT_STOCK_ID, QUANTITY)
-		VALUES (#{memberId}, #{productStockId}, #{quantity})
+		<!-- INSERT INTO CART(MEMBER_ID, PRODUCT_STOCK_ID, QUANTITY)
+		VALUES (#{memberId}, #{productStockId}, #{quantity}) -->
+		MERGE INTO CART
+		USING DUAL
+		ON (CART.MEMBER_ID = #{memberId} AND CART.PRODUCT_STOCK_ID = #{productStockId})
+		WHEN MATCHED THEN
+		UPDATE SET CART.QUANTITY = CART.QUANTITY + #{quantity}
+		WHEN NOT MATCHED THEN
+		INSERT VALUES(#{memberId}, #{productStockId}, #{quantity})
 	</insert>
 	
+	<!-- cart delete -->
+	<delete id="deleteByMemberIdAndProductStockId" parameterType="cart">
+	delete from cart 
+	where member_id = #{memberId} 
+	and product_stock_id = #{productStockId}
+	</delete>
 </mapper>

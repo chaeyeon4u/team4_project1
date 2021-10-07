@@ -648,11 +648,11 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 ****************************************************/
 .basket_img{width:100px;height:100px;}
 .basket_tlt{text-align:left;}
-.basket_tlt span{font-size:12px;}
-.basket_tlt .tlt{margin-top:5px;font-size:11px;}
+/* .basket_tlt span{font-size:12px;} */
+/* .basket_tlt .tlt{margin-top:5px;font-size:11px;} */
 .basket_tlt .prie {margin-top: 5px;color:#222;text-align:center;display:block;}
 .basket_tlt .sb_tlt:before{content:"";display:block;clear:both;}
-.color_op{margin-top:10px;font-size:11px;color:#999;}
+.color_op{margin-top:10px;font-size:14px;color:#999;}
 .color_op .and_line{display:inline-block;padding:0 5px;font-size:11px;color:#999;}
 
 .option_wrap{margin-top:10px;overflow:hidden;}
@@ -671,16 +671,16 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .option_wrap .reOrderMsg2{color:#000000;font-size:11px; text-align:left;}
 .option_wrap .reOrderMsg3{float:left;color:#000000;font-size:11px; text-align:left;}
 
-.option_wrap .btn_option{float:right;color:#999;font-size:11px;text-decoration:underline!important;}
+.option_wrap .btn_option{float:right;color:#00960c;font-size:14px;text-decoration:underline!important;}
 
 .cs_wrap{margin-top:15px;overflow:hidden;}
-.cs_wrap dt{float:left;width:60px;color:#222;font-size:11px;line-height:22px;text-align:left;clear:both;}
+.cs_wrap dt{float:left;width:60px;color:#222;font-size:13px;line-height:22px;text-align:left;clear:both;}
 .cs_wrap dd{float:left;width:640px;height:25px;}
 .cs_wrap dd .cl_name{position:absolute;top:0;right:0;color:#363636;font-size:11px;text-align:right;}
 
 .cl_select a{float:left;display:block;margin-right:5px;width:18px;height:18px;overflow:hidden;text-indent:-100px;border:1px solid #e3e3e3;}
 .cl_select a.on{width:16px;height:16px; border:2px solid #363636;}
-.cl_select a.no_color{width:18px; height:18px; background-image:url("/_ui/desktop/common/images/common/color_chip_no_order.gif"); border:1px solid #cacaca; cursor:default;}
+.cl_select a.no_color{width:30px; height:30px; background-image:url("/_ui/desktop/common/images/common/color_chip_no_order.gif"); border:1px solid #cacaca; cursor:default;}
 
 .sz_select a{float:left;display:block;margin-right:5px;min-width:33px;height:18px;background-color:#fff; color:#222;font-size:11px;text-align:center;line-height:18px;border:1px solid #cacaca; padding:0 2px;}
 .sz_select a.on{min-width:31px;height:16px;border:2px solid #363636;background:#fff;line-height:18px;}
@@ -707,7 +707,7 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .basket_info .pt_list.set .tlt_wrap.small{width:60%;}
 .basket_info .pt_list.set .tlt_wrap.small .cs_wrap dt{width:43px;}
 */
-.basket_info .cs_wrap dd{position:relative;width:auto;height: 30px;}
+.basket_info .cs_wrap dd{position:relative;width:auto;height: 50px;}
 .basket_info .cs_wrap dd .cl_select{width:640px;}
 
 .total_wrap{padding:25px 20px;border-bottom:1px solid #e5e5e5;}

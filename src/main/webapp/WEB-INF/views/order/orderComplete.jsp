@@ -51,11 +51,11 @@
 						<td class="frt">
 							<!-- 옷 정보 -->
 							<div class="pt_list_all">
-								<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82">
+								<a href="${ordercomplete.productCommon.id}">
 									<img src="${ordercomplete.productColor.img1}" alt="">
 								</a>
 								<div class="tlt_wrap">
-									<a href="/ko/HANDSOME/WOMEN/OUTER/JACKET/%EB%A9%9C%EB%9E%80%EC%A7%80-%ED%81%AC%EB%A1%AD-%EC%9E%AC%ED%82%B7/p/MN2B9WJC649W_BG_82"
+									<a href="${ordercomplete.productCommon.id}"
 										class="basket_tlt"> 
 										<span class="tlt">${ordercomplete.brand.name}</span>
 										<span class="sb_tlt">${ordercomplete.productCommon.name}</span>

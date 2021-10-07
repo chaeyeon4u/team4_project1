@@ -15,13 +15,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartProduct;
 import com.mycompany.webapp.dto.OrderComplete;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.OrderCompleteService;
+import com.mycompany.webapp.service.OrderXService;
 import com.mycompany.webapp.service.PaymentService;
 import com.mycompany.webapp.vo.Member;
 import com.mycompany.webapp.vo.Mileage;
@@ -34,7 +37,18 @@ public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@Resource MemberService memberService;
-
+	@Resource OrderXService orderXService;
+	
+	@PostMapping("/delete")
+	public String delete(@RequestParam("hidden_ordersId") String ordersId, @RequestParam("hidden_pstockId") String pstockId) {
+		
+		logger.info("ordersId"+ ordersId);
+		logger.info("pstockId"+ pstockId);
+		
+		orderXService.selectProductByOrderX(pstockId, ordersId);
+		return "redirect:/member/orderlist";
+	}
+	
 	@RequestMapping("/orderform")
 	public String orderForm(Model model, Principal principal, String orderContent) {
 		// 아이디가 들어가는 변수
@@ -144,4 +158,9 @@ public class OrderController {
 	return methodList;
 	}
 	
+	@RequestMapping("/ordercancellation")
+	public String loginForm() {
+		logger.info("실행");
+		return "order/orderCancellation";
+	}
 }
