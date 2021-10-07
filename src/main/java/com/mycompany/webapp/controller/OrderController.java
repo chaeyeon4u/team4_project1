@@ -6,18 +6,16 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.webapp.dto.CartInputs;
 import com.mycompany.webapp.dto.CartProduct;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.OrderCompleteService;
@@ -34,9 +32,8 @@ public class OrderController {
 
 	@Resource MemberService memberService;
 
-	@PostMapping("/orderform")
-	public String orderForm(Model model, Principal principal, @ModelAttribute CartInputs cartInputs,
-			Integer totalPrice) {
+	@RequestMapping("/orderform")
+	public String orderForm(Model model, Principal principal, String orderContent) {
 		// 아이디가 들어가는 변수
 		String userId = principal.getName();
 		// Mileage 합계를 넣기 위한 변수
@@ -46,19 +43,26 @@ public class OrderController {
 		for (Mileage mileage : mileages) {
 			mileageSum += mileage.getAmount();
 		}
+		
 		List<CartProduct> cartProducts = new ArrayList<CartProduct>();
-		for (int i = 0; i < cartInputs.getPcolorId().size(); i++) {
+		JSONObject jsonObject = new JSONObject(orderContent);
+		JSONArray products = jsonObject.getJSONArray("products");
+		for(int i=0; i<products.length(); i++) {
+			JSONObject product = products.getJSONObject(i);
 			CartProduct cartProduct = new CartProduct();
-			cartProduct.setPcolorId(cartInputs.getPcolorId().get(i));
-			cartProduct.setBrandName(cartInputs.getBrandName().get(i));
-			cartProduct.setProductName(cartInputs.getProductName().get(i));
-			cartProduct.setColorCode(cartInputs.getColorCode().get(i));
-			cartProduct.setSizeCode(cartInputs.getSizeCode().get(i));
-			cartProduct.setImg(cartInputs.getImg().get(i));
-			cartProduct.setQuantity(cartInputs.getQuantity().get(i));
-			cartProduct.setAppliedPrice(cartInputs.getAppliedPrice().get(i));
+			cartProduct.setPcolorId(product.getString("pcolorId"));
+			cartProduct.setBrandName(product.getString("brandName"));
+			cartProduct.setProductName(product.getString("productName"));
+			cartProduct.setColorCode(product.getString("colorCode"));
+			cartProduct.setSizeCode(product.getString("sizeCode"));
+			cartProduct.setImg(product.getString("img"));
+			cartProduct.setQuantity(product.getInt("quantity"));
+			cartProduct.setAppliedPrice(product.getInt("appliedPrice"));
 			cartProducts.add(cartProduct);
 		}
+		
+		int totalPrice =jsonObject.getInt("totalPrice");
+		
 		model.addAttribute("member", member);
 		model.addAttribute("mileageSum", mileageSum);
 		model.addAttribute("cartProducts", cartProducts);
