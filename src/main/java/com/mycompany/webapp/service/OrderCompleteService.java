@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.join.OrderCompleteDao;
 import com.mycompany.webapp.dto.OrderComplete;
+import com.mycompany.webapp.vo.OrderItem;
 import com.mycompany.webapp.vo.Orders;
 
 @Service
@@ -29,6 +30,10 @@ public class OrderCompleteService {
 		
 		public int orderProducts(Orders order) {
 			return orderCompleteDao.insertOrders(order);
+		}
+		
+		public int specificOrder(OrderItem orderitem) {
+			return orderCompleteDao.insertOrderitem(orderitem);
 		}
 }
 	
