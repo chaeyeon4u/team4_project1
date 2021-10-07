@@ -683,7 +683,7 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .cl_select a.no_color{width:30px; height:30px; background-image:url("/_ui/desktop/common/images/common/color_chip_no_order.gif"); border:1px solid #cacaca; cursor:default;}
 
 .sz_select a{float:left;display:block;margin-right:5px;min-width:33px;height:18px;background-color:#fff; color:#222;font-size:13px;text-align:center;line-height:18px;border:1px solid #cacaca; padding:0 2px;}
-.sz_select a.on{min-width:31px;height:30px;border:2px solid #363636;background:#fff;line-height:18px;}
+.sz_select a.on{min-width:31px;height:30px;border:2px solid #363636;background:#fff;line-height:18px;font-size: 15px;padding: 5px;}
 .sz_select a.not_stock{height:18px;color:#bfbfbf;cursor:default;border:1px solid #cacaca;}
 .price_wrap del{font-size:11px}
 .price_wrap span{display:block;font-size:18px; font-weight: bold; white-space: nowrap;}
@@ -718,7 +718,7 @@ table td .receive_choice > span label{padding-right:25px;display:inline-block;}
 .total_price_wrap dd{display:inline-block;width:105px;color:#222;text-align:right;}
 .total_price_wrap .total{margin-top:20px;}
 .total_price_wrap .total dt{width:70px;}
-.total_price_wrap .total dd{width:175px;color:#c69c6c;font-size:18px;text-align:right;}
+.total_price_wrap .total dd{width:210px;color:#c69c6c;font-size:18px;text-align:right;}
 .tlt_ship{padding-right:15px;width:40px;height:20px;color:#222;background: url("/_ui/desktop/common/images/common/ico_ship.gif") no-repeat right 4px;}
 .shcode_wrap{float:left;}
 .shcode_wrap p{margin-bottom:10px;display:block;color:#222;}
