@@ -128,7 +128,10 @@
 		and member.id = orders.member_id
 	</select>
 	
-	
+	<insert id="insertOrders" parameterType="orders">
+		insert into orders(id, zipcode, address, receiver, phone, tel, memo, email, used_mileage, before_dc_price, after_dc_price, payment_info, status, delivery_status, member_id, payment_method_code)
+		values (#{id}, #{zipcode}, #{address},#{receiver},#{phone},#{tel},#{memo},#{email},#{usedMileage},#{beforeDcPrice},#{afterDcPrice},#{paymentInfo}, #{status}, #{deliveryStatus},#{memberId},#{paymentMethodCode})
+	</insert>
 	
 </mapper>
 	

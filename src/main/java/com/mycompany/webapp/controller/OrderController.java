@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -23,6 +25,7 @@ import com.mycompany.webapp.service.OrderCompleteService;
 import com.mycompany.webapp.service.PaymentService;
 import com.mycompany.webapp.vo.Member;
 import com.mycompany.webapp.vo.Mileage;
+import com.mycompany.webapp.vo.Orders;
 import com.mycompany.webapp.vo.PaymentMethod;
 
 @Controller
@@ -67,6 +70,7 @@ public class OrderController {
 		model.addAttribute("mileageSum", mileageSum);
 		model.addAttribute("cartProducts", cartProducts);
 		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("orderContent", orderContent);
 		/*orderService.orderDeliveryPaymentInfo(null);*/
 		return "order/orderForm";
 	}
@@ -77,11 +81,36 @@ public class OrderController {
 	}
 
 	@Resource private OrderCompleteService orderCompleteService;
-
+	
 	@RequestMapping("/ordercomplete")
-	public String orderComplete(Model model, Principal principal, String orderid) {
-		String ordersId = "20211003P1234";
-		String mid = principal.getName();
+	public String orderComplete(Model model, Principal principal, Orders order, String orderContent) {
+		
+		Date today = new Date();
+		SimpleDateFormat orderIdDateformat = new SimpleDateFormat("yyyyMMddHHmmss");
+		orderIdDateformat.format(today);
+		order.setId(orderIdDateformat.format(today)+principal.getName());
+
+		//orderid 생성하는 부분
+		int result = orderCompleteService.orderProducts(order);
+
+		
+		JSONObject jsonObject = new JSONObject(orderContent);
+		JSONArray products = jsonObject.getJSONArray("products");
+		for(int i=0; i<products.length(); i++) {
+			JSONObject product = products.getJSONObject(i);
+			System.out.println(product.getString("pcolorId"));
+			System.out.println(product.getString("brandName"));
+			System.out.println(product.getString("productName"));
+			System.out.println(product.getString("colorCode"));
+			System.out.println(product.getString("sizeCode"));
+			System.out.println(product.getString("img"));
+			System.out.println(product.getInt("quantity"));
+			System.out.println(product.getInt("appliedPrice"));
+		}
+		
+		
+		/*
+		
 		List<OrderComplete> orderProduct = orderCompleteService.selectProductByorderId(mid, ordersId);
 		List<OrderComplete> orderpayment = orderCompleteService.selectpaymentByorderId(mid, ordersId);
 		List<OrderComplete> orderaddress = orderCompleteService.selectaddressByorderId(mid, ordersId);
@@ -94,7 +123,9 @@ public class OrderController {
 		model.addAttribute("orderpayment", orderpayment);
 		model.addAttribute("orderaddress", orderaddress);
 		logger.info("orderAddress:" + orderaddress);
-		logger.info("실행");
+		*/
+		
+		//주문 오류시 오류창으로 가게끔 하는 부분 필요
 		return "order/orderComplete";
 	}
 	

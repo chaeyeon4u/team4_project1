@@ -63,6 +63,12 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										</div>
 									</td>
 								</tr>
+								<div style="display:none">
+									<input type="hidden" name="hidden_pcolorId" value="${product.pcolorId}">
+									<input type="hidden" name="hidden_quantity" value="${product.quantity}">
+									<input type="hidden" name="hidden_size_code" value="${product.sizeCode}">
+									<input type="hidden" name="hidden_appliedPrice" value="${product.appliedPrice}">
+								</div>							
 							</c:forEach>
 							<%-- //선택해서 주문중인 상품 정보 리스트 --%>
 						</tbody>
@@ -252,7 +258,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<div class="input_sumtxt">
 										<div class="input_sumtxt_box">
 											<!-- input -->
-											<input onkeyup="chkword();" class="inputclear" id="orderr"
+											<input class="inputclear" id="orderr"
 												name="deliveryRequestContents" type="text" value=""
 												title="배송요청사항" maxlength="20">
 										</div>
@@ -347,17 +353,25 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<td>
 										<div class="rd_wrap payment_way1907">
 											<ul>
-												<li><input type="radio" name="mode" id="sel_rd1"
-													value="KO001" onclick="showCkout(this);"> <label
-													for="sel_rd1" class="mr20">신용카드</label></li>
+												<li>
+													<%-- value가 0이면 카드결제 --%>
+													<input type="radio" name="mode" id="sel_rd1"
+														value="0" onclick="showCkout(this);">
+													<label for="sel_rd1" class="mr20">신용카드</label>
+												</li>
 
-												<li><input type="radio" name="mode" id="sel_rd2"
-													value="KO002" onclick="showCkout(this);"> <label
-													for="sel_rd2" class="mr20">실시간 계좌이체</label></li>
-
-												<li><input type="radio" name="mode" id="sel_rd6"
-													value="KO007" onclick="showCkout(this);"> <label
-													for="sel_rd6" class="mr20">한섬 마일리지</label></li>
+												<li>
+													<%-- value가 1이면 계좌결제 --%>
+													<input type="radio" name="mode" id="sel_rd2"
+														value="1" onclick="showCkout(this);">
+													<label for="sel_rd2" class="mr20">실시간 계좌이체</label>
+												</li>
+												<li>
+													<%-- value가 2이면 마일리지결제 --%>
+													<input type="radio" name="mode" id="sel_rd6"
+														value="2" onclick="showCkout(this);">
+													<label for="sel_rd6" class="mr20">한섬 마일리지</label>
+												</li>
 											</ul>
 										</div>
 									</td>
@@ -406,16 +420,67 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						</p>
 					</div>
 				</div>
-				<span id="doOrderBtn"> <a
-					href="${pageContext.request.contextPath}/order/ordercomplete"
-					class="btn gray "> 결제하기</a>
+				<span id="doOrderBtn"> 
+					<a href="javascript:order();" class="btn gray ">결제하기</a>
 				</span>
+				<div>
+					<form id="orderform" method="post" action="${pageContext.request.contextPath}/order/ordercomplete">
+						<input type="hidden" name="zipcode" value=""></input>
+						<input type="hidden" name="address" value=""></input>
+						<input type="hidden" name="receiver" value=""></input>
+						<input type="hidden" name="phone" value=""></input>
+						<input type="hidden" name="tel" value=""></input>
+						<input type="hidden" name="memo" value=""></input>
+						<input type="hidden" name="email" value=""></input>
+						<input type="hidden" name="usedMileage" value=""></input>
+						<input type="hidden" name="beforeDcPrice" value=""></input>
+						<input type="hidden" name="afterDcPrice" value=""></input>
+						<input type="hidden" name="paymentInfo" value="결제정보"></input>
+						<input type="hidden" name="status" value="결제완료"></input>
+						<input type="hidden" name="deliveryStatus" value="준비중"></input>
+						<input type="hidden" name="memberId" value="${member.id}"></input>
+						<input type="hidden" name="paymentMethodCode" value=""></input>
+						<input type="hidden" name="orderContent" value="${orderContent}"></input>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
+
+
 <script>
+		
+		function order(){
+			var Elems = $("input[name=hidden_pcolorId]");
+			var productList = [];
+			Elems.each(function(){
+				var row = $($(this).closet("div"));
+		
+			});
+			
+			$('input[name=zipcode]').attr('value',$("#adress").val());
+			$('input[name=address]').attr('value',$("#line1").val()+' '+$("#line2").val());
+			$('input[name=receiver]').attr('value',$("#rcpt_name").val());
+			$('input[name=phone]').attr('value',$("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val());
+			$('input[name=tel]').attr('value',$("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val());
+			$('input[name=memo]').attr('value',$("#orderr").val());
+			$('input[name=email]').attr('value',$("#mail").val()+'@'+$("#emailDely").val());
+			$('input[name=usedMileage]').attr('value',$("#pointpay").val());
+			$('input[name=beforeDcPrice]').attr('value',${totalPrice});
+			$('input[name=afterDcPrice]').attr('value',${totalPrice}-$("#pointpay").val());
+			
+			if($("input[name='mode']:checked").val() == 0 || $("input[name='mode']:checked").val() == 1){
+				$('input[name=paymentMethodCode]').attr('value',$("input[name='mode']:checked").val()+$("select[name=company]").val());
+			}
+			
+			var ordform = $("#orderform");
+			/*
+			ordform.submit();
+			*/
+		}
+		
 		
 		/* 오른쪽 결제하기 부분 sticky 적용을 위한 부분 및 금액 표시를 위한 부분 */
 		$(function(){
@@ -437,7 +502,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					success: function(data){
 						var insert = '<th scope="row" class="th_space">';
 						insert += '<label for="orderr">카드사</label>';
-						insert += '</th><td><select>';
+						insert += '</th><td><select name="company">';
 						for(let val in data){
 							insert += '<option>'+data[val].company+'</option>';
 						}
@@ -454,7 +519,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					success: function(data){
 						var insert = '<th scope="row" class="th_space">';
 						insert += '<label for="orderr">은행사</label>';
-						insert += '</th><td><select>';
+						insert += '</th><td><select name="company">';
 						for(let val in data){
 							insert += '<option>'+data[val].company+'</option>';
 						}
@@ -463,6 +528,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						$("#paydetail").append(insert);
 					}
 				});
+			}else if(obj.id == 'sel_rd6'){
+				$("#paydetail").empty();
 			}
 			
 		}
@@ -503,8 +570,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			$("#totalPrice").text('₩'+(${totalPrice}-$("#pointpay").val()).toLocaleString());
 			
 			//마일리지 사용금액과 상품금액이 같다면 "신용카드, 실시간계좌이체 부분 비활성화, 한섬마일리지 check" //2021-10-06 만들었으나 안된다..수정예정..ㅠ 
-			console.log($("#pointpay").val());
-			if(number($("#pointpay").val()) == ${mileageSum}){
+			if($("#pointpay").val() == ${mileageSum}){
 				$("#sel_rd1").prop("disabled",true);
 				$("#sel_rd2").prop("disabled",true);
 				$("#sel_rd6").prop("disabled", true);

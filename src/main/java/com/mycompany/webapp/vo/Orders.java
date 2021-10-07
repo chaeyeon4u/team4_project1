@@ -1,8 +1,5 @@
 package com.mycompany.webapp.vo;
 
-
-import java.util.Date;
-
 import lombok.Data;
 import lombok.ToString;
 
