@@ -59,7 +59,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<td>
 										<!-- price_wrap -->
 										<div class="price_wrap ">
-											<span> ${product.appliedPrice}</span>
+											<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${product.appliedPrice}"/> </span>
 										</div>
 									</td>
 								</tr>
