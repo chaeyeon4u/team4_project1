@@ -18,7 +18,7 @@ int initPrice = p.getProductColor().getPrice();
 		let stockId = $("#pstockId").text();
 		let commonId = stockId.split("_")[0];
 		$("#productCommonId").attr("value", commonId);
-		$("#hiddenQantity").attr("value",Number(1));
+		$("#hiddenQuantity").attr("value",Number(1));
 	});
 	// 사이즈 선택 시 품번에 반영되게 함
 	function changePstockId(pcId, sizeCode) {
@@ -38,16 +38,13 @@ int initPrice = p.getProductColor().getPrice();
 				console.log("실행");
 				$(obj).attr("value", value - 1);
 				$("#hiddenQuantity").val(value-1);
-				$("#hiddenQantity").attr("value",Number(value-1));
+				$("#hiddenQuantity").attr("value",Number(value-1));
 			}
 		} else if (operator === 'plus') {
 			console.log("실행");
 			$(obj).attr("value", value + 1);
 			$("#hiddenQuantity").val(value+1);
-			$("#hiddenQantity").attr("value",Number(value+1));
-			//console.log("value 타입",typeof(value));//number
-			//let testQ = $("#quantity").val();
-			//console.log("quantity 값 : ", testQ);//수 잘 들어감
+			$("#hiddenQuantity").attr("value",Number(value+1));
 		}
 	}
 	
@@ -56,6 +53,20 @@ int initPrice = p.getProductColor().getPrice();
 		var productPrice = Number(price);
 		$("#sumPrice").text('₩' + (productQuantity * productPrice).toLocaleString());
 	}
+	
+	//add to cart
+	function addToCart(cartBtn){
+		let size = $("input[name=size]:checked").val();
+		console.log(size);
+		if(size === undefined){
+			alert("수량을 선택해주세요.");
+			location.reload();
+		}else{
+			$("#addToCartForm").submit();
+		}	
+	}
+	
+	
 </script>
 
 <body oncontextmenu="return false" style="">
@@ -192,11 +203,11 @@ int initPrice = p.getProductColor().getPrice();
 								<input type="hidden" name="name" value="${product.productCommon.name}">
 								<input type="hidden" name="brandNo" value="${product.productCommon.brandNo}">
 								<input type="hidden" name="brandName" value="${product.brand.name}">
-								<input type="hidden" id="hiddenQantity" name="quantity" value="">
+								<input type="hidden" id="hiddenQuantity" name="quantity" value="">
 								<!-- <input id="hiddenSize" name="hiddenSize" type="hidden"/>
 								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/> -->
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 끝 -->
-								<input type="submit" value="쇼핑백 담기" class="cartbtn" id="addToCartButton">
+								<input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="addToCart(this)">
 								<%-- <input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';"> --%>
 								<!-- csrf 토큰 -->
 								<div>
@@ -210,7 +221,7 @@ int initPrice = p.getProductColor().getPrice();
 							<div class="cd-n-lb-tab" id="codi_lookbook_tab" style="">
 								<ul>
 									<li class="on">
-										<a href="" onclick="GA_Event('상품_상세','함께 코디한 상품','함께 코디한 상품');">함께 코디한 상품</a>
+										<a href="" onclick="">함께 코디한 상품</a>
 									</li>
 								</ul>
 							</div>
@@ -222,7 +233,7 @@ int initPrice = p.getProductColor().getPrice();
 									<c:forEach var="withItem" items="${withItems}">
 										<li id="prod_YN2B8KCD922W_YN" style="margin-right: 10px;">
 											<div class="together-codi-pic">
-												<a href="/cart/set/${withItem.productColor.id}" onclick="GA_Event('상품_상세','코디상품','백 레터링 니트 가디건');" class="pic">
+												<a href="/cart/set/${withItem.productColor.id}" onclick="" class="pic">
 													<img src="${withItem.productColor.img1}" alt="코디상품" class="respon_image">
 												</a>
 											</div>
