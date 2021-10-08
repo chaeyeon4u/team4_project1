@@ -19,6 +19,20 @@ int initPrice = p.getProductColor().getPrice();
 		let commonId = stockId.split("_")[0];
 		$("#productCommonId").attr("value", commonId);
 		$("#hiddenQuantity").attr("value",Number(1));
+		
+		//form submit
+		$("#addToCartForm").on("submit", function(event) {
+			
+			let size = $("input[name=size]:checked").val();
+			console.log(size);
+			if(size === undefined){
+				alert("수량을 선택해주세요.");
+				event.preventDefault();
+				//location.reload();
+			}else{
+				$("#addToCartForm")[0].submit();
+			}	
+		})
 	});
 	// 사이즈 선택 시 품번에 반영되게 함
 	function changePstockId(pcId, sizeCode) {
@@ -54,17 +68,6 @@ int initPrice = p.getProductColor().getPrice();
 		$("#sumPrice").text('₩' + (productQuantity * productPrice).toLocaleString());
 	}
 	
-	//add to cart
-	function addToCart(cartBtn){
-		let size = $("input[name=size]:checked").val();
-		console.log(size);
-		if(size === undefined){
-			alert("수량을 선택해주세요.");
-			location.reload();
-		}else{
-			$("#addToCartForm").submit();
-		}	
-	}
 	
 	
 </script>
@@ -192,7 +195,7 @@ int initPrice = p.getProductColor().getPrice();
 
 						<div class="btnwrap clearfix" style="position: absolute; width: 473px; margin-top: 0px; margin-bottom: 0px;">
 
-							<form id="addToCartForm" name="addToCartForm" action="${pageContext.request.contextPath}/product/cart" method="post">
+							<form id="addToCartForm"  name="addToCartForm" action="${pageContext.request.contextPath}/cart" method="post">
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 시작 -->
 								<input type="hidden" id="productStockId" name="productStockId" value="${product.productStock.id}">
 								<input type="hidden" id="sizeCode" name="sizeCode" value="${product.productStock.sizeCode}">
@@ -210,7 +213,7 @@ int initPrice = p.getProductColor().getPrice();
 								<!-- <input id="hiddenSize" name="hiddenSize" type="hidden"/>
 								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/> -->
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 끝 -->
-								<input type="submit" value="장바구니 담기" class="cartbtn" id="addToCartButton" onclick="addToCart(this)">
+								<input type="submit" value="장바구니 담기" class="cartbtn" id="addToCartButton">
 								<%-- <input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';"> --%>
 								<!-- csrf 토큰 -->
 								<div>

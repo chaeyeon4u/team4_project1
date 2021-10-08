@@ -112,21 +112,4 @@ public class ProductController {
 		return "product/colors";
 	}
 	
-	//장바구니에 데이터 삽입 
-	//상품상세페이지에서 장바구니로 데이터 넘기기
-	@PostMapping("/cart")
-	public String insertCart(ProductToCart product, Principal principal, Model model) {
-		//장바구니에 상품 담기
-		String mid = principal.getName();
-		String pStockId = product.getProductStockId();
-		Cart cart = new Cart();
-		cart.setMemberId(mid);
-		cart.setProductStockId(pStockId);
-		cart.setQuantity(product.getQuantity());
-		
-		int cartItems = cartService.insertCart(cart);
-//		model.addAttribute("cartItems", cartItems);
-		
-		return "redirect:/cart";
-	}
 }
