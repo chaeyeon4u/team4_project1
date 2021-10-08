@@ -58,7 +58,7 @@
 											</p>
 											<div class="option_wrap">
 												<input type="hidden" value="${product.productCommon.id}" />
-												<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productCommon.id}', ${status.count})">옵션변경</a>
+												<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productCommon.id}','${product.productColor.id}' , ${status.count})">옵션변경</a>
 											</div>
 										</div>
 									</div>
@@ -132,6 +132,7 @@
 														<input type="hidden" name="pcommonId" value="${product.productCommon.id}" />
 														<input type="hidden" name="color" class="color_option" value="${product.productColor.colorCode}" />
 														<input type="hidden" name="size" class="size_option" value="${product.productStock.sizeCode}" />
+														<input type="hidden" name="statusCount" value="${status.count}"/>
 														<%--// 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
 														<dl class="cs_wrap">
 															<dt style="font-size: 18px;">COLOR</dt>
@@ -250,8 +251,26 @@ function quantity_control(e, operator) {
 
 function set_color(e) {
 	var value = $(e).text();
-	console.log("value =", value);
+	
 	$(e).closest("form").find(":input[name='color']").val(value);
+	var pcommonId = $(e).closest(".tlt_wrap").find(":input[name='pcommonId']").val();
+	var statusCount = $(e).closest(".tlt_wrap").find(":input[name='statusCount']").val();
+	var pcolorId = pcommonId + "_" + value;
+	console.log("pcolorId", pcolorId);
+
+	
+	// 컬러에 따라 사이즈 리스트가 달라지기 때문에, 컬러 선택 시 컬러 아이디를 통해 사이즈를 비동기로 가져오게 처리 
+	var url = "/cart/selectSizesByPcolorId";
+	var id_size = "#select_size" + statusCount;
+	$.ajax({
+		url:url,
+		method:"post",
+		data:{"pcolorId":pcolorId},
+		success:function(result) {
+			$(id_size).html(result);
+			console.log("success");
+		}
+	});
 }
 
 function set_size(e) {
@@ -260,7 +279,7 @@ function set_size(e) {
 	$(e).closest("form").find(":input[name='size']").val(value);
 }
 
-function display_opt(e, pcommonId, count) {
+function display_opt(e, pcommonId, pcolorId, count) {
 	console.log("pcommonId", pcommonId)
 	var url = "/cart/selectColors";
 	var id_color = "#select_color" + count;
@@ -274,12 +293,13 @@ function display_opt(e, pcommonId, count) {
 		}
 	});
 
-	var url = "/cart/selectSizes";
+	/* 옵션 변경 버튼만 눌렀을 때 보여지는 사이즈의 리스트는 현재 저장된 pcolorId의 사이즈 리스트가 나와야한다. */
+	var url = "/cart/selectSizesByPcolorId";
 	var id_size = "#select_size" + count;
 	$.ajax({
 		url:url,
 		method:"post",
-		data:{"pcommonId":pcommonId},
+		data:{"pcolorId":pcolorId},
 		success:function(result) {
 			$(id_size).html(result);
 		}

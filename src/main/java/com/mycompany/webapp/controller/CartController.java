@@ -58,16 +58,6 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
-	@RequestMapping("/selectOptions")
-	public String selectOptions(Model model, String pcommonId){
-		logger.info("실행");
-		List<Color> colors = cartService.getColors(pcommonId);
-		model.addAttribute("colors", colors);
-		List<Size> sizes = cartService.getSizes(pcommonId);
-		model.addAttribute("sizes", sizes);
-		return "cart/options";
-	}
-	
 	@RequestMapping("/selectColors")
 	public String selectColors(Model model, String pcommonId){
 		logger.info("실행");
@@ -76,9 +66,16 @@ public class CartController {
 		return "cart/colors";
 	}
 	
-	@RequestMapping("/selectSizes")
-	public String selectSizes(Model model, String pcommonId ) {
-		List<Size> sizes = cartService.getSizes(pcommonId);
+	/*	@RequestMapping("/selectSizesByPcommonId")
+		public String selectSizesPcommonId(Model model, String pcommonId) {
+			List<Size> sizes = cartService.getSizesByPcommonId(pcommonId);
+			model.addAttribute("sizes", sizes);
+			return "cart/sizes";
+		}*/
+	
+	@RequestMapping("/selectSizesByPcolorId")
+	public String selectSizesPcolorId(Model model, String pcolorId) {
+		List<Size> sizes = cartService.getSizesByPcolorId(pcolorId);
 		model.addAttribute("sizes", sizes);
 		return "cart/sizes";
 	}

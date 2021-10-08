@@ -15,7 +15,9 @@ import com.mycompany.webapp.vo.Category;
 public interface CartDao {
 	List<Product> selectList(String mid);
 	List<Color> selectColorsByPcommonId(String pcommonId);
-	List<Size> selectSizesByPcommonId(String pcommonId);
+
+	/*	List<Size> selectSizesByPcommonId(String pcommonId);*/
+	List<Size> selectSizesByPcolorId(String PcolorId);
 	int updateCountByQuantity(@Param("quantity") int quantity, @Param("pstockId") String pstockId, @Param("mid") String mid);
 	int updatePstockId(@Param("newPstockId") String newPstockId, @Param("mid") String mid, @Param("oldPstockId") String oldPstockId);
 	Category selectCategoryByPcolorId(String pcolorId);

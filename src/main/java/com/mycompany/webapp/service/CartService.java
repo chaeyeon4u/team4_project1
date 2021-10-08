@@ -24,9 +24,14 @@ public class CartService {
 		return cartDao.selectColorsByPcommonId(pcommonId);
 	}
 	
-	public List<Size> getSizes(String pcommonId) {
-		return cartDao.selectSizesByPcommonId(pcommonId);
+	/*	public List<Size> getSizesByPcommonId(String pcommonId) {
+			return cartDao.selectSizesByPcommonId(pcommonId);
+		}*/
+	
+	public List<Size> getSizesByPcolorId(String pcolorId) {
+		return cartDao.selectSizesByPcolorId(pcolorId);
 	}
+	
 	public int updateQuantity(int quantity, String pstockId, String mid ) {
 		return cartDao.updateCountByQuantity(quantity, pstockId, mid);
 	}
