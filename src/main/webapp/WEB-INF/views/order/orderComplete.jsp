@@ -70,7 +70,7 @@
 						<td>
 							<!-- 판매가 -->
 							<div class="price_wrap">
-								<span>₩${ordercomplete.orderItem.totalPrice}</span>
+								<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${ordercomplete.orderItem.totalPrice}"/></span>
 							</div> 
 						</td>
 					</tr>
@@ -80,26 +80,25 @@
 		</div>
 
 		<!--상품 합계-->
-		<div class="order total_wrap mb40">
-			<div class="total_price_wrap">
+		<div class="total_wrap mb40">
+			 <div class="total_price_wrap">
 				<dl>
-					<dt>상품 합계</dt>
-					<dd style="width: 145px"> ₩${orderProduct[0].orders.beforeDcPrice}</dd>
-					<div>
-						<dt class="delch_wrap">
-							<p class="tlt_ship" style="display: inline;">배송비</p>
-						</dt>
-						<dd style="width: 147px","text-align: right;">₩ 0</dd>
-					</div>
+					<dt style="width: 100px; text-align: left;">상품 합계</dt>
+					<dd style="width: 100%; text-align: right;"> 
+					<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${bfdcprice}"/></dd></span>
+					<dt style="width: 100px; text-align: left;">한섬 마일리지</dt>
+					<dd style="width: 100%; text-align: right;"> 
+					<span> -₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${mileage}"/></span></dd>
 				</dl>
 
 		
 				<dl class="total">
-					<dt>합계</dt>
-					<dd>₩${orderProduct[0].orders.beforeDcPrice}</dd>
+					<dt style="width: 100px; text-align: left;">합계</dt>
+					<dd style="width: 100%; text-align: right;">
+					<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${afdcprice}"/></span></dd>
 				</dl>
 			</div>
-		</div>
+		</div> 
 	
 
 		<!-- 결제 수단 -->
@@ -129,28 +128,7 @@
 				</tbody>
 			</table>
 		</div>
-
-		<!--한섬 마일리지-->
-		<div class="title_wrap clearfix">
-			<h4 class="float_left">한섬마일리지</h4>
-			<p class="reqd_txt float_right">(배송 완료 시점을 기준으로 10일 후 지급됩니다.)</p>
-		</div>
-		<div class="tblwrap mb40">
-			<table class="tbl_wtype1">
-				<caption>한섬마일리지</caption>
-				<colgroup>
-					<col style="width: 300px">
-					<col>
-				</colgroup>
-				<tbody>
-					<tr>
-						<th scope="row" class="th_space">지급 예정 한섬마일리지</th>
-						<td>${orderProduct[0].mileage.amount} M</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-
+		
 		<!-- 주문자 정보-->
 		<div class="title_wrap clearfix">
 			<h4 class="float_left">주문자 정보</h4>

@@ -26,65 +26,6 @@
 							<a href="${pageContext.request.contextPath}/member/orderlist">주문/취소</a>
 						</dd>
 					</dl>
-					<dl>
-		<%-- 마이페이지 분류2--%>
-						<dt>분류2</dt>
-						<dd>
-							<a href="/">분류2-1</a>
-						</dd>
-						<dd>
-							<a href="/">분류2-2</a>
-						</dd>
-						<dd>
-							<a href="/">분류2-3</a>
-						</dd>
-						<dd>
-							<a href="/">분류2-4</a>
-						</dd>
-					</dl>
-					<dl>
-		<%-- 마이페이지 분류3--%>
-						<dt>분류3</dt>
-						<dd>
-							<a href="/">분류3-1</a>
-						</dd>
-						<dd>
-							<a href="/">분류3-2</a>
-						</dd>
-						<dd>
-							<a href="/">분류3-3</a>
-						</dd>
-						<dd>
-							<a href="/">분류3-4</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>분류4</dt>
-						<dd>
-							<a href="/">분류4-1</a>
-						</dd>
-						<dd>
-							<a href="/">분류4-2</a>
-						</dd>
-						<dd>
-							<a href="/">분류4-3</a>
-						</dd>
-						<dd>
-							<a href="/">분류4-4</a>
-						</dd>
-					</dl>
-					<dl>
-						<dt>분류5</dt>
-						<dd>
-							<a href="/">분류5-1</a>
-						</dd>
-						<dd>
-							<a href="/">분류5-2</a>
-						</dd>
-						<dd>
-							<a href="/">분류5-3</a>
-						</dd>
-					</dl>
 				</div>
 			</div>
 			<%-- 마이페이지 왼쪽 네비게이션바 끝--%>
@@ -128,6 +69,7 @@
 								<td rowspan="1" class="frt">
 									<p class="num">${orderx.orders.id}</p>
 									<!-- 날짜 -->	
+									<script>console.log("${bytime}")</script>
 									<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span>
 								</td>
 								<td>
@@ -154,7 +96,7 @@
 				<%-- 수량 자리--%>
 								<td>${orderx.orderItem.count}</td>
 				<%-- 가격 자리--%>
-								<td>₩${orderx.orders.afterDcPrice}</td>
+								<td><span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${orderx.orderItem.totalPrice}"/></span></td>
 				<%-- 주문상태 및 날짜 자리--%>
 								<td>${orderx.orders.status}<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span></td>
 								<!--배송 싱테 --> 
@@ -165,7 +107,7 @@
 										<input type="hidden" name="hidden_ordersId" value="${orderx.orders.id}" />
 										<input type="hidden" name="hidden_pstockId" value="${orderx.orderItem.productStockId}" />
 
-									<a href="${pageContext.request.contextPath}/order/ordercancellation" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
+									<a href="${pageContext.request.contextPath}/member/orderlist" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
 									</form>	
 									</div>
 								</td>

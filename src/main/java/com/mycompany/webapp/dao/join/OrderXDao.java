@@ -10,9 +10,8 @@ import com.mycompany.webapp.dto.OrderX;
 
 @Mapper
 public interface OrderXDao {
-	List<OrderX> selectProductByOrderX(@Param("mid") String mid, @Param("ordersId") String ordersId);
+	List<OrderX> selectProductByOrderX(String mid);
 
-	
 }
 
  	

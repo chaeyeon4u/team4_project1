@@ -17,8 +17,8 @@ public class OrderXService {
 	@Resource 
 	private OrderXDao orderXDao;
 	
-	public List<OrderX> selectProductByOrderX(String mid, String ordersId){
-		return orderXDao.selectProductByOrderX(mid,ordersId);
+	public List<OrderX> selectProductByOrderX(String mid){
+		return orderXDao.selectProductByOrderX(mid);
 		
 	}
 	

@@ -72,18 +72,18 @@
 	</resultMap>
 	
 	
-	<select id="selectProductByOrderX" parameterType="map" resultMap="orderXMap">
-	 	select order_item.product_stock_id as orderstockid,orders_id as ordersid, order_item.count,orders.status,orders.delivery_status,
-            brand.name as brandName,product_common.name as productName,product_stock.size_code,order_by_time,
-            product_color.color_code,total_price,after_dc_price,img1
-			from order_item,orders,brand,product_common,product_color,product_stock
-			where orders.member_id = #{mid, jdbcType=VARCHAR}
-			and orders.id = #{ordersId, jdbcType=VARCHAR}
-			and orders.id = order_item.orders_id
-			and order_item.product_stock_id = product_stock.id
-			and product_stock.product_color_id = product_color.id
-			and product_color.id = product_stock.product_color_id
-			and product_common.id = product_color.product_common_id
-			and product_common.brand_no = brand.no
+	<select id="selectProductByOrderX" parameterType="String" resultMap="orderXMap">
+	 	select orders.id as ordersid ,orders.status,orders.delivery_status,product_color.img1,product_color.color_code,product_stock.size_code,
+             order_item.product_stock_id as orderstockid ,order_item.count,order_item.total_price,brand.name as brandName,
+             product_common.name as productName,order_by_time
+             from orders,order_item,product_color,brand,product_common,product_stock
+			 where member_id= #{mid, jdbcType=VARCHAR}
+ 			 and orders.id = order_item.orders_id
+ 			 and order_item.product_stock_id = product_stock.id
+ 		     and product_color.id = product_stock.product_color_id
+ 			 and product_common.id = product_color.product_common_id
+             and product_common.brand_no = brand.no
+             order by orders.id desc
+
 	</select>
 </mapper>

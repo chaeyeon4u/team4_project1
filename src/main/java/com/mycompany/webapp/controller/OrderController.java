@@ -24,12 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartProduct;
-import com.mycompany.webapp.dto.OrderCancellation;
 import com.mycompany.webapp.dto.OrderComplete;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.MileageService;
-import com.mycompany.webapp.service.OrderCancellationService;
 import com.mycompany.webapp.service.OrderCompleteService;
 import com.mycompany.webapp.service.OrderXService;
 import com.mycompany.webapp.service.PaymentService;
@@ -51,15 +49,6 @@ public class OrderController {
 	@Resource CartService cartService;
 	@Resource MileageService mileageService;
 	
-	@PostMapping("/delete")
-	public String delete(@RequestParam("hidden_ordersId") String ordersId, @RequestParam("hidden_pstockId") String pstockId) {
-		
-		logger.info("ordersId"+ ordersId);
-		logger.info("pstockId"+ pstockId);
-		
-		orderXService.selectProductByOrderX(pstockId, ordersId);
-		return "redirect:/member/orderlist";
-	}
 	
 	@RequestMapping("/orderform")
 	public String orderForm(Model model, Principal principal, String orderContent) {
@@ -184,11 +173,17 @@ public class OrderController {
 		model.addAttribute("orderProduct", orderProduct);
 		model.addAttribute("orderpayment", orderpayment);
 		model.addAttribute("orderaddress", orderaddress);
+		model.addAttribute("bfdcprice", order.getBeforeDcPrice());
+		model.addAttribute("afdcprice", order.getAfterDcPrice());
+		model.addAttribute("mileage", order.getUsedMileage());
 		logger.info("orderAddress:" + orderaddress);
 		
 		//주문 오류시 오류창으로 가게끔 하는 부분 필요
 		return "order/orderComplete";
 	}
+	
+
+	
 	
 	@Resource
 	private PaymentService paymentService;
@@ -205,15 +200,4 @@ public class OrderController {
 	return methodList;
 	}
 	
-	// 주문 취소 페이지
-	@Resource private OrderCancellationService orderCancellationService;
-	@RequestMapping("/ordercancellation")
-	public String orderCancellation(Model model, Principal principal) {
-		String ordersId = "20211003P1234";
-		String mid = principal.getName();
-		List<OrderCancellation> orderProduct = orderCancellationService.slelectProducts(mid, ordersId);
-		model.addAttribute("orderProduct", orderProduct);
-		logger.info("실행");
-		return "order/orderCancellation";
-	}
 }
