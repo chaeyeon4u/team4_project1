@@ -5,40 +5,50 @@
 <%@ include file="/WEB-INF/views/common/headerBelowLinks.jsp"%>
 
 
-<body oncontextmenu="return false">
-	<!-- bodyWrap -->
-	<div id="bodyWrap" class="products">
-		<!--title-->
-		<h3 class="cnts_title">
-			<span> 이벤트 </span>
-		</h3>
-		<!--//title-->
-		<div class="sub_container">
-			<div class="mgz_view">
-				<div class="evt_top">
-					<p class="subj">더한섬닷컴 OUTER WEEK - 9월 마지막주 선착순 30% 할인쿠폰 이벤트</p>
-					<p class="date">2021.09.30</p>
-				</div>
-				<div class="evt_cnts">
-					<div class="pic">
-						<!-- 1 -->
 
-						<div class="event-pc-outerweek-2021-09-17">
-							<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_01.gif" alt="">
-							<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_02.jpg" alt="">
-							<div class="event_button"  OnClick="location.href='${pageContext.request.contextPath}/'">
-          					  <span style="color:white" class="event_couponbutton">쿠폰 받기</span>
-  							</div>
-						</div>
-						<!-- //1 -->
+<div id="bodyWrap" class="products">
+	<!--title-->
+	<h3 class="cnts_title">
+		<span> 이벤트 </span>
+	</h3>
+	<!--//title-->
+	<div class="sub_container">
+		<div class="mgz_view">
+			<div class="evt_top">
+				<p class="subj">${title}</p>
+				<p class="date">${issueDate}</p>
+			</div>
+			<div class="evt_cnts">
+				<div class="pic">
+					<div class="event-pc-outerweek-2021-09-17">
+						<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_01.gif" alt="">
+						<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_02.jpg" alt="">
+						
+						<div class="event_button" id="event_button" onclick="couponDown()">
+        					<span style="color:white" class="event_couponbutton">쿠폰 받기</span>
+ 						</div>
+ 						<div style="display:none;">
+ 							<form id="eventform" action="" method="post">
+ 								<input type="hidden" name="eventNo" value=""></input>
+ 							</form>
+ 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	<!-- //bodyWrap -->
+</div>
 
-</body>
+<script>
+	function couponDown(){
+		/* 버튼을 한번 클릭하면 onclick속성 삭제 */
+		$("#event_button").removeAttr("onclick");
+		/* eventNo를 controller로 넘기기 위한 부분 */
+		$("input[name=eventNo]").val();
+		/* form submit */
+		$("#eventform").submit();
+	}
+</script>
+
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>
