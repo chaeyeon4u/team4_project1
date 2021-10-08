@@ -11,7 +11,7 @@ import com.mycompany.webapp.dto.OrderX;
 @Mapper
 public interface OrderXDao {
 	List<OrderX> selectProductByOrderX(String mid);
-
+	int updateByOrdersId(String hidden_ordersId);
 }
 
  	

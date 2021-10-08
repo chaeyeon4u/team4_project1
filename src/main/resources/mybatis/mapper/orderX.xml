@@ -84,6 +84,11 @@
  			 and product_common.id = product_color.product_common_id
              and product_common.brand_no = brand.no
              order by orders.id desc
-
 	</select>
+	
+	
+	<delete id="updateByOrdersId" parameterType="String">
+		update orders set status='취소완료',delivery_status='배송취소' where id=#{hidden_ordersId}
+	</delete>
+	
 </mapper>

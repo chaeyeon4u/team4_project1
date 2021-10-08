@@ -200,4 +200,12 @@ public class OrderController {
 	return methodList;
 	}
 	
+	@RequestMapping("/cancel")
+	public String cancelOrder(String hidden_ordersId) {
+		//orderitem 테이블에서 데이터 삭제 -> orders 테이블에서 데이터 삭제
+		orderXService.cancelOrderItem(hidden_ordersId);
+		orderXService.cancelOrders(hidden_ordersId);
+		return "redirect:/member/orderlist";
+	}
+	
 }

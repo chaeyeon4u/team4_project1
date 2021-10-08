@@ -103,12 +103,12 @@
 								<td class="delivery">${orderx.orders.deliveryStatus}</td>
 								<td rowspan="1">
 								<div class="btn_wrap">
-									<form method="post" action="/order/delete" name="hidden_field">
-										<input type="hidden" name="hidden_ordersId" value="${orderx.orders.id}" />
-										<input type="hidden" name="hidden_pstockId" value="${orderx.orderItem.productStockId}" />
-
-									<a href="${pageContext.request.contextPath}/member/orderlist" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
-									</form>	
+									<c:if test="${orderx.orders.status != '취소완료'}">
+										<form method="post" action="/order/cancel" name="hidden_field">
+											<input type="hidden" name="hidden_ordersId" value="${orderx.orders.id}" />
+											<a onclick="cancelOrder(this)" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff;">주문취소</a>
+										</form>	
+									</c:if>
 									</div>
 								</td>
 							</tr>
@@ -184,6 +184,11 @@
 	</div>
 </body>
 
+<script>
+	function cancelOrder(thing){
+		$(thing).closest("form").submit();
+	}
+</script>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp" %>

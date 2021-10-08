@@ -437,8 +437,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						<input type="hidden" name="usedMileage" value=""></input>
 						<input type="hidden" name="beforeDcPrice" value=""></input>
 						<input type="hidden" name="afterDcPrice" value=""></input>
-						<input type="hidden" name="paymentInfo" value="결제정보"></input>
-						<input type="hidden" name="status" value="결제완료"></input>
+						<input type="hidden" name="paymentInfo" value="1101-3211-3332-5321"></input>
+						<input type="hidden" name="status" value="주문완료"></input>
 						<input type="hidden" name="deliveryStatus" value="준비중"></input>
 						<input type="hidden" name="memberId" value="${member.id}"></input>
 						<input type="hidden" name="paymentMethodCode" value=""></input>

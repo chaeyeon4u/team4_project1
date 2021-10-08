@@ -112,20 +112,32 @@
 					<col style="width: 140px">
 					<col>
 				</colgroup>
-				<tbody>
-					<tr>
-						<th scope="row" class="th_space">가상계좌</th>
-						<td>
-						${orderpayment[0].paymentMethod.company}
-						${orderpayment[0].orders.paymentInfo}
-						${orderpayment[0].orders.paymentMethodCode}
-						</td>
-					</tr>
-					<tr>
-						<th scope="row" class="th_space">입금 예정기한</th>
-						<td><fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH시:MM분"/>까지 입금</td>
-					</tr>
-				</tbody>
+				<c:if test="${fn:substring(orderpayment[0].orders.paymentMethodCode,0,1) == '0'}">
+					<tbody>
+						<tr>
+							<th scope="row" class="th_space">카드</th>
+							<td>
+							${orderpayment[0].paymentMethod.company}카드
+							${orderpayment[0].orders.paymentInfo}
+							</td>
+						</tr>
+					</tbody>
+				</c:if>
+				<c:if test="${fn:substring(orderpayment[0].orders.paymentMethodCode,0,1) == '1'}">
+					<tbody>
+						<tr>
+							<th scope="row" class="th_space">가상계좌</th>
+							<td>
+							${orderpayment[0].paymentMethod.company}은행
+							${orderpayment[0].orders.paymentInfo}
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" class="th_space">입금 예정기한</th>
+							<td><fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH시:MM분"/>까지 입금</td>
+						</tr>
+					</tbody>
+				</c:if>
 			</table>
 		</div>
 		
