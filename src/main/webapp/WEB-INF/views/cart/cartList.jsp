@@ -276,22 +276,17 @@ function set_color(e) {
 	if(currValue === "rgb(140, 178, 151)"){
 		$(e).parents(".opt_color").css("background-color", "");
 		return;} */
-	//color 선택시 css 추가
-	$(e).parents(".opt_color").siblings().css("background-color", "");
-	$(e).parents(".opt_color").css("background-color", "#8CB297");
+	//color 선택시 css 추가 
+	var test = ".opt_color" + value;
+	$(e).addClass("on");
+	$(e).parents(test).siblings().find("a").removeClass("on");
 }
 
 function set_size(e) {
 	var value = $(e).text();
 	console.log("value : ", value);
 	$(e).closest("form").find(":input[name='size']").val(value);
-	//size 클릭시 css 처리(동일 버튼 두번 클릭시 처리)
-	/* let currValue = $(e).css("background-color")+"";
-	if(currValue === "rgb(140, 178, 151)"){
-		$(e).css("background-color","#ffffff");
-		$(e).css("color", "#000000");
-		return;
-	} */
+
 	//size 클릭시 처리(일반)
 	$(e).siblings().css("background-color", "#ffffff");
 	$(e).siblings().css("color", "#000000");
@@ -313,8 +308,10 @@ function display_opt(e, colorCode, sizeCode, pcommonId, pcolorId, count) {
 
 			//color 기본 선택 추가
 			console.log("colorCode",colorCode);
-			let currColorCs = "."+colorCode;
-			$(currColorCs).parents(".opt_color").css("background-color", "rgb(140, 178, 151)");
+			var test = ".opt_color" + colorCode;
+			
+			$(test).find("a").addClass("on");
+			/* $(e).parents(test).siblings().find("a").removeClass("on"); */
 		}
 	});
 
@@ -331,8 +328,8 @@ function display_opt(e, colorCode, sizeCode, pcommonId, pcolorId, count) {
 			//size 기본 선택 추가
 			let currSizeCs = "."+sizeCode;
 			console.log("sizeCode", currSizeCs);
-			$(currSizeCs).css("background-color", "#8CB297");
-			$(currSizeCs).css("color","#ffffff");
+			$(id_size).find(currSizeCs).css("background-color", "#8CB297");
+			$(id_size).find(currSizeCs).css("color","#ffffff");
 		}
 	});
 	let next_tr = $(e).closest("tr").next();

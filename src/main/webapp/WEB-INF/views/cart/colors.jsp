@@ -5,8 +5,8 @@
 	style="background: #362626 url('${color.colorImg}')">${color.colorCode}</a> --%>
 <div class="opt_color_wrap">
 	<c:forEach var="color" items="${colors}">
-		<div class="opt_color">
-			<a href="javascript:void(0);" onclick="set_color(this);" class="${color.colorCode}"
+		<div class="opt_color${color.colorCode}">
+			<a href="javascript:void(0);" onclick="set_color(this);"
 			style="background: #362626 url('${color.colorImg}')">${color.colorCode}</a>
 		</div>
 	</c:forEach>
