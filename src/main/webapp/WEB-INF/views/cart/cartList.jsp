@@ -256,9 +256,8 @@ function set_color(e) {
 	var pcommonId = $(e).closest(".tlt_wrap").find(":input[name='pcommonId']").val();
 	var statusCount = $(e).closest(".tlt_wrap").find(":input[name='statusCount']").val();
 	var pcolorId = pcommonId + "_" + value;
-	console.log("pcolorId", pcolorId);
-
-	
+	console.log("pcolorId", pcolorId);	
+		
 	// 컬러에 따라 사이즈 리스트가 달라지기 때문에, 컬러 선택 시 컬러 아이디를 통해 사이즈를 비동기로 가져오게 처리 
 	var url = "/cart/selectSizesByPcolorId";
 	var id_size = "#select_size" + statusCount;
@@ -271,12 +270,33 @@ function set_color(e) {
 			console.log("success");
 		}
 	});
+	
+	//color 선택시 css 추가(동일 버튼 두번 클릭시 처리)
+	/* let currValue = $(e).parents(".opt_color").css("background-color")+"";
+	if(currValue === "rgb(140, 178, 151)"){
+		$(e).parents(".opt_color").css("background-color", "");
+		return;} */
+	//color 선택시 css 추가
+	$(e).parents(".opt_color").siblings().css("background-color", "");
+	$(e).parents(".opt_color").css("background-color", "#8CB297");
 }
 
 function set_size(e) {
 	var value = $(e).text();
 	console.log("value : ", value);
 	$(e).closest("form").find(":input[name='size']").val(value);
+	//size 클릭시 css 처리(동일 버튼 두번 클릭시 처리)
+	/* let currValue = $(e).css("background-color")+"";
+	if(currValue === "rgb(140, 178, 151)"){
+		$(e).css("background-color","#ffffff");
+		$(e).css("color", "#000000");
+		return;
+	} */
+	//size 클릭시 처리(일반)
+	$(e).siblings().css("background-color", "#ffffff");
+	$(e).siblings().css("color", "#000000");
+	$(e).css("background-color", "#8CB297");
+	$(e).css("color", "#ffffff");
 }
 
 function display_opt(e, pcommonId, pcolorId, count) {
@@ -290,6 +310,12 @@ function display_opt(e, pcommonId, pcolorId, count) {
 		success : function(result) {
 			console.log("result", result);
 			$(id_color).html(result);
+
+			//color 기본 선택 추가
+			let currColor = $("input[name=hidden_color_code]").val();
+			let currColorCs = "."+currColor;
+			console.log("currColor",currColor);
+			$(currColorCs).parents(".opt_color").css("background-color", "rgb(140, 178, 151)");
 		}
 	});
 
@@ -302,11 +328,22 @@ function display_opt(e, pcommonId, pcolorId, count) {
 		data:{"pcolorId":pcolorId},
 		success:function(result) {
 			$(id_size).html(result);
+			
+			//size 기본 선택 추가
+			let currSize = $("input[name=hidden_size_code]").val();
+			let currSizeCs = "."+currSize;
+			console.log(currSize);
+			$(currSizeCs).css("background-color", "#8CB297");
+			$(currSizeCs).css("color","#ffffff");
 		}
 	});
 	let next_tr = $(e).closest("tr").next();
 	let closest_basket_info = $(next_tr).find(".basket_info");
 	$(closest_basket_info).attr("style", "display: block;");
+	
+	
+	
+	
 }
 
 function hidden_opt(e) {

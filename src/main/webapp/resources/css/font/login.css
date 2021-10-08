@@ -32,6 +32,8 @@
 #checkout_btn_wrap .delBtn{ font-size:18px; }
 #checkout_btn_wrap .orderBtn{ font-size:18px; }
 
+.opt_color_wrap{display: flex;}
+.opt_color_wrap .opt_color{display: inline-block; padding: 5px; margin:0 5px;}
 #QuantityProduct{margin:10px auto;}
 
 
