@@ -58,7 +58,7 @@
 											</p>
 											<div class="option_wrap">
 												<input type="hidden" value="${product.productCommon.id}" />
-												<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productColor.colorCode}', '${product.productCommon.id}','${product.productColor.id}' , ${status.count})">옵션변경</a>
+												<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productColor.colorCode}', '${product.productStock.sizeCode}', '${product.productCommon.id}','${product.productColor.id}' , ${status.count})">옵션변경</a>
 											</div>
 										</div>
 									</div>
@@ -299,7 +299,7 @@ function set_size(e) {
 	$(e).css("color", "#ffffff");
 }
 
-function display_opt(e, colorCode, pcommonId, pcolorId, count) {
+function display_opt(e, colorCode, sizeCode, pcommonId, pcolorId, count) {
 	console.log("pcommonId", pcommonId)
 	var url = "/cart/selectColors";
 	var id_color = "#select_color" + count;
@@ -329,9 +329,8 @@ function display_opt(e, colorCode, pcommonId, pcolorId, count) {
 			$(id_size).html(result);
 			
 			//size 기본 선택 추가
-			let currSize = $("input[name=hidden_size_code]").val();
-			let currSizeCs = "."+currSize;
-			console.log(currSize);
+			let currSizeCs = "."+sizeCode;
+			console.log("sizeCode", currSizeCs);
 			$(currSizeCs).css("background-color", "#8CB297");
 			$(currSizeCs).css("color","#ffffff");
 		}
@@ -339,8 +338,6 @@ function display_opt(e, colorCode, pcommonId, pcolorId, count) {
 	let next_tr = $(e).closest("tr").next();
 	let closest_basket_info = $(next_tr).find(".basket_info");
 	$(closest_basket_info).attr("style", "display: block;");
-	
-	
 	
 	
 }
