@@ -19,3 +19,11 @@
 .tblwrap .mb40 .tbl_wtype1 .th_space{font-size:40px;}
 .tblwrap .mb40 .tbl_wtype1 td{font-size:17px;}
 
+.order .total_price_wrap dl{width:220px;}
+.order{padding: 20px 0 30px 0;}
+.order .total_price_wrap .total dd{
+	width: 180px;
+    color: #c69c6c;
+    font-size: 20px;
+    text-align: right;
+}
