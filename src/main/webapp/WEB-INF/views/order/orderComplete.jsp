@@ -80,7 +80,7 @@
 		</div>
 
 		<!--상품 합계-->
-		<div class="total_wrap mb40">
+		<div class="order total_wrap mb40">
 			<div class="total_price_wrap">
 				<dl>
 					<dt>상품 합계</dt>
