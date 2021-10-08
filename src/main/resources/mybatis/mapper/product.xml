@@ -159,11 +159,13 @@
 	</select>
 	<!-- 상품의 사이즈 리스트 출력하기 -->
 	<select id="selectSizesByPcolorId" parameterType="String" resultType="com.mycompany.webapp.dto.Size">
-	select distinct size_code
-	    from product_common, product_color, product_stock
+	select size_code
+	from (select distinct sizes.no, size_code
+	    from product_color, product_stock, SIZES
 	    where product_color.id = #{pcolorId}
 	    and product_color.id = product_stock.product_color_id
-	    order by size_code
+	    and sizes.code = product_stock.size_code
+	    order by sizes.no)
 	</select>
 	
 	<!-- 함께 코디한 상품의 정보 pcolorId로 가져오기 -->
