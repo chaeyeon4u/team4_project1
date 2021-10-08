@@ -24,10 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartProduct;
+import com.mycompany.webapp.dto.OrderCancellation;
 import com.mycompany.webapp.dto.OrderComplete;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.MileageService;
+import com.mycompany.webapp.service.OrderCancellationService;
 import com.mycompany.webapp.service.OrderCompleteService;
 import com.mycompany.webapp.service.OrderXService;
 import com.mycompany.webapp.service.PaymentService;
@@ -203,8 +205,14 @@ public class OrderController {
 	return methodList;
 	}
 	
+	// 주문 취소 페이지
+	@Resource private OrderCancellationService orderCancellationService;
 	@RequestMapping("/ordercancellation")
-	public String loginForm() {
+	public String orderCancellation(Model model, Principal principal) {
+		String ordersId = "20211003P1234";
+		String mid = principal.getName();
+		List<OrderCancellation> orderProduct = orderCancellationService.slelectProducts(mid, ordersId);
+		model.addAttribute("orderProduct", orderProduct);
 		logger.info("실행");
 		return "order/orderCancellation";
 	}

@@ -84,7 +84,7 @@
 			<div class="total_price_wrap">
 				<dl>
 					<dt>상품 합계</dt>
-					<dd style="width: 145px"> ₩${orderProduct[0].orders.afterDcPrice}</dd>
+					<dd style="width: 145px"> ₩${orderProduct[0].orders.beforeDcPrice}</dd>
 					<div>
 						<dt class="delch_wrap">
 							<p class="tlt_ship" style="display: inline;">배송비</p>
@@ -96,7 +96,7 @@
 		
 				<dl class="total">
 					<dt>합계</dt>
-					<dd>₩${orderProduct[0].orders.afterDcPrice}</dd>
+					<dd>₩${orderProduct[0].orders.beforeDcPrice}</dd>
 				</dl>
 			</div>
 		</div>
@@ -124,7 +124,7 @@
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">입금 예정기한</th>
-						<td>0000.00.00 00시 00분 까지 입금</td>
+						<td><fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH시:MM분"/>까지 입금</td>
 					</tr>
 				</tbody>
 			</table>
@@ -145,7 +145,7 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="th_space">지급 예정 한섬마일리지</th>
-						<td>1,000,000 M</td>
+						<td>${orderProduct[0].mileage.amount} M</td>
 					</tr>
 				</tbody>
 			</table>

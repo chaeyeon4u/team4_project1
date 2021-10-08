@@ -164,7 +164,8 @@
 									<form method="post" action="/order/delete" name="hidden_field">
 										<input type="hidden" name="hidden_ordersId" value="${orderx.orders.id}" />
 										<input type="hidden" name="hidden_pstockId" value="${orderx.orderItem.productStockId}" />
-									<button href="/" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</button>
+
+									<a href="${pageContext.request.contextPath}/order/ordercancellation" class="" style="border:1px solid; border-radius:10%; font-size:15px; padding=20px; background-color: gray; color:#ffffff; ">주문취소</a>
 									</form>	
 									</div>
 								</td>
@@ -240,7 +241,6 @@
 		</div>
 	</div>
 </body>
-
 
 
 
