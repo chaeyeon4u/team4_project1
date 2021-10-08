@@ -325,7 +325,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<div class="point_wrap">
 											<input onkeyup="inputMileage();" title="한섬마일리지 결제"
 												class="inpput" type="text" id="pointpay" name="usePoint"
-												numberonly="true">
+												numberonly="true" value="0">
 											<p class="p_txt">
 												M 사용 (잔액 : <span>${mileageSum}</span> M)
 											</p>
@@ -531,7 +531,13 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 					checkResult = false;
 				}
 			}
-			$("input[name=usedMileage]").val($("#pointpay").val());
+			
+			const usedMileage = $("#pointpay").val();
+			if(usedMileage == ""){
+				$("input[name=usedMileage]").val("0");
+			}else{
+				$("input[name=usedMileage]").val($("#pointpay").val());
+			}
 			$("input[name=beforeDcPrice]").val(${totalPrice});
 			$("input[name=afterDcPrice]").val(${totalPrice}-$("#pointpay").val());
 			$("input[name='orderContent']").val(JSON.stringify(${orderContent}));
