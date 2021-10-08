@@ -208,6 +208,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										name="hp_num3" id="hp_num3" class="hp_num2 inputclear"
 										type="text" maxlength="4" numberonly="true"
 										value="${fn:substring(member.phone,7,13)}"> <!-- //hp -->
+									<span style="color:red;" id="hp_num_error"></span>
 								</td>
 							</tr>
 							<tr>
@@ -246,6 +247,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<input title="연락처 뒷자리"
 										name="ph_num3" id="ph_num3" class="hp_num2 inputclear"
 										type="text" maxlength="4" numberonly="true">
+									<span style="color:red;" id="ph_num_error"></span>
 								</td>
 							</tr>
 							
@@ -261,9 +263,6 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 											<input class="inputclear" id="orderr"
 												name="deliveryRequestContents" type="text" value=""
 												title="배송요청사항" maxlength="20">
-										</div>
-										<div>
-											<span id="text_length">0</span> <span>/20자</span>
 										</div>
 									</div>
 								</td>
@@ -290,6 +289,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<option value="yahoo.com">yahoo.com</option>
 										<option value="dreamwiz.com">dreamwiz.com</option>
 									</select>
+									<span style="color:red;" id="email_error"></span>
 								</td>
 							</tr>
 						</tbody>
@@ -372,6 +372,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 														value="2" onclick="showCkout(this);">
 													<label for="sel_rd6" class="mr20">한섬 마일리지</label>
 												</li>
+												<span style="color:red;" id="payment_method_error"></span>
 											</ul>
 										</div>
 									</td>
@@ -422,7 +423,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 				</div>
 				<span id="doOrderBtn"> 
 				<!-- ** 폼의 요청 경로와 같은 경로로 href 주면 안됩니다. form의 action을 통해서만 페이지를 전환해야 합니다. -->
-					<a href="javascript:void(0)" onclick='order()' class="btn gray">결제하기</a>
+					<a href="javascript:void(0)" style="background-color:#f5f5f5; color:silver" class="btn gray">결제하기</a>
 				</span>
 				<div>
 					<form id="orderform" method="post" action="${pageContext.request.contextPath}/order/ordercomplete">
@@ -453,7 +454,29 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 
 <script>
 		
+		/* 마일리지로 모두 결제가 될때 결제수단 mileage가 checked*/
+		
+		
+		
+		
+		
+		
+		/* 구매자 동의가 체크*/
+		$("#agree").change(function(){
+			var check = $("#agree").is(":checked");
+			if(check == true){
+				$("#doOrderBtn a").attr("onclick","order()").css("background-color","#4a4a4a").css("color","white");
+			} else if(check == false){
+				$("#doOrderBtn a").removeAttr("onclick").css("background-color","#f5f5f5").css("color","silver").css("border","");
+			}
+		});
+		
+		
+		
 		function order(){
+			
+			var checkResult = true;
+			
 			// 데이터는 잘 가져옵니다
 			console.log("orderContent = ", ${orderContent});
 			// typeof라는 함수가 있더라구요 ! 해당 값의 타입을 확인해보면 object 타입으로 출력됩니다.
@@ -466,21 +489,69 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			$("input[name=zipcode]").val($("#adress").val());
 			$("input[name=address]").val($("#line1").val()+' '+$("#line2").val());
 			$("input[name=receiver]").val($("#rcpt_name").val());
-			$("input[name=phone]").val($("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val());
-			$("input[name=tel]").val($("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val());
 			$("input[name=memo]").val($("#orderr").val());
-			$("input[name=email]").val($("#mail").val()+'@'+$("#emailDely").val());
+			
+
+			
+			const phnumpattern = /[0-9]{3}[0-9]{3,4}[0-9]{4}/i;
+			let hpNumCheckValue = $("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val();
+			const hpnumResult = phnumpattern.test(hpNumCheckValue);
+			
+			$("#hp_num_error").html(" ");
+			if(hpnumResult == true){
+				$("input[name=phone]").val(hpNumCheckValue);
+			} else if(hpnumResult == false){
+				$("#hp_num_error").html("번호형식오류");
+				checkResult = false;
+			}
+			
+			let phnumValue = $("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val();
+			let phnumCheckValue = $("#ph_num2").val()+$("#ph_num3").val();
+			$("#ph_num_error").html(" ");
+			if(phnumCheckValue != ""){
+				const phnumResult = phnumpattern.test(phnumValue);
+				if(phnumResult == true){
+					$("input[name=tel]").val(phnumValue);
+				} else if(phnumResult == false){
+					$("#ph_num_error").html("번호형식오류");
+					checkResult = false;
+				}
+			}
+			
+			const emailPattern = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/i;
+			let emailCheckValue = $("#mail").val()+'@'+$("#emailDely").val();
+			
+			$("#email_error").html(" ");
+			if(emailCheckValue != "@"){
+				const emailCheckResult = emailPattern.test(emailCheckValue);
+				if(emailCheckResult == true){
+					$("input[name=email]").val(emailCheckValue);
+				} else if(emailCheckResult == false){
+					$("#email_error").html("이메일형식 오류");
+					checkResult = false;
+				}
+			}
 			$("input[name=usedMileage]").val($("#pointpay").val());
 			$("input[name=beforeDcPrice]").val(${totalPrice});
 			$("input[name=afterDcPrice]").val(${totalPrice}-$("#pointpay").val());
 			$("input[name='orderContent']").val(JSON.stringify(${orderContent}));
 			if($("input[name='mode']:checked").val() == 0 || $("input[name='mode']:checked").val() == 1){
 				$('input[name=paymentMethodCode]').val($("input[name='mode']:checked").val()+$("select[name=company]").val());
+			}else if( $("input[name='mode']:checked").val() == 2){
+				$('input[name=paymentMethodCode]').val($("input[name='mode']:checked").val());
+			}else{
+				$("#payment_method_error").html("결제수단을 선택해주세요.");
+				checkResult = false;
 			}
 			
 			var ordform = $("#orderform");
+
+			if(checkResult == true){
+				ordform.submit();
+			}
 			
-			ordform.submit();
+			
+			
 			// 나머지는 바꾼 부분 없어요... 현유님이 다 하신거예요.
 			// 결제하기 버튼 주석 못보셨으면 확인하고 오세요 ! a태그 부분이요 ! 고생 많으셨습니다 
 		}
@@ -494,6 +565,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			let totalprice = Number($("#totalPrice").text());
 			$("#subTotal").text('₩ '+subtotal.toLocaleString());
 			$("#totalPrice").text('₩ '+totalprice.toLocaleString());
+			$("#sel_rd6").prop("disabled", true);
 		});
 
 		/* 신용카드 혹은 실시간 계좌이체 체크시 */
@@ -573,8 +645,9 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			//총합계금액은 상품금액 - 마일리지금액
 			$("#totalPrice").text('₩'+(${totalPrice}-$("#pointpay").val()).toLocaleString());
 			
+			
 			//마일리지 사용금액과 상품금액이 같다면 "신용카드, 실시간계좌이체 부분 비활성화, 한섬마일리지 check" //2021-10-06 만들었으나 안된다..수정예정..ㅠ 
-			if($("#pointpay").val() == ${mileageSum}){
+			if($("#pointpay").val() == ${totalPrice}){
 				$("#sel_rd1").prop("disabled",true);
 				$("#sel_rd2").prop("disabled",true);
 				$("#sel_rd6").prop("disabled", true);
@@ -597,7 +670,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 				$("#totalPrice").text('₩'+(${totalPrice}).toLocaleString());
 			}
 			$("#sel_rd1").attr("disabled",false);
-			$("#sel_rd6").attr("disabled",false);
+			$("#sel_rd2").attr("disabled",false);
+			$("#sel_rd6").prop("checked", false);
 		}
 
 		/* email이 select될 때 옆에 input값도 함께 바꿔주는 부분 */
