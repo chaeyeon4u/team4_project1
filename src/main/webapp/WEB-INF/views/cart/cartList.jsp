@@ -43,11 +43,11 @@
 								<%-- 상품정보 --%>
 								<td class="pt_list_wrap">
 									<div class="pt_list_all">
-										<a href="/cart/set/${product.productColor.id}">
+										<a href="/product/set/${product.productColor.id}">
 											<img src="${product.productColor.img1}" style="image-rendering: -webkit-optimize-contrast;" alt="">
 										</a>
 										<div class="tlt_wrap">
-											<a href="/cart/set/${product.productColor.id}" class="basket_tlt">
+											<a href="/product/set/${product.productColor.id}" class="basket_tlt">
 												<span class="tlt">${product.brand.name}</span>
 												<span class="sb_tlt">${product.productCommon.name}</span>
 											</a>
@@ -131,13 +131,13 @@
 											<div class="info">
 												<div class="pt_list" id="pt_list_4">
 													<!-- 클릭 시 상품 상세 화면으로 -->
-													<a href="/cart/set/${product.productColor.id}">
+													<a href="/product/set/${product.productColor.id}">
 														<!-- 상품 사진 -->
 														<img src="${product.productColor.img3}" style="image-rendering: -webkit-optimize-contrast;" alt="">
 													</a>
 													<div class="tlt_wrap">
 														<!-- 클릭 시 상품 상세 화면으로 -->
-														<a href="/cart/set/${product.productColor.id}">
+														<a href="/product/set/${product.productColor.id}">
 															<div class="tlt" style="text-align: left;">${product.brand.name}</div>
 															<div class="sb_tlt" style="text-align: left;">${product.productCommon.name}</div>
 														</a>

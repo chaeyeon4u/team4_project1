@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycompany.webapp.vo.Cart;
+import com.mycompany.webapp.vo.Category;
 import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
@@ -35,6 +36,17 @@ public class ProductController {
 
 	@Resource
 	private CartService cartService;
+	
+	
+	@RequestMapping("/set/{pcolorId}")
+	public String setCategoryAndReturn(@PathVariable String pcolorId) {
+		Category category = cartService.setCategories(pcolorId);
+		String depth1Name = category.getDepth1Name();
+		String depth2Name = category.getDepth2Name();
+		String depth3Name = category.getDepth3Name();
+		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
+		return redirect;
+	}
 	
 	@RequestMapping("/{depth1}/{depth2}/{depth3}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2, @PathVariable String depth3,@RequestParam(defaultValue = "1") int pageNo) {
