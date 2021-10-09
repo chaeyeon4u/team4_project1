@@ -62,11 +62,11 @@
 								<th scope="col">구분<!-- 구분 --></th>
 							</tr>
 						</thead>
-						<c:forEach var="orderx" items="${orderProduct}">
 						<tbody id="listBody">
+						<c:forEach var="orderx" items="${orderProduct}">
 							<tr class="al_middle">
 							<!-- 주문번호 자리 -->
-								<td rowspan="1" class="frt">
+								<td class="ono">
 									<p class="num">${orderx.orders.id}</p>
 									<!-- 날짜 -->	
 									<script>console.log("${bytime}")</script>
@@ -97,10 +97,10 @@
 				<%-- 가격 자리--%>
 								<td><span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${orderx.orderItem.totalPrice}"/></span></td>
 				<%-- 주문상태 및 날짜 자리--%>
-								<td>${orderx.orders.status}<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span></td>
+								<td class="oStatus">${orderx.orders.status}<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span></td>
 								<!--배송 싱테 --> 
-								<td class="delivery">${orderx.orders.deliveryStatus}</td>
-								<td rowspan="1">
+								<td class="oDelivery">${orderx.orders.deliveryStatus}</td>
+								<td class="oCancelBtn">
 								<div class="btn_wrap">
 									<c:if test="${orderx.orders.status != '취소완료'}">
 										<form method="post" action="/order/cancel" name="hidden_field">
@@ -111,8 +111,8 @@
 									</div>
 								</td>
 							</tr>
+						</c:forEach>
 						</tbody>
-					</c:forEach>
 					</table>
 				</div>
 				<!-- //table -->
@@ -187,6 +187,31 @@
 	function cancelOrder(thing){
 		$(thing).closest("form").submit();
 	}
+	
+	$(function(){
+		$(".ono").each(function(){
+			var ordersIdRow = $(".ono:contains('"+$(this).text()+"')");
+			if(ordersIdRow.length >1){
+				ordersIdRow.eq(0).attr("rowspan", ordersIdRow.length);
+				ordersIdRow.siblings(".oStatus").eq(0).attr("rowspan", ordersIdRow.length);
+				ordersIdRow.siblings(".oDelivery").eq(0).attr("rowspan", ordersIdRow.length);
+				ordersIdRow.siblings(".oCancelBtn").eq(0).attr("rowspan", ordersIdRow.length);
+
+				
+				console.log(ordersIdRow.siblings(".oStatus").not(":eq(0)"));
+				console.log(ordersIdRow.siblings(".oDelivery").not(":eq(0)"));
+				console.log(ordersIdRow.siblings(".oCancelBtn").not(":eq(0)"));
+				console.log(ordersIdRow.not(":eq(0)"));
+				
+				ordersIdRow.siblings(".oDelivery").not(":eq(0)").remove();
+				ordersIdRow.siblings(".oStatus").not(":eq(0)").remove();
+				ordersIdRow.siblings(".oCancelBtn").not(":eq(0)").remove();
+				ordersIdRow.not(":eq(0)").remove();
+			}
+		});
+	});
+	
+	
 </script>
 
 
