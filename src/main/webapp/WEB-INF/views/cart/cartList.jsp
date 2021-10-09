@@ -56,6 +56,17 @@
 												<span>/</span>
 												size : ${product.productStock.sizeCode}
 											</p>
+											<!-- stock check -->
+											<!-- 3개부터 품절임박 표시 -->
+											<c:if test="${product.productStock.stock < 4 and product.productStock.stock > 0}">
+												<p class="stock_info">품절 임박 ! 현재 선택하신 상품의 재고가 ${product.productStock.stock}개 남았습니다.</p>
+											</c:if>
+
+											<c:if test="${product.productStock.stock < 1}">
+												<p class="stock_info">품절</p>
+											</c:if>
+											<input type="hidden" name="stock" value="${product.productStock.stock}" />
+											<!-- //stock check -->
 											<div class="option_wrap">
 												<input type="hidden" value="${product.productCommon.id}" />
 												<a href="javascript:void(0);" class="btn_option" onclick="display_opt(this, '${product.productColor.colorCode}', '${product.productStock.sizeCode}', '${product.productCommon.id}','${product.productColor.id}' , ${status.count})">옵션변경</a>
@@ -69,7 +80,8 @@
 										<input type="hidden" name="productStockId" value="${product.productStock.id}" />
 										<span class="qty_sel num">
 											<a href="javascript:void(0)" class="left" onclick="quantity_control(this, 'minus');">이전 버튼</a>
-											<input id="quantity${status.count}" name="quantity" type="text" class="mr0" value="${product.cart.quantity}" size="1" maxlength="3" />
+											<!-- css 적용하기 위해 number type이 아닌 text 타입을 사용함 -->
+											<input id="quantity${status.count}" name="quantity" type="text" class="mr0" value="${product.cart.quantity}" size="1" maxlength="3" min="1" onchange="quantity_check(this)"/>
 											<a href="javascript:void(0)" class="right" onclick="quantity_control(this, 'plus');">다음 버튼</a>
 										</span>
 										<button id="QuantityProduct" class="btn wt_ss qty_w mr0">변경</button>
@@ -91,17 +103,17 @@
 										<button class="btn wt_ss">삭제</button>
 									</div> -->
 									<div class="btn_wrap">
-									<form class="cartItem" action="/cart/delete" method="post">
-										<input type="hidden" name="hidden_pcolorId" value="${product.productColor.id}" />
-										<input type="hidden" name="hidden_brand_name" value="${product.brand.name}" />
-										<input type="hidden" name="hidden_product_name" value="${product.productCommon.name}" />
-										<input type="hidden" name="hidden_color_code" value="${product.productColor.colorCode}" />
-										<input type="hidden" name="hidden_size_code" value="${product.productStock.sizeCode}" />
-										<input type="hidden" name="hidden_img1" value="${product.productColor.img1}" />
-										<input type="hidden" name="hidden_quantity" value="${product.cart.quantity}" />
-										<input type="hidden" name="hidden_applied_price" class="hidden_applied_price" value="${product.cart.quantity * product.productColor.price}" />
-										<button class="btn wt_ss">삭제</button>
-									</form>
+										<form class="cartItem" action="/cart/delete" method="post">
+											<input type="hidden" name="hidden_pcolorId" value="${product.productColor.id}" />
+											<input type="hidden" name="hidden_brand_name" value="${product.brand.name}" />
+											<input type="hidden" name="hidden_product_name" value="${product.productCommon.name}" />
+											<input type="hidden" name="hidden_color_code" value="${product.productColor.colorCode}" />
+											<input type="hidden" name="hidden_size_code" value="${product.productStock.sizeCode}" />
+											<input type="hidden" name="hidden_img1" value="${product.productColor.img1}" />
+											<input type="hidden" name="hidden_quantity" value="${product.cart.quantity}" />
+											<input type="hidden" name="hidden_applied_price" class="hidden_applied_price" value="${product.cart.quantity * product.productColor.price}" />
+											<button class="btn wt_ss">삭제</button>
+										</form>
 									</div>
 								</td>
 							</tr>
@@ -112,7 +124,7 @@
 							<tr>
 								<td colspan="6" class="basket_wrap">
 									<div class="basket_info" style="display: hidden;">
-										<input type="hidden" name="statusCount" value="${status.count}"/>
+										<input type="hidden" name="statusCount" value="${status.count}" />
 										<span class="btn_arr">위치아이콘</span>
 										<%-- 변경 버튼 누를 때의 폼 시작 --%>
 										<form action="/cart/update/options" method="post">
@@ -134,8 +146,8 @@
 														<input type="hidden" name="productCommonId" value="${product.productCommon.id}" />
 														<input type="hidden" name="colorCode" class="color_option" value="${product.productColor.colorCode}" />
 														<input type="hidden" name="sizeCode" class="size_option" value="${product.productStock.sizeCode}" />
-														<input type="hidden" name="quantity" value="${product.cart.quantity}"/> 
-														
+														<input type="hidden" name="quantity" value="${product.cart.quantity}" />
+
 														<%--// 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
 														<dl class="cs_wrap">
 															<dt style="font-size: 18px;">COLOR</dt>
@@ -181,9 +193,7 @@
 						<dd>
 							<span id="cartDataSubtotal">₩0</span>
 						</dd>
-						<dt class="delch_wrap">
-							배송비
-						</dt>
+						<dt class="delch_wrap">배송비</dt>
 						<dd>
 							<span id="cartDataDeliveryCost">₩0</span>
 						</dd>
@@ -229,15 +239,63 @@ $(document).ready(function () {
 		$(this).prop("checked", false);
 		console.log("실행");
 	});
+	// 재고가 0개 이하인 상품 체크박스 disabled
+	$(".entryProductInfo").each(function() {
+		var stockElem = $(this).find("input[name='stock']");
+		var stock = $(stockElem).val();
+		if (stock < 1) {
+			$(this).find(".entryProductCheck").prop("disabled", true);
+		}
+	});
 });
 
 
 function checkAll(e) {
 	if ($(e).is(':checked')) {
 		$(".entryProductCheck").prop("checked", true);
+		// 체크할 수 없게 막힌 체크박스는 선택할 수 없게 한다.
+		$(".entryProductCheck:disabled").prop("checked", false);
+		
 	} else {
 		$(".entryProductCheck").prop("checked", false);
 	}
+}
+
+
+function selectProductCount(cartSize) {
+	// cartSize: 장바구니에 담긴 물품의 개수
+	
+	// 체크된 체크박스의 개수
+	var currChecked = $(".entryProductCheck:checked").length;
+	// 체크할 수 있는 체크박스의 개수
+	var canChecked = $(".entryProductCheck:enabled").length;
+	
+	if (currChecked !== canChecked) {
+		$("#entryCheckAll").prop("checked", false);
+	} else { // 현재 체크할 수 있는 체크박스를 모두 체크한 경우
+		$("#entryCheckAll").prop("checked", true); // 전체 체크박스를 체크 상태로 보여줌
+	}
+	console.log("count = ", currChecked);
+	$("#selectProductCount").text(currChecked);
+}
+
+function selectProductPrice() {
+	console.log("selectProductPrice 실행");
+	var subTotalPrice = 0;
+	var totalPrice = 0;
+	$(".entryProductCheck:checked").each(function() {
+		var row = $(this).closest("tr");
+
+		var price = Number($(row).find(":input[name='appliedPrice']").val());
+		console.log("appliedPrice=", price);
+		subTotalPrice += price;
+		totalPrice += price;
+		}
+	);
+	
+	$("#cartDataSubtotal").text('₩'+subTotalPrice.toLocaleString());
+	$("#cartDataTotalPrice").text('₩'+totalPrice.toLocaleString());
+	$("#finalPrice").val(totalPrice);
 }
 
 function quantity_control(e, operator) {
@@ -250,6 +308,23 @@ function quantity_control(e, operator) {
 		}
 	} else if (operator === 'plus') {
 		$(obj).attr("value", value + 1);
+	}
+}
+
+/*
+ * author: 현지
+ "수량" 음수와 소수점 처리
+ */
+function quantity_check(e) {
+	console.log("실행");
+	var _input = $(e).val();
+	// 0이거나 문자일 경우
+	if (isNaN(_input) === true || _input == 0) {
+		$(e).val(1);
+	} else {
+		// 소숫점이거나 음수일 경우
+		var validInput = Math.floor(Math.abs(_input));
+		$(e).val(validInput);
 	}
 }
 
@@ -299,28 +374,35 @@ function set_size(e) {
 	$(e).css("color", "#ffffff");
 }
 
+/*
+ * author: 현지
+ "옵션 변경" 버튼을 누를 시 hidden 행을 display 하는 함수
+ */
 function display_opt(e, colorCode, sizeCode, pcommonId, pcolorId, count) {
 	console.log("pcommonId", pcommonId)
+	// 비동기로 데이터를 요청할 url
 	var url = "/cart/selectColors";
+	// 컬러마다 특정된 id값을 활용
 	var id_color = "#select_color" + count;
 	$.ajax({
 		url : url,
 		method : "post",
+		// pcommonId를 이용해 공통 상품이 가지고있는 색상의 리스트를 보여줌
 		data : {"pcommonId":pcommonId},
 		success : function(result) {
 			console.log("result", result);
+			// 색상 리스트를 보여주는 jsp 파일을 id값을 가진 태그 사이에 삽입
 			$(id_color).html(result);
 
-			//color 기본 선택 추가
+			// 회원이 장바구니에 담은 상품의 기존 선택되어있는 컬러칩을 표시해줌
 			console.log("colorCode",colorCode);
 			var test = ".opt_color" + colorCode;
 			
 			$(test).find("a").addClass("on");
-			/* $(e).parents(test).siblings().find("a").removeClass("on"); */
 		}
 	});
 
-	/* 옵션 변경 버튼만 눌렀을 때 보여지는 사이즈의 리스트는 현재 저장된 pcolorId의 사이즈 리스트가 나와야한다. */
+	/* "옵션 변경" 버튼을 눌렀을 때 보여지는 사이즈의 리스트는 현재 저장된 pcolorId의 사이즈 리스트가 나와야한다. */
 	var url = "/cart/selectSizesByPcolorId";
 	var id_size = "#select_size" + count;
 	$.ajax({
@@ -350,35 +432,6 @@ function hidden_opt(e) {
 }
 
 
-function selectProductCount(cartSize) {
-	var count = $(".entryProductCheck:checked").length;
-	if (count !== cartSize) {
-		$("#entryCheckAll").prop("checked", false);
-	} else {
-		$("#entryCheckAll").prop("checked", true);
-	}
-	console.log("count = ", count);
-	$("#selectProductCount").text(count);
-}
-
-function selectProductPrice() {
-	console.log("selectProductPrice 실행");
-	var subTotalPrice = 0;
-	var totalPrice = 0;
-	$(".entryProductCheck:checked").each(function() {
-		var row = $(this).closest("tr");
-
-		var price = Number($(row).find(":input[name='appliedPrice']").val());
-		console.log("appliedPrice=", price);
-		subTotalPrice += price;
-		totalPrice += price;
-		}
-	);
-	
-	$("#cartDataSubtotal").text('₩'+subTotalPrice.toLocaleString());
-	$("#cartDataTotalPrice").text('₩'+totalPrice.toLocaleString());
-	$("#finalPrice").val(totalPrice);
-}
 
 function makeOrder() {
 	// "선택상품 주문하기" 버튼 클릭 시 선택한 상품의 데이터가 넘어가고 페이지가 전환된다.
