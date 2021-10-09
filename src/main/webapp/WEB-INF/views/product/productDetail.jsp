@@ -256,7 +256,7 @@ int initPrice = p.getProductColor().getPrice();
 									<c:forEach var="withItem" items="${withItems}">
 										<li id="prod_YN2B8KCD922W_YN" style="margin-right: 10px;">
 											<div class="together-codi-pic">
-												<a href="/cart/set/${withItem.productColor.id}" onclick="" class="pic">
+												<a href="/product/set/${withItem.productColor.id}" onclick="" class="pic">
 													<img src="${withItem.productColor.img1}" alt="코디상품" class="respon_image">
 												</a>
 											</div>

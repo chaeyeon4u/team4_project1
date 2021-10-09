@@ -31,6 +31,17 @@ public class CartController {
 
 	@Resource private CartService cartService;
 	
+	@GetMapping("")
+	public String cartList(Model model, Principal principal) {
+		logger.info("실행");
+		String mid = principal.getName();
+		List<Product> cartItems = cartService.getList(mid);
+		model.addAttribute("cartItems", cartItems);
+		model.addAttribute("cartSize", cartItems.size());
+		
+		return "cart/cartList";
+	}
+	
 	//장바구니에 데이터 삽입 
 	//상품상세페이지에서 장바구니로 데이터 넘기기
 	@PostMapping("")
@@ -47,18 +58,7 @@ public class CartController {
 		
 		return "redirect:/cart";
 	}
-		
-	@GetMapping("")
-	public String cartList(Model model, Principal principal) {
-		logger.info("실행");
-		String mid = principal.getName();
-		List<Product> cartItems = cartService.getList(mid);
-		model.addAttribute("cartItems", cartItems);
-		model.addAttribute("cartSize", cartItems.size());
-		
-		return "cart/cartList";
-	}
-	
+
 	@PostMapping("/update/quantity")
 	public String updateQuantity(@RequestParam int quantity, @RequestParam String productStockId, 
 			Principal principal) {
@@ -101,16 +101,7 @@ public class CartController {
 		model.addAttribute("sizes", sizes);
 		return "cart/sizes";
 	}
-	
-	@RequestMapping("/set/{pcolorId}")
-	public String setCategoryAndReturn(@PathVariable String pcolorId) {
-		Category category = cartService.setCategories(pcolorId);
-		String depth1Name = category.getDepth1Name();
-		String depth2Name = category.getDepth2Name();
-		String depth3Name = category.getDepth3Name();
-		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
-		return redirect;
-	}
+
 	
 	@PostMapping("/delete")
 	public String deleteCartItem(Principal principal, @RequestParam("hidden_pcolorId") String pcolorId,
