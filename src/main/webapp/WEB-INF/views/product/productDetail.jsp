@@ -169,6 +169,7 @@ int initPrice = p.getProductColor().getPrice();
 										<ul class="size_chip clearfix sizeChipKo1901">
 											<c:forEach var="stock" items="${stocks}">
 												<li id="${product.productColor.id}_${stock.sizeCode}">
+													<!-- 재고 0개 이하일 경우 disabled 처리 및 경고창 띄우기 -->
 													<c:if test="${stock.stock <= 0}">
 														<label style="background-color: #dddddd;" class="btn btn-outline-secondary btn-lg">
 															<input type="radio" style="display: none;" name="size" value="${stock.sizeCode}" disabled="disabled"/>${stock.sizeCode}
