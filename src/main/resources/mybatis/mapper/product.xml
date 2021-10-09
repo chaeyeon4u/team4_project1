@@ -182,12 +182,14 @@
 	and product_common.brand_no = brand.no
 	</select>
 	
-	<!-- getStock -->
+	<!-- 제품의 사이즈 정보와 재고 정보를 사이즈 순서로 획득한다.-->
 	<select id="getStock" parameterType="String" resultType="com.mycompany.webapp.vo.ProductStock">
 		SELECT PRODUCT_COLOR_ID as productColorId, SIZE_CODE as sizeCode, stock
-		FROM PRODUCT_STOCK, PRODUCT_COLOR
+		FROM PRODUCT_STOCK, PRODUCT_COLOR, SIZES
 		WHERE PRODUCT_STOCK.PRODUCT_COLOR_ID = PRODUCT_COLOR.ID 
+		AND SIZES.CODE = PRODUCT_STOCK.SIZE_CODE
 		AND PRODUCT_COLOR.ID = #{pcolorId}
+		ORDER BY SIZES.NO
 	</select>
 	
 </mapper>
