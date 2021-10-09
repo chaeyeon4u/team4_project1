@@ -28,8 +28,8 @@
         					<span style="color:white" class="event_couponbutton">쿠폰 받기</span>
  						</div>
  						<div style="display:none;">
- 							<form id="eventform" action="" method="post">
- 								<input type="hidden" name="eventNo" value=""></input>
+ 							<form id="eventform" action="/event/coupondownload" method="post">
+ 								<input type="hidden" name="eventNo" value="${eventNo}"></input>
  							</form>
  						</div>
 					</div>
@@ -44,7 +44,6 @@
 		/* 버튼을 한번 클릭하면 onclick속성 삭제 */
 		$("#event_button").removeAttr("onclick");
 		/* eventNo를 controller로 넘기기 위한 부분 */
-		$("input[name=eventNo]").val();
 		/* form submit */
 		$("#eventform").submit();
 	}
