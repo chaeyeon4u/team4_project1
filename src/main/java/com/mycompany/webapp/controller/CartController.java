@@ -60,19 +60,22 @@ public class CartController {
 	}
 	
 	@PostMapping("/update/quantity")
-	public String updateQuantity(@RequestParam int quantity, @RequestParam String pstockId, 
+	public String updateQuantity(@RequestParam int quantity, @RequestParam String productStockId, 
 			Principal principal) {
 		String mid = principal.getName();
-		cartService.updateQuantity(quantity, pstockId, mid);
+		cartService.updateQuantity(quantity, productStockId, mid);
 		return "redirect:/cart";
 	}
 	
 	@PostMapping("/update/options")
-	public String updateOptions(@RequestParam String color, @RequestParam String size,
-			@RequestParam String pcommonId, @RequestParam String pstockId,
-			Principal principal) {
+	public String updateOptions(ProductToCart product, Principal principal) {
 		String mid = principal.getName();
-		cartService.updateOptions(color, size, pcommonId, pstockId, mid);
+		logger.info("pstockId = " + product.getProductStockId());
+		logger.info("pstockId = " + product.getProductColorId());
+		logger.info("pstockId = " + product.getColorCode());
+		logger.info("pstockId = " + product.getSizeCode());
+
+		cartService.updateOptions(product, mid);
 		return "redirect:/cart";
 	}
 	
@@ -93,6 +96,7 @@ public class CartController {
 	
 	@RequestMapping("/selectSizesByPcolorId")
 	public String selectSizesPcolorId(Model model, String pcolorId) {
+		logger.info("실행");
 		List<Size> sizes = cartService.getSizesByPcolorId(pcolorId);
 		model.addAttribute("sizes", sizes);
 		return "cart/sizes";

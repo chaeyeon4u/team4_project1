@@ -66,7 +66,7 @@
 								<%-- 수량 --%>
 								<td class="al_middle">
 									<form action="/cart/update/quantity" method="post">
-										<input type="hidden" name="pstockId" value="${product.productStock.id}" />
+										<input type="hidden" name="productStockId" value="${product.productStock.id}" />
 										<span class="qty_sel num">
 											<a href="javascript:void(0)" class="left" onclick="quantity_control(this, 'minus');">이전 버튼</a>
 											<input id="quantity${status.count}" name="quantity" type="text" class="mr0" value="${product.cart.quantity}" size="1" maxlength="3" />
@@ -112,7 +112,9 @@
 							<tr>
 								<td colspan="6" class="basket_wrap">
 									<div class="basket_info" style="display: hidden;">
+										<input type="hidden" name="statusCount" value="${status.count}"/>
 										<span class="btn_arr">위치아이콘</span>
+										<%-- 변경 버튼 누를 때의 폼 시작 --%>
 										<form action="/cart/update/options" method="post">
 											<div class="info">
 												<div class="pt_list" id="pt_list_4">
@@ -128,11 +130,12 @@
 															<div class="sb_tlt" style="text-align: left;">${product.productCommon.name}</div>
 														</a>
 														<%-- 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
-														<input type="hidden" name="pstockId" value="${product.productStock.id}" />
-														<input type="hidden" name="pcommonId" value="${product.productCommon.id}" />
-														<input type="hidden" name="color" class="color_option" value="${product.productColor.colorCode}" />
-														<input type="hidden" name="size" class="size_option" value="${product.productStock.sizeCode}" />
-														<input type="hidden" name="statusCount" value="${status.count}"/>
+														<input type="hidden" name="productStockId" value="${product.productStock.id}" />
+														<input type="hidden" name="productCommonId" value="${product.productCommon.id}" />
+														<input type="hidden" name="colorCode" class="color_option" value="${product.productColor.colorCode}" />
+														<input type="hidden" name="sizeCode" class="size_option" value="${product.productStock.sizeCode}" />
+														<input type="hidden" name="quantity" value="${product.cart.quantity}"/> 
+														
 														<%--// 변경 버튼 클릭 시 디비에 업데이트 되는 정보 --%>
 														<dl class="cs_wrap">
 															<dt style="font-size: 18px;">COLOR</dt>
@@ -157,6 +160,7 @@
 												</div>
 											</div>
 										</form>
+										<%--// 변경 버튼 누를 때의 폼 끝 --%>
 									</div>
 								</td>
 							</tr>
@@ -252,15 +256,16 @@ function quantity_control(e, operator) {
 function set_color(e) {
 	var value = $(e).text();
 	
-	$(e).closest("form").find(":input[name='color']").val(value);
-	var pcommonId = $(e).closest(".tlt_wrap").find(":input[name='pcommonId']").val();
-	var statusCount = $(e).closest(".tlt_wrap").find(":input[name='statusCount']").val();
+	$(e).closest("form").find(":input[name='colorCode']").val(value);
+	var pcommonId = $(e).closest(".tlt_wrap").find(":input[name='productCommonId']").val();
+	var statusCount = $(e).closest(".basket_info").find(":input[name='statusCount']").val();
 	var pcolorId = pcommonId + "_" + value;
 	console.log("pcolorId", pcolorId);	
 		
 	// 컬러에 따라 사이즈 리스트가 달라지기 때문에, 컬러 선택 시 컬러 아이디를 통해 사이즈를 비동기로 가져오게 처리 
 	var url = "/cart/selectSizesByPcolorId";
 	var id_size = "#select_size" + statusCount;
+	console.log("id_size =", id_size);
 	$.ajax({
 		url:url,
 		method:"post",
@@ -285,7 +290,7 @@ function set_color(e) {
 function set_size(e) {
 	var value = $(e).text();
 	console.log("value : ", value);
-	$(e).closest("form").find(":input[name='size']").val(value);
+	$(e).closest("form").find(":input[name='sizeCode']").val(value);
 
 	//size 클릭시 처리(일반)
 	$(e).siblings().css("background-color", "#ffffff");
