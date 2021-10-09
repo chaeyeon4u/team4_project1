@@ -181,4 +181,13 @@
     and product_common.id = product_color.product_common_id
 	and product_common.brand_no = brand.no
 	</select>
+	
+	<!-- getStock -->
+	<select id="getStock" parameterType="String" resultType="com.mycompany.webapp.vo.ProductStock">
+		SELECT PRODUCT_COLOR_ID as productColorId, SIZE_CODE as sizeCode, stock
+		FROM PRODUCT_STOCK, PRODUCT_COLOR
+		WHERE PRODUCT_STOCK.PRODUCT_COLOR_ID = PRODUCT_COLOR.ID 
+		AND PRODUCT_COLOR.ID = #{pcolorId}
+	</select>
+	
 </mapper>

@@ -11,6 +11,7 @@ import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.vo.ProductStock;
 
 @Service
 public class ProductService {
@@ -40,4 +41,7 @@ public class ProductService {
 		return productDao.selectWithItemsByPcolorId(pcolorId);
 	}
 	
+	public List<ProductStock> getStocks(String pcolorId){
+		return productDao.getStock(pcolorId);
+	}
 }

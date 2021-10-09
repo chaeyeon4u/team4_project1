@@ -18,6 +18,13 @@ int initPrice = p.getProductColor().getPrice();
 		let stockId = $("#pstockId").text();
 		let commonId = stockId.split("_")[0];
 		$("#productCommonId").attr("value", commonId);
+		
+		//stock 0 이하시 alert창 띄우기
+		let isEmtyStock = $("#emptyStock").val();
+		console.log("isEmpty",isEmtyStock);
+		if(isEmtyStock ==="emptyStock"){
+			$("#alertStock").css("display", "block");
+		}
 	});
 	
 	//form submit
@@ -26,7 +33,7 @@ int initPrice = p.getProductColor().getPrice();
 		let size = $("input[name=size]:checked").val();
 		console.log("size =", size);
 		if(size === undefined){
-			alert("수량을 선택해주세요.");
+			alert("사이즈를 선택해주세요.");
 			//location.reload();
 		}else{
 			$("#addToCartForm")[0].submit();
@@ -160,19 +167,31 @@ int initPrice = p.getProductColor().getPrice();
 									<div class="btn-group btn-group-toggle" data-toggle="buttons">
 										<span class="title">사이즈</span>
 										<ul class="size_chip clearfix sizeChipKo1901">
-											<c:forEach var="size" items="${sizes}">
-												<li id="${product.productColor.id}_${size.sizeCode}">
-													<label class="btn btn-outline-secondary btn-lg">
-														<input type="radio" style="display: none;" name="size" value="${size.sizeCode}" onclick="changePstockId('${product.productColor.id}', '${size.sizeCode}')" />${size.sizeCode}
-														<!-- 작은따옴표 안붙여주면 에러남 -->
-													</label>
+											<c:forEach var="stock" items="${stocks}">
+												<li id="${product.productColor.id}_${stock.sizeCode}">
+													<c:if test="${stock.stock <= 0}">
+														<label style="background-color: #dddddd;" class="btn btn-outline-secondary btn-lg">
+															<input type="radio" style="display: none;" name="size" value="${stock.sizeCode}" disabled="disabled"/>${stock.sizeCode}
+															<!-- 작은따옴표 안붙여주면 에러남 -->
+														</label>
+															<input type="hidden" id="emptyStock" value="emptyStock">
+													</c:if>
+													<c:if test="${stock.stock > 0}">
+														<label class="btn btn-outline-secondary btn-lg">
+															<input type="radio" style="display: none;" name="size" value="${stock.sizeCode}" onclick="changePstockId('${product.productColor.id}', '${stock.sizeCode}')" />${stock.sizeCode}
+															<!-- 작은따옴표 안붙여주면 에러남 -->
+														</label>
+													</c:if>
 												</li>
 											</c:forEach>
+											<li style="display: block;">
+												<a id="alertStock">일부 상품의 재고가 존재하지 않습니다.</a>
+											</li>
 										</ul>
 									</div>
 								</li>
 								<li>
-									<span class="title">수량</span>
+									<span class="title" >수량</span>
 									<span class="txt">
 										<span>
 											<button onclick="quantity_control(this, 'minus'); priceByQuantity(${product.productColor.price})" style="margin: 0px;" type="button" class="btn btn-light left1">-</button>

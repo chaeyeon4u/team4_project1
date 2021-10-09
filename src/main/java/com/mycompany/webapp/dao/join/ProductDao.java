@@ -8,6 +8,7 @@ import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.vo.ProductStock;
 
 @Mapper
 public interface ProductDao {
@@ -24,4 +25,6 @@ public interface ProductDao {
 	List<Size> selectSizesByPcolorId(String pcolorId);
 	
 	List<Product> selectWithItemsByPcolorId(String pcolorId);
+	
+	List<ProductStock> getStock(String pcolorId);
 }

@@ -23,6 +23,7 @@ import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
 import com.mycompany.webapp.vo.Pager;
+import com.mycompany.webapp.vo.ProductStock;
 
 @Controller
 @RequestMapping("/product")
@@ -94,13 +95,14 @@ public class ProductController {
 		List<Color> colors = productService.getColors(pcolorId);
 		List<Size> sizes = productService.getSizes(pcolorId);
 		List<Product> withItems = productService.getWithItems(pcolorId);
-		
+		List<ProductStock> stocks = productService.getStocks(pcolorId);
 		logger.info(withItems.toString());
 		
 		model.addAttribute("product", product);
 		model.addAttribute("colors", colors);
 		model.addAttribute("sizes", sizes);
 		model.addAttribute("withItems", withItems);
+		model.addAttribute("stocks", stocks);
 		
 		return "product/productDetail";
 	}
