@@ -7,10 +7,12 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.CartDao;
-import com.mycompany.webapp.vo.Cart;
+import com.mycompany.webapp.dto.CartUpdate;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
+import com.mycompany.webapp.dto.ProductToCart;
 import com.mycompany.webapp.dto.Size;
+import com.mycompany.webapp.vo.Cart;
 import com.mycompany.webapp.vo.Category;
 
 @Service
@@ -36,9 +38,25 @@ public class CartService {
 		return cartDao.updateCountByQuantity(quantity, pstockId, mid);
 	}
 	
-	public int updateOptions(String color, String size, String pcommonId, String pstockId, String mid) {
-		String newPstockId = pcommonId + "_" +color + "_" + size;
-		return cartDao.updatePstockId(newPstockId, mid, pstockId);
+	public int updateOptions(ProductToCart product, String mid) {
+		String oldPstockId = product.getProductStockId();
+		String newPstockId = product.getProductCommonId() + "_" + product.getColorCode() + "_" + product.getSizeCode();
+		int quantity = product.getQuantity();
+		
+		CartUpdate cartUpdate = new CartUpdate();
+		cartUpdate.setMemberId(mid);
+		cartUpdate.setNewPstockId(newPstockId);
+		cartUpdate.setOldPstockId(oldPstockId);
+		cartUpdate.setNewQuantity(quantity);
+		
+		List<Cart> selectBeforeUpdate = cartDao.selectBeforeUpdate(cartUpdate);
+		if (selectBeforeUpdate.size() < 1) {
+			return cartDao.update(cartUpdate);
+		} else {
+			cartUpdate.setOldQuantity(selectBeforeUpdate.get(0).getQuantity());
+			cartDao.updateQuantity(cartUpdate);
+			return cartDao.deleteToUpdate(cartUpdate);
+		}
 	}
 	
 	public Category setCategories(String pcolorId) {

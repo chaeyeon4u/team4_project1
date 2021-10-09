@@ -40,11 +40,11 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 								<tr class="al_middle">
 									<td class="frt">
 										<div class="pt_list_all">
-											<a href="/cart/set/${product.pcolorId}"> <img
+											<a href="/product/set/${product.pcolorId}"> <img
 												src="${product.img}" alt="">
 											</a>
 											<div class="tlt_wrap">
-												<a href="/cart/set/${product.pcolorId}" class="basket_tlt">
+												<a href="/product/set/${product.pcolorId}" class="basket_tlt">
 													<span class="tlt">${product.brandName}</span> <span
 													class="sb_tlt">${product.productName}</span>
 												</a>

@@ -31,6 +31,17 @@ public class CartController {
 
 	@Resource private CartService cartService;
 	
+	@GetMapping("")
+	public String cartList(Model model, Principal principal) {
+		logger.info("실행");
+		String mid = principal.getName();
+		List<Product> cartItems = cartService.getList(mid);
+		model.addAttribute("cartItems", cartItems);
+		model.addAttribute("cartSize", cartItems.size());
+		
+		return "cart/cartList";
+	}
+	
 	//장바구니에 데이터 삽입 
 	//상품상세페이지에서 장바구니로 데이터 넘기기
 	@PostMapping("")
@@ -47,36 +58,28 @@ public class CartController {
 		
 		return "redirect:/cart";
 	}
-		
-	@GetMapping("")
-	public String cartList(Model model, Principal principal) {
-		logger.info("실행");
-		String mid = principal.getName();
-		List<Product> cartItems = cartService.getList(mid);
-		model.addAttribute("cartItems", cartItems);
-		model.addAttribute("cartSize", cartItems.size());
-		
-		return "cart/cartList";
-	}
-	
+
 	@PostMapping("/update/quantity")
-	public String updateQuantity(@RequestParam int quantity, @RequestParam String pstockId, 
+	public String updateQuantity(@RequestParam int quantity, @RequestParam String productStockId, 
 			Principal principal) {
 		String mid = principal.getName();
-		cartService.updateQuantity(quantity, pstockId, mid);
+		cartService.updateQuantity(quantity, productStockId, mid);
 		return "redirect:/cart";
 	}
 	
 	@PostMapping("/update/options")
-	public String updateOptions(@RequestParam String color, @RequestParam String size,
-			@RequestParam String pcommonId, @RequestParam String pstockId,
-			Principal principal) {
+	public String updateOptions(ProductToCart product, Principal principal) {
 		String mid = principal.getName();
-		cartService.updateOptions(color, size, pcommonId, pstockId, mid);
+		logger.info("pstockId = " + product.getProductStockId());
+		logger.info("pstockId = " + product.getProductColorId());
+		logger.info("pstockId = " + product.getColorCode());
+		logger.info("pstockId = " + product.getSizeCode());
+
+		cartService.updateOptions(product, mid);
 		return "redirect:/cart";
 	}
 	
-	@RequestMapping("/selectColors")
+	@PostMapping("/selectColors")
 	public String selectColors(Model model, String pcommonId){
 		logger.info("실행");
 		List<Color> colors = cartService.getColors(pcommonId);
@@ -93,20 +96,12 @@ public class CartController {
 	
 	@RequestMapping("/selectSizesByPcolorId")
 	public String selectSizesPcolorId(Model model, String pcolorId) {
+		logger.info("실행");
 		List<Size> sizes = cartService.getSizesByPcolorId(pcolorId);
 		model.addAttribute("sizes", sizes);
 		return "cart/sizes";
 	}
-	
-	@RequestMapping("/set/{pcolorId}")
-	public String setCategoryAndReturn(@PathVariable String pcolorId) {
-		Category category = cartService.setCategories(pcolorId);
-		String depth1Name = category.getDepth1Name();
-		String depth2Name = category.getDepth2Name();
-		String depth3Name = category.getDepth3Name();
-		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
-		return redirect;
-	}
+
 	
 	@PostMapping("/delete")
 	public String deleteCartItem(Principal principal, @RequestParam("hidden_pcolorId") String pcolorId,

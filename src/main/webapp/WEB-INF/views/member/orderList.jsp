@@ -74,13 +74,12 @@
 								</td>
 								<td>
 									<div class="pt_list_all">
-										<a href="cart/set/${orderx.productCommon.id}">
+										<a href="/product/set/${orderx.productColor.id}">
 										<!-- 상품 이미지 -->
 										<img src="${orderx.productColor.img1}"
-										"${pageContext.request.contextPath}/${orderx.productColor.img1}"
 											alt="상품 이미지"></a>
 										<div class="tlt_wrap">
-											<a href="/cart/set/${orderx.productColor.img1}" class="basket_tlt">
+											<a href="/product/set/${orderx.productColor.id}" class="basket_tlt">
 				<%-- 브랜드명 자리--%>
 												<span class="tlt">${orderx.brand.name}</span> 
 				<%-- 상품명 자리--%>

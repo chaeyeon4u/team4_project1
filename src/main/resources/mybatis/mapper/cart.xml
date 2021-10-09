@@ -55,7 +55,7 @@
 	<!-- 카트 안의 리스트 출력하기 -->
 	<select id="selectList" parameterType="String" resultMap="cartListMap">
 		select product_common.id as pcommonId, product_color.id as pcolorId, product_stock.id as pstockId, cart.quantity, brand.name as brandName, product_common.name as productName,
-				product_stock.size_code, product_color.color_code,img1,img2, img3, product_color.color_img, price
+				product_stock.size_code, product_color.color_code,img1,img2, img3, product_color.color_img, price, product_stock.stock
 			from cart, product_common, product_color, brand, product_stock
 			where cart.member_id = #{mid}
 	        and cart.product_stock_id =product_stock.id
@@ -114,6 +114,20 @@
 			and product_stock_id = #{oldPstockId}
 	</update>
 	
+	<!-- cart update -->
+<!-- 	<update id="update" parameterType="com.mycompany.webapp.dto.CartUpdate">
+		<if test=""></if>
+		UPDATE CART SET 
+		MEMBER_ID = #{memberId} AND PRODUCT_STOCK_ID = #{newPstockId})
+		WHEN MATCHED THEN
+		UPDATE SET QUANTITY = QUANTITY + #{quantity}
+		WHEN NOT MATCHED THEN
+		INSERT VALUES(#{memberId}, #{newPstockId}, #{quantity})
+		DELETE WHERE member_id = #{memberId}
+			AND product_stock_id = #{oldPstockId}
+		]]>
+	</update> -->
+	
 	<!-- pcolorId로 카테고리 뽑아오기-->
 	<select id="selectCategoryByPcolorId" parameterType="String" resultMap="categoryMap">
 	select * from (
@@ -146,4 +160,30 @@
 	where member_id = #{memberId} 
 	and product_stock_id = #{productStockId}
 	</delete>
+	
+	<select id="selectBeforeUpdate" parameterType="com.mycompany.webapp.dto.CartUpdate" resultType="cart">
+	select * from cart
+	where member_id = #{memberId} 
+	and product_stock_id = #{newPstockId}
+	</select>
+	
+	<update id="update" parameterType="com.mycompany.webapp.dto.CartUpdate">
+	update cart
+	set product_stock_id = #{newPstockId}
+	where member_id = #{memberId}
+	and product_stock_id = #{oldPstockId}
+	</update>
+	
+	<delete id="deleteToUpdate" parameterType="com.mycompany.webapp.dto.CartUpdate">
+	delete from cart
+	where member_id = #{memberId}
+	and product_stock_id = #{oldPstockId}
+	</delete>
+	
+	<update id="updateQuantity" parameterType="com.mycompany.webapp.dto.CartUpdate">
+	update cart 
+	set quantity = #{oldQuantity} + #{newQuantity}
+	where member_id = #{memberId}
+	and product_stock_id = #{newPstockId}
+	</update>
 </mapper>
