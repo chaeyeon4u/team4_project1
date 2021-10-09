@@ -174,7 +174,7 @@ int initPrice = p.getProductColor().getPrice();
 															<input type="radio" style="display: none;" name="size" value="${stock.sizeCode}" disabled="disabled"/>${stock.sizeCode}
 															<!-- 작은따옴표 안붙여주면 에러남 -->
 														</label>
-															<input type="hidden" id="emptyStock" value="emptyStock">
+														<input type="hidden" id="emptyStock" value="emptyStock">
 													</c:if>
 													<c:if test="${stock.stock > 0}">
 														<label class="btn btn-outline-secondary btn-lg">
