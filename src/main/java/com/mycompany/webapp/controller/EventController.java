@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.Callable;
@@ -14,10 +15,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.service.EventService;
 import com.mycompany.webapp.vo.Event;
+import com.mycompany.webapp.vo.EventResult;
 
 @Controller
 @RequestMapping("/event")
@@ -43,34 +46,39 @@ public class EventController {
 		return "event/eventDetail";
 	}
 	
-	@RequestMapping("/coupondownload")
-	public String couponDownload (Integer eventNo) throws Exception {
+	@PostMapping("/coupondownload")
+	public String couponDownload (Integer eventNo, Principal principal) throws Exception {
 		Event event = eventService.checkCount(eventNo);
-		int currCount = event.getCount();
-		int limitCount = event.getLimitCount();
-		
-		// 시간 측정 코드(x)
-		Callable<Integer> task = new Callable<Integer>() {
-			@Override
-			public Integer call() throws Exception {
-				if(currCount < limitCount) {
-					return eventService.increaseCount(eventNo);
-				} else {
-					return 0;
+		EventResult eventResult = eventService.checkbeforehistory(eventNo,principal.getName());
+		if(eventResult != null) {
+			return "event/already";
+		}else {
+			int currCount = event.getCount();
+			int limitCount = event.getLimitCount();
+		    
+			// 시간 측정 코드(x)
+			Callable<Integer> task = new Callable<Integer>() {
+				@Override
+				public Integer call() throws Exception {
+					if(currCount < limitCount) {
+						return eventService.increaseCount(eventNo);
+					} else {
+						return 0;
+					}
 				}
+			};
+	
+			Future<Integer> future = executorsService.submit(task);
+			logger.info(Thread.currentThread().getName() + ": 큐에 작업을 저장");
+	
+			// 이벤트 처리가 완료될 때 까지 대기상태가 되게 된다.
+			int result = future.get();
+				
+			if (result == 1) {
+				return "event/success";
+			} else {
+				return "event/fail";
 			}
-		};
-
-		Future<Integer> future = executorsService.submit(task);
-		logger.info(Thread.currentThread().getName() + ": 큐에 작업을 저장");
-
-		// 이벤트 처리가 완료될 때 까지 대기상태가 되게 된다.
-		int result = future.get();
-
-		if (result == 1) {
-			return "event/success";
-		} else {
-			return "event/fail";
 		}
 	}
 	

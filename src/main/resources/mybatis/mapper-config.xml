@@ -20,7 +20,7 @@
 		<typeAlias type="com.mycompany.webapp.vo.Depth1" alias="depth1"/>
 		<typeAlias type="com.mycompany.webapp.vo.Depth2" alias="depth2"/>
 		<typeAlias type="com.mycompany.webapp.vo.Depth3" alias="depth3"/>
-
+		<typeAlias type="com.mycompany.webapp.vo.EventResult" alias="eventResult"/>
 		<typeAlias type="com.mycompany.webapp.vo.CouponDetail" alias="couponDetail"/>
 		<typeAlias type="com.mycompany.webapp.vo.Event" alias="event"/>
 		<typeAlias type="com.mycompany.webapp.vo.Mileage" alias="mileage"/>

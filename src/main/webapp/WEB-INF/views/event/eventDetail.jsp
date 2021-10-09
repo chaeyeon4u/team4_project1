@@ -24,14 +24,17 @@
 						<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_01.gif" alt="">
 						<img src="http://cdn.thehandsome.com/pc/event/detail/image/handsome_202109/event_outerweek_pc_img_01_02.jpg" alt="">
 						
-						<div class="event_button" id="event_button" onclick="couponDown()">
-        					<span style="color:white" class="event_couponbutton">쿠폰 받기</span>
+						<div class="event_button" id="event_button" >
+						<a style="color:white" class="event_couponbutton" href="javascript:void(0);" onclick="winPopup()">쿠폰 받기</a>
+						
+
+        					<!-- <span style="color:white" class="event_couponbutton">쿠폰 받기</span> -->
  						</div>
- 						<div style="display:none;">
- 							<form id="eventform" action="/event/coupondownload" method="post">
- 								<input type="hidden" name="eventNo" value="${eventNo}"></input>
- 							</form>
- 						</div>
+	                	<div style="display:none;">
+	                      <form name="frm">
+	                         <input type="hidden" name="eventNo" value="${eventNo}"></input>
+	                      </form>
+                  		</div>
 					</div>
 				</div>
 			</div>
@@ -40,13 +43,24 @@
 </div>
 
 <script>
-	function couponDown(){
-		/* 버튼을 한번 클릭하면 onclick속성 삭제 */
-		$("#event_button").removeAttr("onclick");
-		/* eventNo를 controller로 넘기기 위한 부분 */
-		/* form submit */
-		$("#eventform").submit();
-	}
+	function winPopup() {
+		var popupX = (document.body.offsetWidth / 2) - (570 / 2);
+		//만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+		var popupY= (window.screen.height / 2) - (420/1.5);
+		//만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	
+ 		var popUrl = "${pageContext.request.contextPath}/event/coupondownload";
+		var popOption = "top="+popupY+", left="+popupX+", width=500, height=420, status=no, menubar=no, toolbar=no, resizable=no";
+		var title = "submitform";
+		window.open("", title, popOption);
+		
+		var frmPop = $("form[name='frm']")[0];
+		frmPop.action = popUrl;
+		frmPop.target = title;
+		frmPop.method = "post";
+		frmPop.submit();
+    }
+
 </script>
 
 
