@@ -30,4 +30,8 @@ public class EventService {
 		return eventResultDao.selectByEventNoNRank(eventNo,memberId);
 	}
 	
+	public int addWinner(int eventNo, String memberId, int rank) {
+		return eventResultDao.insertEventResult(eventNo, memberId, rank);
+	}
+	
 }

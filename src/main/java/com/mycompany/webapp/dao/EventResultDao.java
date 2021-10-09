@@ -8,5 +8,5 @@ import com.mycompany.webapp.vo.EventResult;
 @Mapper
 public interface EventResultDao {
 	EventResult selectByEventNoNRank(@Param("eventNo") int eventNo, @Param("memberId") String memberId);
-	
+	int insertEventResult(@Param("eventNo") int eventNo, @Param("memberId") String memberId, @Param("rank") int rank);
 }
