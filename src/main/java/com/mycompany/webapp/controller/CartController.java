@@ -79,7 +79,7 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
-	@RequestMapping("/selectColors")
+	@PostMapping("/selectColors")
 	public String selectColors(Model model, String pcommonId){
 		logger.info("실행");
 		List<Color> colors = cartService.getColors(pcommonId);
