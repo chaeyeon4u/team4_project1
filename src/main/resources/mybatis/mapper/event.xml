@@ -5,5 +5,21 @@
 	<select id="selectByEventNo" parameterType="int" resultType="event">
 		select * from event where no=#{eventNo}
 	</select>
-
+	
+	<select id="selectCount" parameterType="int" resultType="event">
+		select no, title, content, expire_date,count, limit_count,img
+		from event
+		where no=#{eventNo}
+	</select>
+	
+	<update id="updateCount" parameterType="int">
+		update event 
+		set count = (
+			select nvl(count, 0) + 1
+			from event
+			where no=#{eventNo}
+		) 
+		where no = #{eventNo}
+	</update>
+	
 </mapper>
