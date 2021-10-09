@@ -12,7 +12,15 @@ public class EventService {
 	@Resource private EventDao eventDao;
 	
 	public Event SearchEventInfo(int eventNo) {
-		System.out.println("Service:"+eventNo);
 		return eventDao.selectByEventNo(eventNo);
 	}
+	
+	public Event checkCount(int eventNo) {
+		return eventDao.selectCount(eventNo);
+	}
+	
+	public int increaseCount(int eventNo) {
+		return eventDao.updateCount(eventNo);
+	}
+	
 }
