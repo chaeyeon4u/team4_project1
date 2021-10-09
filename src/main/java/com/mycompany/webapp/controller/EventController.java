@@ -51,16 +51,26 @@ public class EventController {
 		
 		Event event = eventService.checkCount(eventNo);
 		EventResult eventResult = eventService.checkbeforehistory(eventNo,principal.getName());
+		
 		if(eventResult != null) {
 			return "event/already";
 		}else {
+			//Queue에 들어가기 전에 count를 확인하는 부분
 			int currCount = event.getCount();
 			int limitCount = event.getLimitCount();
-
+			
+			 
+			if(currCount>=limitCount) {
+				return "event/fail";
+			}
+			
 			Callable<Integer> task = new Callable<Integer>() {
 				@Override
 				public Integer call() throws Exception {
-					if(currCount < limitCount) {
+					int queueCount = event.getCount();
+					int queuelimitCount = event.getLimitCount();
+					
+					if(queueCount < queuelimitCount) {
 						eventService.addWinner(eventNo, principal.getName(),currCount+1);
 						return eventService.increaseCount(eventNo);
 					} else {
