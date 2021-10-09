@@ -23,7 +23,7 @@ import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
 import com.mycompany.webapp.vo.Pager;
-import com.mycompany.webapp.vo.ProductStock;
+import com.mycompany.webapp.dto.ProductStock;
 
 @Controller
 @RequestMapping("/product")

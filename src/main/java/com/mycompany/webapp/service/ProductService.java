@@ -11,7 +11,7 @@ import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
 import com.mycompany.webapp.dto.Size;
-import com.mycompany.webapp.vo.ProductStock;
+import com.mycompany.webapp.dto.ProductStock;
 
 @Service
 public class ProductService {
