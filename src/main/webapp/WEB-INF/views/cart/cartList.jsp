@@ -80,7 +80,8 @@
 										<input type="hidden" name="productStockId" value="${product.productStock.id}" />
 										<span class="qty_sel num">
 											<a href="javascript:void(0)" class="left" onclick="quantity_control(this, 'minus');">이전 버튼</a>
-											<input id="quantity${status.count}" name="quantity" type="text" class="mr0" value="${product.cart.quantity}" size="1" maxlength="3" />
+											<!-- css 적용하기 위해 number type이 아닌 text 타입을 사용함 -->
+											<input id="quantity${status.count}" name="quantity" type="text" class="mr0" value="${product.cart.quantity}" size="1" maxlength="3" min="1" onchange="quantity_check(this)"/>
 											<a href="javascript:void(0)" class="right" onclick="quantity_control(this, 'plus');">다음 버튼</a>
 										</span>
 										<button id="QuantityProduct" class="btn wt_ss qty_w mr0">변경</button>
@@ -307,6 +308,23 @@ function quantity_control(e, operator) {
 		}
 	} else if (operator === 'plus') {
 		$(obj).attr("value", value + 1);
+	}
+}
+
+/*
+ * author: 현지
+ "수량" 음수와 소수점 처리
+ */
+function quantity_check(e) {
+	console.log("실행");
+	var _input = $(e).val();
+	// 0이거나 문자일 경우
+	if (isNaN(_input) === true || _input == 0) {
+		$(e).val(1);
+	} else {
+		// 소숫점이거나 음수일 경우
+		var validInput = Math.floor(Math.abs(_input));
+		$(e).val(validInput);
 	}
 }
 
