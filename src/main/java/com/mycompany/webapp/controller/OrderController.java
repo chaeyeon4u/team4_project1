@@ -199,10 +199,4 @@ public class OrderController {
 		return "redirect:/member/orderlist";
 	}
 	
-	/*outOfStock.jsp Test*/
-	@RequestMapping("/outofstock")
-	public String outOfStock() {
-		return "error/outOfStock";
-	}
-
 }
