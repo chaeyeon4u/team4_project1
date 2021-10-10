@@ -10,7 +10,7 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="Cache-Control" content="No-Cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi">
-<title> 서비스 이용에 불편을 드려서 죄송합니다! | THE HANDSOME.COM </title>
+<title>상품 매진</title>
 <!-- ie8 미디어쿼리 사용하기위해 스크립트보다 상위에 위치해야 함 -->
 <link rel="stylesheet" type="text/css" href="/WEB-INF/views/common/css/common.css" media="all">
 <link rel="stylesheet" type="text/css" href="/WEB-INF/views/common/css/layout.css" media="all">
@@ -23,48 +23,47 @@
 <body>
 <div id="bodyWrap">
 	<div class="sub_container error_container">
-		<div class="errorwrap" id="ko">
-			<div class="top_error">
+		<div class="errorwrap" id="ko" style="display:block;">
 			<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
                	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
                 <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
-            </div>                </div>
+            </div>
             <div class="con_error">
-	            <p>서비스 이용에 불편을 드려서 죄송합니다!</p>
-	            <span>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br>페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.<br><br>입력한 주소가 정확한지 다시 한번 확인해주시길 바랍니다.</span>
+	            <p>주문하신 상품중 재고가 부족한 상품이 있습니다 !</p>
+	            <span>구매하시려는 상품의 수량이 올바르지 않습니다.<br>재고보다 많은 수량을 구매하여 생기는 오류입니다.<br><br>재고보다 적은 수의 상품을 구매해주시기 바랍니다. 감사합니다.</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">더한섬닷컴 메인으로</a>
+                <a href="/" class="btn wt_ss">더한섬닷컴 메인으로</a>
             </div>
         </div>
         <div class="errorwrap" id="en" style="display:none;">
-       		 <div class="top_error">
+        	<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
                	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
                 <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
             </div>
             <div class="con_error">
 	            <p>We are sorry for any inconvenience caused by the recent service.</p>
-	            <span>The webpage cannot be found.<br>This error is caused because the website address is typed incorrectly,<br>has been deleted, or changed.<br><br>Make sure the address is correct and try again.</span>
+	            <span>The quantity of the product is not correct.<br>This error is caused because more order than the stock.<br><br>Make sure the quantity is correct and try again.</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">Go to thehandsome.com</a>
+                <a href="/" class="btn wt_ss">Go to thehandsome.com</a>
             </div>
 		</div>            
 		
-		<div class="errorwrap" id="zh" style="display:none;">               	
-            <div class="top_error">
+		<div class="errorwrap" id="zh" style="display:none;">   
+			<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
                	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
                 <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
-            </div>
+            </div>            	
             <div class="con_error">
-	            <p>非常抱！</p>
-	            <span>入的址无法。<br>此不存在或址已更。<br><br>再次地址。</span>
+	            <p>这次服务给您添麻烦了，非常抱歉。</p>
+	            <span>产品数量不正确<br>这个错误是因为订单多于库存。<br><br>请确认数量正确后再试一次。</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">返回thehandsome.com首</a>
+                <a href="/" class="btn wt_ss">返回thehandsome.com首</a>
             </div>
 		</div>
 		<script>

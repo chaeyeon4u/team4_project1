@@ -98,10 +98,6 @@ public class OrderController {
 		return "order/orderForm";
 	}
 
-	@RequestMapping("/addressPopup")
-	public String addressPopup() {
-		return "popup/jusoPopup";
-	}
 
 	@GetMapping("/ordercomplete")
 	public String showOrder(@RequestParam("p") String orderId, Principal principal, Model model) {
@@ -199,5 +195,5 @@ public class OrderController {
 		orderItemService.cancelOrders(hidden_ordersId);
 		return "redirect:/member/orderlist";
 	}
-
+	
 }

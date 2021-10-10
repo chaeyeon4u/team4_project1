@@ -744,7 +744,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			var popupY= (window.screen.height / 2) - (420/1.5);
 			//만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 			
-			var pop = window.open("${pageContext.request.contextPath}/order/addressPopup", "pop", "height=420, width=570, left="+ popupX + ", top="+ popupY);
+			var pop = window.open("${pageContext.request.contextPath}/addressPopup", "pop", "height=420, width=570, left="+ popupX + ", top="+ popupY);
 		    
 			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
