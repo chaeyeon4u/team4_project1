@@ -21,10 +21,10 @@
 .cart-form .tlt_wrap .sb_tlt{ font-size: 18px; }
 .cart-form .btn .wt_ss{padding:1px 0;min-width:50px;border:1px solid #ccc;background:#fff;font-size:15px;line-height:11px;}
 .total_count_cart p{font-size: 20px; margin:1px 1px 0px 1px;width:220px;float:right;}
-.total_count_cart span{color:orange;}
+.total_count_cart span{color:orange; white-space:nowrap;}
 .cart-form .total_price_wrap .total dt{font-size:19px; display:inline-block;width:140px;height:22px;color:#222;}
 .cart-form .total_price_wrap dt{font-size: 19px; display:inline-block;width:140px;height:22px;}
-.cart-form .total_price_wrap span{font-size: 19px;width:140px;height:22px;margin-right:10px;}
+.cart-form .total_price_wrap span{font-size: 19px;width:140px;height:22px;margin-right:10px;white-space:nowrap;}
 .cart-form .total_wrap .total_price_wrap{width:250px;}
 
 .color_wrap{height:25px;}

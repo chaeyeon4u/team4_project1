@@ -116,7 +116,9 @@ public class OrderController {
 		model.addAttribute("orderaddress", orderaddress);
 		model.addAttribute("bfdcprice", orderProduct.get(0).getOrders().getBeforeDcPrice());
 		model.addAttribute("afdcprice", orderProduct.get(0).getOrders().getAfterDcPrice());
+		
 		model.addAttribute("mileage", orderProduct.get(0).getOrders().getUsedMileage());
+		logger.info("mileage" + orderProduct.get(0).getOrders().getUsedMileage());
 		logger.info("orderAddress:" + orderaddress);
 
 		// 주문 오류시 오류창으로 가게끔 하는 부분 필요

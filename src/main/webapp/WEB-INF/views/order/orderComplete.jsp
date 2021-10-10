@@ -80,21 +80,21 @@
 		</div>
 
 		<!--상품 합계-->
-		<div class="total_wrap mb40">
+		<div class="total_wrap order">
 			 <div class="total_price_wrap">
 				<dl>
-					<dt style="width: 100px; text-align: left;">상품 합계</dt>
-					<dd style="width: 100%; text-align: right;"> 
+					<dt >상품 합계</dt>
+					<dd > 
 					<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${bfdcprice}"/></dd></span>
-					<dt style="width: 100px; text-align: left;">한섬 마일리지</dt>
-					<dd style="width: 100%; text-align: right;"> 
+					<dt >한섬 마일리지</dt>
+					<dd > 
 					<span> -₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${mileage}"/></span></dd>
 				</dl>
 
 		
 				<dl class="total">
-					<dt style="width: 100px; text-align: left;">합계</dt>
-					<dd style="width: 100%; text-align: right;">
+					<dt >합계</dt>
+					<dd >
 					<span> ₩ <fmt:formatNumber type="number" maxFractionDigits="3" value="${afdcprice}"/></span></dd>
 				</dl>
 			</div>
