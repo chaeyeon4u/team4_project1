@@ -54,28 +54,21 @@ public class OrderFormValidator implements Validator{
 			}
 		}
 		//address Validation
-		//비어있지 않고, 특수문자 제외
+		//비어있을 경우 체크
 		String address = order.getAddress();
 		logger.info(address);
 		if(address == null || address.trim().equals("")) {
 			errors.rejectValue("address", "errors.address.required");
-		}else {
-			String regex = "";
-			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(address);
-			if(!matcher.matches()) {
-				errors.rejectValue("address", "errors.address.invalid");
-			}
 		}
 		
 		//receiver Validation
-		//비어있지 않고 한글이름 또는 영어'공백'영어 이름
+		//비어있지 않고 한글이름 또는 영어'공백'영어 이름 또는 영어이름
 		String receiver = order.getReceiver();
 		logger.info(receiver);
 		if(receiver == null || receiver.trim().equals("")) {
 			errors.rejectValue("receiver", "errors.receiver.required");
 		}else {
-			String regex = "^[ㄱ-ㅎ가-힣]{2,5}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}$";
+			String regex = "^[ㄱ-ㅎ가-힣]{2,5}|[a-zA-Z]{2,10}\\s[a-zA-Z]{2,10}|[a-zA-Z]{2,20}$";
 			Pattern pattern = Pattern.compile(regex);
 			Matcher matcher = pattern.matcher(receiver);
 			if(!matcher.matches()) {
