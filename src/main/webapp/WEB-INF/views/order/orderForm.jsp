@@ -40,11 +40,11 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 								<tr class="al_middle">
 									<td class="frt">
 										<div class="pt_list_all">
-											<a href="/product/set/${product.pcolorId}"> <img
+											<a href="/cart/set/${product.pcolorId}"> <img
 												src="${product.img}" alt="">
 											</a>
 											<div class="tlt_wrap">
-												<a href="/product/set/${product.pcolorId}" class="basket_tlt">
+												<a href="/cart/set/${product.pcolorId}" class="basket_tlt">
 													<span class="tlt">${product.brandName}</span> <span
 													class="sb_tlt">${product.productName}</span>
 												</a>
@@ -146,6 +146,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<input onclick="goPopup()"
 											value="${member.zipcode}" title="우편번호" id="adress"
 											name="postcode" class="post inputclear" type="text" readonly="">
+									<form:errors cssClass="text-danger" path="orderForm.zipcode"/>
 									<br>
 									<div id="basis_bk_flag">
 										<input onclick="goPopup()" value="${member.address1}"
@@ -155,6 +156,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<input onclick="goPopup()" value="${member.address2}"
 											title="주소2" name="line2" id="line2"
 											class="post_wall inputclear" type="text" maxlength="110">
+									<form:errors cssClass="text-danger" path="orderForm.address" style="display:block;"/>
+									
 								</td>
 							</tr>
 							<tr>
@@ -166,6 +169,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 									<input value="${member.name}" title="수령인"
 										id="rcpt_name" name="lastName" class="inputclear"
 										maxlength="13" type="text" style="width: 118px;">
+									<form:errors cssClass="text-danger" path="orderForm.receiver"/>
 								</td>
 							</tr>
 							<!-- 휴대폰 번호 -->
@@ -209,6 +213,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										type="text" maxlength="4" numberonly="true"
 										value="${fn:substring(member.phone,7,13)}"> <!-- //hp -->
 									<span style="color:red;" id="hp_num_error"></span>
+									<div><form:errors cssClass="text-danger" path="orderForm.tel"/></div>
 								</td>
 							</tr>
 							<tr>
@@ -290,6 +295,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										<option value="dreamwiz.com">dreamwiz.com</option>
 									</select>
 									<span style="color:red;" id="email_error"></span>
+									<form:errors cssClass="text-danger" path="orderForm.email"/>
 								</td>
 							</tr>
 						</tbody>
