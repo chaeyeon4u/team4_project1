@@ -198,5 +198,11 @@ public class OrderController {
 		orderItemService.cancelOrders(hidden_ordersId);
 		return "redirect:/member/orderlist";
 	}
+	
+	/*outOfStock.jsp Test*/
+	@RequestMapping("/outofstock")
+	public String outOfStock() {
+		return "error/outOfStock";
+	}
 
 }
