@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.webapp.dao.CartDao;
 import com.mycompany.webapp.dto.CartUpdate;
@@ -33,11 +34,13 @@ public class CartService {
 	public List<Size> getSizesByPcolorId(String pcolorId) {
 		return cartDao.selectSizesByPcolorId(pcolorId);
 	}
-	
+
+	@Transactional
 	public int updateQuantity(int quantity, String pstockId, String mid ) {
 		return cartDao.updateCountByQuantity(quantity, pstockId, mid);
 	}
 	
+	@Transactional
 	public int updateOptions(ProductToCart product, String mid) {
 		String oldPstockId = product.getProductStockId();
 		String newPstockId = product.getProductCommonId() + "_" + product.getColorCode() + "_" + product.getSizeCode();
@@ -62,11 +65,13 @@ public class CartService {
 	public Category setCategories(String pcolorId) {
 		return cartDao.selectCategoryByPcolorId(pcolorId);
 	}
-	
+
+	@Transactional
 	public int insertCart(Cart cart) {
 		return cartDao.insertCart(cart);
 	}
-	
+
+	@Transactional
 	public int deleteCart(Cart cart) {
 		return cartDao.deleteByMemberIdAndProductStockId(cart);
 	}
