@@ -94,9 +94,13 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 								<td>${member.name}</td>
 							</tr>
 							<tr>
-								<th scope="row" class="th_space">휴대폰</th>
-								<%-- 주문자 휴대폰 --%>
-								<td>${member.phone}</td>
+						<c:set var="TextValue" value="${member.phone}" />
+						<th scope="row" class="th_space">휴대폰</th>
+						<td>
+							${fn:substring(TextValue,0,3) } 
+							${fn:substring(TextValue,3,7) }
+							${fn:substring(TextValue,7,11) }
+						</td>
 							</tr>
 							<tr>
 								<th scope="row" class="th_space">E-mail</th>

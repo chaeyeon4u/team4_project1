@@ -158,8 +158,13 @@
 						<td>${member.name}</td>
 					</tr>
 					<tr>
+						<c:set var="TextValue" value="${member.phone}" />
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>${member.phone}</td>
+						<td>
+							${fn:substring(TextValue,0,3) } 
+							${fn:substring(TextValue,3,7) }
+							${fn:substring(TextValue,7,11) }
+						</td>
 					</tr>
 					<tr>
 						<th scope="row" class="th_space">E-MAIL</th>
@@ -193,12 +198,22 @@
 						<td>${orderaddress[0].orders.receiver}</td>
 					</tr>
 					<tr>
+						<c:set var="TextValue" value="${orderaddress[0].orders.phone}" />
 						<th scope="row" class="th_space">휴대폰</th>
-						<td>${orderaddress[0].orders.phone}</td>
+						<td>
+							${fn:substring(TextValue,0,3) } 
+							${fn:substring(TextValue,3,7) }
+							${fn:substring(TextValue,7,11) }	
+						</td>
 					</tr>
 					<tr>
+						<c:set var="TextValue" value="${orderaddress[0].orders.tel}" />
 						<th scope="row" class="th_space">연락처</th>
-						<td>${orderaddress[0].orders.tel}</td>
+						<td>
+							${fn:substring(TextValue,0,3) } 
+							${fn:substring(TextValue,3,7) }
+							${fn:substring(TextValue,7,11) }
+						</td>
 					</tr>
 				</tbody>
 			</table>
