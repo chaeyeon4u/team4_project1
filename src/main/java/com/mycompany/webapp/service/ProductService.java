@@ -44,4 +44,8 @@ public class ProductService {
 	public List<ProductStock> getStocks(String pcolorId){
 		return productDao.getStock(pcolorId);
 	}
+	
+	public List<Product> getHomeProducts() {
+		return productDao.selectProductOrderByStockRandom();
+	}
 }

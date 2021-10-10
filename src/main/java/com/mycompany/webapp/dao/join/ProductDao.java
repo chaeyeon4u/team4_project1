@@ -27,4 +27,6 @@ public interface ProductDao {
 	List<Product> selectWithItemsByPcolorId(String pcolorId);
 	
 	List<ProductStock> getStock(String pcolorId);
+	
+	List<Product> selectProductOrderByStockRandom();
 }

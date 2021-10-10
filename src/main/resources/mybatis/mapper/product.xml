@@ -48,12 +48,20 @@
 	</resultMap>
 	
 	
-	<select id="testRow" resultMap="productMap">
-		select brand.name as brandName, product_common.name as productName, img1, price, product_color.id as pcolorId
-		from product_common, product_color , brand
-		where product_common.id = product_color.product_common_id 
-		and brand.no = product_common.brand_no
-		order by productName
+	<select id="selectProductOrderByStockRandom" resultMap="productMap">
+		<![CDATA[
+		select distinct pcolorId, productName, stock, img1, price, brandName
+		from(
+		    select distinct product_color_id as pcolorId, product_common.name as productName, stock, img1, price, brand.name as brandName
+		    from product_stock, product_color, brand, product_common
+		    where stock < 5 and stock > 0
+		    and product_color_id = product_color.id
+		    and product_common_id = product_common.id
+		    and brand_no = brand.no
+		    order by dbms_random.value
+		    )
+		where rownum < 13
+		]]>
 	</select>
 	
 	<select id="selectProductByPcolorId" parameterType="String" resultMap="productMap">
