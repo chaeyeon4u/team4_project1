@@ -116,9 +116,7 @@ public class OrderController {
 		model.addAttribute("orderaddress", orderaddress);
 		model.addAttribute("bfdcprice", orderProduct.get(0).getOrders().getBeforeDcPrice());
 		model.addAttribute("afdcprice", orderProduct.get(0).getOrders().getAfterDcPrice());
-		
 		model.addAttribute("mileage", orderProduct.get(0).getOrders().getUsedMileage());
-		logger.info("mileage" + orderProduct.get(0).getOrders().getUsedMileage());
 		logger.info("orderAddress:" + orderaddress);
 
 		// 주문 오류시 오류창으로 가게끔 하는 부분 필요
@@ -158,22 +156,6 @@ public class OrderController {
 			return "redirect:/order/ordercomplete";
 		}
 	}
-
-	/*
-	 * @PostMapping("/ordercomplete") public String makeOrder(Model model, Principal
-	 * principal, Orders order, String orderContent) {
-	 * 
-	 * logger.info("실행"); JSONObject jsonObject = new JSONObject(orderContent);
-	 * JSONArray products = jsonObject.getJSONArray("products");
-	 * 
-	 * orderService.makeOrder insert: OrderItem 테이블에 orderId와 상품을 매칭해 입력 delete:
-	 * Cart 테이블에서 해당 상품 삭제 update: product_stock 테이블에서 남은 수량 업데이트 (주문한 수량만큼 차감)
-	 * 
-	 * String madeOrderId = orderService.makeOrder(principal, products, order,
-	 * orderContent); model.addAttribute("p", madeOrderId);
-	 * 
-	 * //주문 오류시 오류창으로 가게끔 하는 부분 필요 return "redirect:/order/ordercomplete"; }
-	 */
 
 	@Resource
 	private PaymentService paymentService;
