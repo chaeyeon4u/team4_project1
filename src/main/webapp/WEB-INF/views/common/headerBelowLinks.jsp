@@ -14,12 +14,12 @@
 							<!-- 선호 브랜드 없음 -->
 							<li>
 								<span class="on">
-									<a href="/">HOME</a>
+									<a href="/"></a>
 								</span>
 							</li>
 							<!-- 로그인 상태 -->
-							<!-- 비로그인 상태 -->
-							<p class="brand_menu_guide_text">패션의 완성 THE HANDSOME</p>
+							<!-- 비로그인 상태 //패션의-->
+							<p class="brand_menu_guide_text"></p>
 						</ul>
 					</div>
 					<div class="gnb_sh_wrap" style="display: none;">
@@ -77,9 +77,6 @@
 					<%-- 카테고리1 끝 --%>
 
 					<ul class="cate_m cate_banner gnbul2" id="cate_m_main">
-						<li>
-							<a href="" class="">이벤트</a>
-						</li>
 						<sec:authorize access="isAuthenticated()">
 							<li>
 								<a href="${pageContext.request.contextPath}/cart">장바구니</a>
