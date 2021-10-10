@@ -51,7 +51,16 @@ header에 들어가는 부분
 						</a>
 					</div>
 				</div>
-
+								<!-- Left and right controls -->
+				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+					<span class="carousel-control-prev-icon"></span>
+				</a>
+				<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+					<span class="carousel-control-next-icon"></span>
+				</a>
+				
+			</div>
+		</div>
 				<section class="py-5">
 				<h3 style="text-align: center;font-weight: 600;">현재 품절 임박인 인기 상품들을 만나보세요.</h3>
 					<div class="container px-4 px-lg-5 mt-5">
@@ -105,16 +114,8 @@ header에 들어가는 부분
 					</div>
 				</section>
 
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</a>
-				<a class="carousel-control-next" href="#myCarousel" data-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</a>
 
-			</div>
-		</div>
+
 	</body>
 
 </div>
