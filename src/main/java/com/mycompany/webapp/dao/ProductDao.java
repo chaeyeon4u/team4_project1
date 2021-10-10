@@ -1,4 +1,4 @@
-package com.mycompany.webapp.dao.join;
+package com.mycompany.webapp.dao;
 
 import java.util.List;
 
