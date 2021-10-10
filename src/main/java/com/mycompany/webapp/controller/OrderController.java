@@ -25,11 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.CartProduct;
 import com.mycompany.webapp.dto.OrderComplete;
+import com.mycompany.webapp.dto.Stock;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.MemberService;
 import com.mycompany.webapp.service.MileageService;
-import com.mycompany.webapp.service.OrderCompleteService;
-import com.mycompany.webapp.service.OrderXService;
+import com.mycompany.webapp.service.OrderService;
+import com.mycompany.webapp.service.OrderItemService;
 import com.mycompany.webapp.service.PaymentService;
 import com.mycompany.webapp.vo.Cart;
 import com.mycompany.webapp.vo.Member;
@@ -44,8 +45,8 @@ public class OrderController {
 	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
 	@Resource MemberService memberService;
-	@Resource OrderXService orderXService;
-	@Resource private OrderCompleteService orderCompleteService;
+	@Resource OrderItemService orderItemService;
+	@Resource private OrderService orderService;
 	@Resource CartService cartService;
 	@Resource MileageService mileageService;
 	
@@ -63,6 +64,8 @@ public class OrderController {
 		}
 		
 		logger.info("orderContent" + orderContent);
+		
+		// 장바구니에서 주문한 상품을 order 폼에 뿌리기
 		List<CartProduct> cartProducts = new ArrayList<CartProduct>();
 		JSONObject jsonObject = new JSONObject(orderContent);
 		JSONArray products = jsonObject.getJSONArray("products");
@@ -77,6 +80,7 @@ public class OrderController {
 			cartProduct.setImg(product.getString("img"));
 			cartProduct.setQuantity(product.getInt("quantity"));
 			cartProduct.setAppliedPrice(product.getInt("appliedPrice"));
+			
 			cartProducts.add(cartProduct);
 		}
 		
@@ -96,90 +100,47 @@ public class OrderController {
 		return "popup/jusoPopup";
 	}
 
-	@RequestMapping("/ordercomplete")
-	public String orderComplete(Model model, Principal principal, Orders order, String orderContent) {
+	@GetMapping("/ordercomplete")
+	public String showOrder(@RequestParam("p") String orderId, Principal principal, Model model) {
 		
-		//orders table 시작-------------------------insert-----------
-		//orderid 생성하는 부분 -> orderid = yyyyMMddHHmmss + userid
-		Date today = new Date();
-		SimpleDateFormat orderIdDateformat = new SimpleDateFormat("yyyyMMddHHmmss");
-		String makedOrderId = orderIdDateformat.format(today)+principal.getName();
-		order.setId(makedOrderId);
-		
-		//ordersid table에 주문 데이터를 입력하는 서비스 부분
-		int resultOfOrders = orderCompleteService.orderProducts(order);
-		
-		
-		//order item table 시작----------------------insert------------
-		JSONObject jsonObject = new JSONObject(orderContent);
-		JSONArray products = jsonObject.getJSONArray("products");
-		for(int i=0; i<products.length(); i++) {
-			JSONObject product = products.getJSONObject(i);
-			OrderItem orderItem = new OrderItem();
-			orderItem.setOrdersId(makedOrderId);
-			orderItem.setOrderByTime(new Date());
-			orderItem.setCount(product.getInt("quantity"));
-			orderItem.setProductStockId(product.getString("pcolorId")+"_"+product.getString("sizeCode"));
-			orderItem.setTotalPrice(product.getInt("appliedPrice"));
-			
-			//orderitem table에 각 주문상품 데이터를 입력하는 서비스 부분
-			int resultOfOrderItem = orderCompleteService.specificOrder(orderItem);
-			/*	jsp에서 데이터를 잘 받아오는지 체크하기 위한 부분
-				logger.info(product.getString("pcolorId"));
-				logger.info(product.getString("brandName"));
-				logger.info(product.getString("productName"));
-				logger.info(product.getString("colorCode"));
-				logger.info(product.getString("img"));
-				logger.info(product.getString("quantity"));
-				logger.info(product.getString("appliedPrice"));
-			 */
-			
-			
-			//cart table 시작----------------------카트에 있는 상품중 주문된 상품 delete------------
-			Cart cart = new Cart();
-			cart.setMemberId(principal.getName());
-			cart.setProductStockId(product.getString("pcolorId")+"_"+product.getString("sizeCode"));
-			//실제 cart table에서 DB를 삭제하는 service부분
-			int resultOfDeleteCart = cartService.deleteCart(cart);
-		}
-		
-		// Mileage table 시작 ------------------ 마일리지가 차감 insert
-		Mileage mileage = new Mileage();
-		mileage.setIssueDate(new Date());
-		mileage.setMemberId(principal.getName());
-		mileage.setAmount(order.getUsedMileage());
-		mileage.setCategory("마일리지사용");
-		mileage.setContent("상품구매로 마일리지 사용");
-        
-		Calendar cal = Calendar.getInstance();
-        Date date = new Date();
-        cal.setTime(date);
-        cal.add(Calendar.YEAR, 1);
-        mileage.setExpireDate(cal.getTime());
-		mileage.setName("마일리지사용");
-		mileage.setStatus("0");
-		int resultOfMileage = mileageService.useMileage(mileage);
-		
-		
-		
-		List<OrderComplete> orderProduct = orderCompleteService.selectProductByorderId(principal.getName(), makedOrderId);
-		List<OrderComplete> orderpayment = orderCompleteService.selectpaymentByorderId(principal.getName(), makedOrderId);
-		List<OrderComplete> orderaddress = orderCompleteService.selectaddressByorderId(principal.getName(), makedOrderId);
+		String mid = principal.getName();
 
-		String userId = principal.getName();
-		Member member = memberService.memberInfoById(userId);
+		List<OrderComplete> orderProduct = orderService.selectProductByorderId(mid, orderId);
+		List<OrderComplete> orderpayment = orderService.selectpaymentByorderId(mid, orderId);
+		List<OrderComplete> orderaddress = orderService.selectaddressByorderId(mid, orderId);
+
+		Member member = memberService.memberInfoById(mid);
 
 		model.addAttribute("member", member);
 		model.addAttribute("orderProduct", orderProduct);
 		model.addAttribute("orderpayment", orderpayment);
 		model.addAttribute("orderaddress", orderaddress);
-		model.addAttribute("bfdcprice", order.getBeforeDcPrice());
-		model.addAttribute("afdcprice", order.getAfterDcPrice());
-		model.addAttribute("mileage", order.getUsedMileage());
+		model.addAttribute("bfdcprice", orderProduct.get(0).getOrders().getBeforeDcPrice());
+		model.addAttribute("afdcprice", orderProduct.get(0).getOrders().getAfterDcPrice());
+		model.addAttribute("mileage", orderProduct.get(0).getOrders().getUsedMileage());
 		logger.info("orderAddress:" + orderaddress);
 		
 		//주문 오류시 오류창으로 가게끔 하는 부분 필요
 		return "order/orderComplete";
+	}
+	
+	@PostMapping("/ordercomplete")
+	public String makeOrder(Model model, Principal principal, Orders order, String orderContent) {
+
+		logger.info("실행");
+		JSONObject jsonObject = new JSONObject(orderContent);
+		JSONArray products = jsonObject.getJSONArray("products");
+		/*
+		 * orderService.makeOrder
+		 * insert: OrderItem 테이블에 orderId와 상품을 매칭해 입력
+		 * delete: Cart 테이블에서 해당 상품 삭제
+		 * update: product_stock 테이블에서 남은 수량 업데이트 (주문한 수량만큼 차감)
+		 */
+		String madeOrderId = orderService.makeOrder(principal, products, order, orderContent);
+		model.addAttribute("p", madeOrderId);
+		
+		//주문 오류시 오류창으로 가게끔 하는 부분 필요
+		return "redirect:/order/ordercomplete";
 	}
 	
 
@@ -203,8 +164,8 @@ public class OrderController {
 	@RequestMapping("/cancel")
 	public String cancelOrder(String hidden_ordersId) {
 		//orderitem 테이블에서 데이터 삭제 -> orders 테이블에서 데이터 삭제
-		orderXService.cancelOrderItem(hidden_ordersId);
-		orderXService.cancelOrders(hidden_ordersId);
+		orderItemService.cancelOrderItem(hidden_ordersId);
+		orderItemService.cancelOrders(hidden_ordersId);
 		return "redirect:/member/orderlist";
 	}
 	

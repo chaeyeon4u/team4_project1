@@ -72,7 +72,7 @@
 	</resultMap>
 	
 	
-	<select id="selectProductByOrderX" parameterType="String" resultMap="orderXMap">
+	<select id="selectProductByMid" parameterType="String" resultMap="orderXMap">
 	 	select orders.id as ordersid ,orders.status,orders.delivery_status,product_color.img1,product_color.color_code,product_stock.size_code,
              order_item.product_stock_id as orderstockid ,order_item.count,order_item.total_price,brand.name as brandName,
              product_common.name as productName,order_by_time, product_color.id as pcolorId

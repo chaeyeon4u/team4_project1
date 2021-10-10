@@ -2,7 +2,6 @@ package com.mycompany.webapp.controller;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,7 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.webapp.dto.OrderX;
-import com.mycompany.webapp.service.OrderXService;
+import com.mycompany.webapp.service.OrderItemService;
 import com.mycompany.webapp.vo.OrderItem;
 
 @Controller
@@ -29,12 +28,12 @@ public class MemberController {
 	
 	// 마이 페이지 & 주문 취소 
 	@Resource
-	private OrderXService orderXService;
+	private OrderItemService orderItemService;
 	
 	@RequestMapping("/orderlist")
 	public String orderList(Model model, Principal principal, OrderItem orderItem) {
 		String mid = principal.getName();
-		List<OrderX> orderProduct=orderXService.selectProductByOrderX(mid);
+		List<OrderX> orderProduct=orderItemService.getOrderItems(mid);
 		
 		model.addAttribute("bytime", orderItem.getOrderByTime());
 		model.addAttribute("orderProduct",orderProduct);
