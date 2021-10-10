@@ -39,11 +39,11 @@ public class MemberController {
 		model.addAttribute("orderProduct",orderProduct);
 		logger.info("실행");
 		logger.info("orderProduct" + orderProduct);
-		for( OrderX a : orderProduct ) {
-			logger.info("-------------------------------");
-			logger.info(a.getOrderItem().getOrderByTime()+"");
-		}
-		return "member/orderList";
+		/*		for( OrderX a : orderProduct ) {
+					logger.info("-------------------------------");
+					logger.info(a.getOrderItem().getOrderByTime()+"");
+				}
+		*/		return "member/orderList";
 	}
 	
 	

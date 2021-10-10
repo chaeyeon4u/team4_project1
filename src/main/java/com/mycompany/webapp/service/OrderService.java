@@ -10,6 +10,8 @@ import javax.annotation.Resource;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,6 +42,10 @@ public class OrderService {
 	@Resource private OrderItemDao orderItemDao;
 	
 	@Resource private OrdersDao ordersDao;
+	
+	
+	private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
+
 	
 	public List<OrderComplete> selectProductByorderId(String mid, String ordersId) {
 		return orderCompleteDao.selectProductByorderId(mid, ordersId);
@@ -106,8 +112,14 @@ public class OrderService {
 
 	@Transactional
 	public void cancelOrder(String hidden_ordersId) {
+		List<Stock> orderCancelStocks = ordersDao.selectByOrdersId(hidden_ordersId);
+		logger.info("orderCancelStocks =" + orderCancelStocks);
 		orderItemDao.updateByOrdersId(hidden_ordersId, new Date());
 		ordersDao.updateByOrdersId(hidden_ordersId);
+		for(Stock orderCancelStock : orderCancelStocks) {
+			logger.info("orderCancelStock = " + orderCancelStock);
+			updateStock(orderCancelStock, "+");
+		}
 	}
 	
 	//===== methods =====
@@ -120,18 +132,24 @@ public class OrderService {
 		return madeOrderId;
 	}
 
+	@Transactional
 	public void updateStock(Stock stock, String operator) {
+		logger.info("실행");
+		logger.info("stock = " + stock);
 		Stock oldStock = stockDao.select(stock);
+		logger.info("oldStock: " +  oldStock);
 		int oldQuantity = oldStock.getQuantity();
+		logger.info("oldQuantity: " + oldQuantity);
 		int newQuantity = 0;
-		if (operator == "+") {
+		if (operator == "-") {
 			newQuantity = oldQuantity - stock.getQuantity();
 			if (newQuantity < 0) {
 				throw new OutOfStockException("outOfStock");
 			}
-		} else if (operator == "-") {
+		} else if (operator == "+") {
 			newQuantity = oldQuantity + stock.getQuantity();
 		}
+		logger.info("newQuantity: " + newQuantity);
 		Stock newStock = new Stock(stock.getProductStockId(), newQuantity);
 		stockDao.update(newStock);
 	}

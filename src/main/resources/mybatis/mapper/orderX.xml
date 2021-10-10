@@ -73,6 +73,12 @@
 	</resultMap>
 	
 	
+	<select id="selectByOrdersId" parameterType="String" resultType="com.mycompany.webapp.dto.Stock">
+	select product_stock_id, count as quantity
+	from order_item
+	where orders_id = #{ordersId}
+	</select>
+	
 	<select id="selectProductByMid" parameterType="String" resultMap="orderXMap">
 	 	select orders.id as ordersid ,orders.status,orders.delivery_status,product_color.img1,product_color.color_code,product_stock.size_code,
              order_item.product_stock_id as orderstockid ,order_item.count,order_item.total_price,brand.name as brandName,order_item.order_delete_time,

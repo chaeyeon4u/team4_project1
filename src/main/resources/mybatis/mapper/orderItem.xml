@@ -3,6 +3,7 @@
 
 <mapper namespace="com.mycompany.webapp.dao.OrderItemDao">
 
+	
 	<update id="updateByOrdersId" parameterType="map">
 		update order_item
         set order_delete_time = #{today}, count=0, total_price=0
