@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.webapp.dao.CartDao;
 import com.mycompany.webapp.dao.MileageDao;
+import com.mycompany.webapp.dao.OrderCompleteDao;
+import com.mycompany.webapp.dao.OrderItemDao;
+import com.mycompany.webapp.dao.OrdersDao;
 import com.mycompany.webapp.dao.StockDao;
-import com.mycompany.webapp.dao.join.OrderCompleteDao;
 import com.mycompany.webapp.dto.OrderComplete;
 import com.mycompany.webapp.dto.Stock;
 import com.mycompany.webapp.exception.OutOfStockException;
@@ -27,119 +29,133 @@ import com.mycompany.webapp.vo.Orders;
 
 @Service
 public class OrderService {
-	@Resource 
-	private OrderCompleteDao orderCompleteDao;
-	
+	@Resource private OrderCompleteDao orderCompleteDao;
+
 	@Resource CartDao cartDao;
-	
+
 	@Resource private StockDao stockDao;
-	
+
 	@Resource private MileageDao mileageDao;
+
+	@Resource private OrderItemDao orderItemDao;
 	
-		public List<OrderComplete> selectProductByorderId(String mid, String ordersId){
+	@Resource private OrdersDao ordersDao;
+	
+	public List<OrderComplete> selectProductByorderId(String mid, String ordersId) {
 		return orderCompleteDao.selectProductByorderId(mid, ordersId);
-		
+
 	}
-		public List<OrderComplete> selectpaymentByorderId(String mid, String ordersId){
+
+	public List<OrderComplete> selectpaymentByorderId(String mid, String ordersId) {
 		return orderCompleteDao.selectpaymentByorderId(mid, ordersId);
-		}
-		
-		public List<OrderComplete> selectaddressByorderId(String mid, String ordersId){
+	}
+
+	public List<OrderComplete> selectaddressByorderId(String mid, String ordersId) {
 		return orderCompleteDao.selectaddressByorderId(mid, ordersId);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int orderProducts(Orders order) {
+		return orderCompleteDao.insertOrders(order);
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	public int specificOrder(OrderItem orderitem) {
+		return orderCompleteDao.insertOrderitem(orderitem);
+	}
+
+	@Transactional
+	public String makeOrder(Principal principal, JSONArray products, Orders order, String orderContent) {
+		// orderid 생성 -> orderid = yyyyMMddHHmmss + userid
+		String madeOrderId = makeOrderId(principal, order);
+		order.setId(madeOrderId);
+
+		// Orders 테이블에 주문번호로 주문 데이터 입력
+		orderCompleteDao.insertOrders(order);
+
+		for (int i = 0; i < products.length(); i++) {
+			JSONObject product = products.getJSONObject(i);
+
+			// 재고 업데이트
+			String productStockId = product.getString("pcolorId") + "_" + product.getString("sizeCode");
+			Stock stock = new Stock(productStockId, product.getInt("quantity"));
+			updateStock(stock, "-");
+
+			OrderItem orderItem = new OrderItem();
+			orderItem.setOrdersId(madeOrderId);
+			orderItem.setOrderByTime(new Date());
+			orderItem.setCount(product.getInt("quantity"));
+			orderItem.setProductStockId(productStockId);
+			orderItem.setTotalPrice(product.getInt("appliedPrice"));
+
+			// orderitem table에 각 주문상품 데이터를 입력
+			orderCompleteDao.insertOrderitem(orderItem);
+
+			// 주문한 상품 장바구니에서 삭제
+			Cart cart = new Cart();
+			cart.setMemberId(principal.getName());
+			cart.setProductStockId(product.getString("pcolorId") + "_" + product.getString("sizeCode"));
+			cartDao.deleteByMemberIdAndProductStockId(cart);
+
 		}
 
-		@Transactional(rollbackFor = Exception.class)
-		public int orderProducts(Orders order) {
-			return orderCompleteDao.insertOrders(order);
-		}
+		updateMileageHistory(principal, order);
 
-		@Transactional(rollbackFor = Exception.class)
-		public int specificOrder(OrderItem orderitem) {
-			return orderCompleteDao.insertOrderitem(orderitem);
-		}
-		
-		@Transactional
-		public String makeOrder(Principal principal, JSONArray products, Orders order, String orderContent) {
-			//orderid 생성 -> orderid = yyyyMMddHHmmss + userid
-			String madeOrderId = makeOrderId(principal, order);
-			order.setId(madeOrderId);
-			
-			//Orders 테이블에 주문번호로 주문 데이터 입력
-			orderCompleteDao.insertOrders(order);
-			
-			for(int i=0; i<products.length(); i++) {
-				JSONObject product = products.getJSONObject(i);
-				
-				// 재고 업데이트
-				String productStockId = product.getString("pcolorId")+"_"+product.getString("sizeCode");
-				Stock stock = new Stock(productStockId, product.getInt("quantity"));
-				updateStock(stock);
-				
-				OrderItem orderItem = new OrderItem();
-				orderItem.setOrdersId(madeOrderId);
-				orderItem.setOrderByTime(new Date());
-				orderItem.setCount(product.getInt("quantity"));
-				orderItem.setProductStockId(productStockId);
-				orderItem.setTotalPrice(product.getInt("appliedPrice"));
-				
-				//orderitem table에 각 주문상품 데이터를 입력
-				orderCompleteDao.insertOrderitem(orderItem);
-				
-				// 주문한 상품 장바구니에서 삭제
-				Cart cart = new Cart();
-				cart.setMemberId(principal.getName());
-				cart.setProductStockId(product.getString("pcolorId")+"_"+product.getString("sizeCode"));
-				cartDao.deleteByMemberIdAndProductStockId(cart);
-				
-			}
-			
-			updateMileageHistory(principal, order);
-			
-			return madeOrderId;
-		}
-		
-		private String makeOrderId(Principal principal, Orders order) {
-			Date today = new Date();
-			SimpleDateFormat orderIdDateformat = new SimpleDateFormat("yyyyMMddHHmmss");
-			String madeOrderId = orderIdDateformat.format(today)+principal.getName();
-			
-			return madeOrderId;
-		}
-		
-		public void updateStock(Stock stock) {
-			Stock oldStock = stockDao.select(stock);
-			int oldQuantity = oldStock.getQuantity();
-			int newQuantity = oldQuantity - stock.getQuantity();
+		return madeOrderId;
+	}
+
+	@Transactional
+	public void cancelOrder(String hidden_ordersId) {
+		orderItemDao.updateByOrdersId(hidden_ordersId, new Date());
+		ordersDao.updateByOrdersId(hidden_ordersId);
+	}
+	
+	//===== methods =====
+	
+	private String makeOrderId(Principal principal, Orders order) {
+		Date today = new Date();
+		SimpleDateFormat orderIdDateformat = new SimpleDateFormat("yyyyMMddHHmmss");
+		String madeOrderId = orderIdDateformat.format(today) + principal.getName();
+
+		return madeOrderId;
+	}
+
+	public void updateStock(Stock stock, String operator) {
+		Stock oldStock = stockDao.select(stock);
+		int oldQuantity = oldStock.getQuantity();
+		int newQuantity = 0;
+		if (operator == "+") {
+			newQuantity = oldQuantity - stock.getQuantity();
 			if (newQuantity < 0) {
 				throw new OutOfStockException("outOfStock");
 			}
-			Stock newStock = new Stock(stock.getProductStockId(), newQuantity);
-			stockDao.update(newStock);
+		} else if (operator == "-") {
+			newQuantity = oldQuantity + stock.getQuantity();
 		}
-		
-		/**
-		 * @param principal
-		 * @param order
-		 */
-		private void updateMileageHistory(Principal principal, Orders order) {
-			Mileage mileage = new Mileage();
-			mileage.setIssueDate(new Date());
-			mileage.setMemberId(principal.getName());
-			mileage.setAmount(order.getUsedMileage());
-			mileage.setCategory("마일리지사용");
-			mileage.setContent("상품구매로 마일리지 사용");
-	        
-			Calendar cal = Calendar.getInstance();
-	        Date date = new Date();
-	        cal.setTime(date);
-	        cal.add(Calendar.YEAR, 1);
-	        mileage.setExpireDate(cal.getTime());
-			mileage.setName("마일리지사용");
-			mileage.setStatus("0");
-			mileageDao.insertMileage(mileage);
-		}
+		Stock newStock = new Stock(stock.getProductStockId(), newQuantity);
+		stockDao.update(newStock);
+	}
+
+	/**
+	 * @param principal
+	 * @param order
+	 */
+	private void updateMileageHistory(Principal principal, Orders order) {
+		Mileage mileage = new Mileage();
+		mileage.setIssueDate(new Date());
+		mileage.setMemberId(principal.getName());
+		mileage.setAmount(order.getUsedMileage());
+		mileage.setCategory("마일리지사용");
+		mileage.setContent("상품구매로 마일리지 사용");
+
+		Calendar cal = Calendar.getInstance();
+		Date date = new Date();
+		cal.setTime(date);
+		cal.add(Calendar.YEAR, 1);
+		mileage.setExpireDate(cal.getTime());
+		mileage.setName("마일리지사용");
+		mileage.setStatus("0");
+		mileageDao.insertMileage(mileage);
+	}
 
 }
-	
-
-
