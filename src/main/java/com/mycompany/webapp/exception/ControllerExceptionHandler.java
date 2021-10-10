@@ -20,4 +20,11 @@ public class ControllerExceptionHandler {
 		e.printStackTrace();
 		return "error/500";
 	}
+	
+	@ExceptionHandler
+	public String outOfStockException(OutOfStockException e) {
+		logger.info("실행");
+		e.printStackTrace();
+		return "error/outOfStock";
+	}
 }
