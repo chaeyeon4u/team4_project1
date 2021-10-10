@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>실패!!</h1>
+	<img src="${pageContext.request.contextPath}/resources/images/event/fail.png" width="100%" height="100%">
 </body>
 </html>

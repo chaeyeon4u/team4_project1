@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>이미 쿠폰을 받은 회원입니다. 쿠폰을 중복하여 수령할 수 없습니다.</h1>
+	<img src="${pageContext.request.contextPath}/resources/images/event/already.png" width="100%" height="100%">
 </body>
 </html>
