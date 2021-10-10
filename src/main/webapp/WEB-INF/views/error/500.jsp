@@ -35,7 +35,7 @@
 	            <span>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br>페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.<br><br>입력한 주소가 정확한지 다시 한번 확인해주시길 바랍니다.</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">더한섬닷컴 메인으로</a>
+                <a href="/" class="btn wt_ss">더한섬닷컴 메인으로</a>
             </div>
         </div>
         <div class="errorwrap" id="en" style="display:none;">
@@ -49,7 +49,7 @@
 	            <span>The webpage cannot be found.<br>This error is caused because the website address is typed incorrectly,<br>has been deleted, or changed.<br><br>Make sure the address is correct and try again.</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">Go to thehandsome.com</a>
+                <a href="/" class="btn wt_ss">Go to thehandsome.com</a>
             </div>
 		</div>            
 		
@@ -64,7 +64,7 @@
 	            <span>入的址无法。<br>此不存在或址已更。<br><br>再次地址。</span>
             </div>
             <div class="btnwrap">
-                <a href="/main" class="btn wt_ss">返回thehandsome.com首</a>
+                <a href="/" class="btn wt_ss">thehandsome.com</a>
             </div>
 		</div>
 		<script>
