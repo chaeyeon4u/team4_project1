@@ -11,4 +11,5 @@ public class OrderItem {
 	private int count;
 	private int totalPrice;
 	private Date orderByTime;
+	private Date orderDeleteTime;
 }

@@ -2,6 +2,7 @@ package com.mycompany.webapp.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -194,7 +195,7 @@ public class OrderController {
 	@RequestMapping("/cancel")
 	public String cancelOrder(String hidden_ordersId) {
 		// orderitem 테이블에서 데이터 삭제 -> orders 테이블에서 데이터 삭제
-		orderItemService.cancelOrderItem(hidden_ordersId);
+		orderItemService.cancelOrderItem(hidden_ordersId,new Date());
 		orderItemService.cancelOrders(hidden_ordersId);
 		return "redirect:/member/orderlist";
 	}
