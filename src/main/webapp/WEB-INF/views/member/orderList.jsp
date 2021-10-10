@@ -67,7 +67,8 @@
 							<tr class="al_middle">
 							<!-- 주문번호 자리 -->
 								<td class="ono">
-									<p class="num">${orderx.orders.id}</p>
+									<p class="num">
+									<a href="/order/ordercomplete?p=${orderx.orders.id}" style="text-decoration: underline;">${orderx.orders.id}</a></p>
 									<!-- 날짜 -->	
 									<script>console.log("${bytime}")</script>
 									<span class="sum_date"><fmt:formatDate value="${orderx.orderItem.orderByTime}" pattern="yyyy.MM.dd"/></span>
