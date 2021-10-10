@@ -1,7 +1,9 @@
 package com.mycompany.webapp.controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -109,7 +111,19 @@ public class OrderController {
 		List<OrderComplete> orderaddress = orderService.selectaddressByorderId(mid, orderId);
 
 		Member member = memberService.memberInfoById(mid);
-
+		
+		String timeP = null;
+		Date date = new Date();
+		SimpleDateFormat bytime = new SimpleDateFormat("yyyy.MM.dd HH시 mm분");
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.HOUR,+4);
+		timeP = bytime.format(cal.getTime());
+		
+		
+		// 입금 시간 +4시간 더하기
+		model.addAttribute("timeP", timeP);
+		
 		model.addAttribute("member", member);
 		model.addAttribute("orderProduct", orderProduct);
 		model.addAttribute("orderpayment", orderpayment);

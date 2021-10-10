@@ -24,8 +24,7 @@
 			<p class="ss_title">
 			<!-- 계좌 남은 시간 -->	
 				<span class="guide_comment">입금 가상계좌로 결제 금액을 
-				<fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH:MM"/>
-				까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
+				${timeP} 까지 입금하셔야 주문이 완료됩니다.</span> (입금하지 않으시면 주문이 취소됩니다.)
 			</p>
 		</div>
 
@@ -134,7 +133,7 @@
 						</tr>
 						<tr>
 							<th scope="row" class="th_space">입금 예정기한</th>
-							<td><fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH시:MM분"/>까지 입금</td>
+							<td>${timeP}까지 입금</td>
 						</tr>
 					</tbody>
 				</c:if>
