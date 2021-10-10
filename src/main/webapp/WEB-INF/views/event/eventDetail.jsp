@@ -50,7 +50,7 @@
 		//만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 	
  		var popUrl = "${pageContext.request.contextPath}/event/coupondownload";
-		var popOption = "top="+popupY+", left="+popupX+", width=500, height=420, status=no, menubar=no, toolbar=no, resizable=no";
+		var popOption = "top="+popupY+", left="+popupX+", width=500, height=300, status=no, menubar=no, toolbar=no, resizable=no";
 		var title = "submitform";
 		window.open("", title, popOption);
 		

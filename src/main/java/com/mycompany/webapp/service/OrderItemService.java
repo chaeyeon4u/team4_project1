@@ -1,5 +1,6 @@
 package com.mycompany.webapp.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,8 +26,8 @@ public class OrderItemService {
 	}
 
 	@Transactional
-	public int cancelOrderItem(String hidden_ordersId) {
-		return orderItemDao.updateByOrdersId(hidden_ordersId);
+	public int cancelOrderItem(String hidden_ordersId, Date today) {
+		return orderItemDao.updateByOrdersId(hidden_ordersId, today);
 	}
 
 	@Transactional
