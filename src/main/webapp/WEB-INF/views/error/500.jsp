@@ -25,10 +25,11 @@
 	<div class="sub_container error_container">
 		<div class="errorwrap" id="ko">
 			<div class="top_error">
-                <button class="btn btn-outline-danger">中文</button>
-               	<button class="btn btn-outline-danger">ENGLISH</button>
-                <button class="btn btn-outline-danger">한국어</button>
-                </div>
+			<div class="top_error">
+                <button class="btn btn-outline-danger" onclick="china()">中文</button>
+               	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
+                <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
+            </div>                </div>
             <div class="con_error">
 	            <p>서비스 이용에 불편을 드려서 죄송합니다!</p>
 	            <span>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br>페이지의 주소가 변경 혹은 삭제되어 요청하신 페이지를 찾을 수 없습니다.<br><br>입력한 주소가 정확한지 다시 한번 확인해주시길 바랍니다.</span>
@@ -38,13 +39,10 @@
             </div>
         </div>
         <div class="errorwrap" id="en" style="display:none;">
-        	<div class="top_error">
-                <h1 class="logo">
-				    <a href="#">thehandsome.com</a>
-                </h1>
-                <a href="javascript:language('zh');">中文</a>
-               	<a href="#">ENGLISH</a>
-                <a href="javascript:language('ko');">한국어</a>
+       		 <div class="top_error">
+                <button class="btn btn-outline-danger" onclick="china()">中文</button>
+               	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
+                <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
             </div>
             <div class="con_error">
 	            <p>We are sorry for any inconvenience caused by the recent service.</p>
@@ -56,15 +54,10 @@
 		</div>            
 		
 		<div class="errorwrap" id="zh" style="display:none;">               	
-			<div class="top_error">
-                <h1 class="logo">
-				    <a href="#">thehandsome.com</a>
-                </h1>
-                
-				<a href="#">中文</a>
-               	<a href="javascript:language('en');">ENGLISH</a>
-                <a href="javascript:language('ko');">한국어</a>
-               <!--  <a href="mailto:globalcs@thehandsome.com">客服中心</a> -->
+            <div class="top_error">
+                <button class="btn btn-outline-danger" onclick="china()">中文</button>
+               	<button class="btn btn-outline-danger" onclick="eng()">ENGLISH</button>
+                <button class="btn btn-outline-danger" onclick="kor()">한국어</button>
             </div>
             <div class="con_error">
 	            <p>非常抱！</p>
@@ -74,7 +67,25 @@
                 <a href="/main" class="btn wt_ss">返回thehandsome.com首</a>
             </div>
 		</div>
-		
+		<script>
+			function china(){
+				$("#zh").css("display", "block");
+				$("#en").css("display", "none");
+				$("#ko").css("display", "none");
+			}
+			
+			function eng(){
+				$("#zh").css("display", "none");
+				$("#en").css("display", "block");
+				$("#ko").css("display", "none");
+			}
+			
+			function kor(){
+				$("#zh").css("display", "none");
+				$("#en").css("display", "none");
+				$("#ko").css("display", "block");
+			}
+		</script>
 	</div>
 </div>
 
