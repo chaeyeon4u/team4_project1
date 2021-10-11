@@ -104,9 +104,9 @@ public class OrderService {
 			cartDao.deleteByMemberIdAndProductStockId(cart);
 
 		}
-
-		updateMileageHistory(principal, order);
-
+		if(order.getUsedMileage()!= null || order.getUsedMileage()!= 0) {
+			updateMileageHistory(principal, order);
+		}
 		return madeOrderId;
 	}
 
