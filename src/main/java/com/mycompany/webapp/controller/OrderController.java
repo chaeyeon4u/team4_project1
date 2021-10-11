@@ -64,11 +64,13 @@ public class OrderController {
 		int mileageSum = 0;
 		Member member = memberService.memberInfoById(userId);
 		List<Mileage> mileages = memberService.memberMileageById(principal.getName());
+		List<Mileage> usedmileages = memberService.memberUsedMileageById(principal.getName());
 		for (Mileage mileage : mileages) {
 			mileageSum += mileage.getAmount();
 		}
-
-		logger.info("orderContent" + orderContent);
+		for (Mileage mileage : usedmileages) {
+			mileageSum -= mileage.getAmount();
+		}
 
 		// 장바구니에서 주문한 상품을 order 폼에 뿌리기
 		List<CartProduct> cartProducts = new ArrayList<CartProduct>();

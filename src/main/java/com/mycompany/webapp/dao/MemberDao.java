@@ -11,4 +11,5 @@ import com.mycompany.webapp.vo.Mileage;
 public interface MemberDao {
 	Member selectById(String memberId);
 	List<Mileage> selectMileageById(String memberId);
+	List<Mileage> selectUsedMileageById(String memberId);
 }

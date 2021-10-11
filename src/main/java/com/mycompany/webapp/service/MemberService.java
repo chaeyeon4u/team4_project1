@@ -22,4 +22,8 @@ public class MemberService {
 	public List<Mileage> memberMileageById(String memberId) {
 		return memberDao.selectMileageById(memberId);
 	}
+	
+	public List<Mileage> memberUsedMileageById(String memberId) {
+		return memberDao.selectUsedMileageById(memberId);
+	}
 }

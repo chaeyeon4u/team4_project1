@@ -13,4 +13,10 @@
 		where member_id=#{memberId} and expire_date>=sysdate and status=1
 	</select>
 	
+	<select id="selectUsedMileageById" parameterType="String" resultType="mileage">
+		select amount 
+		from mileage 
+		where member_id=#{memberId} and expire_date>=sysdate and status=0
+	</select>
+	
 </mapper>
