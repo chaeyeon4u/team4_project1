@@ -50,6 +50,7 @@ public class ProductController {
 		return redirect;
 	}
 	
+	/* [Author : KHY] */ 
 	//대분류, 중분류, 소분류 모두다 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}/{depth2}/{depth3}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2, @PathVariable String depth3,@RequestParam(defaultValue = "1") int pageNo) {
@@ -77,6 +78,7 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	/* [Author : KHY] */ 
 	//대분류, 중분류만 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}/{depth2}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2,@RequestParam(defaultValue = "1") int pageNo) {
@@ -95,6 +97,7 @@ public class ProductController {
 		return "product/productList";
 	}
 	
+	/* [Author : KHY] */ 
 	//대분류만 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}")
 	public String searchByCategory(Model model, @PathVariable String depth1,@RequestParam(defaultValue = "1") int pageNo) {
