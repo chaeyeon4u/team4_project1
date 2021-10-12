@@ -26,24 +26,24 @@ public class MemberController {
 		return "member/loginForm";
 	}
 	
-	// 마이 페이지 & 주문 취소 
+	
 	@Resource
 	private OrderItemService orderItemService;
 	
+	// 마이 페이지 & 주문 취소 
 	@RequestMapping("/orderlist")
 	public String orderList(Model model, Principal principal, OrderItem orderItem) {
+		// 사용자 아이디 = mid
 		String mid = principal.getName();
+		
+		//상품 주문목록에 해당하는 주문번호, 상품정보, 수량, 판매가, 주문상태, 배송상태의 정보 조회
 		List<OrderX> orderProduct=orderItemService.getOrderItems(mid);
 		
+		// bytime = 주문한 시간이다.
 		model.addAttribute("bytime", orderItem.getOrderByTime());
 		model.addAttribute("orderProduct",orderProduct);
-		logger.info("실행");
-		logger.info("orderProduct" + orderProduct);
-		/*		for( OrderX a : orderProduct ) {
-					logger.info("-------------------------------");
-					logger.info(a.getOrderItem().getOrderByTime()+"");
-				}
-		*/		return "member/orderList";
+		
+		return "member/orderList";
 	}
 	
 	
