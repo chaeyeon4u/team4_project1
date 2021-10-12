@@ -10,6 +10,7 @@ Product p = (Product) request.getAttribute("product");
 int initPrice = p.getProductColor().getPrice();
 %>
 <script>
+	//DOM구조 로딩된 이후 실행
 	$(document).ready(function() {
 		$("#sumPrice").text("₩" + (<%=initPrice%>).toLocaleString());
 		let quantity = $('#quantity').val();
@@ -231,8 +232,6 @@ int initPrice = p.getProductColor().getPrice();
 								<input type="hidden" name="brandNo" value="${product.productCommon.brandNo}">
 								<input type="hidden" name="brandName" value="${product.brand.name}">
 								<input type="hidden" id="hiddenQuantity" name="quantity" value="1">
-								<!-- <input id="hiddenSize" name="hiddenSize" type="hidden"/>
-								<input id="hiddenQuantity" name="hiddenQuantity" type="hidden"/> -->
 								<!-- 장바구니 추가 및 리스트 확인을 위한 데이터 담기 끝 -->
 								<input type="button" value="장바구니 담기" class="cartbtn" id="addToCartButton" onclick="submitCart()">
 								<%-- <input type="button" value="쇼핑백 담기" class="cartbtn" id="addToCartButton" onclick="location.href='${pageContext.request.contextPath}/cart/cartlist';"> --%>
