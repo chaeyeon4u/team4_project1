@@ -50,25 +50,34 @@ public class ProductController {
 		return redirect;
 	}
 	
+	//대분류, 중분류, 소분류 모두다 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}/{depth2}/{depth3}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2, @PathVariable String depth3,@RequestParam(defaultValue = "1") int pageNo) {
 		
+		// 입력받은 대분류,중분류,소분류 정보를 parameter로 넘기기 위한 dto객체
 		CategoryDepth categoryDepthDto = new CategoryDepth();
 		categoryDepthDto.setDepth1(depth1);
 		categoryDepthDto.setDepth2(depth2);
 		categoryDepthDto.setDepth3(depth3);
-		//페이징 처리를 위해 조건에 맞는 상품전체 개수 조회
+
+		// 페이징 처리를 위해 조건에 맞는 상품전체 개수 조회
 		int totalProduct = productService.getTotalProductNum(categoryDepthDto);
+		
+		// Pager객체에 parameter값으로 (표시할 상품수, 표시할 페이지 그룹수, 전체 상품개수, 페이지번호)를 넣는다.
 		Pager pager = new Pager(12,5,totalProduct, pageNo);
 		categoryDepthDto.setPager(pager);
 		List<Product> products = productService.getProductsByCategory(categoryDepthDto); 
 		model.addAttribute("pager",pager);
 		model.addAttribute("products", products);
 		String str = depth1+"/"+depth2+"/"+depth3;
+		//page이동시 숫자 button에 href에 들어갈 url엥 넣기위해 str을 넘겨준다.
 		model.addAttribute("str",str);
+		//카테고리 활성화를 위한부분
 		model.addAttribute("currDepth",3);//depth3
 		return "product/productList";
 	}
+	
+	//대분류, 중분류만 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}/{depth2}")
 	public String searchByCategory(Model model, @PathVariable String depth1, @PathVariable String depth2,@RequestParam(defaultValue = "1") int pageNo) {
 		CategoryDepth categoryDepthDto = new CategoryDepth();
@@ -85,6 +94,8 @@ public class ProductController {
 		model.addAttribute("currDepth",2);//depth2
 		return "product/productList";
 	}
+	
+	//대분류만 입력받아 상품리스트를 조회 하는 경우
 	@RequestMapping("/{depth1}")
 	public String searchByCategory(Model model, @PathVariable String depth1,@RequestParam(defaultValue = "1") int pageNo) {
 		CategoryDepth categoryDepthDto = new CategoryDepth();
