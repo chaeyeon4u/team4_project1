@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
-import java.security.Principal;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,21 +11,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.mycompany.webapp.vo.Cart;
-import com.mycompany.webapp.vo.Category;
 import com.mycompany.webapp.dto.CategoryDepth;
 import com.mycompany.webapp.dto.Color;
 import com.mycompany.webapp.dto.Product;
-import com.mycompany.webapp.dto.ProductToCart;
+import com.mycompany.webapp.dto.ProductStock;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.service.ProductService;
+import com.mycompany.webapp.vo.Category;
 import com.mycompany.webapp.vo.Pager;
-import com.mycompany.webapp.dto.ProductStock;
 
 @Controller
 @RequestMapping("/product")
@@ -39,12 +37,16 @@ public class ProductController {
 	
 	
 	@RequestMapping("/set/{pcolorId}")
-	public String setCategoryAndReturn(@PathVariable String pcolorId) {
+	public String setCategoryAndReturn(@PathVariable String pcolorId) throws UnsupportedEncodingException {
 		Category category = cartService.setCategories(pcolorId);
 		String depth1Name = category.getDepth1Name();
 		String depth2Name = category.getDepth2Name();
-		String depth3Name = category.getDepth3Name();
+		String depth3Name = URLEncoder.encode(category.getDepth3Name(), "UTF-8");
 		String redirect = "redirect:/product/"+depth1Name+"/"+depth2Name+"/"+depth3Name+"/"+pcolorId;
+		
+
+		logger.info("depth3Name : " + depth3Name);
+		
 		return redirect;
 	}
 	
