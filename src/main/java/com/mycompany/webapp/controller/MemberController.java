@@ -29,7 +29,7 @@ public class MemberController {
 	
 	@Resource
 	private OrderItemService orderItemService;
-	
+	// Author: lch
 	// 마이 페이지 & 주문 취소 
 	@RequestMapping("/orderlist")
 	public String orderList(Model model, Principal principal, OrderItem orderItem) {

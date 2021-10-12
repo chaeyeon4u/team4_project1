@@ -104,8 +104,9 @@ public class OrderController {
 		/* orderService.orderDeliveryPaymentInfo(null); */
 		return "order/orderForm";
 	}
-
-	// 주문이 완료된 페이지 입니다
+	
+	// Author: lch
+	// 주문이 완료된 페이지 입니다 
 	@GetMapping("/ordercomplete")
 	public String showOrder(@RequestParam("p") String orderId, Principal principal, Model model) {
 
