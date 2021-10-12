@@ -100,59 +100,7 @@
 					</ul>
 				</div>
 				<!-- category end -->
-
-				<script>
-					function dropBtnMouseover(cat) {
-						$(cat).css("color", "gray");
-						let depth1 = $(cat).text();
-
-						//카테고리가 띄워져 있을 경우 제거
-						//보이지 않을경우 
-						//클릭한 요소가 본인일 경우 카테고리 사라지게
-						if ($('#KIDSCategory').css('display') === 'block') {
-							$('#KIDSCategory').css("display", "none");
-							$('#KIDS').css("color", "black");
-							if (depth1 === "KIDS") {
-								return;
-							}
-						} else if ($('#LIFESTYLECategory').css('display') === 'block') {
-							$('#LIFESTYLECategory').css("display", "none");
-							$('#LIFESTYLE').css("color", "black");
-							if (depth1 === "LIFESTYLE") {
-								return;
-							}
-						} else if ($('#WOMENCategory').css('display') === 'block') {
-							$('#WOMENCategory').css("display", "none");
-							$('#WOMEN').css("color", "black");
-							if (depth1 === "WOMEN") {
-								return;
-							}
-						} else if ($('#MENCategory').css('display') === 'block') {
-							$('#MENCategory').css("display", "none");
-							$('#MEN').css("color", "black");
-							if (depth1 === "MEN") {
-								return;
-							}
-						}
-
-						//아무 하위 카테고리도 띄워져있지 않은 경우
-						if (depth1 === "KIDS") {
-							$('#KIDSCategory').css("display", "block");
-						} else if (depth1 === "LIFESTYLE") {
-							$('#LIFESTYLECategory').css("display", "block");
-						} else if (depth1 === "WOMEN") {
-							$('#WOMENCategory').css("display", "block");
-						} else if (depth1 === "MEN") {
-							$('#MENCategory').css("display", "block");
-						}
-					}
-
-					//카테고리1 더블클릭 처리
-					function cat1DoubleClick(cat1) {
-						let depth1 = $(cat1).text();
-						location.href = '${pageContext.request.contextPath}/product/' + depth1;
-					}
-				</script>
+				
 				<%-- 검색, 위시리스트, 장바구니 아이콘 --%>
 				<%-- <div class="util_menu util_menu1803">
 					<ul class="clearfix">
@@ -572,7 +520,59 @@
 			</div>
 			<%-- 카테고리2,3 끝 --%>
 			<script>
-				//cat2 클릭시 이동
+				//카테고리1 클릭시 실행
+				function dropBtnMouseover(cat) {
+					$(cat).css("color", "gray");
+					let depth1 = $(cat).text();
+
+					/*1.카테고리가 띄워져 있을 경우 제거
+					* 2.클릭한 요소가 본인일 경우 display:none 이후 바로 리턴*/
+					if ($('#KIDSCategory').css('display') === 'block') {
+						$('#KIDSCategory').css("display", "none");
+						$('#KIDS').css("color", "black");
+						if (depth1 === "KIDS") {
+							return;
+						}
+					} else if ($('#LIFESTYLECategory').css('display') === 'block') {
+						$('#LIFESTYLECategory').css("display", "none");
+						$('#LIFESTYLE').css("color", "black");
+						if (depth1 === "LIFESTYLE") {
+							return;
+						}
+					} else if ($('#WOMENCategory').css('display') === 'block') {
+						$('#WOMENCategory').css("display", "none");
+						$('#WOMEN').css("color", "black");
+						if (depth1 === "WOMEN") {
+							return;
+						}
+					} else if ($('#MENCategory').css('display') === 'block') {
+						$('#MENCategory').css("display", "none");
+						$('#MEN').css("color", "black");
+						if (depth1 === "MEN") {
+							return;
+						}
+					}
+
+					/* 아무 하위 카테고리도 띄워져있지 않은 경우
+					* 1.클릭한 카테고리 보이게 */
+					if (depth1 === "KIDS") {
+						$('#KIDSCategory').css("display", "block");
+					} else if (depth1 === "LIFESTYLE") {
+						$('#LIFESTYLECategory').css("display", "block");
+					} else if (depth1 === "WOMEN") {
+						$('#WOMENCategory').css("display", "block");
+					} else if (depth1 === "MEN") {
+						$('#MENCategory').css("display", "block");
+					}
+				}
+
+				//카테고리1 더블클릭시 해당 링크로 이동
+				function cat1DoubleClick(cat1) {
+					let depth1 = $(cat1).text();
+					location.href = '${pageContext.request.contextPath}/product/' + depth1;
+				}
+				
+				//cat2 클릭시 해당 링크로 이동
 				function cat2Click(cat2) {
 					let depth1 = $(cat2).parents("div").attr("id");
 					depth1 = depth1.replace("Category", "");
