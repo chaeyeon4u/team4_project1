@@ -55,7 +55,9 @@ public class OrderController {
 	CartService cartService;
 	@Resource
 	MileageService mileageService;
-
+	
+	
+	//장바구니에 상품을 담고 주문하기 클릭시, 주문 Form으로 이동.
 	@RequestMapping("/orderform")
 	public String orderForm(Model model, Principal principal, String orderContent) {
 		// 아이디가 들어가는 변수
@@ -72,7 +74,8 @@ public class OrderController {
 			mileageSum -= mileage.getAmount();
 		}
 
-		// 장바구니에서 주문한 상품을 order 폼에 뿌리기
+		// 장바구니에서 주문요청한 상품을 order 폼에 뿌리기
+		// 장바구니에서 json으로 보내준 orderContent를 사용한다.
 		List<CartProduct> cartProducts = new ArrayList<CartProduct>();
 		JSONObject jsonObject = new JSONObject(orderContent);
 		JSONArray products = jsonObject.getJSONArray("products");
