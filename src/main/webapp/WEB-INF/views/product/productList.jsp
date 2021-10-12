@@ -99,19 +99,20 @@
 			}
 	    }
 	
-	
+	 	/*author : 채연*/
 		/* 카테고리 활성화 */
 		$(window).ready(function(){
 			let currDepth=${currDepth};
-			//카테고리1 활성화
+			//카테고리1 활성화 시각화
 			let depth1 = $('input[name=depth1Value]').val();
 			let depth1Id="#"+depth1;
 			let CategoryNameId = "#"+depth1+"Category";
 			$(depth1Id).css("color", "gray");
 			
-			//카테고리2 활성화
+			//카테고리2 활성화 시각화
 			if(currDepth >= 2){
 				let depth2 = $('input[name=depth2Value]').val();
+				//depth2중 '공백'과 '.'을 제거한다.
 				depth2 = depth2.replace(" ", "");
 				depth2 = depth2.replace(".", "");
 				let depth2Id = CategoryNameId + " #"+depth2;

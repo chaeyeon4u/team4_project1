@@ -520,6 +520,7 @@
 			</div>
 			<%-- 카테고리2,3 끝 --%>
 			<script>
+				/*author : 채연*/
 				//카테고리1 클릭시 실행
 				function dropBtnMouseover(cat) {
 					$(cat).css("color", "gray");

@@ -46,8 +46,9 @@ public class CartController {
 		return "cart/cartList";
 	}
 	
-	//장바구니에 데이터 삽입 
-	//상품상세페이지에서 장바구니로 데이터 넘기기
+	/* author : 채연
+	 * 상품상세페이지에서 장바구니로 데이터 insert 넘기기
+	 * 같은 상품 담길 시 수량 증가 */
 	@PostMapping("")
 	public String insertCart(ProductToCart product, Principal principal, Model model) {
 		//장바구니에 상품 담기
