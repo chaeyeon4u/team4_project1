@@ -37,17 +37,17 @@ header에 들어가는 부분
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<a href="${pageContext.request.contextPath}/event/detail/1">
-							<img src="${pageContext.request.contextPath}/resources/images/eventimg1.jpg" width="100%" height="550vh" />
+							<img src="${pageContext.request.contextPath}/resources/images/mainbanner/eventimg1.jpg" width="100%" height="550vh" />
 						</a>
 					</div>
 					<div class="carousel-item">
 						<a href="${pageContext.request.contextPath}/event/detail/2">
-							<img src="${pageContext.request.contextPath}/resources/images/eventimg2.JPG" width="100%" height="550vh"/>
+							<img src="${pageContext.request.contextPath}/resources/images/mainbanner/eventimg2.JPG" width="100%" height="550vh"/>
 						</a>
 					</div>
 					<div class="carousel-item">
 						<a href="">
-							<img src="${pageContext.request.contextPath}/resources/images/bg3.jpg" width="100%" height="550vh" />
+							<img src="${pageContext.request.contextPath}/resources/images/mainbanner/happy4jo.jpg" width="100%" height="550vh" />
 						</a>
 					</div>
 				</div>
