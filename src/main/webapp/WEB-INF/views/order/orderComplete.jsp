@@ -26,7 +26,7 @@
 	<!--주문한 시간 -->	
 			(주문일시 : <fmt:formatDate value="${orderProduct[0].orderItem.orderByTime}" pattern="yyyy.MM.dd HH:mm"/>)</p>
 			
-		<!-- fn:substring은 문자열 자르기를 통해 1번 인덱스만 가져온다 // == '1'이면 은행을 말합니다.  -->	
+		<!-- fn:substring은 문자열 자르기를 통해 1번 인덱스만 가져온다 // == '1'이면 은행을 말합니다. '0' 이면 카드입니다. 아래 결제수단에서 나옴  -->	
 		<!-- c:if를 통해 카드로 결제를 하면 입금예정 시간이 나오지 않고 실시간 계좌이체로 결제를 진행하면 계좌 입금 남은 시간이 나옵니다.-->
 		<c:if test="${fn:substring(orderpayment[0].orders.paymentMethodCode,0,1) == '1'}">
 			<p class="ss_title">
@@ -190,9 +190,9 @@
 						<c:set var="TextValue" value="${member.phone}" />
 						<th scope="row" class="th_space">휴대폰</th>
 						<td>
-		<!-- 주문자 휴대폰 번호를 fn:substring 문자열 자르기를 통해 "010 1234 5678" 이렇게 띄어쓰기를 할 수 있도록 하였습니다 -->
-							${fn:substring(TextValue,0,3) } <!-- 010 부분 -->
-							${fn:substring(TextValue,3,7) } <!-- 1234 부분 -->
+		<!-- 주문자 휴대폰 번호를 fn:substring 문자열 자르기를 통해 "010-1234-5678" 이렇게 구현되도록 수정하였습니다 -->
+							${fn:substring(TextValue,0,3) } - <!-- 010 부분 -->
+							${fn:substring(TextValue,3,7) } - <!-- 1234 부분 -->
 							${fn:substring(TextValue,7,11) }<!-- 5678 부분 -->
 						</td>
 					</tr>
@@ -236,9 +236,9 @@
 						<c:set var="TextValue" value="${orderaddress[0].orders.phone}" />
 						<th scope="row" class="th_space">휴대폰</th>
 						<td>
-			<!-- 배송지 휴대폰 번호를 fn:substring 문자열 자르기를 통해 "010 1234 5678" 이렇게 띄어쓰기를 할 수 있도록 하였습니다-->
-							${fn:substring(TextValue,0,3) } <!-- 010 부분 -->
-							${fn:substring(TextValue,3,7) } <!-- 1234 부분 -->
+			<!-- 배송지 휴대폰 번호를 fn:substring 문자열 자르기를 통해 "010 1234 5678" 이렇게 구현되도록 수정하였습니다-->
+							${fn:substring(TextValue,0,3) } - <!-- 010 부분 -->
+							${fn:substring(TextValue,3,7) } - <!-- 1234 부분 -->
 							${fn:substring(TextValue,7,11) }<!-- 5678 부분 -->	
 						</td>
 					</tr>
@@ -247,9 +247,9 @@
 						<c:set var="TextValue" value="${orderaddress[0].orders.tel}" />
 						<th scope="row" class="th_space">연락처</th>
 						<td>
-			<!-- 배송지 연락처 번호를 fn:substring 문자열 자르기를 통해 "042 456 5678" 이렇게 띄어쓰기를 할 수 있도록 하였습니다-->
-							${fn:substring(TextValue,0,3) } <!-- 042 부분 -->
-							${fn:substring(TextValue,3,6) } <!-- 456 부분 -->
+			<!-- 배송지 연락처 번호를 fn:substring 문자열 자르기를 통해 "042-456-5678" 이렇게 구현되도록 수정하였습니다-->
+							${fn:substring(TextValue,0,3) } - <!-- 042 부분 -->
+							${fn:substring(TextValue,3,6) } - <!-- 456 부분 -->
 							${fn:substring(TextValue,6,11) } <!-- 5678 부분 -->
 						</td>
 					</tr>

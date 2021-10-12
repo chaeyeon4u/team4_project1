@@ -105,29 +105,36 @@ public class OrderController {
 		return "order/orderForm";
 	}
 
-
+	// 주문이 완료된 페이지 입니다
 	@GetMapping("/ordercomplete")
 	public String showOrder(@RequestParam("p") String orderId, Principal principal, Model model) {
 
 		String mid = principal.getName();
-
+		// 상품 정보, 상품합계쪽을 OrderComplete 폼에 뿌립니다.
 		List<OrderComplete> orderProduct = orderService.selectProductByorderId(mid, orderId);
+		// 결제 수단쪽을 OrderComplete 폼에 뿌립니다.
 		List<OrderComplete> orderpayment = orderService.selectpaymentByorderId(mid, orderId);
+		// 배송지 정보쪽을 OrderComplete 폼에 뿌립니다.
 		List<OrderComplete> orderaddress = orderService.selectaddressByorderId(mid, orderId);
-
+		// 주문자 정보쪽을 OrderComplete 폼에 뿌립니다.
 		Member member = memberService.memberInfoById(mid);
 		
+		// 가상계좌로 입금시 +4시간
 		String timeP = null;
 		Date date = new Date();
+		//SimpleDateFormat = 원하는 시간 포맷
 		SimpleDateFormat bytime = new SimpleDateFormat("yyyy.MM.dd HH시 mm분");
+		//getInstance = 하나의 인스턴스만 가지고 공유해서 씀
+		// 날짜 계산
 		Calendar cal = Calendar.getInstance();
+		// 지정 날짜 set
 		cal.setTime(date);
+		// 4시간 더하기 
 		cal.add(Calendar.HOUR,+4);
 		timeP = bytime.format(cal.getTime());
-		
-		
 		// 입금 시간 +4시간 더하기
 		model.addAttribute("timeP", timeP);
+		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("orderProduct", orderProduct);
@@ -136,9 +143,7 @@ public class OrderController {
 		model.addAttribute("bfdcprice", orderProduct.get(0).getOrders().getBeforeDcPrice());
 		model.addAttribute("afdcprice", orderProduct.get(0).getOrders().getAfterDcPrice());
 		model.addAttribute("mileage", orderProduct.get(0).getOrders().getUsedMileage());
-		logger.info("orderAddress:" + orderaddress);
 
-		// 주문 오류시 오류창으로 가게끔 하는 부분 필요
 		return "order/orderComplete";
 	}
 
@@ -197,7 +202,7 @@ public class OrderController {
 		}
 		return methodList;
 	}
-
+	
 	@RequestMapping("/cancel")
 	public String cancelOrder(String hidden_ordersId) {
 		// orderitem 테이블에서 데이터 삭제 -> orders 테이블에서 데이터 삭제
