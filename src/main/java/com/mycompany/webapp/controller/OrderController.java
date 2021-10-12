@@ -139,23 +139,28 @@ public class OrderController {
 		return "order/orderComplete";
 	}
 
-	/* Validation 세팅 */
+	/* Validation 세팅 
+	 * @InitBinder은 @Valid을 실행하기 전에 Validator를 세팅해준다.
+	 * orderForm이라는 이름을 사용한다. */
 	@InitBinder("orderForm")
 	public void orderFormSetValidate(WebDataBinder binder) {
-		binder.setValidator(new OrderFormValidator());
+		binder.setValidator(new OrderFormValidator());//OrderFormValidator를 검증기로 사용한다.
 	}
 
-	/* 서버측 Vlaidation 이후 ordercomplete 화면으로 전환 */
+	/* 서버측 Vlaidation 이후 ordercomplete 화면으로 전환 
+	 * @Valid : Form에서 오는 Orders 커맨드 객체를 "orderForm"이라는 이름의 Validator로 Valid 하겠다.
+	 * InitBinder의 이름과 Valid의 ModelAttribute의 이름을 일치시켜줘야한다.
+	 * BindingResult에는 검증 결과가 들어간다. */
 	@PostMapping("/ordercomplete")
 	public String orderValid(@ModelAttribute("orderForm") @Valid Orders orders, BindingResult bindingResult, Model model, Principal principal, Orders order, String orderContent) {
-		// 주문자 정보에 대한 서버측 Vlidator 처리
-		if (bindingResult.hasErrors()) {// error가 존재할 경우
+		// 서버측 Vlidator 처리
+		if (bindingResult.hasErrors()) {// BindingResult의 error가 존재할 경우 -> 에러메시지를 orderform에 전달
 			logger.info("Validatior에 들어왔고, 검증이 올바르지 않음");
 			logger.info(bindingResult.toString());
 
 			model.addAttribute("orderContent", orderContent);
 			return "forward:/order/orderform";
-		} else {// Validation error가 존재하지 않을 경우 ordercomplete 화면으로
+		} else {// BindingResult에 error가 존재하지 않을 경우 -> ordercomplete 화면으로(form 재전송 방지를 위해 redirect)
 			logger.info("Validatior에 들어왔고, 검증이 올바름");
 
 			logger.info("실행");
