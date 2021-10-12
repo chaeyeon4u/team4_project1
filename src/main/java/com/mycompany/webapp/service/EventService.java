@@ -18,10 +18,12 @@ public class EventService {
 		return eventDao.selectByEventNo(eventNo);
 	}
 	
+	
 	public Event checkCount(int eventNo) {
 		return eventDao.selectCount(eventNo);
 	}
 	
+	//EventTable에서 eventNo에 해당하는 Count를 증가시키기 위한 메서드 
 	public int increaseCount(int eventNo) {
 		return eventDao.updateCount(eventNo);
 	}
