@@ -1,5 +1,6 @@
 package com.mycompany.webapp.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -72,7 +73,9 @@ public class CartService {
 	}
 
 	@Transactional
-	public int deleteCart(Cart cart) {
-		return cartDao.deleteByMemberIdAndProductStockId(cart);
+	public void deleteCart(List<Cart> carts) {
+		for(Cart cart:carts) {
+			cartDao.deleteByMemberIdAndProductStockId(cart);
+		}
 	}
 }
