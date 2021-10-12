@@ -139,7 +139,8 @@ public class OrderController {
 		return "order/orderComplete";
 	}
 
-	/* Validation 세팅 
+	/* author: 채연
+	 * Validation 세팅 
 	 * @InitBinder은 @Valid을 실행하기 전에 Validator를 세팅해준다.
 	 * orderForm이라는 이름을 사용한다. */
 	@InitBinder("orderForm")
@@ -147,7 +148,8 @@ public class OrderController {
 		binder.setValidator(new OrderFormValidator());//OrderFormValidator를 검증기로 사용한다.
 	}
 
-	/* 서버측 Vlaidation 이후 ordercomplete 화면으로 전환 
+	/* author: 채연
+	 * 서버측 Vlaidation 이후 ordercomplete 화면으로 전환 
 	 * @Valid : Form에서 오는 Orders 커맨드 객체를 "orderForm"이라는 이름의 Validator로 Valid 하겠다.
 	 * InitBinder의 이름과 Valid의 ModelAttribute의 이름을 일치시켜줘야한다.
 	 * BindingResult에는 검증 결과가 들어간다. */

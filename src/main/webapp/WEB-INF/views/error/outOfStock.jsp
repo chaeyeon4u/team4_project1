@@ -23,6 +23,7 @@
 <body>
 <div id="bodyWrap">
 	<div class="sub_container error_container">
+		<%-- outhor : 채연 한국어 에러페이지 --%>
 		<div class="errorwrap" id="ko" style="display:block;">
 			<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
@@ -37,6 +38,7 @@
                 <a href="/" class="btn wt_ss">더한섬닷컴 메인으로</a>
             </div>
         </div>
+        <%-- 영어 에러페이지 --%>
         <div class="errorwrap" id="en" style="display:none;">
         	<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
@@ -52,6 +54,7 @@
             </div>
 		</div>            
 		
+		<%-- 중국어 에러페이지 --%>
 		<div class="errorwrap" id="zh" style="display:none;">   
 			<div class="top_error">
                 <button class="btn btn-outline-danger" onclick="china()">中文</button>
@@ -66,19 +69,25 @@
                 <a href="/" class="btn wt_ss">返回thehandsome.com首</a>
             </div>
 		</div>
+		
+		
 		<script>
+			//outhor : 채연
+			//중국어 에러페이지 버튼 클릭시
 			function china(){
 				$("#zh").css("display", "block");
 				$("#en").css("display", "none");
 				$("#ko").css("display", "none");
 			}
 			
+			//영어 에러페이지 버튼 클릭시
 			function eng(){
 				$("#zh").css("display", "none");
 				$("#en").css("display", "block");
 				$("#ko").css("display", "none");
 			}
 			
+			//한국어 에러페이지 버튼 클릭시
 			function kor(){
 				$("#zh").css("display", "none");
 				$("#en").css("display", "none");

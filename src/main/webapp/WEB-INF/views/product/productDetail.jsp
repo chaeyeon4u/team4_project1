@@ -20,6 +20,7 @@ int initPrice = p.getProductColor().getPrice();
 		let commonId = stockId.split("_")[0];
 		$("#productCommonId").attr("value", commonId);
 		
+		//author : 채연
 		//stock 0 이하시 alert창 띄우기
 		/*재고가 0 이하인 상품이 있을경우 input의 hidden타입인 emptyStock을 생성하여 
 		그 값을 기준으로 alert창 여부를 확인한다.*/
