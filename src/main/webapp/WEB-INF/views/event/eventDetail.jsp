@@ -33,6 +33,7 @@
 	                	<div style="display:none;">
 	                      <form name="frm">
 	                         <input type="hidden" name="eventNo" value="${eventNo}"></input>
+	                         <input type="hidden" name="limitCount" value="${limitCount}">
 	                      </form>
                   		</div>
 					</div>

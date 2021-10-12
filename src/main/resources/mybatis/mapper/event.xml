@@ -3,7 +3,9 @@
 <mapper namespace="com.mycompany.webapp.dao.EventDao">
 
 	<select id="selectByEventNo" parameterType="int" resultType="event">
-		select * from event where no=#{eventNo}
+		select no, title, content, issue_date as issueDate, expire_date as expireDate,
+		limit_count as limitCount, count, img
+		from event where no=#{eventNo}
 	</select>
 	
 	<select id="selectCount" parameterType="int" resultType="event">
