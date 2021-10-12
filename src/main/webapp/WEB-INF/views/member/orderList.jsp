@@ -199,6 +199,13 @@
 		$(thing).closest("form").submit();
 	}
 	
+	
+	
+	/* [Author: KHY]
+		jquery로 class=ono인 것들을 모두 가져왔다. 
+		each.로 같은 text를 담고 있는 것을 가져오고 길이가 1초과인경우, 즉 text가 같은경우
+		첫번째 것의(eq:(0)) rowspan을 length길이로 설정하고 나머지는 모두  td element를 지운다.
+	*/
 	$(function(){
 		$(".ono").each(function(){
 			var ordersIdRow = $(".ono:contains('"+$(this).text()+"')");
