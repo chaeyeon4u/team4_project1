@@ -121,7 +121,7 @@
    
    
    <select id="selectaddressByorderId" parameterType="map" resultMap="orderCompleteMap">
-      select orders.zipcode as ordersZipcode,orders.address,receiver,orders.phone as ordersPhone, orders.tel as ordersTel, orders.member_id,orders.id
+      select orders.zipcode as ordersZipcode,orders.address,receiver,orders.phone as ordersPhone, orders.tel as ordersTel, orders.member_id,orders.id,memo
       from member,orders
       where orders.member_id = #{mid, jdbcType=VARCHAR}
       and orders.id=#{ordersId, jdbcType=VARCHAR}
