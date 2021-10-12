@@ -11,13 +11,13 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 	<h3 class="cnts_title">
 		<span>배송&amp;결제정보 입력</span>
 	</h3>
-	<!--sub_container-->
+	<%-- sub_container --%>
 	<div class="sub_container">
-		<!--orderwrap-->
+		<%-- orderwrap --%>
 		<div class="orderwrap del_pay">
 			<!--orderwrap left-->
 			<div class="float_left">
-				<!--table wrap1-->
+				<%-- table wrap1 --%>
 				<div id="checkoutCartView" class="tblwrap">
 					<table class="tbl_ltype ">
 
@@ -63,12 +63,6 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 										</div>
 									</td>
 								</tr>
-								<div style="display:none">
-									<input type="hidden" name="hidden_pcolorId" value="${product.pcolorId}">
-									<input type="hidden" name="hidden_quantity" value="${product.quantity}">
-									<input type="hidden" name="hidden_size_code" value="${product.sizeCode}">
-									<input type="hidden" name="hidden_appliedPrice" value="${product.appliedPrice}">
-								</div>							
 							</c:forEach>
 							<%-- //선택해서 주문중인 상품 정보 리스트 --%>
 						</tbody>
@@ -97,8 +91,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 						<c:set var="TextValue" value="${member.phone}" />
 						<th scope="row" class="th_space">휴대폰</th>
 						<td>
-							${fn:substring(TextValue,0,3) } 
-							${fn:substring(TextValue,3,7) }
+							${fn:substring(TextValue,0,3) } - 
+							${fn:substring(TextValue,3,7) } - 
 							${fn:substring(TextValue,7,11) }
 						</td>
 							</tr>
@@ -464,14 +458,14 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 
 <script>
 		
-		/* 마일리지로 모두 결제가 될때 결제수단 mileage가 checked*/
+
 		
 		
 		
 		
 		
 		
-		/* 구매자 동의가 체크*/
+		/* 구매자 동의 체크되어야 onclick 속성 추가되어 결제가능*/
 		$("#agree").change(function(){
 			var check = $("#agree").is(":checked");
 			if(check == true){
@@ -482,32 +476,25 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 		});
 		
 		
-		
+		/* 주문하기 클릭시 */
 		function order(){
 			
+			//유효성 검사를 위한 변수 선언
 			var checkResult = true;
 			
-			// 데이터는 잘 가져옵니다
-			console.log("orderContent = ", ${orderContent});
-			// typeof라는 함수가 있더라구요 ! 해당 값의 타입을 확인해보면 object 타입으로 출력됩니다.
-			console.log("orderContentType = ", typeof ${orderContent});
-			
-			// JSON.stringify를 해야 비로소 String 타입으로 변환됩니다.
-			console.log("isString? = ", typeof JSON.stringify(${orderContent}));
-			
-			// 'attr("value", ~)'를 val()로 바꿔쓰면 좀 더 코드가 짧아져서 바꿔놨습니다.
+			/* hidden Form에 value값 넣기위함. */
 			$("input[name=zipcode]").val($("#adress").val());
 			$("input[name=address]").val($("#line1").val()+' '+$("#line2").val());
 			$("input[name=receiver]").val($("#rcpt_name").val());
 			$("input[name=memo]").val($("#orderr").val());
 			
-
-			
 			const phnumpattern = /[0-9]{3}[0-9]{3,4}[0-9]{4}/i;
 			let hpNumCheckValue = $("#hp option:selected").val()+$("#hp_num2").val()+$("#hp_num3").val();
 			const hpnumResult = phnumpattern.test(hpNumCheckValue);
 			
+			/* (휴대폰번호)에러 표시 영역 초기화 */
 			$("#hp_num_error").html(" ");
+			/* (휴대폰번호) 유효성검사 결과에 따라 CheckResult false로 변환 */
 			if(hpnumResult == true){
 				$("input[name=phone]").val(hpNumCheckValue);
 			} else if(hpnumResult == false){
@@ -518,6 +505,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			let phnumValue = $("#ph option:selected").val()+$("#ph_num2").val()+$("#ph_num3").val();
 			let phnumCheckValue = $("#ph_num2").val()+$("#ph_num3").val();
 			$("#ph_num_error").html(" ");
+			/* (전화번호번호) 유효성검사 결과에 따라 에러 표시, CheckResult false로 변환 */
+			/* (전화번호)는 선택사항이므로 아무 값을 넣지 않아도 된다. 그러나 값이 있을때는 유효성 검사가 필요하다. */
 			if(phnumCheckValue != ""){
 				const phnumResult = phnumpattern.test(phnumValue);
 				if(phnumResult == true){
@@ -531,7 +520,9 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			const emailPattern = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/i;
 			let emailCheckValue = $("#mail").val()+'@'+$("#emailDely").val();
 			
+			/* (E-mail)에러 표시 영역 초기화 */
 			$("#email_error").html(" ");
+			/* (E-mail) 유효성검사 결과에 따라 에러 표시, CheckResult false로 변환 */
 			if(emailCheckValue != "@"){
 				const emailCheckResult = emailPattern.test(emailCheckValue);
 				if(emailCheckResult == true){
@@ -542,6 +533,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 				}
 			}
 			
+			/* 사용한 마일리지 값가져와서 hidden form에 value 넣기 */
 			const usedMileage = $("#pointpay").val();
 			if(usedMileage == ""){
 				$("input[name=usedMileage]").val("0");
@@ -551,6 +543,8 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			$("input[name=beforeDcPrice]").val(${totalPrice});
 			$("input[name=afterDcPrice]").val(${totalPrice}-$("#pointpay").val());
 			$("input[name='orderContent']").val(JSON.stringify(${orderContent}));
+			/* (결제수단)이 선택되지 않았다면 , CheckResult false로 변환 */
+			/* 결제수단을 선택하라는 에러표시 */
 			if($("input[name='mode']:checked").val() == 0 || $("input[name='mode']:checked").val() == 1){
 				$('input[name=paymentMethodCode]').val($("input[name='mode']:checked").val()+$("select[name=company]").val());
 			}else if( $("input[name='mode']:checked").val() == 2){
@@ -561,15 +555,12 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			}
 			
 			var ordform = $("#orderform");
-
+			
+			
+			//유효성 검사 결과가 true일때만 결제가 된다.
 			if(checkResult == true){
 				ordform.submit();
 			}
-			
-			
-			
-			// 나머지는 바꾼 부분 없어요... 현유님이 다 하신거예요.
-			// 결제하기 버튼 주석 못보셨으면 확인하고 오세요 ! a태그 부분이요 ! 고생 많으셨습니다 
 		}
 		
 		
@@ -585,6 +576,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 		});
 
 		/* 신용카드 혹은 실시간 계좌이체 체크시 */
+		/* ajax로 DB에 다녀오고 #patdetail에 추가 */
 		function showCkout(obj){
 			if(obj.id == 'sel_rd1'){
 				$.ajax({
@@ -662,7 +654,7 @@ Integer totalPrice = (Integer) request.getAttribute("totalPrice");
 			$("#totalPrice").text('₩'+(${totalPrice}-$("#pointpay").val()).toLocaleString());
 			
 			
-			//마일리지 사용금액과 상품금액이 같다면 "신용카드, 실시간계좌이체 부분 비활성화, 한섬마일리지 check" //2021-10-06 만들었으나 안된다..수정예정..ㅠ 
+			//마일리지 사용금액과 상품금액이 같다면 "신용카드, 실시간계좌이체 부분 비활성화, 한섬마일리지 check"
 			if($("#pointpay").val() == ${totalPrice}){
 				$("#sel_rd1").prop("disabled",true);
 				$("#sel_rd2").prop("disabled",true);
