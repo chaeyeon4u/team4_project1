@@ -20,32 +20,35 @@ int initPrice = p.getProductColor().getPrice();
 		$("#productCommonId").attr("value", commonId);
 		
 		//stock 0 이하시 alert창 띄우기
+		/*재고가 0 이하인 상품이 있을경우 input의 hidden타입인 emptyStock을 생성하여 
+		그 값을 기준으로 alert창 여부를 확인한다.*/
 		let isEmtyStock = $("#emptyStock").val();
 		console.log("isEmpty",isEmtyStock);
-		if(isEmtyStock ==="emptyStock"){
+		if(isEmtyStock ==="emptyStock"){//재고가 0이하인 상품이 존재할 경우. alert창을  사용자화면에 띄운다.)
 			$("#alertStock").css("display", "block");
 		}
 	});
 	
 	//form submit
+	//장바구니 버튼 클릭시 실행
 	function submitCart() {
-		
+		//사이즈의 체크 여부 점검
 		let size = $("input[name=size]:checked").val();
 		console.log("size =", size);
-		if(size === undefined){
+		if(size === undefined){//사이즈가 체크되어있지 않을 경우
 			alert("사이즈를 선택해주세요.");
-			//location.reload();
-		}else{
+			//location.reload();//값이 변경되는게 아니기 때문에 reload 제외
+		}else{//사이즈가 체크되어있을 경우 submit()한다.
 			$("#addToCartForm")[0].submit();
 		}	
-	};
+	}
 	// 사이즈 선택 시 품번에 반영되게 함
 	function changePstockId(pcId, sizeCode) {
 		console.log("pcId : ", pcId);
 		console.log("sizeCode: ", sizeCode);
 		$("#pstockId").text(pcId + '_' + sizeCode);
 		
-		//hidden 전달 값 반영
+		//hidden productStockId, sizeode 전달 값 반영
 		$("#productStockId").attr("value", pcId + '_' + sizeCode);
 		$("#sizeCode").attr("value", sizeCode);
 	}
@@ -56,14 +59,12 @@ int initPrice = p.getProductColor().getPrice();
 			if (value > 1) {
 				console.log("실행");
 				$(obj).attr("value", value - 1);
-				$("#hiddenQuantity").val(value-1);
-				$("#hiddenQuantity").attr("value",Number(value-1));
+				$("#hiddenQuantity").attr("value",Number(value-1));//hidden의 Quantity값 변경
 			}
 		} else if (operator === 'plus') {
 			console.log("실행");
 			$(obj).attr("value", value + 1);
-			$("#hiddenQuantity").val(value+1);
-			$("#hiddenQuantity").attr("value",Number(value+1));
+			$("#hiddenQuantity").attr("value",Number(value+1));//hidden의 Quantity값 변경
 		}
 	}
 	
@@ -175,6 +176,7 @@ int initPrice = p.getProductColor().getPrice();
 															<input type="radio" style="display: none;" name="size" value="${stock.sizeCode}" disabled="disabled"/>${stock.sizeCode}
 															<!-- 작은따옴표 안붙여주면 에러남 -->
 														</label>
+														<!-- stock의 재고가 0개 이하인 경우 hidden 값으로 체크한다. -->
 														<input type="hidden" id="emptyStock" value="emptyStock">
 													</c:if>
 													<c:if test="${stock.stock > 0}">
@@ -185,6 +187,7 @@ int initPrice = p.getProductColor().getPrice();
 													</c:if>
 												</li>
 											</c:forEach>
+											<!-- DOM구조가 로드되었을 때 hidden의 재고가 존재하지 않는 상품이 있으면 경고창을 띄워준다. -->
 											<li style="display: block;">
 												<a id="alertStock">일부 상품의 재고가 존재하지 않습니다.</a>
 											</li>
