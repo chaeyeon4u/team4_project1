@@ -1,10 +1,14 @@
 package com.mycompany.webapp.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -87,13 +91,6 @@ public class CartController {
 		return "cart/colors";
 	}
 	
-	/*	@RequestMapping("/selectSizesByPcommonId")
-		public String selectSizesPcommonId(Model model, String pcommonId) {
-			List<Size> sizes = cartService.getSizesByPcommonId(pcommonId);
-			model.addAttribute("sizes", sizes);
-			return "cart/sizes";
-		}*/
-	
 	@RequestMapping("/selectSizesByPcolorId")
 	public String selectSizesPcolorId(Model model, String pcolorId) {
 		logger.info("실행");
@@ -111,9 +108,33 @@ public class CartController {
 		Cart cart = new Cart();
 		cart.setMemberId(mid);
 		cart.setProductStockId(pstockId);
-		cartService.deleteCart(cart);
+		List<Cart> carts = new ArrayList<Cart>();
+		carts.add(cart);
+		cartService.deleteCart(carts);
 		logger.info("pcolorId: "+ pcolorId);
 		logger.info("sizeCode: "+ sizeCode);
+		return "redirect:/cart";
+	}
+	
+	@PostMapping("/deleteSelected")
+	public String deleteSelected(String productStockIds, Principal principal) {
+		String mid = principal.getName();
+		logger.info("실행");
+		logger.info("productStockIds = " + productStockIds);
+		
+		JSONObject jsonObject = new JSONObject(productStockIds);
+		JSONArray jsonArray = jsonObject.getJSONArray("name");
+		List<Cart> delItems = new ArrayList<Cart>();
+		for(int i = 0; i < jsonArray.length(); i++) {
+			Cart cart = new Cart();
+			cart.setMemberId(mid);
+			cart.setProductStockId(jsonArray.getString(i));
+			delItems.add(cart);
+		}
+		cartService.deleteCart(delItems);
+		logger.info(jsonArray.getString(0));
+		
+		logger.info("type = " + jsonObject);
 		return "redirect:/cart";
 	}
 }
