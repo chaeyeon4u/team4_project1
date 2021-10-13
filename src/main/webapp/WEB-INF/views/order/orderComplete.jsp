@@ -247,11 +247,16 @@
 						<c:set var="TextValue" value="${orderaddress[0].orders.tel}" />
 						<th scope="row" class="th_space">연락처</th>
 						<td>
-			<!-- 배송지 연락처 번호를 fn:substring 문자열 자르기를 통해 "042-456-5678" 이렇게 구현되도록 수정하였습니다-->
-							${fn:substring(TextValue,0,3) } - <!-- 042 부분 -->
-							${fn:substring(TextValue,3,6) } - <!-- 456 부분 -->
-							${fn:substring(TextValue,6,11) } <!-- 5678 부분 -->
+			<!-- 배송지 연락처 번호를 fn:substring 문자열 자르기를 통해 "042 456 5678" 이렇게 구현되도록 수정하였습니다-->
+							${fn:substring(TextValue,0,3) }  <!-- 042 부분 -->
+							${fn:substring(TextValue,3,6) }  <!-- 456 부분 -->
+							${fn:substring(TextValue,7,11) } <!-- 5678 부분 -->
 						</td>
+					</tr>
+					<tr>
+				<!-- 배송지 정보의 배송 요청사항 -->
+						<th scope="row" class="th_space">베송 요청사항</th>
+						<td>${orderaddress[0].orders.memo}</td>
 					</tr>
 				</tbody>
 			</table>
