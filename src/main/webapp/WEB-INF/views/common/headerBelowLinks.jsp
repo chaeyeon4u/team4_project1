@@ -11,7 +11,7 @@
 				<div class="top_nav_wrap clearfix">
 					<div class="brand_menu brand_menu1903">
 						<ul class="clearfix">
-							<!-- 선호 브랜드 없음 -->
+							<!-- 선호 브랜드 없음. -->
 							<li>
 								<span class="on">
 									<a href="/"></a>
