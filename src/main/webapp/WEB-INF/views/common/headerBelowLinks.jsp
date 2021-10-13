@@ -235,7 +235,7 @@
 								<a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/FLARE SKIRT">FLARE SKIRT</a>
 							</li>
 							<li class="depth3_element">
-								<a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT%20LONG FMAXI SKIRT">LONG/MAXI SKIRT</a>
+								<a class="depth3" href="${pageContext.request.contextPath}/product/WOMEN/SKIRT/LONG MAXI SKIRT">LONG/MAXI SKIRT</a>
 							</li>
 						</ul>
 					</li>
