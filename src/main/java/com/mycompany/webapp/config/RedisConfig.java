@@ -48,6 +48,7 @@ public class RedisConfig {
         RedisTemplate<String,String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.setValueSerializer(new StringRedisSerializer());
+        // 지금 밑에 부분 설정은 필요 없는 상태임
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setHashKeySerializer(new StringRedisSerializer());
         redisTemplate.setHashValueSerializer(new StringRedisSerializer());

@@ -24,8 +24,8 @@
 						<%-- 테이블 헤더의 시작 --%>
 						<tr>
 							<th scope="col">
-								<!-- 전체 체크박스를 컨트롤하는 체크박스 -->
-								<input type="checkbox" id="entryCheckAll" name="entryCheckAll" onclick="checkAll(this);selectProductCount(${cartSize});selectProductPrice();" />
+								<!-- 전체 체크박스를 컨트롤하는 마스터 체크박스 -->
+								<input type="checkbox" id="entryCheckAll" name="entryCheckAll" onclick="checkAll(this);selectProductCount();selectProductPrice();" />
 							</th>
 							<th scope="col">상품정보</th>
 							<th scope="col">수량</th>
@@ -43,7 +43,7 @@
 							<tr class="entryProductInfo">
 								<%-- 체크박스 --%>
 								<td class="frt">
-									<input type="checkbox" class="entryProductCheck" value="${status.count}" onclick="selectProductCount(${cartSize});selectProductPrice();" />
+									<input type="checkbox" class="entryProductCheck" value="${status.count}" onclick="selectProductCount();selectProductPrice();" />
 								</td>
 								<%-- 상품정보 --%>
 								<td class="pt_list_wrap">
@@ -211,7 +211,9 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- 선택된 상품의 합계를 보여주는 곳 시작 -->
+			<!-- 선택된 상품의 합계 금액, 개수를 보여주는 곳 시작 -->
+			<!-- *체크박스가 change될때마다 합계와 개수는 바뀐다 -->
+			<!-- *selectProductCount(), selectProductPrice() 함수가 실행됨 -->
 			<div class="total_wrap">
 				<!-- total -->
 				<div class="total_price_wrap">
@@ -244,49 +246,47 @@
 			<!--//Total wrap-->
 		</div>
 		<!--// 선택된 상품의 합계를 보여주는 곳 끝 -->
-		<!-- 선택 상품을 삭제하는 버튼 시작 -->
+		<!-- 선택된 상품리스트(1개 이상)를 장바구니에서 삭제하는 버튼 시작 -->
 		<div class="btnwrap order" id="checkout_btn_wrap">
 
 			<input id="" onclick="selDel(this)" value="선택상품삭제" class="btn wt delBtn" type="button" />
+			<!-- *삭제할 상품의 StockId를 JSON -> String으로 저장할 input 박스와 데이터를 전달할 경로를 설정한 폼-->
 			<form id="delForm" action="/cart/deleteSelected" method="post">
 				<input type="hidden" id="selDel" name="productStockIds"/>
 			</form>
+			<!-- *최종 합계 가격이 들어가는 input box이며, 해당 데이터는 주문서 폼에 넘어간다 -->
 			<input type="hidden" id="finalPrice" name="data" />
 
+			<!-- *orderContent input박스의 내용을 주문서 폼으로 전달할 폼 -->
 			<form id="orderForm" method="post" action="/order/orderform">
+				<!-- *선택한 상품을 JSON -> String으로 저장할 input박스 -->
 				<input type="hidden" id="orderContent" name="orderContent" />
+				<!-- *주문하기 버튼을 누르면 makeOrder()함수가 실행되고 함수의 결과로 채워진 input 박스의 값이 주문서 폼으로 전달된다 -->
 				<input type="button" onclick="makeOrder()" value="선택상품 주문하기" class="btn gray mr0 orderBtn">
 			</form>
 		</div>
 		<!--// 선택 상품을 삭제하는 버튼 끝 -->
 		<script>
-		function selDel(e) {
-			var productStockIds = [];
-			$(".entryProductCheck:checked").each(function() {
-				var row = $(this).closest("tr");
-				var productStockId = $(row).find("input[name='productStockId']").val();
-				productStockIds.push(productStockId);
-			});
-			
-			var jsonProductStockIds = JSON.stringify({"name":productStockIds});
-			console.log("jsonProductStockIds", jsonProductStockIds);
-			console.log((typeof jsonProductStockIds));
-			$("#selDel").val(jsonProductStockIds);
-			$("#delForm").submit();
-		}
+
 		</script>
 	</div>
 </div>
 
 <script>
-// 뒤로가기 버튼 누르면 이전에 체크되었던 항목들이 해제된다.
+/*
+ * author: 현지
+ * 뒤로가기 버튼 등 장바구니 페이지 새롭게 진입 시 모든 체크박스를 해제
+ * 재고를 조회해 품절 상품의 체크박스 비활성화
+ */
 $(document).ready(function () {
+	// 체크되어있는 체크박스 해제
 	$("input:checked").each(function(){
 		$(this).prop("checked", false);
 		console.log("실행");
 	});
-	// 재고가 0개 이하인 상품 체크박스 disabled
+	
 	$(".entryProductInfo").each(function() {
+		// 장바구니 조회시 재고 데이터도 가져오는데, 재고가 없을 경우 해당 체크박스 비활성화
 		var stockElem = $(this).find("input[name='stock']");
 		var stock = $(stockElem).val();
 		if (stock < 1) {
@@ -296,42 +296,87 @@ $(document).ready(function () {
 });
 
 
+/*
+ * author: 현지
+ * 모든 체크박스를 컨트롤하는 마스터 체크박스를 클릭 시 실행되는 함수
+ */
 function checkAll(e) {
+	// 마스터 체크박스를 체크한 경우
 	if ($(e).is(':checked')) {
+		// 모든 체크박스를 체크한 후
 		$(".entryProductCheck").prop("checked", true);
-		// 체크할 수 없게 막힌 체크박스는 선택할 수 없게 한다.
+		// disabled된 체크박스는 체크를 해제한다
 		$(".entryProductCheck:disabled").prop("checked", false);
-		
+	// 마스터 체크박스를 해제한 경우
 	} else {
+		// 모든 체크박스를 해제
 		$(".entryProductCheck").prop("checked", false);
 	}
 }
 
+/*
+ * author: 현지
+ * 선택된 상품 리스트를 장바구니에서 삭제하는 함수
+ * "선택상품 주문하기" 버튼 클릭 시 실행
+ */
+function selDel(e) {
+	var productStockIds = [];
+	// 체크된 요소를 가져와서
+	$(".entryProductCheck:checked").each(function() {
+		// 가장 가까운 부모 tr 태그를 찾아서
+		var row = $(this).closest("tr");
+		// 해당 input을 통해 productStockId 정보를 얻고
+		var productStockId = $(row).find("input[name='productStockId']").val();
+		// 배열에 추가한다
+		productStockIds.push(productStockId);
+	});
+	
+	// 체크된 상품의 id 배열을 "productStockIds"라는 키값을 준 객체로 만든 후 문자열화 한다.
+	var jsonProductStockIds = JSON.stringify({"productStockIds":productStockIds});
+	// 문자열로 바뀐 json 객체를 input 태그의 값으로 넣는다.
+	$("#selDel").val(jsonProductStockIds);
+	// form element를 /cart/deleteSelected 경로로 제출한다.
+	$("#delForm").submit();
+}
 
-function selectProductCount(cartSize) {
-	// cartSize: 장바구니에 담긴 물품의 개수
+/*
+ * author: 현지
+ * 체크된 체크박스의 개수를 세는 함수
+ * 체크박스 상태 바뀔때마다 실행
+ */
+function selectProductCount() {
 	
 	// 체크된 체크박스의 개수
 	var currChecked = $(".entryProductCheck:checked").length;
 	// 체크할 수 있는 체크박스의 개수
 	var canChecked = $(".entryProductCheck:enabled").length;
-	
+	// 체크할 수 있는 체크박스가 모두 체크되지 않은 경우
 	if (currChecked !== canChecked) {
+		// 마스터 체크박스를 체크 해제한다
 		$("#entryCheckAll").prop("checked", false);
-	} else { // 현재 체크할 수 있는 체크박스를 모두 체크한 경우
-		$("#entryCheckAll").prop("checked", true); // 전체 체크박스를 체크 상태로 보여줌
+	// 현재 체크할 수 있는 체크박스를 모두 체크한 경우
+	} else {
+		// 마스터 체크박스를 체크한다
+		$("#entryCheckAll").prop("checked", true);
 	}
-	console.log("count = ", currChecked);
+	// 선택된 상품의 개수를 사용자에게 보여줌
 	$("#selectProductCount").text(currChecked);
 }
 
+/*
+ * author: 현지
+ * 체크된 상품의 합계를 구하는 함수
+ * 체크박스 상태 바뀔때마다 실행
+ */
 function selectProductPrice() {
-	console.log("selectProductPrice 실행");
 	var subTotalPrice = 0;
 	var totalPrice = 0;
+	// 체크된 체크박스를 찾아서
 	$(".entryProductCheck:checked").each(function() {
+		// 가장 가까운 tr태그를 찾고
 		var row = $(this).closest("tr");
-
+		
+		// 각 상품의 (1개당 가격 * 개수)를 입력해놓은 히든태그의 값을 찾아서 합계에 더해준다
 		var price = Number($(row).find(":input[name='appliedPrice']").val());
 		console.log("appliedPrice=", price);
 		subTotalPrice += price;
@@ -339,81 +384,108 @@ function selectProductPrice() {
 		}
 	);
 	
+	// 원화 표시 후 뷰에 뿌려준다
 	$("#cartDataSubtotal").text('₩'+subTotalPrice.toLocaleString());
 	$("#cartDataTotalPrice").text('₩'+totalPrice.toLocaleString());
+	// 주문서 폼으로 넘길 input태그에도 합계 값을 넣어준다
 	$("#finalPrice").val(totalPrice);
 }
 
+/*
+ * author: 현지
+ * 수량을 조절하는 함수
+ * 수량 조절 버튼 클릭 시 실행됨
+ */
 function quantity_control(e, operator) {
+	// 수량 조절 버튼 값과 형제 관계의 input 태그를 찾아서
 	let obj = $(e).siblings("input")[0];
+	// 숫자로 변환된 값을 가져온다
 	let value = Number($(obj).val());
+	// 마이너스 버튼을 눌렀을 경우
 	if (operator === 'minus') {
+		// 현재 값이 1보다 큰 경우만 값을 빼준다
 		if (value > 1) {
-			console.log("실행");
+			// 뺀 값을 value에 다시 넣어준다 (아직 DB에 반영되진 않은 상태이고, 변경 버튼을 눌러야 반영된다)
 			$(obj).attr("value", value - 1);
 		}
+	// 플러스 버튼을 눌렀을 경우
 	} else if (operator === 'plus') {
+		// 값을 더해준다
 		$(obj).attr("value", value + 1);
 	}
 }
 
 /*
  * author: 현지
- "수량" 음수와 소수점 처리
+ * "수량" 음수와 소수점 처리
  */
 function quantity_check(e) {
 	console.log("실행");
 	var _input = $(e).val();
 	// 0이거나 문자일 경우
 	if (isNaN(_input) === true || _input == 0) {
+		// 1을 기본값으로 넣어준다
 		$(e).val(1);
+	// 소숫점이거나 음수일 경우
 	} else {
-		// 소숫점이거나 음수일 경우
+		// 절대값으로 변환 후 내림한 값을 넣어준다
 		var validInput = Math.floor(Math.abs(_input));
 		$(e).val(validInput);
 	}
 }
 
+/*
+ * author: 현지
+ * 컬러칩을 선택하면 컬러 정보를 입력하고, 컬러에 따라 다른 사이즈 배리에이션을 가져오고 보여주는 함수
+ */
 function set_color(e) {
+	// 컬러코드
 	var value = $(e).text();
-	
+	// 컬러코드 input의 값을 현재 선택한 컬러의 코드로 변경
 	$(e).closest("form").find(":input[name='colorCode']").val(value);
+	// productCommonId를 가져옴
 	var pcommonId = $(e).closest(".tlt_wrap").find(":input[name='productCommonId']").val();
+	// id를 구분짓는 statusCout를 가져옴
 	var statusCount = $(e).closest(".basket_info").find(":input[name='statusCount']").val();
+	// productCommonId와 colorCode를 통해 pcolorId를 만듦
 	var pcolorId = pcommonId + "_" + value;
-	console.log("pcolorId", pcolorId);	
 		
-	// 컬러에 따라 사이즈 리스트가 달라지기 때문에, 컬러 선택 시 컬러 아이디를 통해 사이즈를 비동기로 가져오게 처리 
+	// *컬러에 따라 사이즈 배리에이션이 달라지기 때문에, 컬러 선택 시 컬러 아이디를 통해 사이즈를 비동기로 가져오게 처리하는 부분
+	// pcolorId 데이터를 전송할 경로 설정
 	var url = "/cart/selectSizesByPcolorId";
+	// 해당 id를 가지는 element에 size 리스트를 뿌려줌
 	var id_size = "#select_size" + statusCount;
-	console.log("id_size =", id_size);
+	// post 방식으로 pcolorId 데이터를 url에 전송
 	$.ajax({
 		url:url,
 		method:"post",
 		data:{"pcolorId":pcolorId},
+		// 전송 후 결과는 사이즈 리스트를 가지는 jsp fragment가 넘어오고, 해당 fragment를 html에 뿌려줌
 		success:function(result) {
 			$(id_size).html(result);
-			console.log("success");
 		}
 	});
 	
-	//color 선택시 css 추가(동일 버튼 두번 클릭시 처리)
-	/* let currValue = $(e).parents(".opt_color").css("background-color")+"";
-	if(currValue === "rgb(140, 178, 151)"){
-		$(e).parents(".opt_color").css("background-color", "");
-		return;} */
-	//color 선택시 css 추가 
-	var test = ".opt_color" + value;
+	// css 효과를 줄 class 지정
+	var colorClass = ".opt_color" + value;
+	// color 선택시 css 추가해 사용자에게 어떤 컬러를 선택했는지 보여줌
 	$(e).addClass("on");
-	$(e).parents(test).siblings().find("a").removeClass("on");
+	// 나머지 컬러칩은 css 효과를 제거함
+	$(e).parents(colorClass).siblings().find("a").removeClass("on");
 }
 
+/*
+ * author: 현지
+ * 현재 선택된 사이즈를 input에 입력하는 함수
+ * 사이즈 칩을 클릭할 때 실행됨
+ */
 function set_size(e) {
+	// 현재 선택된 사이즈칩의 사이즈코드
 	var value = $(e).text();
-	console.log("value : ", value);
+	// 사이즈 코드 input의 값을 갱신
 	$(e).closest("form").find(":input[name='sizeCode']").val(value);
 
-	//size 클릭시 처리(일반)
+	//선택된 사이즈칩을 강조하는 css 처리
 	$(e).siblings().css("background-color", "#ffffff");
 	$(e).siblings().css("color", "#000000");
 	$(e).css("background-color", "#8CB297");
@@ -422,85 +494,114 @@ function set_size(e) {
 
 /*
  * author: 현지
- "옵션 변경" 버튼을 누를 시 hidden 행을 display 하는 함수
+ * hidden 행을 display 하는 함수
+ * "옵션 변경" 버튼을 누를 시 실행됨
  */
 function display_opt(e, colorCode, sizeCode, pcommonId, pcolorId, count) {
-	console.log("pcommonId", pcommonId)
-	// 비동기로 데이터를 요청할 url
+	/*
+	 * 컬러 리스트를 보여주는 부분
+	 */
+	// 비동기로 컬러 리스트 데이터를 요청할 url
 	var url = "/cart/selectColors";
-	// 컬러마다 특정된 id값을 활용
+	// 행마다 특정된 id를 가진 element에 컬러칩 jsp fragment가 들어감
 	var id_color = "#select_color" + count;
+	// pcommonId 데이터를 전송해 비동기 처리 후 컬러 리스트를 가져오는 부분
 	$.ajax({
 		url : url,
 		method : "post",
 		// pcommonId를 이용해 공통 상품이 가지고있는 색상의 리스트를 보여줌
 		data : {"pcommonId":pcommonId},
 		success : function(result) {
-			console.log("result", result);
 			// 색상 리스트를 보여주는 jsp 파일을 id값을 가진 태그 사이에 삽입
 			$(id_color).html(result);
 
 			// 회원이 장바구니에 담은 상품의 기존 선택되어있는 컬러칩을 표시해줌
-			console.log("colorCode",colorCode);
-			var test = ".opt_color" + colorCode;
-			
-			$(test).find("a").addClass("on");
+			// css 표시할 class 이름
+			var colorClass = ".opt_color" + colorCode;
+			$(colorClass).find("a").addClass("on");
 		}
 	});
-
-	/* "옵션 변경" 버튼을 눌렀을 때 보여지는 사이즈의 리스트는 현재 저장된 pcolorId의 사이즈 리스트가 나와야한다. */
+	/*
+	 * 사이즈 배리에이션을 보여주는 부분
+	 * 옵션을 변경하기 전이기 때문에, 현재 장바구니에 담긴 컬러에 해당하는 사이즈 배리에이션이 표시되어야 한다
+	 */
+	// 비동기로 사이즈 배리에이션 데이터를 요청할 url
 	var url = "/cart/selectSizesByPcolorId";
+	// 행마다 특정된 id를 가진 element에 사이즈 배리에이션 jsp fragment가 들어감
 	var id_size = "#select_size" + count;
+	// pcolorId 데이터를 전송해 비동기 처리 후 사이즈 배리에이션을 가져오는 부분
 	$.ajax({
 		url:url,
 		method:"post",
+		// pcolorId를 이용해 현재 선택된 색상의 상품이 가지고있는 사이즈 배리에이션을 보여줌
 		data:{"pcolorId":pcolorId},
 		success:function(result) {
+			// 사이즈 배리에이션을 보여주는 jsp 파일을 id값을 가진 태그 사이에 삽입
 			$(id_size).html(result);
 			
-			//size 기본 선택 추가
+			// 회원이 장바구니에 담은 상품의 기존 선택되어있는 컬러의 사이즈칩을 표시해줌
+			// css 표시할 class 이름
 			let currSizeCs = "."+sizeCode;
-			console.log("sizeCode", currSizeCs);
 			$(id_size).find(currSizeCs).css("background-color", "#8CB297");
 			$(id_size).find(currSizeCs).css("color","#ffffff");
 		}
 	});
+	// 옵션 변경 버튼을 누르면 숨겨져있던 옵션 변경 row가 보여지는 부분
 	let next_tr = $(e).closest("tr").next();
 	let closest_basket_info = $(next_tr).find(".basket_info");
 	$(closest_basket_info).attr("style", "display: block;");
-	
-	
 }
 
+/*
+ * author: 현지
+ * 다시 옵션 변경 row를 숨기는 함수
+ */
 function hidden_opt(e) {
 	let closest_basket_info = $(e).closest(".basket_info");
 	$(closest_basket_info).attr("style", "display: hidden;");
 }
 
-
-
+/*
+ * author: 현지
+ * 선택된 상품의 데이터를 주문서 폼에 넘겨주는 함수
+ * DB를 거치지 않고 request범위에 저장하기 위해서이다.
+ * "선택상품 주문하기" 버튼 클릭 시 실행되는 함수
+ */
 function makeOrder() {
-	// "선택상품 주문하기" 버튼 클릭 시 선택한 상품의 데이터가 넘어가고 페이지가 전환된다.
+	// 선택된 상품을 가져온다
 	var checkedElems = $(".entryProductCheck:checked");
+	// 선택된 상품이 없는 경우
 	if (checkedElems.length < 1) {
 		alert("상품을 선택해주세요.");
 		return "";
+	// 선택된 상품이 있는 경우
 	} else {
-
+		// 배열을 만든다
 		var products = [];
-		var checkedInputs="";
+		// 선택된 상품을 루프를 돌린다
 		checkedElems.each(function () {
+			// 선택된 상품의 행
 			var row = $($(this).closest("tr"));
+			// 선택된 상품의 pcolorId
 			var pcolorId = row.find(":input[name='hidden_pcolorId']").val();
+			// 선택된 상품의 brandName
 			var brandName = row.find(":input[name='hidden_brand_name']").val();
+			// 선택된 상품의 productName
 			var productName = row.find(":input[name='hidden_product_name']").val();
+			// 선택된 상품의 colorCode
 			var colorCode = row.find(":input[name='hidden_color_code']").val();
+			// 선택된 상품의 sizeCode
 			var sizeCode = row.find(":input[name='hidden_size_code']").val();
+			// 선택된 상품의 대표 이미지
 			var img = row.find(":input[name='hidden_img1']").val();
+			// 선택된 상품의 (단일 가격 * 수량)이 적용된 가격
 			var appliedPrice = Number(row.find(":input[name='hidden_applied_price']").val());
+			// 선택된 상품의 수량
 			var quantity = Number(row.find(":input[name='hidden_quantity']").val());
 			
+			// 위의 정보를 json으로 만든다
 			var json = {
+				// "name" : "value" 형식으로 적어주지 않아도 알아서 "name" : "value"형식으로 할당된다
 				pcolorId,
 				brandName,
 				productName,
@@ -510,19 +611,35 @@ function makeOrder() {
 				appliedPrice,
 				quantity
 			};
+			// json 객체를 배열에 넣는다
 			products.push(json);
 		});
+		console.log("products = ", products);
 		
-		
+		// 상품 합계 금액
 		var totalPrice = Number($("#finalPrice").val());
 		
+		// json 객체에 상품 정보 배열과 상품 합계 금액을 넣는다
+/* orderContent = 
+			{"products": [
+				0: {"pcolorId" : ~,
+					"brandName" : ~, ...},
+				1: {"pcolorId" : ~,
+					"brandName" : ~, ...},
+					...
+			],
+			"totalPrice" : 929000} */
 		var orderContent = {
 				products,
 				totalPrice
 		}
 		
+		console.log("orderContent = ", orderContent);
+		// json 객체를 문자열화 함
 		var strOrderContent = JSON.stringify(orderContent);
+		// 문자열화 된 json 객체를 input값에 넣어줌
 		$("#orderContent").val(strOrderContent);
+		// 해당 input을 자식으로 가지는 폼을 submit함
 		$("#orderForm")[0].submit();
 	}
 }

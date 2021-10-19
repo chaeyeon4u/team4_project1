@@ -2,7 +2,6 @@ package com.mycompany.webapp.controller;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +23,6 @@ import com.mycompany.webapp.dto.ProductToCart;
 import com.mycompany.webapp.dto.Size;
 import com.mycompany.webapp.service.CartService;
 import com.mycompany.webapp.vo.Cart;
-import com.mycompany.webapp.vo.Category;
 
 @Controller
 @RequestMapping("/cart")
@@ -63,7 +60,10 @@ public class CartController {
 		
 		return "redirect:/cart";
 	}
-
+	
+	/*
+	 * 카트 테이블에서 상품 수량을 갱신
+	 */
 	@PostMapping("/update/quantity")
 	public String updateQuantity(@RequestParam int quantity, @RequestParam String productStockId, 
 			Principal principal) {
@@ -124,7 +124,7 @@ public class CartController {
 		logger.info("productStockIds = " + productStockIds);
 		
 		JSONObject jsonObject = new JSONObject(productStockIds);
-		JSONArray jsonArray = jsonObject.getJSONArray("name");
+		JSONArray jsonArray = jsonObject.getJSONArray("productStockIds");
 		List<Cart> delItems = new ArrayList<Cart>();
 		for(int i = 0; i < jsonArray.length(); i++) {
 			Cart cart = new Cart();

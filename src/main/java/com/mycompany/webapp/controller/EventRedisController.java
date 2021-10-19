@@ -25,7 +25,6 @@ import com.mycompany.webapp.vo.Event;
 public class EventRedisController {
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
-	//static int count = 0;
 	
 	private static final Logger logger = LoggerFactory.getLogger(EventRedisController.class);
 	
@@ -33,6 +32,7 @@ public class EventRedisController {
 	
 	@RequestMapping("/detail/{eventNo}")
 	public String eventDetail(Model model, @PathVariable int eventNo) {
+		// 이벤트 번호로 이벤트 정보를 가져온다
 		Event event = eventService.SearchEventInfo(eventNo);
 		int limitCount = event.getLimitCount();
 		Date tempDate = event.getIssueDate();
@@ -40,6 +40,7 @@ public class EventRedisController {
 		String issueDate= format.format(tempDate);
 		String title = event.getTitle();
 		logger.info("limitCount = " + limitCount);
+		// 이벤트 객체에 담겨있는 limitCount를 request 범위에 저장한다
 		model.addAttribute("limitCount", limitCount);
 		model.addAttribute("issueDate",issueDate);
 		model.addAttribute("title",title);
@@ -47,20 +48,28 @@ public class EventRedisController {
 		return "event/eventDetail";
 	}
 
+	
+	/*
+	 * count와 참여자 목록 정보를 redis를 사용하여 저장
+	 */
 	@PostMapping("/coupondownload")
 	public String couponDownloadRedisTest (int eventNo, int limitCount, Principal principal) throws Exception {
+		
+		// Redis에서 제공하는 String 타입에 해당하는 명령어를 수행하는 인터페이스
 		ValueOperations<String, String> vops = redisTemplate.opsForValue();
+		// 사용자 아이디
 		String mid = principal.getName();
-
+		// 카운트 키
 		String countKey = "Event"+":"+eventNo + ":" + "count";
+		// 참여 여부
 		String participantYnKey = "Event"+":"+eventNo+":"+"Participant"+":"+mid;
 	
 		logger.info("> 참여자");
 		logger.info(mid);
 		
-		// 현재 쿠폰 발급 카운트를 가져온다
+		// 현재 쿠폰 발급 카운트를 가져온다 (아직 값이 없으면 0으로 초기화한다)
 		int countValue = vops.get(countKey)!=null?Integer.parseInt(vops.get(countKey)):0;
-		// 회원의 참여 여부를 가져온다
+		// 회원의 참여 여부를 가져온다 아직 값이 없으면 N으로 초기화한다.
 		String participantYnValue = vops.get(participantYnKey)!=null?vops.get(participantYnKey):"N";
 		
 		// 남은 쿠폰이 없을 경우
